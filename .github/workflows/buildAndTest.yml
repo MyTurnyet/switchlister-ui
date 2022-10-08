@@ -7,7 +7,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Yarn Install
+      - name: Checkout Files
         uses: actions/checkout@v2
 
       - name: Yarn Install
