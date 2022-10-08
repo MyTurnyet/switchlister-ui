@@ -11,7 +11,7 @@ const defaultState: ThemeContextInterface = {
 
 export const ThemeContext = createContext<ThemeContextInterface>(defaultState);
 
-export const ThemeContextProvider: FC = ({ children }: PropsWithChildren) => {
+export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
   const [dark, setDark] = useState(defaultState.dark);
 
   const toggleDark = () => {
