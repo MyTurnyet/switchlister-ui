@@ -1,8 +1,8 @@
 import { SwitchListViewItem } from './SwitchlistViewItem';
 
 interface TodoListProps {
-    title: string
-    items: string[]
+  title: string;
+  items: string[];
 }
 
 export const SwitchListView = ({ title, items }: TodoListProps) => {
