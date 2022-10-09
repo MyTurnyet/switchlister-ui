@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { SwitchListView } from '../SwitchlistItemView';
+import { SwitchListView } from '../SwitchlistView';
 
 describe('TodoList', () => {
   const renderTodoList = (title: string, items: string[]) => {
