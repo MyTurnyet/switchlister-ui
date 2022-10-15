@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watch-all",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tsc-watch": "tsc --watch --outDir /dev/null"
   },
   "eslintConfig": {
     "extends": [
