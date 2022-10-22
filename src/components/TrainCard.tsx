@@ -10,44 +10,43 @@ export const TrainCard = ({ train }: TrainCardProps) => {
     color: brown;
   `;
 
-  const TrainNameDiv = styled(trainDisplayDiv)`
+  const NameDiv = styled(trainDisplayDiv)`
     width: 100px;
     background-color: #61dafb;
   `;
-  const TrainStationCountDiv = styled(trainDisplayDiv)`
+  const StationCountDiv = styled(trainDisplayDiv)`
     width: 100px;
     background-color: darkseagreen;
     border: chocolate 2px solid;
   `;
-  const FirstStationNameDiv = styled(trainDisplayDiv)`
-    width: 300px;
+  const StationNameDiv = styled(trainDisplayDiv)`
+    width: 100%;
     background-color: bisque;
     color: green;
   `;
-  const TrainCardContainer = styled.div`
-    flex-direction: column;
-
-    background-color: white;
-    display: flex;
-    height: 20vh;
-    width: 20vh;
-  `;
-
-  const TopRow = styled.div`
+  const DisplayRow = styled.div`
     display: flex;
     border: red 2px solid;
     justify-content: space-between;
   `;
 
+  const CardContainer = styled.div`
+    flex-direction: column;
+    background-color: white;
+    display: flex;
+    height: 10vh;
+    width: 20vh;
+  `;
+
   return (
-    <TrainCardContainer>
-      <TopRow>
-        <TrainNameDiv>{train.name}</TrainNameDiv>
-        <TrainStationCountDiv>{train.stationNames.length} stations</TrainStationCountDiv>
-      </TopRow>
-      <TopRow>
-        <FirstStationNameDiv>{train.stationNames[0]}</FirstStationNameDiv>
-      </TopRow>
-    </TrainCardContainer>
+    <CardContainer>
+      <DisplayRow>
+        <NameDiv>{train.name}</NameDiv>
+        <StationCountDiv>{train.stationNames.length} stations</StationCountDiv>
+      </DisplayRow>
+      <DisplayRow>
+        <StationNameDiv>{train.stationNames[0]}</StationNameDiv>
+      </DisplayRow>
+    </CardContainer>
   );
 };
