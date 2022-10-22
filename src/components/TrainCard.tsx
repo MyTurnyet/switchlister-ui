@@ -30,7 +30,8 @@ export const TrainCard = ({ train }: TrainCardProps) => {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    flex: 3;
+    flex: ${train.stationNames.length};
+    margin-bottom: 10px;
   `;
 
   const CardContainer = styled.div`
@@ -50,8 +51,9 @@ export const TrainCard = ({ train }: TrainCardProps) => {
         <StationCountDiv>{train.stationNames.length} stations</StationCountDiv>
       </TopDisplayRow>
       <BottomDisplayRow>
-        <StationNameDiv>{train.stationNames[0]}</StationNameDiv>
-        <StationNameDiv>{train.stationNames[1]}</StationNameDiv>
+        {train.stationNames.map((trainName: string, index: number) => {
+          return <StationNameDiv key={index}>{trainName}</StationNameDiv>;
+        })}
       </BottomDisplayRow>
     </CardContainer>
   );

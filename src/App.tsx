@@ -1,18 +1,17 @@
 import React from 'react';
 import './App.css';
 import { Train } from './models/Train';
-import { TrainCard } from './components/TrainCard';
+import { TrainGrid } from './components/TrainGrid';
 
 function App() {
-  const expectedNames: string[] = ['station 1', 'station 2'];
-  const trainName = 'test name';
-  const train = new Train(trainName, expectedNames);
+  const train1 = new Train('Local Express', ['station 1', 'station 2']);
+  const train2 = new Train('Another Train', ['station 14', 'station 2', 'station 21']);
 
   return (
     <div className='App'>
       <header className='App-header'>
         <div>
-          <TrainCard train={train} />
+          <TrainGrid trains={[train1, train2]} />
         </div>
       </header>
     </div>
