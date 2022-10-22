@@ -1,6 +1,5 @@
 import { Train } from '../models/Train';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 
 export interface TrainCardProps {
   train: Train;
@@ -22,15 +21,16 @@ export const TrainCard = ({ train }: TrainCardProps) => {
     color: green;
   `;
 
-  const dynamicStyle = (props: { flex: number }) => {
-    return css`
-      flex: ${props.flex};
-    `;
-  };
-  const DisplayRow = styled.div`
+  const TopDisplayRow = styled.div`
     display: flex;
     justify-content: space-between;
-    ${dynamicStyle};
+    flex: 3;
+  `;
+  const BottomDisplayRow = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 3;
   `;
 
   const CardContainer = styled.div`
@@ -45,13 +45,14 @@ export const TrainCard = ({ train }: TrainCardProps) => {
 
   return (
     <CardContainer>
-      <DisplayRow flex={3}>
+      <TopDisplayRow>
         <NameDiv>{train.name}</NameDiv>
         <StationCountDiv>{train.stationNames.length} stations</StationCountDiv>
-      </DisplayRow>
-      <DisplayRow flex={2}>
+      </TopDisplayRow>
+      <BottomDisplayRow>
         <StationNameDiv>{train.stationNames[0]}</StationNameDiv>
-      </DisplayRow>
+        <StationNameDiv>{train.stationNames[1]}</StationNameDiv>
+      </BottomDisplayRow>
     </CardContainer>
   );
 };
