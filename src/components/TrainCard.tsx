@@ -33,13 +33,15 @@ export const TrainCard = ({ train }: TrainCardProps) => {
     ${dynamicStyle};
   `;
 
-  const CardContainer = styled.div((props) => ({
-    flexDirection: 'column',
-    backgroundColor: 'white',
-    display: 'flex',
-    height: '10vh',
-    width: '20vh',
-  }));
+  const CardContainer = styled.div`
+    flex-direction: column;
+    background-color: white;
+    display: flex;
+    height: 10vh;
+    width: 20vh;
+    border: black 1px solid;
+    border-radius: 8px;
+  `;
 
   return (
     <CardContainer>
@@ -47,7 +49,7 @@ export const TrainCard = ({ train }: TrainCardProps) => {
         <NameDiv>{train.name}</NameDiv>
         <StationCountDiv>{train.stationNames.length} stations</StationCountDiv>
       </DisplayRow>
-      <DisplayRow flex={1}>
+      <DisplayRow flex={2}>
         <StationNameDiv>{train.stationNames[0]}</StationNameDiv>
       </DisplayRow>
     </CardContainer>
