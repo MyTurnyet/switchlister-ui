@@ -1,10 +1,13 @@
 import { Train } from '../models/Train';
 import { TrainCard } from './TrainCard';
+import { getTrains } from '../data/getTrains';
 
 export const TrainGrid = (props: { trains: Train[] }) => {
+  const allTrains: Train[] = getTrains();
+
   return (
     <>
-      {props.trains.map((train, index) => {
+      {allTrains.map((train, index) => {
         return <TrainCard key={index} train={train} />;
       })}
     </>
