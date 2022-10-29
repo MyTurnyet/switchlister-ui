@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { Train } from './models/Train';
 import { TrainGrid } from './components/TrainGrid';
 
 function App() {
