@@ -20,7 +20,7 @@ const mockGetTrains = getTrains as jest.MockedFn<typeof getTrains>;
 describe('Train Grid', () => {
   it('displays the first train', () => {
     mockGetTrains.mockReturnValue(allTrains);
-    const trainGrid: RenderResult = render(<TrainGrid trains={[]}></TrainGrid>);
+    const trainGrid: RenderResult = render(<TrainGrid />);
     allTrains.map((train: Train) => {
       trainGrid.getByText(train.name);
       trainGrid.getByText(train.stationNames.length + ' stations');
