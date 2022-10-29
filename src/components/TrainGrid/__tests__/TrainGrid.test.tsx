@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import { TrainGrid } from '../TrainGrid';
-import { Train } from '../../models/Train';
-import { getTrains } from '../../data/getTrains';
+import { Train } from '../../../models/Train';
+import { getTrains } from '../../../data/getTrains';
 
 const stationNames1: string[] = ['station 1', 'station 2'];
 const stationNames2: string[] = ['station 3'];
@@ -13,7 +13,7 @@ const train1 = new Train(testName1, stationNames1);
 const train2 = new Train(testName2, stationNames2);
 const allTrains: Train[] = [train1, train2];
 
-jest.mock('../../data/getTrains');
+jest.mock('../../../data/getTrains');
 
 const mockGetTrains = getTrains as jest.MockedFn<typeof getTrains>;
 
