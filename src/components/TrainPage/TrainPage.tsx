@@ -1,5 +1,5 @@
 import { FC } from 'react';
 
 export const TrainPage: FC = () => {
-  return <div>I'm a TrainPage</div>;
+  return <div>Im a TrainPage</div>;
 };
