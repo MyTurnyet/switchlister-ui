@@ -17,14 +17,19 @@ describe('rolling stock', () => {
     length: 52,
     loaded: false,
   };
-  it('is car type HT', () => {
-    const hopper = new RollingStock(hopperBCAX5);
-    const hasType = hopper.isCarType('HT');
-    expect(hasType).toEqual(true);
-  });
-  it('is not car type HT', () => {
-    const hopper = new RollingStock(boxcarCP1234);
-    const hasType = hopper.isCarType('HT');
-    expect(hasType).toEqual(false);
+  const boxcar = new RollingStock(boxcarCP1234);
+  const hopper = new RollingStock(hopperBCAX5);
+  describe('data', () => {
+    it('is car type HT', () => {
+      const hasType = hopper.isCarType('HT');
+      expect(hasType).toEqual(true);
+    });
+    it('is not car type HT', () => {
+      const hasType = boxcar.isCarType('HT');
+      expect(hasType).toEqual(false);
+    });
+    it('returns display name', () => {
+      expect(hopper.displayName).toEqual(`${hopperBCAX5.roadName} ${hopperBCAX5.roadNumber}`);
+    });
   });
 });
