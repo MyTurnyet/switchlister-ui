@@ -1,5 +1,5 @@
-import { Train } from '../models/Train';
 import styled from '@emotion/styled';
+import { Train } from '../../models/Train';
 
 export interface TrainCardProps {
   train: Train;
