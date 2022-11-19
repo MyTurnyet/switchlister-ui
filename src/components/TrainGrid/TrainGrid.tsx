@@ -7,6 +7,7 @@ export const TrainGrid = () => {
 
   return (
     <>
+      <div>All Trains</div>
       {allTrains.map((train, index) => {
         return <TrainCard key={index} train={train} />;
       })}

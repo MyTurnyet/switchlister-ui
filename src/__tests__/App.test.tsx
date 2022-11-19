@@ -1,7 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import App from '../App';
 
-test('renders learn react link', () => {
-  render(<App />);
+describe('App', () => {
+  it('renders', () => {
+    render(<App />);
+  });
+  it('renders all trains by default', () => {
+    const app: RenderResult = render(<App />);
+    app.getByText('All Trains');
+  });
 });
