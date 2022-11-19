@@ -8,6 +8,7 @@ export interface TrainCardProps {
 export const TrainCard = ({ train }: TrainCardProps) => {
   return (
     <CardContainer>
+      <div>Train Card</div>
       <TopDisplayRow>
         <NameDiv>{train.name}</NameDiv>
         <StationCountDiv>{train.stationNames.length} stations</StationCountDiv>

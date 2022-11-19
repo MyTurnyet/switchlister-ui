@@ -1,16 +1,18 @@
 import React from 'react';
 import './App.css';
 import { TrainGrid } from './components/TrainGrid/TrainGrid';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { TrainCard } from './components/TrainGrid/TrainCard';
+import { TrainPage } from './components/TrainPage/TrainPage';
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <div>
-          <TrainGrid />
-        </div>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={'/'} element={<TrainGrid />} />
+        <Route path={'/traincard'} element={<TrainPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
