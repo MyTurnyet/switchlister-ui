@@ -3,6 +3,8 @@ import { render, RenderResult } from '@testing-library/react';
 import { TrainGrid } from '../TrainGrid';
 import { Train } from '../../../models/Train';
 import { getTrains } from '../../../data/getTrains';
+import { MemoryRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 const stationNames1: string[] = ['station 1', 'station 2'];
 const stationNames2: string[] = ['station 3'];
@@ -20,7 +22,11 @@ const mockGetTrains = getTrains as jest.MockedFn<typeof getTrains>;
 describe('Train Grid', () => {
   it('displays the first train', () => {
     mockGetTrains.mockReturnValue(allTrains);
-    const trainGrid: RenderResult = render(<TrainGrid />);
+    const trainGrid: RenderResult = render(
+      <BrowserRouter>
+        <TrainGrid />
+      </BrowserRouter>,
+    );
     allTrains.map((train: Train) => {
       trainGrid.getByText(train.name);
       trainGrid.getByText(train.stationNames.length + ' stations');

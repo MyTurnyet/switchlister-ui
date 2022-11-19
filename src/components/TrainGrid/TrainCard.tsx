@@ -1,13 +1,16 @@
 import styled from '@emotion/styled';
 import { Train } from '../../models/Train';
+import { useNavigate } from 'react-router';
 
 export interface TrainCardProps {
   train: Train;
 }
 
 export const TrainCard = ({ train }: TrainCardProps) => {
+  const navigate = useNavigate();
+
   return (
-    <CardContainer>
+    <CardContainer onClick={() => navigate('trainpage')}>
       <div>Train Card</div>
       <TopDisplayRow>
         <NameDiv>{train.name}</NameDiv>
