@@ -1,18 +1,22 @@
-import { useRollingStockData } from '../RollingStockContext';
+import { RollingStockProvider, useRollingStockData } from '../RollingStockContext';
 import { render, RenderResult } from '@testing-library/react';
 
-const TestRollingStockConsumerNoProvider = () => {
+const TestRollingStockConsumer = () => {
   const contextState = useRollingStockData();
   return <div>count: {contextState.rollingStock.length}</div>;
 };
 
-function renderWithoutProvider(): RenderResult {
-  return render(<TestRollingStockConsumerNoProvider />);
+function renderWithProvider(): RenderResult {
+  return render(
+    <RollingStockProvider>
+      <TestRollingStockConsumer />)
+    </RollingStockProvider>,
+  );
 }
 
 describe('rolling stock context', () => {
   it('renders with 0 items', () => {
-    const testConsumer = renderWithoutProvider();
+    const testConsumer = renderWithProvider();
     testConsumer.getByText('count: 0');
   });
 });
