@@ -2,7 +2,6 @@ import { RollingStockProvider, useRollingStockData } from '../RollingStockContex
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { RollingStockState } from '../../models/RollingStock';
 import { hopperBCAX5State } from '../../testData/FixtureRollingStock';
-import { act } from 'react-dom/test-utils';
 
 const allRollingStock: RollingStockState[] = [hopperBCAX5State];
 
@@ -15,7 +14,18 @@ export const assetsFetchMock = () =>
 
 const TestRollingStockConsumer = () => {
   const contextState = useRollingStockData();
-  return <div>count: {contextState.rollingStock.length}</div>;
+  return (
+    <div>
+      count: {contextState.rollingStock.length}
+      {contextState.rollingStock.map((item: RollingStockState, index: number) => {
+        return (
+          <div key={index}>
+            {item.roadName} {item.roadNumber}
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 function renderWithProvider(): RenderResult {
@@ -37,6 +47,7 @@ describe('rolling stock context', () => {
     const testConsumer = renderWithProvider();
     await waitFor(() => {
       testConsumer.getByText('count: 1');
+      testConsumer.getByText('BCAX 5');
     });
   });
 });
