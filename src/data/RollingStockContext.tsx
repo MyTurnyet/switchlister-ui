@@ -15,8 +15,8 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     (async function () {
-      const data = await fetch('https://dog.ceo/api/breeds/image/random').then((response) =>
-        response.json(),
+      const data = await fetch('https://switchlister-api.herokuapp.com/rollingstock').then(
+        (response) => response.json(),
       );
       rollingStockData.setValue(data);
     })();
