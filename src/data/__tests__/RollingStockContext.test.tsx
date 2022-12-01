@@ -6,12 +6,12 @@ import { rollingStockApiCall } from '../../mocks/serverHandlers';
 
 const TestRollingStockConsumer = () => {
   const contextState = useRollingStockData();
-  const carsReturned = contextState.rollingStock.length;
+  const carsReturned = contextState.rollingStock.count;
   return (
     <div>
       count: {carsReturned}
       {carsReturned === 0 && <div>No cars were returned.</div>}
-      {contextState.rollingStock.map((item: RollingStock, index: number) => {
+      {contextState.rollingStock.map((item: RollingStock, index) => {
         return <div key={index}>{item.displayName}</div>;
       })}
     </div>

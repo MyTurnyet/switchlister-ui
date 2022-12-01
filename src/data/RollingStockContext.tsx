@@ -1,13 +1,17 @@
 import React, { createContext, PropsWithChildren, useContext, useEffect } from 'react';
 import { RollingStock, RollingStockState } from '../models/RollingStock';
 import { useReactState } from '../state-management/ReactState';
+import { RollingStockCollection } from '../models/RollingStockCollection';
 
 export interface RollingStockContextState {
-  rollingStock: RollingStock[];
+  rollingStock: RollingStockCollection;
   isLoading: boolean;
 }
 
-const defaultData: RollingStockContextState = { rollingStock: [], isLoading: false };
+const defaultData: RollingStockContextState = {
+  rollingStock: new RollingStockCollection([]),
+  isLoading: false,
+};
 
 const RollingStockContext = createContext<RollingStockContextState>(defaultData);
 
@@ -28,7 +32,9 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   const returnedState: RollingStockContextState = {
-    rollingStock: rollingStockData.value.map((state) => new RollingStock(state)),
+    rollingStock: new RollingStockCollection(
+      rollingStockData.value.map((state) => new RollingStock(state)),
+    ),
     isLoading: isLoading.value,
   };
   return (
