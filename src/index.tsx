@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { worker } from './mocks/browser.js';
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
   worker.start();
 }
 

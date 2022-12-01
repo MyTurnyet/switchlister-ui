@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-dev": "REACT_APP_USE_MSW_MOCK_API=yes react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watch-all",
     "eject": "react-scripts eject",
