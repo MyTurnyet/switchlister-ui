@@ -12,6 +12,4 @@ export abstract class ItemCollection<T> {
   isEmpty() {
     return this.count === 0;
   }
-
-  abstract create(items: T[]): ItemCollection<T>;
 }
