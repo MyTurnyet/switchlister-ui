@@ -1,22 +1,17 @@
 import { RollingStockProvider, useRollingStockData } from '../RollingStockContext';
 import { render, RenderResult, waitFor } from '@testing-library/react';
-import { RollingStock, RollingStockState } from '../../models/RollingStock';
-import { hopperBCAX5State } from '../../test-configuration/FixtureRollingStock';
-
-const allRollingStock: RollingStockState[] = [hopperBCAX5State];
-
-export const assetsFetchMock = () =>
-  Promise.resolve({
-    ok: true,
-    status: 200,
-    json: async () => allRollingStock,
-  } as Response);
+import { RollingStock } from '../../models/RollingStock';
+import { mswServer } from '../../mocks/msw-server';
+import exp from 'constants';
+import { getEmptyRollingStock } from '../../mocks/serverHandlers';
 
 const TestRollingStockConsumer = () => {
   const contextState = useRollingStockData();
+  const carsReturned = contextState.rollingStock.length;
   return (
     <div>
-      count: {contextState.rollingStock.length}
+      count: {carsReturned}
+      {carsReturned === 0 && <div>No cars were returned.</div>}
       {contextState.rollingStock.map((item: RollingStock, index: number) => {
         return <div key={index}>{item.displayName}</div>;
       })}
@@ -33,17 +28,19 @@ function renderWithProvider(): RenderResult {
 }
 
 describe('rolling stock context', () => {
-  beforeEach(() => {
-    jest.spyOn(global, 'fetch').mockImplementation(assetsFetchMock);
-  });
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
+  const noCarsWereReturned = 'No cars were returned.';
   it('renders with 0 items', async () => {
+    mswServer.use(getEmptyRollingStock);
     const testConsumer = renderWithProvider();
     await waitFor(() => {
-      testConsumer.getByText('count: 1');
-      testConsumer.getByText('BCAX 5');
+      expect(testConsumer).toHaveElementsWithText('count: 0', noCarsWereReturned);
+    });
+  });
+  it('renders with 2 items', async () => {
+    const testConsumer = renderWithProvider();
+    await waitFor(() => {
+      expect(testConsumer).toHaveElementsWithText('count: 2', 'BCAX 5', 'CPR 1234');
+      expect(testConsumer).toNotHaveElementsWithText(noCarsWereReturned);
     });
   });
 });
