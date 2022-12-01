@@ -14,8 +14,13 @@ export const assetsFetchMock = () =>
   } as Response);
 
 describe('rolling stock grid', () => {
+  let spyInstance: jest.SpyInstance<
+    Promise<Response>,
+    [input: RequestInfo | URL, init?: RequestInit | undefined]
+  >;
   beforeEach(() => {
-    jest.spyOn(global, 'fetch').mockImplementation(assetsFetchMock);
+    spyInstance = jest.spyOn(global, 'fetch');
+    spyInstance.mockResolvedValue(assetsFetchMock());
   });
   afterEach(() => {
     jest.restoreAllMocks();
@@ -23,9 +28,10 @@ describe('rolling stock grid', () => {
   it('takes a list of rolling stock', () => {
     const rollingStockGrid: RenderResult = render(
       <RollingStockProvider>
-        <RollingStockGrid rollingStockList={[]} />
+        <RollingStockGrid />
       </RollingStockProvider>,
     );
-    // rollingStockGrid.getByText(hopperBCAX5.displayName);
+    expect(spyInstance).toBeCalled();
+    rollingStockGrid.getByText('Loading!');
   });
 });

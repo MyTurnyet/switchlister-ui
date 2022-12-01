@@ -1,6 +1,6 @@
 import { RollingStockProvider, useRollingStockData } from '../RollingStockContext';
 import { render, RenderResult, waitFor } from '@testing-library/react';
-import { RollingStockState } from '../../models/RollingStock';
+import { RollingStock, RollingStockState } from '../../models/RollingStock';
 import { hopperBCAX5State } from '../../testData/FixtureRollingStock';
 
 const allRollingStock: RollingStockState[] = [hopperBCAX5State];
@@ -17,12 +17,8 @@ const TestRollingStockConsumer = () => {
   return (
     <div>
       count: {contextState.rollingStock.length}
-      {contextState.rollingStock.map((item: RollingStockState, index: number) => {
-        return (
-          <div key={index}>
-            {item.roadName} {item.roadNumber}
-          </div>
-        );
+      {contextState.rollingStock.map((item: RollingStock, index: number) => {
+        return <div key={index}>{item.displayName}</div>;
       })}
     </div>
   );

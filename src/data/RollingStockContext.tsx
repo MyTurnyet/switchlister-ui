@@ -1,10 +1,9 @@
 import React, { createContext, PropsWithChildren, useContext, useEffect } from 'react';
-import { RollingStockState } from '../models/RollingStock';
+import { RollingStock, RollingStockState } from '../models/RollingStock';
 import { useReactState } from '../state-management/ReactState';
-import { log } from 'util';
 
 export interface RollingStockContextState {
-  rollingStock: RollingStockState[];
+  rollingStock: RollingStock[];
   isLoading: boolean;
 }
 
@@ -19,16 +18,17 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     (async function () {
       isLoading.setValue(true);
-      const data = await fetch('https://switchlister-api.herokuapp.com/rollingstock').then(
-        (response) => response.json(),
-      );
+      const data: RollingStockState[] = await fetch(
+        'https://switchlister-api.herokuapp.com/rollingstock',
+      ).then((response) => response.json());
+
       rollingStockData.setValue(data);
       isLoading.setValue(false);
     })();
   }, []);
 
   const returnedState: RollingStockContextState = {
-    rollingStock: rollingStockData.value,
+    rollingStock: rollingStockData.value.map((state) => new RollingStock(state)),
     isLoading: isLoading.value,
   };
   return (
