@@ -10,9 +10,9 @@ describe('rolling stock grid', () => {
       </RollingStockProvider>,
     );
 
-    rollingStockGrid.getByText('Loading!');
+    expect(rollingStockGrid).toHaveElementsWithText('Loading!');
     await waitFor(() => {
-      rollingStockGrid.getByText('BCAX 5');
+      expect(rollingStockGrid).toHaveElementsWithText('BCAX 5');
     });
   });
 });

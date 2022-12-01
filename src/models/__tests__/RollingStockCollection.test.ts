@@ -13,6 +13,6 @@ describe('rolling stock collection', () => {
   it('can map items', () => {
     const namesList = collection.map((item) => item.displayName);
     expect(namesList).toHaveLength(2);
-    expect(namesList).toEqual(['CPR 1234', 'BCAX 5']);
+    expect(namesList).toMatchInAnyOrder(['BCAX 5', 'CPR 1234']);
   });
 });
