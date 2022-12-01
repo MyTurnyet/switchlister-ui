@@ -1,7 +1,5 @@
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { RollingStockGrid } from '../RollingStockGrid';
-import { RollingStockState } from '../../../models/RollingStock';
-import { hopperBCAX5State } from '../../../testData/FixtureRollingStock';
 import { RollingStockProvider } from '../../../data/RollingStockContext';
 
 describe('rolling stock grid', () => {
