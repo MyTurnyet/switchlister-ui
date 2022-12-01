@@ -1,9 +1,8 @@
 import { RollingStockProvider, useRollingStockData } from '../RollingStockContext';
 import { render, RenderResult, waitFor } from '@testing-library/react';
-import { RollingStock } from '../../models/RollingStock';
+import { RollingStock, RollingStockState } from '../../models/RollingStock';
 import { mswServer } from '../../mocks/msw-server';
-import exp from 'constants';
-import { getEmptyRollingStock } from '../../mocks/serverHandlers';
+import { rollingStockApiCall } from '../../mocks/serverHandlers';
 
 const TestRollingStockConsumer = () => {
   const contextState = useRollingStockData();
@@ -30,7 +29,7 @@ function renderWithProvider(): RenderResult {
 describe('rolling stock context', () => {
   const noCarsWereReturned = 'No cars were returned.';
   it('renders with 0 items', async () => {
-    mswServer.use(getEmptyRollingStock);
+    mswServer.use(rollingStockApiCall<RollingStockState[]>('rollingStock', []));
     const testConsumer = renderWithProvider();
     await waitFor(() => {
       expect(testConsumer).toHaveElementsWithText('count: 0', noCarsWereReturned);
