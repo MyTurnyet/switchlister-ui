@@ -12,7 +12,7 @@ describe('rolling stock grid', () => {
 
     expect(rollingStockGrid).toHaveElementsWithText('Loading!');
     await waitFor(() => {
-      expect(rollingStockGrid).toHaveElementsWithText('BCAX 5');
+      expect(rollingStockGrid).toHaveElementsWithText('BCAX 5', 'CPR 1234');
     });
   });
 });
