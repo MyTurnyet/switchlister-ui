@@ -1,7 +1,7 @@
 import { RollingStockProvider, useRollingStockData } from '../RollingStockContext';
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { RollingStock, RollingStockState } from '../../models/RollingStock';
-import { hopperBCAX5State } from '../../testData/FixtureRollingStock';
+import { hopperBCAX5State } from '../../test-configuration/FixtureRollingStock';
 
 const allRollingStock: RollingStockState[] = [hopperBCAX5State];
 

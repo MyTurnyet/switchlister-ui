@@ -1,4 +1,8 @@
-import { boxcarCP1234, hopperBCAX5, hopperBCAX5State } from '../../testData/FixtureRollingStock';
+import {
+  boxcarCP1234,
+  hopperBCAX5,
+  hopperBCAX5State,
+} from '../../test-configuration/FixtureRollingStock';
 
 describe('rolling stock', () => {
   describe('data', () => {
