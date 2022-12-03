@@ -19,5 +19,8 @@ describe('rolling stock', () => {
         `${hopperBCAX5State.roadName} ${hopperBCAX5State.roadNumber}`,
       );
     });
+    it('returns the CarType in caps', () => {
+      expect(hopperBCAX5.carType).toEqual('HT');
+    });
   });
 });

@@ -34,7 +34,9 @@ const GridContainer = styled.div`
   padding-bottom: 35px;
   background-color: green;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-around;
 `;
 
 const CarContainer = styled.div`

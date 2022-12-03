@@ -1,6 +1,6 @@
 import React, { createContext, PropsWithChildren, useContext, useEffect } from 'react';
 import { RollingStock, RollingStockState } from '../models/RollingStock';
-import { ReactState, useReactState } from '../state-management/ReactState';
+import { useReactState } from '../state-management/ReactState';
 import { RollingStockCollection } from '../models/RollingStockCollection';
 
 export interface RollingStockContextState {
