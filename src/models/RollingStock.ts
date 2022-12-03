@@ -16,4 +16,7 @@ export class RollingStock {
   isCarType(expectedType: string): boolean {
     return this.state.carType === expectedType;
   }
+  get carType(): string {
+    return this.state.carType;
+  }
 }

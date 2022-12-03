@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { worker } from './mocks/browser.js';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
+  worker.start();
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -3,6 +3,7 @@ import { TrainPage } from '../TrainPage';
 
 describe('TrainPage', () => {
   it('renders without crashing', () => {
-    render(<TrainPage />);
+    const trainPage = render(<TrainPage />);
+    expect(trainPage).toHaveElementsWithText('Train Profile');
   });
 });

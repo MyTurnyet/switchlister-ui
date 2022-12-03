@@ -1,4 +1,8 @@
-import { boxcarCP1234, hopperBCAX5, hopperBCAX5State } from '../../testData/FixtureRollingStock';
+import {
+  boxcarCP1234,
+  hopperBCAX5,
+  hopperBCAX5State,
+} from '../../test-configuration/FixtureRollingStock';
 
 describe('rolling stock', () => {
   describe('data', () => {
@@ -14,6 +18,9 @@ describe('rolling stock', () => {
       expect(hopperBCAX5.displayName).toEqual(
         `${hopperBCAX5State.roadName} ${hopperBCAX5State.roadNumber}`,
       );
+    });
+    it('returns the CarType in caps', () => {
+      expect(hopperBCAX5.carType).toEqual('HT');
     });
   });
 });
