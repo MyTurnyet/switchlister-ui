@@ -15,7 +15,7 @@ export const RollingStockGrid = () => {
   const { rollingStock, isLoading } = useRollingStockData();
 
   return (
-    <>
+    <div>
       A bunch of cars got here:
       {isLoading && <div>Loading!</div>}
       {!isLoading && (
@@ -25,22 +25,23 @@ export const RollingStockGrid = () => {
           })}
         </GridContainer>
       )}
-    </>
+    </div>
   );
 };
 
 const GridContainer = styled.div`
   padding-top: 15px;
   padding-bottom: 35px;
-  background-color: green;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: space-around;
+  min-height: 85vh;
+  min-width: 90vw;
 `;
 
 const CarContainer = styled.div`
   background-color: white;
+  color: darkgreen;
   height: 10vh;
   width: 20vh;
   border: black 2px solid;

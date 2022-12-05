@@ -25,7 +25,8 @@ export const TrainCard = ({ train }: TrainCardProps) => {
 };
 
 const trainDisplayDiv = styled.div`
-  color: brown;
+  color: white;
+  font-weight: bold;
 `;
 
 const NameDiv = styled(trainDisplayDiv)`
@@ -43,7 +44,7 @@ const TopDisplayRow = styled.div`
   display: flex;
   flex: 3;
   padding: 4px;
-  background-color: green;
+  background-color: darkgreen;
 `;
 const BottomDisplayRow = styled.div`
   display: flex;

@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { TrainGrid } from './components/TrainGrid/TrainGrid';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { TrainPage } from './components/TrainPage/TrainPage';
