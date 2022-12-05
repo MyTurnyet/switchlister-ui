@@ -4,15 +4,34 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { worker } from './mocks/browser.js';
+import { BrowserRouter } from 'react-router-dom';
+import styled from '@emotion/styled';
 
 if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
   worker.start();
 }
+const MainAppWrapper = styled.div`
+  background-color: #282c34;
+`;
+const AppContent = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+`;
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <MainAppWrapper>
+      <AppContent>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </AppContent>
+    </MainAppWrapper>
   </React.StrictMode>,
 );
 

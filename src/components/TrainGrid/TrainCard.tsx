@@ -10,8 +10,7 @@ export const TrainCard = ({ train }: TrainCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <CardContainer onClick={() => navigate('trainpage')}>
-      <div>Train Card</div>
+    <TrainCardContainer onClick={() => navigate('trainpage')}>
       <TopDisplayRow>
         <NameDiv>{train.name}</NameDiv>
         <StationCountDiv>{train.stationNames.length} stations</StationCountDiv>
@@ -21,7 +20,7 @@ export const TrainCard = ({ train }: TrainCardProps) => {
           return <StationNameDiv key={index}>{trainName}</StationNameDiv>;
         })}
       </BottomDisplayRow>
-    </CardContainer>
+    </TrainCardContainer>
   );
 };
 
@@ -30,10 +29,10 @@ const trainDisplayDiv = styled.div`
 `;
 
 const NameDiv = styled(trainDisplayDiv)`
-  width: 100px;
+  flex: 4;
 `;
 const StationCountDiv = styled(trainDisplayDiv)`
-  width: 100px;
+  flex: 3;
 `;
 const StationNameDiv = styled(trainDisplayDiv)`
   width: 100%;
@@ -42,8 +41,9 @@ const StationNameDiv = styled(trainDisplayDiv)`
 
 const TopDisplayRow = styled.div`
   display: flex;
-  justify-content: space-between;
   flex: 3;
+  padding: 4px;
+  background-color: green;
 `;
 const BottomDisplayRow = styled.div`
   display: flex;
@@ -51,14 +51,13 @@ const BottomDisplayRow = styled.div`
   justify-content: space-around;
   flex: 3;
   margin-bottom: 10px;
+  padding: 4px;
 `;
 
-const CardContainer = styled.div`
-  flex-direction: column;
+const TrainCardContainer = styled.div`
+  width: 12vw;
   background-color: white;
-  display: flex;
-  height: 10vh;
-  width: 20vh;
   border: black 1px solid;
   border-radius: 8px;
+  overflow: auto;
 `;
