@@ -1,5 +1,6 @@
 import { createContext, PropsWithChildren, useContext } from 'react';
 import { Train, TrainState } from '../models/Train';
+
 export const train1State: TrainState = {
   name: 'Local Express',
   stations: ['station 1', 'station 2'],
@@ -15,7 +16,7 @@ export interface TrainsDataContext {
   trains: Train[];
 }
 
-export const TrainsContext = createContext<TrainsDataContext | undefined>(undefined);
+const TrainsContext = createContext<TrainsDataContext | undefined>(undefined);
 
 export const useTrainsData = (): TrainsDataContext => {
   const context = useContext(TrainsContext);

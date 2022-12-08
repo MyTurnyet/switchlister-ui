@@ -8,16 +8,22 @@ export interface RollingStockContextState {
   isLoading: boolean;
 }
 
-const defaultData: RollingStockContextState = {
-  rollingStock: new RollingStockCollection([]),
-  isLoading: false,
-};
-
-const RollingStockContext = createContext<RollingStockContextState>(defaultData);
+const RollingStockContext = createContext<RollingStockContextState | undefined>(undefined);
 
 function getRollingStockCollectionFromData(rollingStockData: RollingStockState[]) {
   return new RollingStockCollection(rollingStockData.map((state) => new RollingStock(state)));
 }
+
+export const useRollingStockData = (): RollingStockContextState => {
+  const context = useContext(RollingStockContext);
+  if (context === undefined) {
+    throw Error(
+      'useRollingStockData must be used inside of a RollingStockProvider, ' +
+        'otherwise it will not function correctly.',
+    );
+  }
+  return context;
+};
 
 export const RollingStockProvider = ({ children }: PropsWithChildren) => {
   const rollingStockData = useReactState<RollingStockState[]>([]);
@@ -42,8 +48,4 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
   return (
     <RollingStockContext.Provider value={returnedState}>{children}</RollingStockContext.Provider>
   );
-};
-
-export const useRollingStockData = (): RollingStockContextState => {
-  return useContext(RollingStockContext);
 };
