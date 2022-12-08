@@ -3,22 +3,19 @@ import { useParams } from 'react-router';
 import { useTrainsData } from '../../data/TrainsContext';
 import { Train } from '../../models/Train';
 
-function TrainStationDetails(props: { stationName: string }) {
-  return (
-    <div>
-      <div>{props.stationName}</div>
-      <ul>
-        <li>Industry Name 1</li>
-        <li>Industry Name 2</li>
-      </ul>
-    </div>
-  );
-}
+export const TrainStationDetails = (props: { stationName: string }) => (
+  <div>
+    <div>{props.stationName}</div>
+    <ul>
+      <li>Industry Name 1</li>
+      <li>Industry Name 2</li>
+    </ul>
+  </div>
+);
 
 export const TrainPage = () => {
   const { id } = useParams();
   const { getById } = useTrainsData();
-  console.log('ID passed in: ', id);
   const train: Train = getById(id!);
   return (
     <div>

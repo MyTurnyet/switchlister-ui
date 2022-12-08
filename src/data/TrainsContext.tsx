@@ -1,3 +1,4 @@
+import React from 'react';
 import { createContext, PropsWithChildren, useContext } from 'react';
 import { Train, TrainState } from '../models/Train';
 
@@ -17,7 +18,7 @@ export interface TrainsDataContext {
   getById: (id: string) => Train;
 }
 
-const TrainsContext = createContext<TrainsDataContext | undefined>(undefined);
+export const TrainsContext = createContext<TrainsDataContext | undefined>(undefined);
 
 export const useTrainsData = (): TrainsDataContext => {
   const context = useContext(TrainsContext);
