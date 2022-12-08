@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface TrainState {
   name: string;
@@ -8,7 +8,7 @@ export interface TrainState {
 export class Train {
   private readonly trainId: string;
   constructor(private state: TrainState) {
-    this.trainId = randomUUID();
+    this.trainId = uuidv4();
   }
 
   public get id(): string {

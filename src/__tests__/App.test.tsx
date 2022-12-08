@@ -20,8 +20,8 @@ describe('App', () => {
     app.getByText('All Trains');
   });
   it('renders train profile when train is clicked', () => {
-    const trainCards = app.getAllByText(train1.name);
-    userEvent.click(trainCards[0]);
+    const trainCard = app.getByText(train1.name);
+    userEvent.click(trainCard);
     app.getByText('Train Profile');
   });
   it('renders rolling stock page when the rolling stock link is clicked', () => {
