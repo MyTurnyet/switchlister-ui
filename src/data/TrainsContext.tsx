@@ -14,6 +14,7 @@ export const train2 = new Train(train2State);
 
 export interface TrainsDataContext {
   trains: Train[];
+  getById: (id: string) => Train;
 }
 
 const TrainsContext = createContext<TrainsDataContext | undefined>(undefined);
@@ -30,7 +31,17 @@ export const useTrainsData = (): TrainsDataContext => {
 };
 
 export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
+  const trainsToReturn = [train1, train2];
+  const getById = (id: string): Train => {
+    const trainById = trainsToReturn.find((train) => train.id === id);
+    if (trainById === undefined) {
+      throw Error(`No train found for expected id: ${id}`);
+    }
+    return trainById;
+  };
   return (
-    <TrainsContext.Provider value={{ trains: [train1, train2] }}>{children}</TrainsContext.Provider>
+    <TrainsContext.Provider value={{ trains: trainsToReturn, getById }}>
+      {children}
+    </TrainsContext.Provider>
   );
 };
