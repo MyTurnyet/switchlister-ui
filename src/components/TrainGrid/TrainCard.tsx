@@ -10,7 +10,7 @@ export const TrainCard = ({ train }: TrainCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <TrainCardContainer onClick={() => navigate('trainpage')}>
+    <TrainCardContainer onClick={() => navigate(`trains/${train.id}`)}>
       <TopDisplayRow>
         <NameDiv>{train.name}</NameDiv>
         <StationCountDiv>{train.stationNames.length} stations</StationCountDiv>
