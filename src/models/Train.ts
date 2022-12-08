@@ -1,18 +1,17 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export interface TrainState {
+  id: string;
   name: string;
   stations: string[];
 }
 
 export class Train {
-  private readonly trainId: string;
-  constructor(private state: TrainState) {
-    this.trainId = uuidv4();
-  }
+  public static EMPTY_TRAIN = new Train({ id: '', name: 'EMPTY', stations: [] });
+  constructor(private state: TrainState) {}
 
   public get id(): string {
-    return this.trainId;
+    return this.state.id;
   }
 
   public get name(): string {

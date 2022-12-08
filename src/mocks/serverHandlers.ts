@@ -7,7 +7,7 @@ import { train1State, train2State } from '../data/TrainsContext';
 
 const basePath = 'https://switchlister-api.herokuapp.com/';
 
-const rollingStockToReturn = [hopperBCAX5State, boxcarCP1234State];
+const rollingStockToReturn: RollingStockState[] = [hopperBCAX5State, boxcarCP1234State];
 const trainsToReturn: TrainState[] = [train1State, train2State];
 function get200Result<T extends DefaultBodyType>(res: v<c>, ctx: RestContext, returnedData: T) {
   return res(ctx.status(200), ctx.json(returnedData));

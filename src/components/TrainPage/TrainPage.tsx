@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useTrainsData } from '../../data/TrainsContext';
 import { Train } from '../../models/Train';
+import { useReactState } from '../../state-management/ReactState';
 
 export const TrainStationDetails = (props: { stationName: string }) => (
   <div>
@@ -12,18 +13,29 @@ export const TrainStationDetails = (props: { stationName: string }) => (
     </ul>
   </div>
 );
+export const TrainDetails = (props: { train: Train }) => {
+  return (
+    <div>
+      <div>{props.train.name}</div>
+      {props.train.stationNames.map((stationName: string) => (
+        <TrainStationDetails stationName={stationName} key={stationName} />
+      ))}
+    </div>
+  );
+};
 
 export const TrainPage = () => {
   const { id } = useParams();
-  const { getById } = useTrainsData();
-  const train: Train = getById(id!);
+  const { isLoading, getById } = useTrainsData();
+  const currentTrain = useReactState<Train>(Train.EMPTY_TRAIN);
+  useEffect(() => {
+    currentTrain.setValue(getById(id!));
+  }, [isLoading]);
+
   return (
     <div>
       <div>Train Profile</div>
-      <div>{train.name}</div>
-      {train.stationNames.map((stationName: string) => (
-        <TrainStationDetails stationName={stationName} key={stationName} />
-      ))}
+      <TrainDetails train={currentTrain.value} />
     </div>
   );
 };

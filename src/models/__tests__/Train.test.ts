@@ -1,7 +1,7 @@
 import { Train } from '../Train';
 
 describe('Train', () => {
-  const train = new Train({ name: 'train name', stations: [] });
+  const train = new Train({ id: 'foo!', name: 'train name', stations: [] });
   it('always has a name', () => {
     expect(train.name).toEqual('train name');
   });
@@ -12,7 +12,7 @@ describe('Train', () => {
 
   it('has a list of defined station names', () => {
     const expectedNames: string[] = ['station 1', 'station 2'];
-    const train = new Train({ name: 'test name', stations: expectedNames });
+    const train = new Train({ id: 'foo!', name: 'test name', stations: expectedNames });
     const stationNames: string[] = train.stationNames;
     expect(stationNames).toEqual(expectedNames);
   });

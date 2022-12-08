@@ -1,19 +1,19 @@
 import React from 'react';
-import { render, RenderResult } from '@testing-library/react';
+import { render, RenderResult, waitFor } from '@testing-library/react';
 import { TrainGrid } from '../TrainGrid';
-import { BrowserRouter } from 'react-router-dom';
 import { train1, TrainsDataProvider } from '../../../data/TrainsContext';
+import { MemoryRouter } from 'react-router';
 
 describe('Train Grid', () => {
-  it('displays the first train', () => {
+  it('displays the first train', async () => {
     const trainGrid: RenderResult = render(
-      <BrowserRouter>
-        <TrainsDataProvider>
-          <TrainGrid />
-        </TrainsDataProvider>
-      </BrowserRouter>,
+      <TrainsDataProvider>
+        <TrainGrid />
+      </TrainsDataProvider>,
+      { wrapper: MemoryRouter },
     );
-
-    expect(trainGrid).toHaveElementsWithText('All Trains', train1.name, train1.stationNames[0]);
+    await waitFor(() => {
+      expect(trainGrid).toHaveElementsWithText('All Trains', train1.name, train1.stationNames[0]);
+    });
   });
 });

@@ -5,14 +5,14 @@ import { TrainsDataProvider, useTrainsData } from '../../data/TrainsContext';
 
 export const TrainGrid = () => {
   const navigate = useNavigate();
-  const trainsData = useTrainsData();
+  const { trains } = useTrainsData();
 
   return (
     <div>
       <div onClick={() => navigate('rollingstock')}>Rolling Stock Page</div>
       <TrainGridHeader>All Trains</TrainGridHeader>
       <TrainCardGrid>
-        {trainsData.trains.map((train, index) => {
+        {trains.map((train, index) => {
           return <TrainCard key={index} train={train} />;
         })}
       </TrainCardGrid>
