@@ -1,4 +1,4 @@
-import { useTrainsData } from '../TrainsContext';
+import { TrainsDataProvider, useTrainsData } from '../TrainsContext';
 import { render } from '@testing-library/react';
 
 const TrainsTestConsumer = () => {
@@ -14,7 +14,11 @@ const TrainsTestConsumer = () => {
 };
 describe('trains context', () => {
   it('returns 2 trains', () => {
-    const trainsConsumer = render(<TrainsTestConsumer />);
+    const trainsConsumer = render(
+      <TrainsDataProvider>
+        <TrainsTestConsumer />
+      </TrainsDataProvider>,
+    );
     expect(trainsConsumer).toHaveElementsWithText('count: 2', 'Local Express', 'Another Train');
   });
 });

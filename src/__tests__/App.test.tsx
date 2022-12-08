@@ -4,7 +4,6 @@ import App from '../App';
 import userEvent from '@testing-library/user-event';
 import { train1 } from '../data/getTrains';
 import { MemoryRouter } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
 
 describe('App', () => {
   let app: RenderResult;
