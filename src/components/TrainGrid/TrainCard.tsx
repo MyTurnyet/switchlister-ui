@@ -9,8 +9,12 @@ export interface TrainCardProps {
 export const TrainCard = ({ train }: TrainCardProps) => {
   const navigate = useNavigate();
 
+  const clickHandler = () => {
+    navigate(`trains/${train.id}`);
+  };
+
   return (
-    <TrainCardContainer onClick={() => navigate(`trains/${train.id}`)}>
+    <TrainCardContainer onClick={clickHandler}>
       <TopDisplayRow>
         <NameDiv>{train.name}</NameDiv>
         <StationCountDiv>{train.stationNames.length} stations</StationCountDiv>
