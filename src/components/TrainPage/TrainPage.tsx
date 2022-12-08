@@ -6,7 +6,7 @@ import { useReactState } from '../../state-management/ReactState';
 
 export const TrainStationDetails = (props: { stationName: string }) => (
   <div>
-    <div>{props.stationName}</div>
+    <div>Station: {props.stationName}</div>
     <ul>
       <li>Industry Name 1</li>
       <li>Industry Name 2</li>
