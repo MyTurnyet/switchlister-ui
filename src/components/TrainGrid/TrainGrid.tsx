@@ -1,19 +1,18 @@
-import { Train } from '../../models/Train';
 import { TrainCard } from './TrainCard';
-import { getTrains } from '../../data/getTrains';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router';
+import { useTrainsData } from '../../data/TrainsContext';
 
 export const TrainGrid = () => {
   const navigate = useNavigate();
-  const allTrains: Train[] = getTrains();
+  const trainsData = useTrainsData();
 
   return (
     <div>
       <div onClick={() => navigate('rollingstock')}>Rolling Stock Page</div>
       <TrainGridHeader>All Trains</TrainGridHeader>
       <TrainCardGrid>
-        {allTrains.map((train, index) => {
+        {trainsData.trains.map((train, index) => {
           return <TrainCard key={index} train={train} />;
         })}
       </TrainCardGrid>

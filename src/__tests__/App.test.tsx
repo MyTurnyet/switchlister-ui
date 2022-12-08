@@ -2,15 +2,17 @@ import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
-import { train1 } from '../data/getTrains';
 import { MemoryRouter } from 'react-router';
+import { train1, TrainsDataProvider } from '../data/TrainsContext';
 
 describe('App', () => {
   let app: RenderResult;
   beforeEach(() => {
     app = render(
       <MemoryRouter>
-        <App />
+        <TrainsDataProvider>
+          <App />
+        </TrainsDataProvider>
       </MemoryRouter>,
     );
   });

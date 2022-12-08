@@ -1,8 +1,15 @@
 import { createContext, PropsWithChildren, useContext } from 'react';
-import { Train } from '../models/Train';
-
-const train1 = new Train('Local Express', ['station 1', 'station 2']);
-const train2 = new Train('Another Train', ['station 14', 'station 2', 'station 21']);
+import { Train, TrainState } from '../models/Train';
+export const train1State: TrainState = {
+  name: 'Local Express',
+  stations: ['station 1', 'station 2'],
+};
+export const train2State: TrainState = {
+  name: 'Another Train',
+  stations: ['station 14', 'station 2', 'station 21'],
+};
+export const train1 = new Train(train1State);
+export const train2 = new Train(train2State);
 
 export interface TrainsDataContext {
   trains: Train[];

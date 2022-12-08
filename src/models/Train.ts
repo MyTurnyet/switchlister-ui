@@ -1,10 +1,15 @@
+export interface TrainState {
+  name: string;
+  stations: string[];
+}
+
 export class Train {
-  constructor(private trainName: string, private stations: string[] = []) {}
+  constructor(private state: TrainState) {}
 
   public get name(): string {
-    return this.trainName;
+    return this.state.name;
   }
   public get stationNames(): string[] {
-    return this.stations;
+    return this.state.stations;
   }
 }
