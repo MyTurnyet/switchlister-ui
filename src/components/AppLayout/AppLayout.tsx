@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router';
-import styled from '@emotion/styled';
 import { NavBar } from './NavBar';
+import styled from 'styled-components';
 
 export const AppLayout = () => {
   return (
@@ -11,9 +11,6 @@ export const AppLayout = () => {
         <NavBar />
       </LayoutHeader>
       <ContentArea title={'content'}>
-        {/* <DataContext>*/}
-        {/*  <StoryInformationView />*/}
-        {/* </DataContext>*/}
         <PageView title={'pageView'}>
           <Outlet></Outlet>
         </PageView>
@@ -24,14 +21,13 @@ export const AppLayout = () => {
 
 const LayoutHeader = styled.div`
   text-align: center;
-  background-color: white;
   height: auto;
   width: 100vw;
   justify-content: center;
-  border-bottom: #1565c0 3px solid;
+  border-bottom: ${(props) => props.theme.colors.text.header} 3px solid;
 `;
 const AppHeader = styled.div`
-  color: #1565c0;
+  color: ${(props) => props.theme.colors.text.header};
   font-size: calc(10px + 2vmin);
   margin: 12px 8px 4px 0;
 `;

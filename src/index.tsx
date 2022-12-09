@@ -22,7 +22,7 @@ const AppContent = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: #131333;
+  color: ${(props) => props.theme.colors.text.normal};
 `;
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

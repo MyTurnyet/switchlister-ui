@@ -1,11 +1,20 @@
 import { DefaultTheme } from 'styled-components';
+
+const mediumBlue = '#1565c0';
+const darkBlue = '#131333';
+
 const mainTheme: DefaultTheme = {
   borderRadius: '8px',
   colors: {
     appBackground: 'ghostwhite',
-    main: '',
+    cardBackground: mediumBlue,
+    cardBorder: mediumBlue,
+    main: darkBlue,
     secondary: '',
-    text: { header: '', normal: '' },
+    text: {
+      header: mediumBlue,
+      normal: darkBlue,
+    },
   },
 };
 

@@ -64,7 +64,7 @@ const TrainCardContainer = styled.div`
   height: auto;
   max-height: 15vh;
   background-color: white;
-  border: black 1px solid;
+  border: ${(props) => props.theme.colors.cardBorder} 1px solid;
   border-radius: ${(props) => props.theme.borderRadius};
   overflow: auto;
 `;
