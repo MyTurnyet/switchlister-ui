@@ -11,7 +11,7 @@ if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
   worker.start();
 }
 const MainAppWrapper = styled.div`
-  background-color: #282c34;
+  background-color: ghostwhite;
 `;
 const AppContent = styled.div`
   min-height: 100vh;
@@ -19,7 +19,7 @@ const AppContent = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #131333;
 `;
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
