@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import { Train } from '../../models/Train';
 import { useNavigate } from 'react-router';
+import styled from 'styled-components';
 
 export interface TrainCardProps {
   train: Train;
@@ -41,22 +41,22 @@ const StationCountDiv = styled(trainDisplayDiv)`
 `;
 const StationNameDiv = styled(trainDisplayDiv)`
   width: 100%;
-  color: green;
+  color: #1565c0;
 `;
 
-const TopDisplayRow = styled.div`
+const trainRowDefaults = styled.div`
   display: flex;
   flex: 3;
   padding: 4px;
-  background-color: darkgreen;
 `;
-const BottomDisplayRow = styled.div`
-  display: flex;
+
+const TopDisplayRow = styled(trainRowDefaults)`
+  background-color: #1565c0;
+`;
+const BottomDisplayRow = styled(trainRowDefaults)`
   flex-direction: column;
   justify-content: space-around;
-  flex: 3;
   margin-bottom: 10px;
-  padding: 4px;
 `;
 
 const TrainCardContainer = styled.div`
@@ -65,6 +65,6 @@ const TrainCardContainer = styled.div`
   max-height: 15vh;
   background-color: white;
   border: black 1px solid;
-  border-radius: 8px;
+  border-radius: ${(props) => props.theme.borderRadius};
   overflow: auto;
 `;

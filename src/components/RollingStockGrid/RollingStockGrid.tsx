@@ -1,6 +1,6 @@
 import { RollingStock } from '../../models/RollingStock';
 import { useRollingStockData } from '../../data/RollingStockContext';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 function RollingStockDetails(props: { car: RollingStock }) {
   return (
@@ -45,7 +45,7 @@ const CarContainer = styled.div`
   height: 10vh;
   width: 20vh;
   border: black 2px solid;
-  border-radius: 8px;
+  border-radius: ${(props) => props.theme.borderRadius};
   overflow: auto;
 `;
 const CarHeader = styled.div`

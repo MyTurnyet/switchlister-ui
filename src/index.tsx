@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { worker } from './mocks/browser.js';
 import { BrowserRouter } from 'react-router-dom';
-import styled from '@emotion/styled';
+import styled, { ThemeProvider } from 'styled-components';
+import { mainTheme } from './themes/MainTheme';
 
 if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
   worker.start();
 }
+
 const MainAppWrapper = styled.div`
-  background-color: ghostwhite;
+  background-color: ${(props) => props.theme.colors.appBackground};
 `;
+
 const AppContent = styled.div`
   min-height: 100vh;
   display: flex;
@@ -25,13 +28,15 @@ const AppContent = styled.div`
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <MainAppWrapper>
-      <AppContent>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </AppContent>
-    </MainAppWrapper>
+    <ThemeProvider theme={mainTheme}>
+      <MainAppWrapper>
+        <AppContent>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </AppContent>
+      </MainAppWrapper>
+    </ThemeProvider>
   </React.StrictMode>,
 );
 
