@@ -61,6 +61,8 @@ const BottomDisplayRow = styled.div`
 
 const TrainCardContainer = styled.div`
   width: 12vw;
+  height: auto;
+  max-height: 15vh;
   background-color: white;
   border: black 1px solid;
   border-radius: 8px;

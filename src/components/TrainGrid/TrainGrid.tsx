@@ -26,8 +26,11 @@ const TrainGridHeader = styled.div`
   font-weight: bold;
 `;
 const TrainCardGrid = styled.div`
+  padding-top: 15px;
+  padding-bottom: 35px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: space-around;
+  min-height: 85vh;
+  min-width: 90vw;
 `;
