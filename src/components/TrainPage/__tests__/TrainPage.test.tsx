@@ -1,19 +1,18 @@
 import { render, waitFor } from '@testing-library/react';
 import { TrainPage } from '../TrainPage';
-import { MemoryRouter } from 'react-router';
 import { train1, train1State, TrainsDataProvider } from '../../../data/TrainsContext';
 import { Route, Routes } from 'react-router-dom';
 import { Train } from '../../../models/Train';
+import { renderWithRouter } from '../../../test-configuration/ReactTestToolkit';
 
 function renderTrainPageComponent(initialPath: string) {
-  return render(
-    <MemoryRouter initialEntries={[initialPath]}>
-      <TrainsDataProvider>
-        <Routes>
-          <Route path={'/trains/:id'} element={<TrainPage />}></Route>
-        </Routes>
-      </TrainsDataProvider>
-    </MemoryRouter>,
+  return renderWithRouter(
+    <TrainsDataProvider>
+      <Routes>
+        <Route path={'/trains/:id'} element={<TrainPage />}></Route>
+      </Routes>
+    </TrainsDataProvider>,
+    initialPath,
   );
 }
 

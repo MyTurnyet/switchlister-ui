@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import { expect } from '@jest/globals';
 
 export function pressButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -11,16 +12,22 @@ export function pressButtonWithText(screen: RenderResult, stringToFind: string) 
 export const mockHistory = createMemoryHistory();
 mockHistory.push = jest.fn();
 
-export function expectHistoryCalledWith(pathname: string) {
-  console.log(mockHistory);
+export function expectHistoryCalledWith(pathname: string, calledFromLink = false) {
   expect(mockHistory.push).toHaveBeenCalledWith(
-    {
+    expect.objectContaining({
       hash: '',
       pathname: pathname,
       search: '',
-    },
+    }),
     undefined,
-    { preventScrollReset: undefined, relative: undefined, replace: false, state: undefined },
+    calledFromLink
+      ? {
+          preventScrollReset: undefined,
+          relative: undefined,
+          replace: false,
+          state: undefined,
+        }
+      : {},
   );
 }
 

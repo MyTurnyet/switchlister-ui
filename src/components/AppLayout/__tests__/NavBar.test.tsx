@@ -20,10 +20,10 @@ describe('Nav Bar', () => {
   });
   it('should render home link', () => {
     clickLink('Home');
-    expectHistoryCalledWith('/home');
+    expectHistoryCalledWith('/home', true);
   });
   it('should render rolling stock link', () => {
     clickLink('Rolling Stock');
-    expectHistoryCalledWith('/rollingstock');
+    expectHistoryCalledWith('/rollingstock', true);
   });
 });
