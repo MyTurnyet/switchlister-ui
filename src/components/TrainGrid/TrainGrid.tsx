@@ -1,7 +1,7 @@
 import { TrainCard } from './TrainCard';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router';
-import { TrainsDataProvider, useTrainsData } from '../../data/TrainsContext';
+import { useTrainsData } from '../../data/TrainsContext';
 
 export const TrainGrid = () => {
   const navigate = useNavigate();

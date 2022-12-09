@@ -5,6 +5,7 @@ import { TrainPage } from './components/TrainPage/TrainPage';
 import { RollingStockPage } from './components/RollingStockPage/RollingStockPage';
 import { TrainsDataProvider } from './data/TrainsContext';
 import { AppLayout } from './components/AppLayout/AppLayout';
+import { Navigate } from 'react-router';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path={'/'} element={<AppLayout />}>
           <Route index={true} element={<TrainGrid />} />
+          <Route path='/home' element={<Navigate to={'/'} />} />
           <Route path={'/trains/:id'} element={<TrainPage />} />
           <Route path={'/rollingstock'} element={<RollingStockPage />} />
         </Route>

@@ -29,7 +29,8 @@ export const TrainPage = () => {
   const { isLoading, getById } = useTrainsData();
   const currentTrain = useReactState<Train>(Train.EMPTY_TRAIN);
   useEffect(() => {
-    currentTrain.setValue(getById(id!));
+    if (id === undefined) return;
+    currentTrain.setValue(getById(id));
   }, [isLoading]);
 
   return (
