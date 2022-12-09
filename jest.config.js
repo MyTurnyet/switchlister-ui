@@ -1,8 +1,9 @@
-import { name as displayName } from './package.json';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+var packageFile = require('./package.json');
 
 // eslint-disable-next-line no-undef
 module.exports = {
-  displayName,
+  displayName: packageFile.name,
   // The root of your source code, typically /src
   // `<rootDir>` is a token Jest substitutes
   roots: ['<rootDir>/src'],
