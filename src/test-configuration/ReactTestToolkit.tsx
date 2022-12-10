@@ -3,6 +3,8 @@ import { fireEvent, render, RenderResult } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { expect } from '@jest/globals';
+import { Train } from '../models/Train';
+import { FakeTrainContext } from './FakeTrainContext';
 
 export function pressButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -44,4 +46,12 @@ export function renderWithRouter(
   location: string | Partial<Location> = mockHistory.location,
 ): RenderResult {
   return render(getRouter(element, location));
+}
+
+export function renderWithFakeTrainContext(children: JSX.Element, trainsToReturn: Train[] = []) {
+  return render(
+    <FakeTrainContext trainsToReturn={trainsToReturn} trainToReturnById={Train.EMPTY_TRAIN}>
+      {children}
+    </FakeTrainContext>,
+  );
 }

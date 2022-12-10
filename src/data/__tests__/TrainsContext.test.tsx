@@ -1,7 +1,6 @@
 import { train1, useTrainsData } from '../TrainsContext';
-import { render } from '@testing-library/react';
 import { Train } from '../../models/Train';
-import { FakeTrainContext } from '../../test-configuration/FakeTrainContext';
+import { renderWithFakeTrainContext } from '../../test-configuration/ReactTestToolkit';
 
 const TrainsTestConsumer = () => {
   const { trains } = useTrainsData();
@@ -15,21 +14,17 @@ const TrainsTestConsumer = () => {
   );
 };
 
-function renderWithProvider(trainsToReturn: Train[] = []) {
-  return render(
-    <FakeTrainContext {...FakeTrainContext.defaultProps} trainsToReturn={trainsToReturn}>
-      <TrainsTestConsumer />
-    </FakeTrainContext>,
-  );
+function renderTrainConsumer(trainsToReturn: Train[] = []) {
+  return renderWithFakeTrainContext(<TrainsTestConsumer />, trainsToReturn);
 }
 
 describe('trains context', () => {
   it('returns 0 trains', () => {
-    const trainsConsumer = renderWithProvider();
+    const trainsConsumer = renderTrainConsumer();
     expect(trainsConsumer).toHaveElementsWithText('count: 0');
   });
   it('returns 1 train', () => {
-    const trainsConsumer = renderWithProvider([train1]);
+    const trainsConsumer = renderTrainConsumer([train1]);
     expect(trainsConsumer).toHaveElementsWithText('count: 1');
   });
 });
