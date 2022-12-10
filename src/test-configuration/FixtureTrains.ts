@@ -1,6 +1,10 @@
 import { Train, TrainState } from '../models/Train';
 import { v4 as uuidv4 } from 'uuid';
 import { Station, StationState } from '../models/Station';
+import { Industry, IndustryState } from '../models/Industry';
+
+export const industry1State: IndustryState = { name: 'Industry 1' };
+export const industry1 = new Industry(industry1State);
 
 export const station1State: StationState = { industries: [], name: 'station1' };
 export const station2State: StationState = { industries: [], name: 'station2' };

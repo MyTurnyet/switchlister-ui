@@ -1,9 +1,8 @@
-import { Industry, IndustryState } from '../Industry';
+import { Industry } from '../Industry';
+import { industry1, industry1State } from '../../test-configuration/FixtureTrains';
 
 describe('Industry', () => {
   it('creates', () => {
-    const industryState: IndustryState = { name: 'Industry 1' };
-    const industry = new Industry(industryState);
-    expect(industry.name).toEqual(industryState.name);
+    expect(industry1.name).toEqual(industry1State.name);
   });
 });
