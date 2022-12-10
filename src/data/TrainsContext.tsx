@@ -1,22 +1,8 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { Train, TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
-import { v4 as uuidv4 } from 'uuid';
 import { TrainApi } from './api/TrainApi';
 import { TrainCollection } from '../models/TrainCollection';
-
-export const train1State: TrainState = {
-  id: uuidv4(),
-  name: 'Local Express',
-  stations: ['station 1', 'station 2'],
-};
-export const train2State: TrainState = {
-  id: uuidv4(),
-  name: 'Another Train',
-  stations: ['station 14', 'station 2', 'station 21'],
-};
-export const train1 = new Train(train1State);
-export const train2 = new Train(train2State);
 
 export interface TrainsDataContext {
   trainCollection: TrainCollection;

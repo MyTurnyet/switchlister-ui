@@ -1,11 +1,11 @@
 import { TrainPage } from '../TrainPage';
-import { train1, train1State } from '../../../data/TrainsContext';
 import { Route, Routes } from 'react-router-dom';
 import { Train } from '../../../models/Train';
 import {
   renderWithRouter,
   wrapWithFakeTrainContext,
 } from '../../../test-configuration/ReactTestToolkit';
+import { train1, train1State } from '../../../test-configuration/FixtureTrains';
 
 function renderTrainPageComponent(
   initialPath: string,

@@ -1,7 +1,9 @@
+import { Station } from './Station';
+
 export interface TrainState {
   id: string;
   name: string;
-  stations: string[];
+  stations: Station[];
 }
 
 export class Train {
@@ -16,6 +18,6 @@ export class Train {
     return this.state.name;
   }
   public get stationNames(): string[] {
-    return this.state.stations;
+    return this.state.stations.map((station) => station.name);
   }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { RenderResult, waitFor } from '@testing-library/react';
 import { TrainGrid } from '../TrainGrid';
-import { train1 } from '../../../data/TrainsContext';
 import {
   expectHistoryCalledWith,
   renderWithRouter,
@@ -10,6 +9,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import { mainTheme } from '../../../themes/MainTheme';
 import { ThemeProvider } from 'styled-components';
+import { train1 } from '../../../test-configuration/FixtureTrains';
 
 describe('Train Grid', () => {
   let trainGrid: RenderResult;
