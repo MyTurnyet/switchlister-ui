@@ -1,8 +1,7 @@
-import { TrainsDataProvider, useTrainsData } from '../TrainsContext';
-import { render, waitFor } from '@testing-library/react';
-import { mswServer } from '../../mocks/msw-server';
-import { createApiCall } from '../../mocks/serverHandlers';
-import { TrainState } from '../../models/Train';
+import { train1, useTrainsData } from '../TrainsContext';
+import { render } from '@testing-library/react';
+import { Train } from '../../models/Train';
+import { FakeTrainContext } from '../../test-configuration/FakeTrainContext';
 
 const TrainsTestConsumer = () => {
   const { trains } = useTrainsData();
@@ -16,26 +15,21 @@ const TrainsTestConsumer = () => {
   );
 };
 
-function renderWithProvider() {
+function renderWithProvider(trainsToReturn: Train[] = []) {
   return render(
-    <TrainsDataProvider>
+    <FakeTrainContext {...FakeTrainContext.defaultProps} trainsToReturn={trainsToReturn}>
       <TrainsTestConsumer />
-    </TrainsDataProvider>,
+    </FakeTrainContext>,
   );
 }
 
 describe('trains context', () => {
-  it('returns 0 trains', async () => {
-    mswServer.use(createApiCall<TrainState[]>('trains', []));
+  it('returns 0 trains', () => {
     const trainsConsumer = renderWithProvider();
-    await waitFor(() => {
-      expect(trainsConsumer).toHaveElementsWithText('count: 0');
-    });
+    expect(trainsConsumer).toHaveElementsWithText('count: 0');
   });
-  it('returns 0 trains', async () => {
-    const trainsConsumer = renderWithProvider();
-    await waitFor(() => {
-      expect(trainsConsumer).toHaveElementsWithText('count: 2');
-    });
+  it('returns 1 train', () => {
+    const trainsConsumer = renderWithProvider([train1]);
+    expect(trainsConsumer).toHaveElementsWithText('count: 1');
   });
 });

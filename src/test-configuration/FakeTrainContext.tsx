@@ -1,15 +1,26 @@
 import React, { PropsWithChildren } from 'react';
-import { train1, TrainsContext } from '../data/TrainsContext';
+import { TrainsContext } from '../data/TrainsContext';
+import { Train } from '../models/Train';
 
-export const FakeTrainContext = (props: PropsWithChildren) => {
+export interface FakeTrainContextProps extends PropsWithChildren {
+  trainsToReturn: Train[];
+  trainToReturnById: Train;
+}
+
+const defaultProps: FakeTrainContextProps = {
+  trainToReturnById: Train.EMPTY_TRAIN,
+  trainsToReturn: [],
+};
+
+export const FakeTrainContext = (props: FakeTrainContextProps) => {
   return (
     <TrainsContext.Provider
       value={{
-        trains: [train1],
+        trains: props.trainsToReturn,
         getTrains: () => {
           return;
         },
-        getById: (id: string) => train1,
+        getById: (id: string) => props.trainToReturnById,
         isLoading: false,
       }}
     >
@@ -17,3 +28,5 @@ export const FakeTrainContext = (props: PropsWithChildren) => {
     </TrainsContext.Provider>
   );
 };
+
+FakeTrainContext.defaultProps = defaultProps;
