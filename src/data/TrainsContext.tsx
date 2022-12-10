@@ -19,7 +19,6 @@ export const train1 = new Train(train1State);
 export const train2 = new Train(train2State);
 
 export interface TrainsDataContext {
-  trains: Train[];
   trainCollection: TrainCollection;
   isLoading: boolean;
   getTrains: () => void;
@@ -55,14 +54,7 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
       .finally(() => isLoadingState.setValue(false));
   }, [trainData]);
 
-  const getById = (id: string): Train => {
-    const trainById = trainsToReturn.find((train) => train.id === id);
-    if (trainById === undefined) return Train.EMPTY_TRAIN;
-    return trainById;
-  };
-
   const trainsDataContext: TrainsDataContext = {
-    trains: trainsToReturn,
     isLoading: isLoadingState.value,
     getTrains,
     trainCollection: createTrainCollectionFromData(trainData.value),

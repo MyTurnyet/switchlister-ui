@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { useTrainsData } from '../../data/TrainsContext';
 
 export const AppLayout = () => {
-  const { trains, getTrains } = useTrainsData();
+  const { trainCollection, getTrains } = useTrainsData();
 
   useEffect(() => {
-    if (trains.length === 0) {
+    if (trainCollection.isEmpty()) {
       getTrains();
     }
   });

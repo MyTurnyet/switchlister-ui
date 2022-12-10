@@ -17,7 +17,6 @@ export const FakeTrainContext = (props: FakeTrainContextProps) => {
   return (
     <TrainsContext.Provider
       value={{
-        trains: props.trainsToReturn,
         getTrains: () => {
           return;
         },

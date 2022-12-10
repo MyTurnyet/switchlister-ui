@@ -5,7 +5,7 @@ import { createApiCall } from '../../mocks/serverHandlers';
 import { useEffect } from 'react';
 
 const TrainsTestConsumer = () => {
-  const { trains, getTrains } = useTrainsData();
+  const { trainCollection, getTrains } = useTrainsData();
 
   useEffect(() => {
     getTrains();
@@ -13,8 +13,8 @@ const TrainsTestConsumer = () => {
 
   return (
     <div>
-      <div>count: {trains.length}</div>
-      {trains.map((train) => (
+      <div>count: {trainCollection.count}</div>
+      {trainCollection.map((train) => (
         <div key={train.name}>{train.name}</div>
       ))}
     </div>
