@@ -1,4 +1,4 @@
-import { IndustryState } from './Industry';
+import { Industry, IndustryState } from './Industry';
 
 export interface StationState {
   name: string;
@@ -7,6 +7,10 @@ export interface StationState {
 
 export class Station {
   constructor(private state: StationState) {}
+
+  get industries(): Industry[] {
+    return [];
+  }
 
   get name(): string {
     return this.state.name;
