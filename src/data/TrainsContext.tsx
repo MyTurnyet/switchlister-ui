@@ -55,10 +55,10 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
     if (trainById === undefined) return Train.EMPTY_TRAIN;
     return trainById;
   };
-  const constextValues: TrainsDataContext = {
+  const trainsDataContext: TrainsDataContext = {
     trains: trainsToReturn,
     getById,
     isLoading: isLoadingState.value,
   };
-  return <TrainsContext.Provider value={constextValues}>{children}</TrainsContext.Provider>;
+  return <TrainsContext.Provider value={trainsDataContext}>{children}</TrainsContext.Provider>;
 };
