@@ -2,6 +2,7 @@ import React, { createContext, PropsWithChildren, useContext, useEffect } from '
 import { RollingStock, RollingStockState } from '../models/RollingStock';
 import { useReactState } from '../state-management/ReactState';
 import { RollingStockCollection } from '../models/RollingStockCollection';
+import { RollingStockApi } from './api/RollingStockApi';
 
 export interface RollingStockContextState {
   rollingStock: RollingStockCollection;
@@ -32,12 +33,10 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     (async function () {
       isLoading.setValue(true);
-      const data: RollingStockState[] = await fetch(
-        'https://switchlister-api.herokuapp.com/rollingstock',
-      ).then((response) => response.json());
-
-      rollingStockData.setValue(data);
-      isLoading.setValue(false);
+      RollingStockApi.getRollingStock().then((data) => {
+        rollingStockData.setValue(data);
+        isLoading.setValue(false);
+      });
     })();
   }, []);
 

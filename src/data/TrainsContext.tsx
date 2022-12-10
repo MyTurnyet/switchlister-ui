@@ -2,6 +2,7 @@ import React, { createContext, PropsWithChildren, useContext, useEffect } from '
 import { Train, TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
 import { v4 as uuidv4 } from 'uuid';
+import { TrainsApi } from './api/TrainsApi';
 
 export const train1State: TrainState = {
   id: uuidv4(),
@@ -43,13 +44,12 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     (async function () {
       isLoadingState.setValue(true);
-      const data: TrainState[] = await fetch('https://switchlister-api.herokuapp.com/trains').then(
-        (response) => response.json(),
-      );
-      trainData.setValue(data);
-      isLoadingState.setValue(false);
+      TrainsApi.getTrains().then((data) => {
+        trainData.setValue(data);
+        isLoadingState.setValue(false);
+      });
     })();
-  }, [trainData.value]);
+  }, []);
 
   const getById = (id: string): Train => {
     const trainById = trainsToReturn.find((train) => train.id === id);
