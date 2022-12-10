@@ -44,10 +44,9 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     (async function () {
       isLoadingState.setValue(true);
-      TrainsApi.getTrains().then((data) => {
-        trainData.setValue(data);
-        isLoadingState.setValue(false);
-      });
+      const data = await TrainsApi.getTrains();
+      trainData.setValue(data);
+      isLoadingState.setValue(false);
     })();
   }, []);
 

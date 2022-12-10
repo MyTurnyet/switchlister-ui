@@ -33,10 +33,9 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     (async function () {
       isLoading.setValue(true);
-      RollingStockApi.getRollingStock().then((data) => {
-        rollingStockData.setValue(data);
-        isLoading.setValue(false);
-      });
+      const data = await RollingStockApi.getRollingStock();
+      rollingStockData.setValue(data);
+      isLoading.setValue(false);
     })();
   }, []);
 
