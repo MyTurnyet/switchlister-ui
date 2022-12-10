@@ -3,6 +3,7 @@ import { Train, TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
 import { v4 as uuidv4 } from 'uuid';
 import { TrainApi } from './api/TrainApi';
+import { TrainCollection } from '../models/TrainCollection';
 
 export const train1State: TrainState = {
   id: uuidv4(),
@@ -19,6 +20,7 @@ export const train2 = new Train(train2State);
 
 export interface TrainsDataContext {
   trains: Train[];
+  trainCollection: TrainCollection;
   isLoading: boolean;
   getById: (id: string) => Train;
   getTrains: () => void;
@@ -36,6 +38,11 @@ export const useTrainsData = (): TrainsDataContext => {
   }
   return context;
 };
+
+function createTrainCollectionFromData(trainData: TrainState[]): TrainCollection {
+  const trains = trainData.map((trainState: TrainState) => new Train(trainState));
+  return new TrainCollection(trains);
+}
 
 export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
   const trainData = useReactState<TrainState[]>([]);
@@ -60,6 +67,7 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
     getById,
     isLoading: isLoadingState.value,
     getTrains,
+    trainCollection: createTrainCollectionFromData(trainData.value),
   };
   return <TrainsContext.Provider value={trainsDataContext}>{children}</TrainsContext.Provider>;
 };

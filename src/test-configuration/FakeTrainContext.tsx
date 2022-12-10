@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { TrainsContext } from '../data/TrainsContext';
 import { Train } from '../models/Train';
+import { TrainCollection } from '../models/TrainCollection';
 
 export interface FakeTrainContextProps extends PropsWithChildren {
   trainsToReturn: Train[];
@@ -22,6 +23,7 @@ export const FakeTrainContext = (props: FakeTrainContextProps) => {
         },
         getById: (id: string) => props.trainToReturnById,
         isLoading: false,
+        trainCollection: new TrainCollection(props.trainsToReturn),
       }}
     >
       {props.children}
