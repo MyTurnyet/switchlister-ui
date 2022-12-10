@@ -7,7 +7,7 @@ import { RollingStockApi } from './api/RollingStockApi';
 export interface RollingStockContextState {
   rollingStock: RollingStockCollection;
   isLoading: boolean;
-  get: () => void;
+  getRollingStock: () => void;
 }
 
 const RollingStockContext = createContext<RollingStockContextState | undefined>(undefined);
@@ -43,7 +43,7 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
   const returnedState: RollingStockContextState = {
     rollingStock: getRollingStockCollectionFromData(rollingStockDataState.value),
     isLoading: isLoadingState.value,
-    get: getRollingStock,
+    getRollingStock: getRollingStock,
   };
   return (
     <RollingStockContext.Provider value={returnedState}>{children}</RollingStockContext.Provider>

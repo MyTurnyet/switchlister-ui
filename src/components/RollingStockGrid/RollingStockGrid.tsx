@@ -1,6 +1,7 @@
 import { RollingStock } from '../../models/RollingStock';
 import { useRollingStockData } from '../../data/RollingStockContext';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 function RollingStockDetails(props: { car: RollingStock }) {
   return (
@@ -12,7 +13,11 @@ function RollingStockDetails(props: { car: RollingStock }) {
 }
 
 export const RollingStockGrid = () => {
-  const { rollingStock, isLoading } = useRollingStockData();
+  const { rollingStock, isLoading, getRollingStock } = useRollingStockData();
+
+  useEffect(() => {
+    if (rollingStock.count === 0) getRollingStock();
+  }, [rollingStock]);
 
   return (
     <div>

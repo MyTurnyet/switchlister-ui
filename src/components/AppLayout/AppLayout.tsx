@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import { NavBar } from './NavBar';
 import styled from 'styled-components';
+import { useTrainsData } from '../../data/TrainsContext';
 
 export const AppLayout = () => {
+  const { trains, getTrains } = useTrainsData();
+
+  useEffect(() => {
+    if (trains.length === 0) {
+      getTrains();
+    }
+  });
   return (
     <div>
       <LayoutHeader>
