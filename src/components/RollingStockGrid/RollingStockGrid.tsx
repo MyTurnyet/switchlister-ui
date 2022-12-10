@@ -17,7 +17,6 @@ export const RollingStockGrid = () => {
 
   useEffect(() => {
     if (rollingStock.isEmpty()) {
-      console.log('Getting Rolling Stock!');
       getRollingStock();
     }
   }, [rollingStock.isEmpty()]);
