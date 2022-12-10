@@ -12,8 +12,8 @@ export const TrainGrid = () => {
       <div onClick={() => navigate('rollingstock')}>Rolling Stock Page</div>
       <TrainGridHeader>All Trains</TrainGridHeader>
       <TrainCardGrid>
-        {trainCollection.map((train, index) => {
-          return <TrainCard key={index} train={train} />;
+        {trainCollection.map((train) => {
+          return <TrainCard key={train.id} train={train} />;
         })}
       </TrainCardGrid>
     </div>

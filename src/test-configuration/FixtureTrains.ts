@@ -15,12 +15,12 @@ export const station21 = new Station(station21State);
 export const train1State: TrainState = {
   id: uuidv4(),
   name: 'Local Express',
-  stations: [station1, station2],
+  stations: [station1State, station2State],
 };
 export const train2State: TrainState = {
   id: uuidv4(),
   name: 'Another Train',
-  stations: [station14, station2, station21],
+  stations: [station14State, station2State, station21State],
 };
 export const train1 = new Train(train1State);
 export const train2 = new Train(train2State);

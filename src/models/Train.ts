@@ -1,9 +1,9 @@
-import { Station } from './Station';
+import { StationState } from './Station';
 
 export interface TrainState {
   id: string;
   name: string;
-  stations: Station[];
+  stations: StationState[];
 }
 
 export class Train {
