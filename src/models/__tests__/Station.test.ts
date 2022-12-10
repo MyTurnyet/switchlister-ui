@@ -1,5 +1,5 @@
 import { Station, StationState } from '../Station';
-import { Industry } from '../Industry';
+import { Industry, IndustryState } from '../Industry';
 
 describe('station', () => {
   it('with 0 industries', () => {
@@ -8,5 +8,12 @@ describe('station', () => {
     expect(station.name).toEqual('Test Station');
     const industryCollection: Industry[] = station.industries;
     expect(industryCollection).toHaveLength(0);
+  });
+  it('with 1 industry', () => {
+    const industry1: IndustryState = { name: 'Industry 1' };
+    const stationState: StationState = { industries: [industry1], name: 'Test Station' };
+    const station = new Station(stationState);
+    const industryCollection: Industry[] = station.industries;
+    expect(industryCollection).toHaveLength(1);
   });
 });

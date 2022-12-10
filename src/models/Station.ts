@@ -9,7 +9,7 @@ export class Station {
   constructor(private state: StationState) {}
 
   get industries(): Industry[] {
-    return [];
+    return this.state.industries.map((industryState) => new Industry(industryState));
   }
 
   get name(): string {
