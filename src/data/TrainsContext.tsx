@@ -45,7 +45,6 @@ function createTrainCollectionFromData(trainData: TrainState[]): TrainCollection
 export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
   const trainData = useReactState<TrainState[]>([]);
   const isLoadingState = useReactState<boolean>(false);
-  const trainsToReturn = trainData.value.map((trainState: TrainState) => new Train(trainState));
 
   const getTrains = useCallback(() => {
     isLoadingState.setValue(true);

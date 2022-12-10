@@ -1,8 +1,8 @@
 import { TrainsDataProvider, useTrainsData } from '../TrainsContext';
 import { render, waitFor } from '@testing-library/react';
 import { mswServer } from '../../mocks/msw-server';
-import { createApiCall } from '../../mocks/serverHandlers';
 import { useEffect } from 'react';
+import { ApiHandler } from '../../mocks/ApiHandler';
 
 const TrainsTestConsumer = () => {
   const { trainCollection, getTrains } = useTrainsData();
@@ -31,7 +31,7 @@ function renderTrainConsumer() {
 
 describe('trains context', () => {
   it('returns 0 trains', async () => {
-    mswServer.use(createApiCall('trains', []));
+    mswServer.use(ApiHandler.createApiCall('trains', []));
     const trainsConsumer = renderTrainConsumer();
     await waitFor(() => {
       expect(trainsConsumer).toHaveElementsWithText('count: 0');
