@@ -2,7 +2,7 @@ import React, { createContext, PropsWithChildren, useContext, useEffect } from '
 import { Train, TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
 import { v4 as uuidv4 } from 'uuid';
-import { TrainsApi } from './api/TrainsApi';
+import { TrainApi } from './api/TrainApi';
 
 export const train1State: TrainState = {
   id: uuidv4(),
@@ -44,7 +44,7 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     (async function () {
       isLoadingState.setValue(true);
-      const data = await TrainsApi.getTrains();
+      const data = await TrainApi.getTrains();
       trainData.setValue(data);
       isLoadingState.setValue(false);
     })();

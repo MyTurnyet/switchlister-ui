@@ -1,6 +1,6 @@
 import { TrainState } from '../../models/Train';
 import { axiosRequests } from './AxiosRequests';
 
-export const TrainsApi = {
+export const TrainApi = {
   getTrains: (): Promise<TrainState[]> => axiosRequests.get('trains'),
 };
