@@ -1,7 +1,7 @@
-import { mswServer } from '../../../mocks/msw-server';
+import { mswServer } from '../../../api-mocks/msw-server';
 import { RollingStockState } from '../../../models/RollingStock';
 import { RollingStockApi } from '../RollingStockApi';
-import { ApiHandler } from '../../../mocks/ApiHandler';
+import { ApiHandler } from '../../../api-mocks/ApiHandler';
 
 describe('Rolling Stock Api', () => {
   describe('GET', () => {

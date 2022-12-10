@@ -1,8 +1,8 @@
 import { RollingStockProvider, useRollingStockData } from '../RollingStockContext';
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { RollingStock, RollingStockState } from '../../models/RollingStock';
-import { mswServer } from '../../mocks/msw-server';
-import { ApiHandler } from '../../mocks/ApiHandler';
+import { mswServer } from '../../api-mocks/msw-server';
+import { ApiHandler } from '../../api-mocks/ApiHandler';
 
 const TestRollingStockConsumer = () => {
   const contextState = useRollingStockData();

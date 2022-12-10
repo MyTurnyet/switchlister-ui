@@ -1,8 +1,8 @@
 import { TrainsDataProvider, useTrainsData } from '../TrainsContext';
 import { render, waitFor } from '@testing-library/react';
-import { mswServer } from '../../mocks/msw-server';
+import { mswServer } from '../../api-mocks/msw-server';
 import { useEffect } from 'react';
-import { ApiHandler } from '../../mocks/ApiHandler';
+import { ApiHandler } from '../../api-mocks/ApiHandler';
 
 const TrainsTestConsumer = () => {
   const { trainCollection, getTrains } = useTrainsData();
