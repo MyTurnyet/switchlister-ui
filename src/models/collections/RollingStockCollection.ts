@@ -1,4 +1,11 @@
 import { ItemCollection } from './ItemCollection';
-import { RollingStock } from '../RollingStock';
+import { RollingStock, RollingStockState } from '../RollingStock';
 
-export class RollingStockCollection extends ItemCollection<RollingStock> {}
+export class RollingStockCollection extends ItemCollection<RollingStock> {
+  static createFromRollingStockStateArray(stateArray: RollingStockState[]): RollingStockCollection {
+    const rollingStockArray = stateArray.map(
+      (rollingStockState: RollingStockState) => new RollingStock(rollingStockState),
+    );
+    return new RollingStockCollection(rollingStockArray);
+  }
+}
