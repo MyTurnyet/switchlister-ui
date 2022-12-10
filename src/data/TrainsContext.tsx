@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useContext, useEffect } from 'react';
+import React, { createContext, PropsWithChildren, useCallback, useContext, useEffect } from 'react';
 import { Train, TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
 import { v4 as uuidv4 } from 'uuid';
@@ -41,13 +41,15 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
   const isLoadingState = useReactState<boolean>(false);
   const trainsToReturn = trainData.value.map((trainState: TrainState) => new Train(trainState));
 
+  const getTrains = useCallback(() => {
+    isLoadingState.setValue(true);
+    TrainApi.getTrains()
+      .then((data) => trainData.setValue(data))
+      .finally(() => isLoadingState.setValue(false));
+  }, [trainData]);
+
   useEffect(() => {
-    (async function () {
-      isLoadingState.setValue(true);
-      const data = await TrainApi.getTrains();
-      trainData.setValue(data);
-      isLoadingState.setValue(false);
-    })();
+    getTrains();
   }, []);
 
   const getById = (id: string): Train => {
