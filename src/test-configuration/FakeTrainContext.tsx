@@ -21,7 +21,6 @@ export const FakeTrainContext = (props: FakeTrainContextProps) => {
         getTrains: () => {
           return;
         },
-        getById: (id: string) => props.trainToReturnById,
         isLoading: false,
         trainCollection: new TrainCollection(props.trainsToReturn),
       }}

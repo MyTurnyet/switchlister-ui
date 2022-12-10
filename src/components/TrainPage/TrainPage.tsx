@@ -26,11 +26,11 @@ export const TrainDetails = (props: { train: Train }) => {
 
 export const TrainPage = () => {
   const { id } = useParams();
-  const { isLoading, getById } = useTrainsData();
+  const { isLoading, trainCollection } = useTrainsData();
   const currentTrain = useReactState<Train>(Train.EMPTY_TRAIN);
   useEffect(() => {
     if (id === undefined) return;
-    currentTrain.setValue(getById(id));
+    currentTrain.setValue(trainCollection.findWithId(id));
   }, [isLoading]);
 
   return (

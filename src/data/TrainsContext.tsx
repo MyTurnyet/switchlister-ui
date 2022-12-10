@@ -22,7 +22,6 @@ export interface TrainsDataContext {
   trains: Train[];
   trainCollection: TrainCollection;
   isLoading: boolean;
-  getById: (id: string) => Train;
   getTrains: () => void;
 }
 
@@ -64,7 +63,6 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
 
   const trainsDataContext: TrainsDataContext = {
     trains: trainsToReturn,
-    getById,
     isLoading: isLoadingState.value,
     getTrains,
     trainCollection: createTrainCollectionFromData(trainData.value),
