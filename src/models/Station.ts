@@ -1,6 +1,8 @@
+import { IndustryState } from './Industry';
+
 export interface StationState {
   name: string;
-  industries: string[];
+  industries: IndustryState[];
 }
 
 export class Station {
