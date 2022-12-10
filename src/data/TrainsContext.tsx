@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useCallback, useContext, useEffect } from 'react';
+import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { Train, TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
 import { v4 as uuidv4 } from 'uuid';
@@ -21,6 +21,7 @@ export interface TrainsDataContext {
   trains: Train[];
   isLoading: boolean;
   getById: (id: string) => Train;
+  getTrains: () => void;
 }
 
 export const TrainsContext = createContext<TrainsDataContext | undefined>(undefined);
@@ -48,10 +49,6 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
       .finally(() => isLoadingState.setValue(false));
   }, [trainData]);
 
-  useEffect(() => {
-    getTrains();
-  }, []);
-
   const getById = (id: string): Train => {
     const trainById = trainsToReturn.find((train) => train.id === id);
     if (trainById === undefined) return Train.EMPTY_TRAIN;
@@ -61,6 +58,7 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
     trains: trainsToReturn,
     getById,
     isLoading: isLoadingState.value,
+    getTrains,
   };
   return <TrainsContext.Provider value={trainsDataContext}>{children}</TrainsContext.Provider>;
 };
