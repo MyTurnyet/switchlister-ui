@@ -2,16 +2,23 @@ import { TrainPage } from '../TrainPage';
 import { train1, train1State } from '../../../data/TrainsContext';
 import { Route, Routes } from 'react-router-dom';
 import { Train } from '../../../models/Train';
-import { renderWithRouter } from '../../../test-configuration/ReactTestToolkit';
-import { FakeTrainContext } from '../../../test-configuration/FakeTrainContext';
+import {
+  renderWithRouter,
+  wrapWithFakeTrainContext,
+} from '../../../test-configuration/ReactTestToolkit';
 
-function renderTrainPageComponent(initialPath: string) {
+function renderTrainPageComponent(
+  initialPath: string,
+  trainToRenderWithId: Train = Train.EMPTY_TRAIN,
+) {
   return renderWithRouter(
-    <FakeTrainContext>
+    wrapWithFakeTrainContext(
       <Routes>
         <Route path={'/trains/:id'} element={<TrainPage />}></Route>
-      </Routes>
-    </FakeTrainContext>,
+      </Routes>,
+      [train1],
+      trainToRenderWithId,
+    ),
     initialPath,
   );
 }
@@ -19,7 +26,7 @@ function renderTrainPageComponent(initialPath: string) {
 describe('TrainPage', () => {
   it('renders with a passed id', async () => {
     const initialPath = `/trains/${train1State.id}`;
-    const trainPage = renderTrainPageComponent(initialPath);
+    const trainPage = renderTrainPageComponent(initialPath, train1);
     expect(trainPage).toHaveElementsWithText(
       'Train Profile',
       train1.name,

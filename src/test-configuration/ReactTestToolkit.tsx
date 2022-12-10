@@ -33,7 +33,7 @@ export function expectHistoryCalledWith(pathname: string, calledFromLink = false
   );
 }
 
-function getRouter(element: JSX.Element, location: string | Partial<Location>) {
+function wrapWithRouter(element: JSX.Element, location: string | Partial<Location>) {
   return (
     <Router location={location} navigator={mockHistory}>
       {element}
@@ -45,13 +45,17 @@ export function renderWithRouter(
   element: JSX.Element,
   location: string | Partial<Location> = mockHistory.location,
 ): RenderResult {
-  return render(getRouter(element, location));
+  return render(wrapWithRouter(element, location));
 }
 
-export function renderWithFakeTrainContext(children: JSX.Element, trainsToReturn: Train[] = []) {
-  return render(
-    <FakeTrainContext trainsToReturn={trainsToReturn} trainToReturnById={Train.EMPTY_TRAIN}>
+export function wrapWithFakeTrainContext(
+  children: JSX.Element,
+  trainsToReturn: Train[] = [],
+  trainwithIdToReturn: Train = Train.EMPTY_TRAIN,
+) {
+  return (
+    <FakeTrainContext trainsToReturn={trainsToReturn} trainToReturnById={trainwithIdToReturn}>
       {children}
-    </FakeTrainContext>,
+    </FakeTrainContext>
   );
 }

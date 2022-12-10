@@ -1,6 +1,7 @@
 import { train1, useTrainsData } from '../TrainsContext';
 import { Train } from '../../models/Train';
-import { renderWithFakeTrainContext } from '../../test-configuration/ReactTestToolkit';
+import { wrapWithFakeTrainContext } from '../../test-configuration/ReactTestToolkit';
+import { render } from '@testing-library/react';
 
 const TrainsTestConsumer = () => {
   const { trains } = useTrainsData();
@@ -15,7 +16,7 @@ const TrainsTestConsumer = () => {
 };
 
 function renderTrainConsumer(trainsToReturn: Train[] = []) {
-  return renderWithFakeTrainContext(<TrainsTestConsumer />, trainsToReturn);
+  return render(wrapWithFakeTrainContext(<TrainsTestConsumer />, trainsToReturn));
 }
 
 describe('trains context', () => {

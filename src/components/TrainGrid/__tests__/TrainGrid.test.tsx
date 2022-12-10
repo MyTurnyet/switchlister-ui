@@ -5,20 +5,18 @@ import { train1 } from '../../../data/TrainsContext';
 import {
   expectHistoryCalledWith,
   renderWithRouter,
+  wrapWithFakeTrainContext,
 } from '../../../test-configuration/ReactTestToolkit';
 import userEvent from '@testing-library/user-event';
 import { mainTheme } from '../../../themes/MainTheme';
 import { ThemeProvider } from 'styled-components';
-import { FakeTrainContext } from '../../../test-configuration/FakeTrainContext';
 
 describe('Train Grid', () => {
   let trainGrid: RenderResult;
   beforeEach(() => {
     trainGrid = renderWithRouter(
       <ThemeProvider theme={mainTheme}>
-        <FakeTrainContext>
-          <TrainGrid />
-        </FakeTrainContext>
+        {wrapWithFakeTrainContext(<TrainGrid />, [train1])}
       </ThemeProvider>,
     );
   });
