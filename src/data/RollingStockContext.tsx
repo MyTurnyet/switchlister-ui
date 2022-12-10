@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useContext, useEffect } from 'react';
+import React, { createContext, PropsWithChildren, useCallback, useContext, useEffect } from 'react';
 import { RollingStock, RollingStockState } from '../models/RollingStock';
 import { useReactState } from '../state-management/ReactState';
 import { RollingStockCollection } from '../models/RollingStockCollection';
@@ -27,21 +27,21 @@ export const useRollingStockData = (): RollingStockContextState => {
 };
 
 export const RollingStockProvider = ({ children }: PropsWithChildren) => {
-  const rollingStockData = useReactState<RollingStockState[]>([]);
-  const isLoading = useReactState<boolean>(false);
+  const rollingStockDataState = useReactState<RollingStockState[]>([]);
+  const isLoadingState = useReactState<boolean>(false);
 
-  useEffect(() => {
-    (async function () {
-      isLoading.setValue(true);
-      const data = await RollingStockApi.getRollingStock();
-      rollingStockData.setValue(data);
-      isLoading.setValue(false);
-    })();
-  }, []);
+  const getRollingStock = useCallback(() => {
+    isLoadingState.setValue(true);
+    RollingStockApi.getRollingStock()
+      .then((data) => rollingStockDataState.setValue(data))
+      .finally(() => isLoadingState.setValue(false));
+  }, [isLoadingState, rollingStockDataState]);
+
+  useEffect(() => getRollingStock(), []);
 
   const returnedState: RollingStockContextState = {
-    rollingStock: getRollingStockCollectionFromData(rollingStockData.value),
-    isLoading: isLoading.value,
+    rollingStock: getRollingStockCollectionFromData(rollingStockDataState.value),
+    isLoading: isLoadingState.value,
   };
   return (
     <RollingStockContext.Provider value={returnedState}>{children}</RollingStockContext.Provider>

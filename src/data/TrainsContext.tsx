@@ -54,6 +54,7 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
     if (trainById === undefined) return Train.EMPTY_TRAIN;
     return trainById;
   };
+
   const trainsDataContext: TrainsDataContext = {
     trains: trainsToReturn,
     getById,
