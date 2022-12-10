@@ -1,6 +1,6 @@
 import { TrainCollection } from '../TrainCollection';
-import { Train } from '../Train';
-import { train1, train2 } from '../../test-configuration/FixtureTrains';
+import { Train } from '../../Train';
+import { train1, train2 } from '../../../test-configuration/FixtureTrains';
 
 describe('Train Collection', () => {
   describe('find by id', () => {

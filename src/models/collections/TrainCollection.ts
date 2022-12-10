@@ -1,5 +1,5 @@
 import { ItemCollection } from './ItemCollection';
-import { Train } from './Train';
+import { Train } from '../Train';
 
 export class TrainCollection extends ItemCollection<Train> {
   findWithId(expectedId: string): Train {

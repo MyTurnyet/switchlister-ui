@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext, useEffect } from 'react';
 import { RollingStock, RollingStockState } from '../models/RollingStock';
 import { useReactState } from '../state-management/ReactState';
-import { RollingStockCollection } from '../models/RollingStockCollection';
+import { RollingStockCollection } from '../models/collections/RollingStockCollection';
 import { RollingStockApi } from './api/RollingStockApi';
 
 export interface RollingStockContextState {

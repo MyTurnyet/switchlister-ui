@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { TrainsContext } from '../data/TrainsContext';
 import { Train } from '../models/Train';
-import { TrainCollection } from '../models/TrainCollection';
+import { TrainCollection } from '../models/collections/TrainCollection';
 
 export interface FakeTrainContextProps extends PropsWithChildren {
   trainsToReturn: Train[];

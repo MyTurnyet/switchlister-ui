@@ -1,5 +1,5 @@
 import { RollingStockCollection } from '../RollingStockCollection';
-import { boxcarCP1234, hopperBCAX5 } from '../../test-configuration/FixtureRollingStock';
+import { boxcarCP1234, hopperBCAX5 } from '../../../test-configuration/FixtureRollingStock';
 
 describe('rolling stock collection', () => {
   const collection = new RollingStockCollection([boxcarCP1234, hopperBCAX5]);

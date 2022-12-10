@@ -2,7 +2,7 @@ import React, { createContext, PropsWithChildren, useCallback, useContext } from
 import { Train, TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
 import { TrainApi } from './api/TrainApi';
-import { TrainCollection } from '../models/TrainCollection';
+import { TrainCollection } from '../models/collections/TrainCollection';
 
 export interface TrainsDataContext {
   trainCollection: TrainCollection;
