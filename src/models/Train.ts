@@ -10,14 +10,15 @@ export class Train {
   public static EMPTY_TRAIN = new Train({ id: '', name: 'EMPTY', stations: [] });
   constructor(private state: TrainState) {}
 
-  public get id(): string {
+  get id(): string {
     return this.state.id;
   }
 
-  public get name(): string {
+  get name(): string {
     return this.state.name;
   }
-  public get stationNames(): string[] {
+
+  get stationNames(): string[] {
     return this.state.stations.map((station) => station.name);
   }
 }

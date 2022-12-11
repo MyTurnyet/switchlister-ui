@@ -1,4 +1,5 @@
-import { Industry, IndustryState } from './Industry';
+import { IndustryState } from './Industry';
+import { IndustryCollection } from './collections/IndustryCollection';
 
 export interface StationState {
   name: string;
@@ -8,8 +9,8 @@ export interface StationState {
 export class Station {
   constructor(private state: StationState) {}
 
-  get industries(): Industry[] {
-    return this.state.industries.map((industryState) => new Industry(industryState));
+  get industries(): IndustryCollection {
+    return IndustryCollection.createFromIndustryStateArray(this.state.industries);
   }
 
   get name(): string {
