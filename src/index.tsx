@@ -12,30 +12,25 @@ if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
   worker.start();
 }
 
-const MainAppWrapper = styled.div`
-  background-color: ${(props) => props.theme.colors.appBackground};
-`;
-
 const AppContent = styled.div`
-  min-height: 100vh;
+  height: 100vh;
+  align-items: center;
+  background-color: ${(props) => props.theme.colors.appBackground};
+  color: ${(props) => props.theme.colors.text.normal};
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
-  color: ${(props) => props.theme.colors.text.normal};
 `;
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={mainTheme}>
-      <MainAppWrapper>
-        <AppContent>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </AppContent>
-      </MainAppWrapper>
+      <AppContent>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </AppContent>
     </ThemeProvider>
   </React.StrictMode>,
 );

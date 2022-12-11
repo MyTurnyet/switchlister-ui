@@ -13,7 +13,7 @@ export const AppLayout = () => {
     }
   });
   return (
-    <div>
+    <LayoutContainer>
       <LayoutHeader>
         <AppHeader>SwitchLister</AppHeader>
         <NavBar />
@@ -23,14 +23,18 @@ export const AppLayout = () => {
           <Outlet></Outlet>
         </PageView>
       </ContentArea>
-    </div>
+    </LayoutContainer>
   );
 };
 
+const LayoutContainer = styled.div`
+  height: 90vh;
+  width: 99vw;
+`;
 const LayoutHeader = styled.div`
   text-align: center;
   height: auto;
-  width: 100vw;
+  width: 99vw;
   justify-content: center;
   border-bottom: ${(props) => props.theme.colors.text.header} 3px solid;
 `;
@@ -41,7 +45,7 @@ const AppHeader = styled.div`
 `;
 const ContentArea = styled.div`
   display: flex;
-  height: 86vh;
+  height: auto;
   flex-direction: row;
   margin-left: 5vw;
 `;
