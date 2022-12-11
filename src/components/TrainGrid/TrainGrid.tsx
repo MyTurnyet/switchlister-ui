@@ -1,10 +1,8 @@
 import { TrainCard } from './TrainCard';
-import { useNavigate } from 'react-router';
 import { useTrainsData } from '../../data/TrainsContext';
 import styled from 'styled-components';
 
 export const TrainGrid = () => {
-  const navigate = useNavigate();
   const { trainCollection } = useTrainsData();
 
   return (
