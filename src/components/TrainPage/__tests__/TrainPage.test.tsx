@@ -30,8 +30,8 @@ describe('TrainPage', () => {
     expect(trainPage).toHaveElementsWithText(
       'Train Profile',
       train1.name,
-      `Station: ${train1.stationNames[0]}`,
-      `Station: ${train1.stationNames[1]}`,
+      `Station: ${train1.stations.stationNames[0]}`,
+      `Station: ${train1.stations.stationNames[1]}`,
     );
   });
   it('renders if passed id is bad', async () => {

@@ -21,7 +21,11 @@ describe('Train Grid', () => {
     );
   });
   it('displays the first train', () => {
-    expect(trainGrid).toHaveElementsWithText('All Trains', train1.name, train1.stationNames[0]);
+    expect(trainGrid).toHaveElementsWithText(
+      'All Trains',
+      train1.name,
+      train1.stations.stationNames[0],
+    );
   });
   it('navigates when train card clicked', async () => {
     await waitFor(() => {

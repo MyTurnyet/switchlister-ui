@@ -21,8 +21,4 @@ export class Train {
   get stations(): StationCollection {
     return StationCollection.createFromStationStateArray(this.state.stations);
   }
-
-  get stationNames(): string[] {
-    return this.stations.stationNames;
-  }
 }

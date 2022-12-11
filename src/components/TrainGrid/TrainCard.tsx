@@ -17,11 +17,11 @@ export const TrainCard = ({ train }: TrainCardProps) => {
     <TrainCardContainer onClick={clickHandler}>
       <TopDisplayRow>
         <NameDiv>{train.name}</NameDiv>
-        <StationCountDiv>{train.stationNames.length} stations</StationCountDiv>
+        <StationCountDiv>{train.stations.count} stations</StationCountDiv>
       </TopDisplayRow>
       <BottomDisplayRow>
-        {train.stationNames.map((trainName: string, index: number) => {
-          return <StationNameDiv key={index}>{trainName}</StationNameDiv>;
+        {train.stations.stationNames.map((stationName: string, index: number) => {
+          return <StationNameDiv key={index}>{stationName}</StationNameDiv>;
         })}
       </BottomDisplayRow>
     </TrainCardContainer>

@@ -17,7 +17,7 @@ export const TrainDetails = (props: { train: Train }) => {
   return (
     <div>
       <div>{props.train.name}</div>
-      {props.train.stationNames.map((stationName: string) => (
+      {props.train.stations.stationNames.map((stationName: string) => (
         <TrainStationDetails stationName={stationName} key={stationName} />
       ))}
     </div>
