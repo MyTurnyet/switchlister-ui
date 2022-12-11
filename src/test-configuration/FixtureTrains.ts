@@ -3,19 +3,22 @@ import { v4 as uuidv4 } from 'uuid';
 import { Station, StationState } from '../models/Station';
 import { Industry, IndustryState } from '../models/Industry';
 
-export const industry1State: IndustryState = { name: 'Industry 1' };
+function createIndustryState(name: string): IndustryState {
+  return { name: name, placedCars: [] };
+}
+export const industry1State: IndustryState = createIndustryState('Industry 1');
 export const industry1 = new Industry(industry1State);
-export const industry2State: IndustryState = { name: 'Industry 2' };
+export const industry2State: IndustryState = createIndustryState('Industry 2');
 export const industry2 = new Industry(industry2State);
-export const industry3State: IndustryState = { name: 'Industry 3' };
+export const industry3State: IndustryState = createIndustryState('Industry 3');
 export const industry3 = new Industry(industry3State);
-export const industry4State: IndustryState = { name: 'Industry 4' };
+export const industry4State: IndustryState = createIndustryState('Industry 4');
 export const industry4 = new Industry(industry4State);
-export const industry5State: IndustryState = { name: 'Industry 5' };
+export const industry5State: IndustryState = createIndustryState('Industry 5');
 export const industry5 = new Industry(industry5State);
-export const industry6State: IndustryState = { name: 'Industry 6' };
+export const industry6State: IndustryState = createIndustryState('Industry 6');
 export const industry6 = new Industry(industry6State);
-export const industry7State: IndustryState = { name: 'Industry 7' };
+export const industry7State: IndustryState = createIndustryState('Industry 7');
 export const industry7 = new Industry(industry7State);
 
 export const station1State: StationState = {

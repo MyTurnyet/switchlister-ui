@@ -1,5 +1,8 @@
+import { RollingStockState } from './RollingStock';
+
 export interface IndustryState {
   name: string;
+  placedCars: RollingStockState[];
 }
 
 export class Industry {
