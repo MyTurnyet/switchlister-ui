@@ -23,6 +23,6 @@ export class Train {
   }
 
   get stationNames(): string[] {
-    return this.state.stations.map((station) => station.name);
+    return this.stations.stationNames;
   }
 }
