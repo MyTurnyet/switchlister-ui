@@ -5,16 +5,31 @@ import { Industry, IndustryState } from '../models/Industry';
 
 export const industry1State: IndustryState = { name: 'Industry 1' };
 export const industry1 = new Industry(industry1State);
+export const industry2State: IndustryState = { name: 'Industry 2' };
+export const industry2 = new Industry(industry2State);
+export const industry3State: IndustryState = { name: 'Industry 3' };
+export const industry3 = new Industry(industry3State);
+export const industry4State: IndustryState = { name: 'Industry 4' };
+export const industry4 = new Industry(industry4State);
+export const industry5State: IndustryState = { name: 'Industry 5' };
+export const industry5 = new Industry(industry5State);
+export const industry6State: IndustryState = { name: 'Industry 6' };
+export const industry6 = new Industry(industry6State);
+export const industry7State: IndustryState = { name: 'Industry 7' };
+export const industry7 = new Industry(industry7State);
 
-export const station1State: StationState = { industries: [], name: 'station1' };
-export const station2State: StationState = { industries: [], name: 'station2' };
-export const station14State: StationState = { industries: [], name: 'station14' };
-export const station21State: StationState = { industries: [], name: 'station21' };
+export const station1State: StationState = { industries: [industry1, industry2], name: 'station1' };
+export const station2State: StationState = { industries: [industry3], name: 'station2' };
+export const station3State: StationState = {
+  industries: [industry4, industry5, industry6],
+  name: 'station3',
+};
+export const station4State: StationState = { industries: [industry7], name: 'station4' };
 
 export const station1 = new Station(station1State);
 export const station2 = new Station(station2State);
-export const station14 = new Station(station14State);
-export const station21 = new Station(station21State);
+export const station3 = new Station(station3State);
+export const station4 = new Station(station4State);
 
 export const train1State: TrainState = {
   id: uuidv4(),
@@ -24,7 +39,7 @@ export const train1State: TrainState = {
 export const train2State: TrainState = {
   id: uuidv4(),
   name: 'Another Train',
-  stations: [station14State, station2State, station21State],
+  stations: [station3State, station2State, station4State],
 };
 export const train1 = new Train(train1State);
 export const train2 = new Train(train2State);

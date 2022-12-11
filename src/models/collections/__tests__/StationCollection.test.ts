@@ -1,9 +1,9 @@
 import {
   station1,
-  station14,
-  station14State,
   station1State,
   station2,
+  station3,
+  station3State,
 } from '../../../test-configuration/FixtureTrains';
 import { Station, StationState } from '../../Station';
 import { StationCollection } from '../StationCollection';
@@ -16,14 +16,14 @@ describe('Station Collection', () => {
       expect(collection.count).toEqual(2);
     });
     it('with StationState list', () => {
-      const stationStateList: StationState[] = [station1State, station14State];
+      const stationStateList: StationState[] = [station1State, station3State];
       StationCollection.createFromStationStateArray(stationStateList);
     });
   });
 
   it('returns all station names as an array', () => {
-    const stationCollection = new StationCollection([station1, station14]);
+    const stationCollection = new StationCollection([station1, station3]);
     const stationNames: string[] = stationCollection.stationNames;
-    expect(stationNames).toMatchInAnyOrder([station1.name, station14.name]);
+    expect(stationNames).toMatchInAnyOrder([station1.name, station3.name]);
   });
 });
