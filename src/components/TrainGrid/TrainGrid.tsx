@@ -1,7 +1,7 @@
 import { TrainCard } from './TrainCard';
-import styled from '@emotion/styled';
 import { useNavigate } from 'react-router';
 import { useTrainsData } from '../../data/TrainsContext';
+import styled from 'styled-components';
 
 export const TrainGrid = () => {
   const navigate = useNavigate();
@@ -9,7 +9,6 @@ export const TrainGrid = () => {
 
   return (
     <div>
-      <div onClick={() => navigate('rollingstock')}>Rolling Stock Page</div>
       <TrainGridHeader>All Trains</TrainGridHeader>
       <TrainCardGrid>
         {trainCollection.map((train) => {
@@ -21,7 +20,7 @@ export const TrainGrid = () => {
 };
 
 const TrainGridHeader = styled.div`
-  color: white;
+  color: ${(props) => props.theme.colors.text.header};
   font-size: large;
   font-weight: bold;
 `;
