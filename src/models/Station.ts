@@ -7,13 +7,14 @@ export interface StationState {
 }
 
 export class Station {
-  constructor(private state: StationState) {}
+  constructor(private stationState: StationState) {}
 
   get industries(): IndustryCollection {
-    return IndustryCollection.createFromIndustryStateArray(this.state.industries);
+    const industryStates = this.stationState.industries;
+    return IndustryCollection.createFromIndustryStateArray(industryStates);
   }
 
   get name(): string {
-    return this.state.name;
+    return this.stationState.name;
   }
 }

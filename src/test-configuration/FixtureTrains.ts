@@ -18,13 +18,16 @@ export const industry6 = new Industry(industry6State);
 export const industry7State: IndustryState = { name: 'Industry 7' };
 export const industry7 = new Industry(industry7State);
 
-export const station1State: StationState = { industries: [industry1, industry2], name: 'station1' };
-export const station2State: StationState = { industries: [industry3], name: 'station2' };
+export const station1State: StationState = {
+  industries: [industry1State, industry2State],
+  name: 'station1',
+};
+export const station2State: StationState = { industries: [industry3State], name: 'station2' };
 export const station3State: StationState = {
-  industries: [industry4, industry5, industry6],
+  industries: [industry4State, industry5State, industry6State],
   name: 'station3',
 };
-export const station4State: StationState = { industries: [industry7], name: 'station4' };
+export const station4State: StationState = { industries: [industry7State], name: 'station4' };
 
 export const station1 = new Station(station1State);
 export const station2 = new Station(station2State);

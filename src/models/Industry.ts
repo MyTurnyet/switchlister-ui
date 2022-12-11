@@ -3,10 +3,9 @@ export interface IndustryState {
 }
 
 export class Industry {
-  constructor(private state: IndustryState) {}
+  constructor(private industryState: IndustryState) {}
 
   get name(): string {
-    console.log('industry name ', this.state.name);
-    return this.state.name;
+    return this.industryState.name;
   }
 }

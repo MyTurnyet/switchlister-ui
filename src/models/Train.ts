@@ -9,16 +9,17 @@ export interface TrainState {
 
 export class Train {
   public static EMPTY_TRAIN = new Train({ id: '', name: 'EMPTY', stations: [] });
-  constructor(private state: TrainState) {}
+  constructor(private trainState: TrainState) {}
   get id(): string {
-    return this.state.id;
+    return this.trainState.id;
   }
 
   get name(): string {
-    return this.state.name;
+    return this.trainState.name;
   }
 
   get stations(): StationCollection {
-    return StationCollection.createFromStationStateArray(this.state.stations);
+    const stationStates = this.trainState.stations;
+    return StationCollection.createFromStationStateArray(stationStates);
   }
 }
