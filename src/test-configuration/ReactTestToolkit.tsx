@@ -5,6 +5,8 @@ import { createMemoryHistory } from 'history';
 import { expect } from '@jest/globals';
 import { Train } from '../models/Train';
 import { FakeTrainContext } from './FakeTrainContext';
+import { ThemeProvider } from 'styled-components';
+import { mainTheme } from '../themes/MainTheme';
 
 export function pressButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -47,14 +49,17 @@ export function renderWithRouter(
 ): RenderResult {
   return render(wrapWithRouter(element, location));
 }
+export function wrapWithThemeProvider(children: JSX.Element) {
+  return <ThemeProvider theme={mainTheme}>{children}</ThemeProvider>;
+}
 
 export function wrapWithFakeTrainContext(
   children: JSX.Element,
   trainsToReturn: Train[] = [],
-  trainwithIdToReturn: Train = Train.EMPTY_TRAIN,
+  trainWithIdToReturn: Train = Train.EMPTY_TRAIN,
 ) {
   return (
-    <FakeTrainContext trainsToReturn={trainsToReturn} trainToReturnById={trainwithIdToReturn}>
+    <FakeTrainContext trainsToReturn={trainsToReturn} trainToReturnById={trainWithIdToReturn}>
       {children}
     </FakeTrainContext>
   );

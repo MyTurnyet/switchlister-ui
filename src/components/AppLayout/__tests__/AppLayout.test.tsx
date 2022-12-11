@@ -3,18 +3,13 @@ import { AppLayout } from '../AppLayout';
 import {
   renderWithRouter,
   wrapWithFakeTrainContext,
+  wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
-import { ThemeProvider } from 'styled-components';
-import { mainTheme } from '../../../themes/MainTheme';
 
 describe('AppLayout', () => {
   it('renders', () => {
     const appLayout = renderWithRouter(
-      wrapWithFakeTrainContext(
-        <ThemeProvider theme={mainTheme}>
-          <AppLayout />
-        </ThemeProvider>,
-      ),
+      wrapWithThemeProvider(wrapWithFakeTrainContext(<AppLayout />)),
     );
     expect(appLayout).toHaveElementsWithText('SwitchLister');
   });

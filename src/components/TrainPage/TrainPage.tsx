@@ -5,6 +5,7 @@ import { Train } from '../../models/Train';
 import { useReactState } from '../../state-management/ReactState';
 import { Station } from '../../models/Station';
 import { Industry } from '../../models/Industry';
+import styled from 'styled-components';
 
 export const TrainStationDetails = (props: { station: Station }) => (
   <div>
@@ -19,12 +20,12 @@ export const TrainStationDetails = (props: { station: Station }) => (
 );
 export const TrainDetails = (props: { train: Train }) => {
   return (
-    <div>
+    <TrainDetailsContainer>
       <div>{props.train.name}</div>
       {props.train.stations.map((station: Station) => (
         <TrainStationDetails station={station} key={station.name} />
       ))}
-    </div>
+    </TrainDetailsContainer>
   );
 };
 
@@ -38,9 +39,27 @@ export const TrainPage = () => {
   });
 
   return (
-    <div>
-      <div>Train Profile</div>
+    <TrainPageContainer>
+      <TrainPageTitle>Train Profile</TrainPageTitle>
       <TrainDetails train={currentTrain.value} />
-    </div>
+    </TrainPageContainer>
   );
 };
+
+const TrainPageContainer = styled.div`
+  background-color: honeydew;
+
+  padding-top: 15px;
+  padding-bottom: 35px;
+  min-height: 95%;
+  min-width: 95%;
+`;
+const TrainPageTitle = styled.div`
+  color: ${(props) => props.theme.colors.text.header};
+  font-size: large;
+  font-weight: bold;
+`;
+const TrainDetailsContainer = styled.div`
+  padding-top: 15px;
+  padding-bottom: 45px;
+`;

@@ -4,6 +4,7 @@ import { Train } from '../../../models/Train';
 import {
   renderWithRouter,
   wrapWithFakeTrainContext,
+  wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
 import { train1, train1State } from '../../../test-configuration/FixtureTrains';
 
@@ -12,12 +13,14 @@ function renderTrainPageComponent(
   trainToRenderWithId: Train = Train.EMPTY_TRAIN,
 ) {
   return renderWithRouter(
-    wrapWithFakeTrainContext(
-      <Routes>
-        <Route path={'/trains/:id'} element={<TrainPage />}></Route>
-      </Routes>,
-      [train1],
-      trainToRenderWithId,
+    wrapWithThemeProvider(
+      wrapWithFakeTrainContext(
+        <Routes>
+          <Route path={'/trains/:id'} element={<TrainPage />}></Route>
+        </Routes>,
+        [train1],
+        trainToRenderWithId,
+      ),
     ),
     initialPath,
   );
