@@ -2,10 +2,16 @@ import { Train, TrainState } from '../models/Train';
 import { v4 as uuidv4 } from 'uuid';
 import { Station, StationState } from '../models/Station';
 import { Industry, IndustryState } from '../models/Industry';
+import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
+import { RollingStockState } from '../models/RollingStock';
 
-function createIndustryState(name: string): IndustryState {
-  return { name: name, placedCars: [] };
+function createIndustryState(
+  name: string,
+  placeRollingStock: RollingStockState[] = [],
+): IndustryState {
+  return { name: name, placedCars: placeRollingStock };
 }
+
 export const industry1State: IndustryState = createIndustryState('Industry 1');
 export const industry1 = new Industry(industry1State);
 export const industry2State: IndustryState = createIndustryState('Industry 2');
@@ -18,7 +24,10 @@ export const industry5State: IndustryState = createIndustryState('Industry 5');
 export const industry5 = new Industry(industry5State);
 export const industry6State: IndustryState = createIndustryState('Industry 6');
 export const industry6 = new Industry(industry6State);
-export const industry7State: IndustryState = createIndustryState('Industry 7');
+export const industry7State: IndustryState = createIndustryState('Industry 7', [
+  boxcarCP1234State,
+  hopperBCAX5State,
+]);
 export const industry7 = new Industry(industry7State);
 
 export const station1State: StationState = {
