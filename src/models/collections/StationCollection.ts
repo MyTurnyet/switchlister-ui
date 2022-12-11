@@ -6,4 +6,7 @@ export class StationCollection extends ItemCollection<Station> {
     const stations = stationStateList.map((stationState) => new Station(stationState));
     return new StationCollection(stations);
   }
+  get stationNames(): string[] {
+    return this.items.map((station) => station.name);
+  }
 }
