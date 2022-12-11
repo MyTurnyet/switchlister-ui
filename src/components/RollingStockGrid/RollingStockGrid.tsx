@@ -19,7 +19,7 @@ export const RollingStockGrid = () => {
     if (rollingStock.isEmpty()) {
       getRollingStock();
     }
-  }, [rollingStock.isEmpty()]);
+  }, []);
 
   return (
     <div>
