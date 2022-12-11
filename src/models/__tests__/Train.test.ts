@@ -1,10 +1,6 @@
 import { Train } from '../Train';
-import {
-  station1,
-  station1State,
-  station2,
-  station2State,
-} from '../../test-configuration/FixtureTrains';
+import { station1State, station2State } from '../../test-configuration/FixtureTrains';
+import { StationCollection } from '../collections/StationCollection';
 
 describe('Train', () => {
   const train = new Train({ id: 'foo!', name: 'train name', stations: [] });
@@ -13,17 +9,16 @@ describe('Train', () => {
   });
 
   it('returns empty list of station names by default', () => {
-    expect(train.stationNames.length).toEqual(0);
+    expect(train.stations.isEmpty()).toEqual(true);
   });
 
   it('has a list of defined station names', () => {
-    const expectedNames: string[] = [station1.name, station2.name];
     const train = new Train({
       id: 'foo!',
       name: 'test name',
       stations: [station1State, station2State],
     });
-    const stationNames: string[] = train.stationNames;
-    expect(stationNames).toEqual(expectedNames);
+    const stations: StationCollection = train.stations;
+    expect(stations.count).toEqual(2);
   });
 });
