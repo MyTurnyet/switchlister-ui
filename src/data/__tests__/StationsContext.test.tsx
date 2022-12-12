@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useStationsData } from '../StationsContext';
+import { StationsDataProvider, useStationsData } from '../StationsContext';
 import { Station } from '../../models/Station';
+import { render, RenderResult, waitFor } from '@testing-library/react';
 
 const StationsTestConsumer = () => {
   const { stationsCollection, getStations } = useStationsData();
@@ -18,7 +19,19 @@ const StationsTestConsumer = () => {
     </div>
   );
 };
+const renderStationConsumer = (): RenderResult => {
+  return render(
+    <StationsDataProvider>
+      <StationsTestConsumer />
+    </StationsDataProvider>,
+  );
+};
 
 describe('Stations Context', () => {
-  it('creates', () => {});
+  it('has no stations', async () => {
+    const stationConsumer = renderStationConsumer();
+    await waitFor(() => {
+      expect(stationConsumer).toHaveElementsWithText('count: 0');
+    });
+  });
 });
