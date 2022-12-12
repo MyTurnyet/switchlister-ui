@@ -19,13 +19,14 @@ const StationsTestConsumer = () => {
     </div>
   );
 };
-const renderStationConsumer = (): RenderResult => {
+
+function renderStationConsumer(): RenderResult {
   return render(
     <StationsDataProvider>
       <StationsTestConsumer />
     </StationsDataProvider>,
   );
-};
+}
 
 describe('Stations Context', () => {
   it('has no stations', async () => {
