@@ -1,8 +1,11 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Station } from '../../models/Station';
+import { useTrainsData } from '../../data/TrainsContext';
 
 type IndustryFields = {
   industryName: string;
+  station: Station;
 };
 export const IndustryDataForm = () => {
   const {
@@ -18,6 +21,13 @@ export const IndustryDataForm = () => {
         <div>
           <input {...register('industryName', { required: true })} placeholder='Industry Name' />
           {errors.industryName && <span>You must enter an industry name.</span>}
+        </div>
+        <div>
+          <select {...register('station')}>
+            <option value='female'>female</option>
+            <option value='male'>male</option>
+            <option value='other'>other</option>
+          </select>
         </div>
         <input type='submit' />
       </form>
