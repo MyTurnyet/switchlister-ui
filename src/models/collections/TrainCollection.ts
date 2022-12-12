@@ -1,5 +1,5 @@
 import { ItemCollection } from './ItemCollection';
-import { Train } from '../Train';
+import { Train, TrainState } from '../Train';
 
 export class TrainCollection extends ItemCollection<Train> {
   findWithId(idToFind: string): Train {
@@ -8,5 +8,10 @@ export class TrainCollection extends ItemCollection<Train> {
       return Train.EMPTY_TRAIN;
     }
     return returnedTrain;
+  }
+
+  static createFromTrainStateArray(trainsStateArray: TrainState[]): TrainCollection {
+    const trains = trainsStateArray.map((trainsState: TrainState) => new Train(trainsState));
+    return new TrainCollection(trains);
   }
 }

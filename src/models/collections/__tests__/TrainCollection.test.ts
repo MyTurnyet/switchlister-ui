@@ -1,6 +1,11 @@
 import { TrainCollection } from '../TrainCollection';
-import { Train } from '../../Train';
-import { train1, train2 } from '../../../test-configuration/FixtureTrains';
+import { Train, TrainState } from '../../Train';
+import {
+  train1,
+  train1State,
+  train2,
+  train2State,
+} from '../../../test-configuration/FixtureTrains';
 
 describe('Train Collection', () => {
   describe('find by id', () => {
@@ -14,5 +19,11 @@ describe('Train Collection', () => {
       const foundTrain = collectionWithMatching.findWithId(train2.id);
       expect(foundTrain).toEqual(train2);
     });
+  });
+  it('creates from a train state array', () => {
+    const trainsStateArray: TrainState[] = [train1State, train2State];
+    const trainCollection = TrainCollection.createFromTrainStateArray(trainsStateArray);
+    expect(trainCollection.isEmpty()).toEqual(false);
+    expect(trainCollection.count).toEqual(2);
   });
 });
