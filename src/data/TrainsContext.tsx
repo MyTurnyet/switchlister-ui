@@ -1,5 +1,5 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
-import { Train, TrainState } from '../models/Train';
+import { TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
 import { TrainApi } from './api/TrainApi';
 import { TrainCollection } from '../models/collections/TrainCollection';
@@ -23,11 +23,6 @@ export const useTrainsData = (): TrainsDataContext => {
   return context;
 };
 
-function createTrainCollectionFromData(trainData: TrainState[]): TrainCollection {
-  const trains = trainData.map((trainState: TrainState) => new Train(trainState));
-  return new TrainCollection(trains);
-}
-
 export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
   const trainData = useReactState<TrainState[]>([]);
   const isLoadingState = useReactState<boolean>(false);
@@ -42,7 +37,7 @@ export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
   const trainsDataContext: TrainsDataContext = {
     isLoading: isLoadingState.value,
     getTrains,
-    trainCollection: createTrainCollectionFromData(trainData.value),
+    trainCollection: TrainCollection.createFromTrainStateArray(trainData.value),
   };
   return <TrainsContext.Provider value={trainsDataContext}>{children}</TrainsContext.Provider>;
 };

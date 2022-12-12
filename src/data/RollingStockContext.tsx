@@ -1,5 +1,5 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext, useEffect } from 'react';
-import { RollingStock, RollingStockState } from '../models/RollingStock';
+import { RollingStockState } from '../models/RollingStock';
 import { useReactState } from '../state-management/ReactState';
 import { RollingStockCollection } from '../models/collections/RollingStockCollection';
 import { RollingStockApi } from './api/RollingStockApi';
@@ -11,10 +11,6 @@ export interface RollingStockContextState {
 }
 
 const RollingStockContext = createContext<RollingStockContextState | undefined>(undefined);
-
-function getRollingStockCollectionFromData(rollingStockData: RollingStockState[]) {
-  return new RollingStockCollection(rollingStockData.map((state) => new RollingStock(state)));
-}
 
 export const useRollingStockData = (): RollingStockContextState => {
   const context = useContext(RollingStockContext);
@@ -41,7 +37,9 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => getRollingStock(), []);
 
   const returnedState: RollingStockContextState = {
-    rollingStock: getRollingStockCollectionFromData(rollingStockDataState.value),
+    rollingStock: RollingStockCollection.createFromRollingStockStateArray(
+      rollingStockDataState.value,
+    ),
     isLoading: isLoadingState.value,
     getRollingStock: getRollingStock,
   };
