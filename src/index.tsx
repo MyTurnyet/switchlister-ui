@@ -15,7 +15,7 @@ if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
 const AppContent = styled.div`
   height: 100vh;
   align-items: center;
-  background-color: ${(props) => props.theme.colors.appBackground};
+  background-color: ${(props) => props.theme.colors.background.appBackground};
   color: ${(props) => props.theme.colors.text.normal};
   display: flex;
   flex-direction: row;

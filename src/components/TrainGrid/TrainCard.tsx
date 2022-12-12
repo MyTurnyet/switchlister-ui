@@ -41,7 +41,7 @@ const StationCountDiv = styled(trainDisplayDiv)`
 `;
 const StationNameDiv = styled(trainDisplayDiv)`
   width: 100%;
-  color: #1565c0;
+  color: ${(props) => props.theme.colors.text.header};
 `;
 
 const trainRowDefaults = styled.div`
@@ -51,7 +51,7 @@ const trainRowDefaults = styled.div`
 `;
 
 const TopDisplayRow = styled(trainRowDefaults)`
-  background-color: #1565c0;
+  background-color: ${(props) => props.theme.colors.background.cardBackground};
 `;
 const BottomDisplayRow = styled(trainRowDefaults)`
   flex-direction: column;
@@ -65,6 +65,6 @@ const TrainCardContainer = styled.div`
   max-height: 15vh;
   background-color: white;
   border-radius: ${(props) => props.theme.borderRadius};
-  border: 1px solid ${(props) => props.theme.colors.cardBackground};
+  border: 1px solid ${(props) => props.theme.colors.background.cardBackground};
   overflow: auto;
 `;

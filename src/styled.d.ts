@@ -4,8 +4,10 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     borderRadius: string;
     colors: {
-      appBackground: string;
-      cardBackground: string;
+      background: {
+        appBackground: string;
+        cardBackground: string;
+      };
       cardBorder: string;
       main: string;
       secondary: string;

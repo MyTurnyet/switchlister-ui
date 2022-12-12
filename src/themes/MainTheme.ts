@@ -6,8 +6,11 @@ const darkBlue = '#131333';
 const mainTheme: DefaultTheme = {
   borderRadius: '8px',
   colors: {
-    appBackground: 'ghostwhite',
-    cardBackground: mediumBlue,
+    background: {
+      appBackground: 'ghostwhite',
+
+      cardBackground: mediumBlue,
+    },
     cardBorder: mediumBlue,
     main: darkBlue,
     secondary: '',
