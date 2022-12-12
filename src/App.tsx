@@ -6,6 +6,7 @@ import { RollingStockPage } from './components/RollingStockPage/RollingStockPage
 import { TrainsDataProvider } from './data/TrainsContext';
 import { AppLayout } from './components/AppLayout/AppLayout';
 import { Navigate } from 'react-router';
+import { IndustryDataForm } from './components/IndustryPage/IndustryDataForm';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/home' element={<Navigate to={'/'} />} />
           <Route path={'/trains/:id'} element={<TrainPage />} />
           <Route path={'/rollingstock'} element={<RollingStockPage />} />
+          <Route path={'/industry/input'} element={<IndustryDataForm />} />
         </Route>
       </Routes>
     </TrainsDataProvider>
