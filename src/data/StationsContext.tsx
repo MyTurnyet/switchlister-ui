@@ -1,7 +1,8 @@
-import React, { createContext, PropsWithChildren, useContext } from 'react';
+import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { StationCollection } from '../models/collections/StationCollection';
 import { useReactState } from '../state-management/ReactState';
 import { StationState } from '../models/Station';
+import { StationsApi } from './api/StationsApi';
 
 export interface StationsDataContext {
   stationsCollection: StationCollection;
@@ -24,9 +25,12 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
   const isLoadingState = useReactState<boolean>(false);
   const stationDataState = useReactState<StationState[]>([]);
 
-  const getStations = () => {
-    return;
-  };
+  const getStations = useCallback(() => {
+    isLoadingState.setValue(true);
+    StationsApi.getStations()
+      .then((data) => stationDataState.setValue(data))
+      .finally(() => isLoadingState.setValue(false));
+  }, [stationDataState]);
 
   const stationDataContext: StationsDataContext = {
     getStations,
