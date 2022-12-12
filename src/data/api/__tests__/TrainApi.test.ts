@@ -1,7 +1,7 @@
 import { mswServer } from '../../../api-mocks/msw-server';
 import { TrainState } from '../../../models/Train';
 import { TrainApi } from '../TrainApi';
-import { ApiHandler } from '../../../api-mocks/ApiHandler';
+import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
 
 describe('Train Api', () => {
   describe('GET', () => {
