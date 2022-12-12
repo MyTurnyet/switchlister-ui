@@ -6,7 +6,11 @@ import {
 } from '../../../test-configuration/FixtureRollingStock';
 
 describe('rolling stock collection', () => {
-  const collection = new RollingStockCollection([boxcarCP1234, hopperBCAX5]);
+  let collection: RollingStockCollection;
+  beforeEach(() => {
+    collection = new RollingStockCollection([boxcarCP1234]);
+  });
+
   it('knows it is not Empty ', () => {
     expect(collection.isEmpty()).toEqual(false);
   });
@@ -16,8 +20,8 @@ describe('rolling stock collection', () => {
   });
   it('can map items', () => {
     const namesList = collection.map((item) => item.displayName);
-    expect(namesList).toHaveLength(2);
-    expect(namesList).toMatchInAnyOrder(['BCAX 5', 'CPR 1234']);
+    expect(namesList).toHaveLength(1);
+    expect(namesList).toMatchInAnyOrder(['CPR 1234']);
   });
   it('creates collection from rolling stock state array', () => {
     const stockCollection = RollingStockCollection.createFromRollingStockStateArray([
@@ -25,5 +29,10 @@ describe('rolling stock collection', () => {
     ]);
     expect(stockCollection.isEmpty()).toEqual(false);
     expect(stockCollection.count).toEqual(1);
+  });
+
+  it('adds a car to the collection', () => {
+    collection.addCar(hopperBCAX5);
+    expect(collection.count).toEqual(2);
   });
 });

@@ -8,4 +8,8 @@ export class RollingStockCollection extends ItemCollection<RollingStock> {
     );
     return new RollingStockCollection(rollingStockArray);
   }
+
+  addCar(carToAdd: RollingStock): void {
+    this.items.push(carToAdd);
+  }
 }
