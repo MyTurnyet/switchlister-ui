@@ -6,6 +6,16 @@ import { useReactState } from '../../state-management/ReactState';
 import { Station } from '../../models/Station';
 import { Industry } from '../../models/Industry';
 import styled from 'styled-components';
+import useCollapse from 'react-collapsed';
+import { IndustryDetails } from '../IndustryPage/IndustryDetails';
+
+const CollapsableIndustryDetails = (props: { industry: Industry }) => {
+  return (
+    <li>
+      <IndustryDetails industry={props.industry} />
+    </li>
+  );
+};
 
 export const TrainStationDetails = (props: { station: Station }) => (
   <StationDetailsContainer>
@@ -13,7 +23,7 @@ export const TrainStationDetails = (props: { station: Station }) => (
     <IndustriesTitle>Industries: ({props.station.industries.count})</IndustriesTitle>
     <ul>
       {props.station.industries.map((industry: Industry) => (
-        <li key={industry.name}>{industry.name}</li>
+        <CollapsableIndustryDetails key={industry.name} industry={industry} />
       ))}
     </ul>
   </StationDetailsContainer>
@@ -30,12 +40,12 @@ export const TrainDetails = (props: { train: Train }) => {
 };
 
 export const TrainPage = () => {
-  const { id } = useParams();
+  const { trainId } = useParams();
   const { trainCollection } = useTrainsData();
   const currentTrain = useReactState<Train>(Train.EMPTY_TRAIN);
   useEffect(() => {
-    if (id === undefined) return;
-    currentTrain.setValue(trainCollection.findWithId(id));
+    if (trainId === undefined) return;
+    currentTrain.setValue(trainCollection.findWithId(trainId));
   });
 
   return (
@@ -69,6 +79,7 @@ const TrainName = styled.div`
 const StationDetailsContainer = styled.div`
   padding-left: 12px;
   padding-top: 12px;
+
   & ul {
     padding-left: 10px;
     list-style: none;

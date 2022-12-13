@@ -2,8 +2,6 @@ import React from 'react';
 import { act, fireEvent, render, RenderResult, waitFor } from '@testing-library/react';
 import { IndustryDataForm } from '../IndustryDataForm';
 import { wrapWithFakeStationsContext } from '../../../test-configuration/ReactTestToolkit';
-import userEvent from '@testing-library/user-event';
-import { wait } from '@testing-library/user-event/dist/utils';
 import { station1, station2 } from '../../../test-configuration/FixtureTrains';
 
 describe('Industry Data Form', () => {

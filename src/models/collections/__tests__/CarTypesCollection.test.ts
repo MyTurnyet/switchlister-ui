@@ -1,12 +1,12 @@
-import { CarTypesList } from '../CarTypesList';
+import { CarTypesCollection } from '../CarTypesCollection';
 import { CarType } from '../../RollingStock';
 
-describe('CarTypesList', () => {
+describe('CarTypeCollection', () => {
   describe('with no items', () => {
-    let list: CarTypesList;
+    let list: CarTypesCollection;
 
     beforeEach(() => {
-      list = new CarTypesList();
+      list = new CarTypesCollection([]);
     });
     it('is empty', () => {
       expect(list.isEmpty()).toEqual(true);
@@ -17,9 +17,9 @@ describe('CarTypesList', () => {
   });
 
   describe('with 1 item', () => {
-    let list: CarTypesList;
+    let list: CarTypesCollection;
     beforeEach(() => {
-      list = new CarTypesList([CarType.XM]);
+      list = new CarTypesCollection([CarType.XM]);
     });
     it('is not empty', () => {
       expect(list.isEmpty()).toEqual(false);
@@ -29,6 +29,9 @@ describe('CarTypesList', () => {
     });
     it('does not contain HT type', () => {
       expect(list.contains(CarType.HT)).toEqual(false);
+    });
+    it('should map to array', () => {
+      expect(list.map((typeName) => typeName)).toEqual(['XM']);
     });
   });
 });

@@ -1,11 +1,11 @@
 import { CarType, RollingStockState } from './RollingStock';
 import { RollingStockCollection } from './collections/RollingStockCollection';
-import { CarTypesList } from './collections/CarTypesList';
+import { CarTypesCollection } from './collections/CarTypesCollection';
 
 export interface IndustryState {
   name: string;
   placedCars: RollingStockState[];
-  servicedCarTypes: CarTypesList;
+  servicedCarTypes: string[];
 }
 
 export class Industry {
@@ -18,11 +18,13 @@ export class Industry {
     return RollingStockCollection.createFromRollingStockStateArray(this.industryState.placedCars);
   }
 
-  get servicedCarTypes(): CarTypesList {
-    return this.industryState.servicedCarTypes;
+  get servicedCarTypes(): string[] {
+    return this.industryState.servicedCarTypes.map((carType) => carType.toString());
   }
 
   services(expectedCarType: CarType): boolean {
-    return this.industryState.servicedCarTypes.contains(expectedCarType);
+    return this.industryState.servicedCarTypes.some(
+      (servicedCars) => servicedCars === expectedCarType,
+    );
   }
 }

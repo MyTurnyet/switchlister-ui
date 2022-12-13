@@ -5,7 +5,7 @@ import {
   industry7,
 } from '../../test-configuration/FixtureTrains';
 import { CarType } from '../RollingStock';
-import { CarTypesList } from '../collections/CarTypesList';
+import { CarTypesCollection } from '../collections/CarTypesCollection';
 
 describe('Industry', () => {
   it('returns its name', () => {
@@ -25,6 +25,6 @@ describe('Industry', () => {
     expect(industry2.services(CarType.HT)).toEqual(false);
   });
   it('provides a list of serviced car types', () => {
-    expect(industry1.servicedCarTypes).toEqual(new CarTypesList([CarType.XM, CarType.HT]));
+    expect(industry1.servicedCarTypes).toEqual([CarType.XM, CarType.HT]);
   });
 });

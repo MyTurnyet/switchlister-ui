@@ -16,7 +16,7 @@ function renderTrainPageComponent(
     wrapWithThemeProvider(
       wrapWithFakeTrainContext(
         <Routes>
-          <Route path={'/trains/:id'} element={<TrainPage />}></Route>
+          <Route path={'/trains/:trainId'} element={<TrainPage />}></Route>
         </Routes>,
         [train1],
         trainToRenderWithId,
