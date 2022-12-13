@@ -33,17 +33,15 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
       .finally(() => isLoadingState.setValue(false));
   }, [stationDataState]);
 
-  // const updateStation = useCallback((stationToUpdate: Station) => {
-  //   StationsApi.postStation();
-  // }, []);
+  const updateStation = useCallback(async (stationToUpdate: Station) => {
+    await StationsApi.postStation(stationToUpdate.asStationState());
+  }, []);
 
   const stationDataContext: StationsDataContext = {
     getStations,
     isLoading: isLoadingState.value,
     stationsCollection: StationCollection.createFromStationStateArray(stationDataState.value),
-    updateStation: (station) => {
-      return;
-    },
+    updateStation,
   };
 
   return <StationsContext.Provider value={stationDataContext}>{children}</StationsContext.Provider>;

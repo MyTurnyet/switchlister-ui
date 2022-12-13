@@ -17,4 +17,8 @@ export class Station {
   get name(): string {
     return this.stationState.name;
   }
+
+  asStationState(): StationState {
+    return JSON.parse(JSON.stringify(this.stationState));
+  }
 }
