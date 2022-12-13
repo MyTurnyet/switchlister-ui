@@ -3,15 +3,16 @@ import {
   hopperBCAX5,
   hopperBCAX5State,
 } from '../../test-configuration/FixtureRollingStock';
+import { CarType } from '../RollingStock';
 
 describe('rolling stock', () => {
   describe('data', () => {
     it('is car type HT', () => {
-      const hasType = hopperBCAX5.isCarType('HT');
+      const hasType = hopperBCAX5.isCarType(CarType.HT);
       expect(hasType).toEqual(true);
     });
     it('is not car type HT', () => {
-      const hasType = boxcarCP1234.isCarType('HT');
+      const hasType = boxcarCP1234.isCarType(CarType.HT);
       expect(hasType).toEqual(false);
     });
     it('returns display name', () => {

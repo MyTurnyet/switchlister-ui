@@ -20,7 +20,7 @@ export class RollingStock {
   get displayName(): string {
     return `${this.state.roadName} ${this.state.roadNumber}`;
   }
-  isCarType(expectedType: string): boolean {
+  isCarType(expectedType: CarType): boolean {
     return this.state.carType === expectedType;
   }
   get carType(): string {
