@@ -10,13 +10,16 @@ export interface IndustryState {
 
 export class Industry {
   constructor(private industryState: IndustryState) {}
-
   get name(): string {
     return this.industryState.name;
   }
 
   get placedCars(): RollingStockCollection {
     return RollingStockCollection.createFromRollingStockStateArray(this.industryState.placedCars);
+  }
+
+  get servicedCarTypes(): CarTypesList {
+    return this.industryState.servicedCarTypes;
   }
 
   services(expectedCarType: CarType): boolean {
