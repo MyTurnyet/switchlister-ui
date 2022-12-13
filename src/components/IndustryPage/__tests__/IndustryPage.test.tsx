@@ -1,12 +1,23 @@
 import React from 'react';
-import { render, RenderResult } from '@testing-library/react';
+import { RenderResult } from '@testing-library/react';
 import { IndustryPage } from '../IndustryPage';
 import { industry7 } from '../../../test-configuration/FixtureTrains';
+import { Route, Routes } from 'react-router-dom';
+import {
+  renderWithRouter,
+  wrapWithFakeStationsContext,
+} from '../../../test-configuration/ReactTestToolkit';
 
 describe('Industry Page', () => {
   let industryPage: RenderResult;
   beforeEach(() => {
-    industryPage = render(<IndustryPage industry={industry7} />);
+    industryPage = renderWithRouter(
+      wrapWithFakeStationsContext(
+        <Routes>
+          <Route path={'/industry/:id'} element={<IndustryPage industry={industry7} />}></Route>
+        </Routes>,
+      ),
+    );
   });
   it('displays the name', () => {
     expect(industryPage).toHaveElementsWithText(industry7.name);

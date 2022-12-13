@@ -8,6 +8,8 @@ import { AppLayout } from './components/AppLayout/AppLayout';
 import { Navigate } from 'react-router';
 import { IndustryDataForm } from './components/IndustryPage/IndustryDataForm';
 import { StationsDataProvider } from './data/StationsContext';
+import { IndustryPage } from './components/IndustryPage/IndustryPage';
+import { industry6 } from './test-configuration/FixtureTrains';
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
           <Route path={'/'} element={<AppLayout />}>
             <Route index={true} element={<TrainGrid />} />
             <Route path='/home' element={<Navigate to={'/'} />} />
-            <Route path={'/trains/:id'} element={<TrainPage />} />
+            <Route path={'/trains/:id'} element={<TrainPage />}>
+              <Route path={'/industry/:id'} element={<IndustryPage industry={industry6} />} />
+            </Route>
             <Route path={'/rollingstock'} element={<RollingStockPage />} />
             <Route path={'/industry/input'} element={<IndustryDataForm />} />
           </Route>
