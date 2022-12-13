@@ -9,7 +9,7 @@ function createIndustryState(
   name: string,
   placeRollingStock: RollingStockState[] = [],
 ): IndustryState {
-  return { name: name, placedCars: placeRollingStock };
+  return { name: name, placedCars: placeRollingStock, carTypesServices: [] };
 }
 
 export const industry1State: IndustryState = createIndustryState('Industry 1');

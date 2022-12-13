@@ -4,6 +4,7 @@ import { RollingStockCollection } from './collections/RollingStockCollection';
 export interface IndustryState {
   name: string;
   placedCars: RollingStockState[];
+  carTypesServices: string[];
 }
 
 export class Industry {
