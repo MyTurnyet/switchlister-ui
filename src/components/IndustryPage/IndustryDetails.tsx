@@ -1,21 +1,13 @@
 import React from 'react';
 import { Industry } from '../../models/Industry';
-import useCollapse from 'react-collapsed';
 import styled from 'styled-components';
 
-interface ExpandedProps {
-  readonly isExpanded: boolean;
-}
-
 export const IndustryDetails = (props: { industry: Industry }) => {
-  const { getToggleProps, getCollapseProps, isExpanded } = useCollapse();
   const carTypes = props.industry.servicedCarTypes;
   return (
-    <IndustryDetailsContainer isExpanded={isExpanded}>
-      <IndustryNameExpander {...getToggleProps()} isExpanded={isExpanded}>
-        {props.industry.name}
-      </IndustryNameExpander>
-      <div {...getCollapseProps()}>
+    <IndustryDetailsContainer>
+      <IndustryNameExpander>{props.industry.name}</IndustryNameExpander>
+      <div>
         <div>Car types accepted at this industry:</div>
         {carTypes.map((carType) => (
           <div key={carType.toString()}>{carType.toString()}</div>
@@ -24,20 +16,17 @@ export const IndustryDetails = (props: { industry: Industry }) => {
     </IndustryDetailsContainer>
   );
 };
-const IndustryNameExpander = styled.div<ExpandedProps>`
-  cursor: pointer;
+const IndustryNameExpander = styled.div`
   font-weight: bold;
   font-size: medium;
-  ${(props) => {
-    return (
-      props.isExpanded &&
-      `border-bottom: ${props.theme.colors.cardBorder} 2px solid;         
-            `
-    );
-  }}
+  border-bottom: ${(props) => props.theme.colors.cardBorder} 2px solid;
 `;
-const IndustryDetailsContainer = styled.div<ExpandedProps>`
+const IndustryDetailsContainer = styled.div`
+  width: auto;
+  height: auto;
   margin-top: 2px;
   margin-bottom: 4px;
-  width: 50%;
+  padding: 4px;
+  border-radius: ${(props) => props.theme.borderRadius};
+  border: 1px solid ${(props) => props.theme.colors.cardBorder};
 `;

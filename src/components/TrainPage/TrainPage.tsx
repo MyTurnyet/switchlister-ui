@@ -6,26 +6,18 @@ import { useReactState } from '../../state-management/ReactState';
 import { Station } from '../../models/Station';
 import { Industry } from '../../models/Industry';
 import styled from 'styled-components';
-import useCollapse from 'react-collapsed';
 import { IndustryDetails } from '../IndustryPage/IndustryDetails';
-
-const CollapsableIndustryDetails = (props: { industry: Industry }) => {
-  return (
-    <li>
-      <IndustryDetails industry={props.industry} />
-    </li>
-  );
-};
 
 export const TrainStationDetails = (props: { station: Station }) => (
   <StationDetailsContainer>
     <StationName>Station: {props.station.name}</StationName>
     <IndustriesTitle>Industries: ({props.station.industries.count})</IndustriesTitle>
-    <ul>
+
+    <IndustryWrapper>
       {props.station.industries.map((industry: Industry) => (
-        <CollapsableIndustryDetails key={industry.name} industry={industry} />
+        <IndustryDetails industry={industry} key={industry.name} />
       ))}
-    </ul>
+    </IndustryWrapper>
   </StationDetailsContainer>
 );
 export const TrainDetails = (props: { train: Train }) => {
@@ -90,6 +82,13 @@ const StationName = styled.div`
   font-weight: bold;
   font-size: medium;
   border-bottom: ${(props) => props.theme.colors.main} 1px solid;
+`;
+const IndustryWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 const IndustriesTitle = styled.div`
   color: ${(props) => props.theme.colors.text.normal};
