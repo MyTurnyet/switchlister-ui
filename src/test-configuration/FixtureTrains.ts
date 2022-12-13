@@ -4,13 +4,14 @@ import { Station, StationState } from '../models/Station';
 import { Industry, IndustryState } from '../models/Industry';
 import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
 import { CarType, RollingStockState } from '../models/RollingStock';
+import { CarTypesList } from '../models/collections/CarTypesList';
 
 function createIndustryState(
   name: string,
   placedCars: RollingStockState[] = [],
   servicedCarTypes: CarType[] = [],
 ): IndustryState {
-  return { name, placedCars, servicedCarTypes };
+  return { name, placedCars, servicedCarTypes: new CarTypesList(servicedCarTypes) };
 }
 
 export const industry1State: IndustryState = createIndustryState('Industry 1');
