@@ -37,7 +37,7 @@ const IndustryNameExpander = styled.div<ExpandedProps>`
   }}
 `;
 const IndustryDetailsContainer = styled.div<ExpandedProps>`
-  margin-top: 
-  margin-bottom: ${(props) => props.isExpanded && '1'}2px;
+  margin-top: 2px;
+  margin-bottom: 4px;
   width: 50%;
 `;
