@@ -2,12 +2,33 @@ import { CarTypesList } from '../CarTypesList';
 import { CarType } from '../../RollingStock';
 
 describe('CarTypesList', () => {
-  it('constructs with no items', () => {
-    const list = new CarTypesList();
-    expect(list.isEmpty()).toEqual(true);
+  describe('with no items', () => {
+    let list: CarTypesList;
+
+    beforeEach(() => {
+      list = new CarTypesList();
+    });
+    it('is empty', () => {
+      expect(list.isEmpty()).toEqual(true);
+    });
+    it('does not contain', () => {
+      expect(list.contains(CarType.XM)).toBe(false);
+    });
   });
-  it('knows its length', () => {
-    const list = new CarTypesList([CarType.XM]);
-    expect(list.isEmpty()).toEqual(false);
+
+  describe('with 1 item', () => {
+    let list: CarTypesList;
+    beforeEach(() => {
+      list = new CarTypesList([CarType.XM]);
+    });
+    it('is not empty', () => {
+      expect(list.isEmpty()).toEqual(false);
+    });
+    it('contains XM type', () => {
+      expect(list.contains(CarType.XM)).toEqual(true);
+    });
+    it('does not contain HT type', () => {
+      expect(list.contains(CarType.HT)).toEqual(false);
+    });
   });
 });
