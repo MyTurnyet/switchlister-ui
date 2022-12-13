@@ -11,22 +11,28 @@ describe('Industry Data Form', () => {
   beforeEach(() => {
     industryForm = render(wrapWithFakeStationsContext(<IndustryDataForm />, [station1, station2]));
   });
-  it('requires industry name', async () => {
-    industryForm.getByPlaceholderText('Industry Name');
-    fireEvent.submit(industryForm.getByRole('button'));
-    await waitFor(() => {
-      expect(industryForm).toHaveElementsWithText('You must enter an industry name.');
+  describe('has fields', () => {
+    it('industry name', async () => {
+      industryForm.getByPlaceholderText('Industry Name');
+    });
+    it('station selector', async () => {
+      industryForm.getByPlaceholderText('station selector');
+      industryForm.getByRole('option', { name: 'Select one...' });
+      industryForm.getByRole('option', { name: 'station1' });
+      industryForm.getByRole('option', { name: 'station2' });
     });
   });
-  it('requires a station selection', async () => {
-    const stationSelector = industryForm.getByPlaceholderText('station selector');
-    // userEvent.selectOptions(
-    //   stationSelector,
-    //   industryForm.getByRole('option', { name: 'station1' }),
-    // );
-    fireEvent.submit(industryForm.getByRole('button'));
-    await waitFor(() => {
-      expect(industryForm).toHaveElementsWithText('You must select a station for this industry.');
+  describe('shows error when field is required', () => {
+    beforeEach(() => fireEvent.submit(industryForm.getByRole('button')));
+    it('industry name', async () => {
+      await waitFor(() => {
+        expect(industryForm).toHaveElementsWithText('You must enter an industry name.');
+      });
+    });
+    it('station selection', async () => {
+      await waitFor(() => {
+        expect(industryForm).toHaveElementsWithText('You must select a station for this industry.');
+      });
     });
   });
 });
