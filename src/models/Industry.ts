@@ -1,10 +1,10 @@
-import { RollingStockState } from './RollingStock';
+import { CarType, RollingStockState } from './RollingStock';
 import { RollingStockCollection } from './collections/RollingStockCollection';
 
 export interface IndustryState {
   name: string;
   placedCars: RollingStockState[];
-  servicedCarTypes: string[];
+  servicedCarTypes: CarType[];
 }
 
 export class Industry {

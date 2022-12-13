@@ -3,12 +3,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { Station, StationState } from '../models/Station';
 import { Industry, IndustryState } from '../models/Industry';
 import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
-import { RollingStockState } from '../models/RollingStock';
+import { CarType, RollingStockState } from '../models/RollingStock';
 
 function createIndustryState(
   name: string,
   placedCars: RollingStockState[] = [],
-  servicedCarTypes: string[] = [],
+  servicedCarTypes: CarType[] = [],
 ): IndustryState {
   return { name, placedCars, servicedCarTypes };
 }
