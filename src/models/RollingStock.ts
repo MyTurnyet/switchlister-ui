@@ -1,5 +1,12 @@
+export enum CarType {
+  HT,
+  XM,
+  XMO,
+}
+
 export interface RollingStockState {
   carType: string;
+  carTypeEnum: CarType;
   color: string;
   roadName: string;
   roadNumber: number;

@@ -1,4 +1,3 @@
-import { Industry } from '../Industry';
 import { industry1, industry1State, industry7 } from '../../test-configuration/FixtureTrains';
 
 describe('Industry', () => {

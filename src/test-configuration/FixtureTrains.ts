@@ -7,9 +7,10 @@ import { RollingStockState } from '../models/RollingStock';
 
 function createIndustryState(
   name: string,
-  placeRollingStock: RollingStockState[] = [],
+  placedCars: RollingStockState[] = [],
+  servicedCarTypes: string[] = [],
 ): IndustryState {
-  return { name: name, placedCars: placeRollingStock, carTypesServices: [] };
+  return { name, placedCars, servicedCarTypes };
 }
 
 export const industry1State: IndustryState = createIndustryState('Industry 1');
