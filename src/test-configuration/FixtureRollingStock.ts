@@ -1,8 +1,7 @@
 import { CarType, RollingStock, RollingStockState } from '../models/RollingStock';
 
 export const hopperBCAX5State: RollingStockState = {
-  carType: 'HT',
-  carTypeEnum: CarType.HT,
+  carType: CarType.HT,
   color: 'WHT',
   roadName: 'BCAX',
   roadNumber: 5,
@@ -10,8 +9,7 @@ export const hopperBCAX5State: RollingStockState = {
   loaded: false,
 };
 export const boxcarCP1234State: RollingStockState = {
-  carType: 'XM',
-  carTypeEnum: CarType.XM,
+  carType: CarType.XM,
   color: 'RED',
   roadName: 'CPR',
   roadNumber: 1234,

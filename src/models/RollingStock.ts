@@ -1,12 +1,12 @@
 export enum CarType {
-  HT,
-  XM,
-  XMO,
+  All = 'All',
+  HT = 'HT',
+  XM = 'XM',
+  XMO = 'XMO',
 }
 
 export interface RollingStockState {
-  carType: string;
-  carTypeEnum: CarType;
+  carType: CarType;
   color: string;
   roadName: string;
   roadNumber: number;
