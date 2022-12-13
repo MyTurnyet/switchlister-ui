@@ -7,20 +7,23 @@ import { TrainsDataProvider } from './data/TrainsContext';
 import { AppLayout } from './components/AppLayout/AppLayout';
 import { Navigate } from 'react-router';
 import { IndustryDataForm } from './components/IndustryPage/IndustryDataForm';
+import { StationsDataProvider } from './data/StationsContext';
 
 function App() {
   return (
-    <TrainsDataProvider>
-      <Routes>
-        <Route path={'/'} element={<AppLayout />}>
-          <Route index={true} element={<TrainGrid />} />
-          <Route path='/home' element={<Navigate to={'/'} />} />
-          <Route path={'/trains/:id'} element={<TrainPage />} />
-          <Route path={'/rollingstock'} element={<RollingStockPage />} />
-          <Route path={'/industry/input'} element={<IndustryDataForm />} />
-        </Route>
-      </Routes>
-    </TrainsDataProvider>
+    <StationsDataProvider>
+      <TrainsDataProvider>
+        <Routes>
+          <Route path={'/'} element={<AppLayout />}>
+            <Route index={true} element={<TrainGrid />} />
+            <Route path='/home' element={<Navigate to={'/'} />} />
+            <Route path={'/trains/:id'} element={<TrainPage />} />
+            <Route path={'/rollingstock'} element={<RollingStockPage />} />
+            <Route path={'/industry/input'} element={<IndustryDataForm />} />
+          </Route>
+        </Routes>
+      </TrainsDataProvider>
+    </StationsDataProvider>
   );
 }
 

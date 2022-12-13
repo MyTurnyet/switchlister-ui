@@ -7,7 +7,8 @@ import { Train } from '../models/Train';
 import { FakeTrainContext } from './FakeTrainContext';
 import { ThemeProvider } from 'styled-components';
 import { mainTheme } from '../themes/MainTheme';
-import { FakeStationsProvider } from './FakeStationsContext';
+import { FakeStationsContext } from './FakeStationsContext';
+import { Station } from '../models/Station';
 
 export function pressButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -66,6 +67,9 @@ export function wrapWithFakeTrainContext(
   );
 }
 
-export function wrapWithFakeStationsProvider(children: JSX.Element) {
-  return <FakeStationsProvider>{children}</FakeStationsProvider>;
+export function wrapWithFakeStationsContext(
+  children: JSX.Element,
+  stationsToReturn: Station[] = [],
+) {
+  return <FakeStationsContext stationsToReturn={stationsToReturn}>{children}</FakeStationsContext>;
 }

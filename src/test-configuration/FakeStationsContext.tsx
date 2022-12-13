@@ -1,14 +1,19 @@
 import { PropsWithChildren } from 'react';
 import { StationsContext, StationsDataContext } from '../data/StationsContext';
 import { StationCollection } from '../models/collections/StationCollection';
+import { Station } from '../models/Station';
+export interface FakeStationsContextProps extends PropsWithChildren {
+  stationsToReturn: Station[];
+}
 
-export const FakeStationsProvider = (props: PropsWithChildren) => {
+const defaultProps: FakeStationsContextProps = { stationsToReturn: [] };
+export const FakeStationsContext = (props: FakeStationsContextProps) => {
   const stationContextValues: StationsDataContext = {
     getStations: () => {
       return;
     },
     isLoading: false,
-    stationsCollection: new StationCollection([]),
+    stationsCollection: new StationCollection(props.stationsToReturn),
   };
   return (
     <StationsContext.Provider value={stationContextValues}>
@@ -16,3 +21,5 @@ export const FakeStationsProvider = (props: PropsWithChildren) => {
     </StationsContext.Provider>
   );
 };
+
+FakeStationsContext.defaultProps = defaultProps;
