@@ -8,28 +8,35 @@ import { CarTypesList } from '../models/collections/CarTypesList';
 
 function createIndustryState(
   name: string,
-  placedCars: RollingStockState[] = [],
   servicedCarTypes: CarType[] = [],
+  placedCars: RollingStockState[] = [],
 ): IndustryState {
   return { name, placedCars, servicedCarTypes: new CarTypesList(servicedCarTypes) };
 }
 
-export const industry1State: IndustryState = createIndustryState('Industry 1');
-export const industry1 = new Industry(industry1State);
-export const industry2State: IndustryState = createIndustryState('Industry 2');
-export const industry2 = new Industry(industry2State);
-export const industry3State: IndustryState = createIndustryState('Industry 3');
-export const industry3 = new Industry(industry3State);
-export const industry4State: IndustryState = createIndustryState('Industry 4');
-export const industry4 = new Industry(industry4State);
-export const industry5State: IndustryState = createIndustryState('Industry 5');
-export const industry5 = new Industry(industry5State);
-export const industry6State: IndustryState = createIndustryState('Industry 6');
-export const industry6 = new Industry(industry6State);
-export const industry7State: IndustryState = createIndustryState('Industry 7', [
-  boxcarCP1234State,
-  hopperBCAX5State,
+export const industry1State: IndustryState = createIndustryState('Industry 1', [
+  CarType.XM,
+  CarType.HT,
 ]);
+export const industry1 = new Industry(industry1State);
+export const industry2State: IndustryState = createIndustryState('Industry 2', [CarType.XM]);
+export const industry2 = new Industry(industry2State);
+export const industry3State: IndustryState = createIndustryState('Industry 3', [CarType.HT]);
+export const industry3 = new Industry(industry3State);
+export const industry4State: IndustryState = createIndustryState('Industry 4', [CarType.XMO]);
+export const industry4 = new Industry(industry4State);
+export const industry5State: IndustryState = createIndustryState('Industry 5', [
+  CarType.XM,
+  CarType.XMO,
+]);
+export const industry5 = new Industry(industry5State);
+export const industry6State: IndustryState = createIndustryState('Industry 6', [CarType.All]);
+export const industry6 = new Industry(industry6State);
+export const industry7State: IndustryState = createIndustryState(
+  'Industry 7',
+  [CarType.XM, CarType.HT],
+  [boxcarCP1234State, hopperBCAX5State],
+);
 export const industry7 = new Industry(industry7State);
 
 export const station1State: StationState = {

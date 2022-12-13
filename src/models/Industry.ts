@@ -1,4 +1,4 @@
-import { RollingStockState } from './RollingStock';
+import { CarType, RollingStockState } from './RollingStock';
 import { RollingStockCollection } from './collections/RollingStockCollection';
 import { CarTypesList } from './collections/CarTypesList';
 
@@ -17,5 +17,9 @@ export class Industry {
 
   get placedCars(): RollingStockCollection {
     return RollingStockCollection.createFromRollingStockStateArray(this.industryState.placedCars);
+  }
+
+  services(expectedCarType: CarType): boolean {
+    return this.industryState.servicedCarTypes.contains(expectedCarType);
   }
 }

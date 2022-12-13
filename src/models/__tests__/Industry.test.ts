@@ -1,4 +1,10 @@
-import { industry1, industry1State, industry7 } from '../../test-configuration/FixtureTrains';
+import {
+  industry1,
+  industry1State,
+  industry2,
+  industry7,
+} from '../../test-configuration/FixtureTrains';
+import { CarType } from '../RollingStock';
 
 describe('Industry', () => {
   it('returns its name', () => {
@@ -10,5 +16,11 @@ describe('Industry', () => {
   it('has a collection of placed cars', () => {
     expect(industry7.placedCars.isEmpty()).toEqual(false);
     expect(industry7.placedCars.count).toEqual(2);
+  });
+  it('services a boxcar', () => {
+    expect(industry2.services(CarType.XM)).toEqual(true);
+  });
+  it('does not service a hopper', () => {
+    expect(industry2.services(CarType.HT)).toEqual(false);
   });
 });
