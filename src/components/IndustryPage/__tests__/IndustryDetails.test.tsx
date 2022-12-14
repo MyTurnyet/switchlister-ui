@@ -31,10 +31,14 @@ describe('Industry Details', () => {
     expect(industryDetails).toHaveElementsWithText('Holds 3 cars');
   });
   it('shows a singular car count', () => {
-    industryDetails = renderIndustryWith(industry6);
-    expect(industryDetails).toHaveElementsWithText('Holds 1 car');
+    const industryDetails1Car = renderIndustryWith(industry6);
+    expect(industryDetails1Car).toHaveElementsWithText('Holds 1 car');
   });
   it('shows rolling stock at the industry', () => {
     expect(industryDetails).toHaveElementsWithText('Cars at industry:', 'CPR 1234', 'BCAX 5');
+  });
+  it('shows no rolling stock at the industry', () => {
+    const industryDetailsNoRollingStock = renderIndustryWith(industry6);
+    expect(industryDetailsNoRollingStock).toHaveElementsWithText('Cars at industry: None');
   });
 });

@@ -15,6 +15,10 @@ export const IndustryDetails = (props: { industry: Industry }) => {
     return carCount;
   }
 
+  function hasNoCars() {
+    return industry.placedCars.isEmpty();
+  }
+
   return (
     <IndustryDetailsContainer>
       <IndustryNameExpander>{industry.name}</IndustryNameExpander>
@@ -25,7 +29,7 @@ export const IndustryDetails = (props: { industry: Industry }) => {
       </div>
       <br />
       <div>
-        <div>Cars at industry:</div>
+        <div>Cars at industry:{hasNoCars() && ' None'}</div>
         {industry.placedCars.map((car: RollingStock) => (
           <div key={car.displayName}>{car.displayName}</div>
         ))}
