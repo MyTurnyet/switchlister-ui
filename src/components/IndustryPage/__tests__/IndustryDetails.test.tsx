@@ -25,11 +25,7 @@ describe('Industry Details', () => {
     expect(industryDetails).toHaveElementsWithText(industry7.name);
   });
   it('has serviced car types', () => {
-    expect(industryDetails).toHaveElementsWithText(
-      'Car types accepted at this industry:',
-      'XM, HT',
-      'Holds 3 cars',
-    );
+    expect(industryDetails).toHaveElementsWithText('Car types accepted: XM, HT', 'Holds 3 cars');
   });
   it('shows a pluralized car count', () => {
     expect(industryDetails).toHaveElementsWithText('Holds 3 cars');

@@ -17,11 +17,12 @@ export const IndustryDetails = (props: { industry: Industry }) => {
   return (
     <IndustryDetailsContainer>
       <IndustryNameExpander>{industry.name}</IndustryNameExpander>
-      <div>
-        <div>Car types accepted at this industry:</div>
-        <div>{carTypes.map((carType) => carType).join(', ')}</div>
-      </div>
       <div>Holds {pluralizedCarCount()}</div>
+      <div>
+        Car types accepted:&nbsp;
+        {carTypes.map((carType) => carType).join(', ')}
+      </div>
+      <br />
     </IndustryDetailsContainer>
   );
 };
