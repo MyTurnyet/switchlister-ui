@@ -7,10 +7,11 @@ export const IndustryDetails = (props: { industry: Industry }) => {
   const carTypes = industry.servicedCarTypes;
 
   function pluralizedCarCount() {
-    if (industry.maxCarCount == 1) {
-      return `${industry.maxCarCount} car`;
+    let carCount = `${industry.maxCarCount} car`;
+    if (industry.maxCarCount > 1) {
+      carCount += 's';
     }
-    return `${industry.maxCarCount} cars`;
+    return carCount;
   }
 
   return (
