@@ -4,7 +4,6 @@ import { Station, StationState } from '../models/Station';
 import { Industry, IndustryState } from '../models/Industry';
 import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
 import { CarType, RollingStockState } from '../models/RollingStock';
-import { CarTypesCollection } from '../models/collections/CarTypesCollection';
 
 function createIndustryState(
   name: string,

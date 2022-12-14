@@ -1,6 +1,5 @@
 import { CarType, RollingStockState } from './RollingStock';
 import { RollingStockCollection } from './collections/RollingStockCollection';
-import { CarTypesCollection } from './collections/CarTypesCollection';
 
 export interface IndustryState {
   name: string;
