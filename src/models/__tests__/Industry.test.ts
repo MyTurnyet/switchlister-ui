@@ -5,11 +5,13 @@ import {
   industry7,
 } from '../../test-configuration/FixtureTrains';
 import { CarType } from '../RollingStock';
-import { CarTypesCollection } from '../collections/CarTypesCollection';
 
 describe('Industry', () => {
   it('returns its name', () => {
     expect(industry1.name).toEqual(industry1State.name);
+  });
+  it('has a max carCount of 1', () => {
+    expect(industry1.maxCarCount).toEqual(1);
   });
   it('creates an empty collection of placed cars', () => {
     expect(industry1.placedCars.isEmpty()).toEqual(true);

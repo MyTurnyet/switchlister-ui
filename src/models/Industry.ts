@@ -2,14 +2,19 @@ import { CarType, RollingStockState } from './RollingStock';
 import { RollingStockCollection } from './collections/RollingStockCollection';
 
 export interface IndustryState {
+  maxCarCount: number;
   name: string;
   placedCars: RollingStockState[];
   servicedCarTypes: string[];
-  maxCarCount: number;
 }
 
 export class Industry {
   constructor(private industryState: IndustryState) {}
+
+  get maxCarCount(): number {
+    return this.industryState.maxCarCount;
+  }
+
   get name(): string {
     return this.industryState.name;
   }

@@ -3,14 +3,24 @@ import { Industry } from '../../models/Industry';
 import styled from 'styled-components';
 
 export const IndustryDetails = (props: { industry: Industry }) => {
-  const carTypes = props.industry.servicedCarTypes;
+  const industry = props.industry;
+  const carTypes = industry.servicedCarTypes;
+
+  function pluralizedCarCount() {
+    if (industry.maxCarCount == 1) {
+      return `${industry.maxCarCount} car`;
+    }
+    return `${industry.maxCarCount} cars`;
+  }
+
   return (
     <IndustryDetailsContainer>
-      <IndustryNameExpander>{props.industry.name}</IndustryNameExpander>
+      <IndustryNameExpander>{industry.name}</IndustryNameExpander>
       <div>
         <div>Car types accepted at this industry:</div>
         <div>{carTypes.map((carType) => carType).join(', ')}</div>
       </div>
+      <div>Holds {pluralizedCarCount()}</div>
     </IndustryDetailsContainer>
   );
 };

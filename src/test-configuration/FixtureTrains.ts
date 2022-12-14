@@ -36,6 +36,7 @@ export const industry7State: IndustryState = createIndustryState(
   'Industry 7',
   [CarType.XM, CarType.HT],
   [boxcarCP1234State, hopperBCAX5State],
+  3,
 );
 export const industry7 = new Industry(industry7State);
 
