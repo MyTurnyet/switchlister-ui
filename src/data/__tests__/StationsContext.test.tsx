@@ -41,7 +41,7 @@ function renderStationConsumer(): RenderResult {
 describe('Stations Context', () => {
   describe('outputs', () => {
     it('has no stations', async () => {
-      mswServer.use(ApiHandler.createApiCall<StationState[]>('stations', []));
+      mswServer.use(ApiHandler.createApiGet<StationState[]>('stations', []));
       const stationConsumer = renderStationConsumer();
       await waitFor(() => {
         expect(stationConsumer).toHaveElementsWithText('count: 0');

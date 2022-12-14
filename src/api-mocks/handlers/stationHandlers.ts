@@ -6,6 +6,7 @@ import {
   station3State,
   station4State,
 } from '../../test-configuration/FixtureTrains';
+import { Industry, IndustryState } from '../../models/Industry';
 
 const stationsToReturn: StationState[] = [
   station1State,
@@ -13,7 +14,8 @@ const stationsToReturn: StationState[] = [
   station3State,
   station4State,
 ];
-export const defaultGetStations = ApiHandler.createApiCall<StationState[]>(
+export const defaultGetStations = ApiHandler.createApiGet<StationState[]>(
   'stations',
   stationsToReturn,
 );
+export const defaultPostIndustry = ApiHandler.createApiPost<IndustryState[]>('stations/industry');

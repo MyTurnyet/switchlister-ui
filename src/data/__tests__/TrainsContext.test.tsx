@@ -31,7 +31,7 @@ function renderTrainConsumer(): RenderResult {
 
 describe('trains context', () => {
   it('returns 0 trains', async () => {
-    mswServer.use(ApiHandler.createApiCall('trains', []));
+    mswServer.use(ApiHandler.createApiGet('trains', []));
     const trainsConsumer = renderTrainConsumer();
     await waitFor(() => {
       expect(trainsConsumer).toHaveElementsWithText('count: 0');

@@ -29,7 +29,7 @@ function renderWithProvider(): RenderResult {
 describe('rolling stock context', () => {
   const noCarsWereReturned = 'No cars were returned.';
   it('renders with 0 items', async () => {
-    mswServer.use(ApiHandler.createApiCall<RollingStockState[]>('rollingStock', []));
+    mswServer.use(ApiHandler.createApiGet<RollingStockState[]>('rollingStock', []));
     const testConsumer = renderWithProvider();
     await waitFor(() => {
       expect(testConsumer).toHaveElementsWithText('count: 0', noCarsWereReturned);

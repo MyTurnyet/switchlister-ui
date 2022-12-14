@@ -6,7 +6,7 @@ import { StationsApi } from '../StationsApi';
 describe('Station Api', () => {
   describe('GET', () => {
     it('returns no stations', async () => {
-      mswServer.use(ApiHandler.createApiCall<StationState[]>('stations', []));
+      mswServer.use(ApiHandler.createApiGet<StationState[]>('stations', []));
       const stationStates: StationState[] = await StationsApi.getStations();
       expect(stationStates).toHaveLength(0);
     });

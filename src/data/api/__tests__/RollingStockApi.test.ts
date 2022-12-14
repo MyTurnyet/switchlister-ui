@@ -6,7 +6,7 @@ import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
 describe('Rolling Stock Api', () => {
   describe('GET', () => {
     it('returns 0 cars', async () => {
-      mswServer.use(ApiHandler.createApiCall<RollingStockState[]>('rollingStock', []));
+      mswServer.use(ApiHandler.createApiGet<RollingStockState[]>('rollingStock', []));
       const rollingStockStates = await RollingStockApi.getRollingStock();
       expect(rollingStockStates).toHaveLength(0);
     });
