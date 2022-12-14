@@ -9,9 +9,7 @@ export const IndustryDetails = (props: { industry: Industry }) => {
       <IndustryNameExpander>{props.industry.name}</IndustryNameExpander>
       <div>
         <div>Car types accepted at this industry:</div>
-        {carTypes.map((carType) => (
-          <div key={carType.toString()}>{carType.toString()}</div>
-        ))}
+        <div>{carTypes.map((carType) => carType).join(', ')}</div>
       </div>
     </IndustryDetailsContainer>
   );
@@ -26,7 +24,7 @@ const IndustryDetailsContainer = styled.div`
   height: auto;
   margin-top: 2px;
   margin-bottom: 4px;
-  padding: 4px;
+  padding: 8px;
   border-radius: ${(props) => props.theme.borderRadius};
   border: 1px solid ${(props) => props.theme.colors.cardBorder};
 `;
