@@ -34,7 +34,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watch-all",
+    "test": "react-scripts test",
+    "test-watch-all": "react-scripts test --watch-all",
     "eject": "react-scripts eject",
     "tsc-watch": "tsc --watch --outDir /dev/null"
   },
