@@ -9,8 +9,9 @@ function createIndustryState(
   name: string,
   servicedCarTypes: string[] = [],
   placedCars: RollingStockState[] = [],
+  maxCarCount = 1,
 ): IndustryState {
-  return { name, placedCars, servicedCarTypes };
+  return { name, placedCars, servicedCarTypes, maxCarCount };
 }
 
 export const industry1State: IndustryState = createIndustryState('Industry 1', [

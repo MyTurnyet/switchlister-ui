@@ -5,6 +5,7 @@ export interface IndustryState {
   name: string;
   placedCars: RollingStockState[];
   servicedCarTypes: string[];
+  maxCarCount: number;
 }
 
 export class Industry {
