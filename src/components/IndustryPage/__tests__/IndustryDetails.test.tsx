@@ -34,4 +34,7 @@ describe('Industry Details', () => {
     industryDetails = renderIndustryWith(industry6);
     expect(industryDetails).toHaveElementsWithText('Holds 1 car');
   });
+  it('shows rolling stock at the industry', () => {
+    expect(industryDetails).toHaveElementsWithText('Cars at industry:', 'CPR 1234', 'BCAX 5');
+  });
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Industry } from '../../models/Industry';
 import styled from 'styled-components';
+import { RollingStock } from '../../models/RollingStock';
 
 export const IndustryDetails = (props: { industry: Industry }) => {
   const industry = props.industry;
@@ -23,6 +24,12 @@ export const IndustryDetails = (props: { industry: Industry }) => {
         {carTypes.map((carType) => carType).join(', ')}
       </div>
       <br />
+      <div>
+        <div>Cars at industry:</div>
+        {industry.placedCars.map((car: RollingStock) => (
+          <div key={car.displayName}>{car.displayName}</div>
+        ))}
+      </div>
     </IndustryDetailsContainer>
   );
 };
