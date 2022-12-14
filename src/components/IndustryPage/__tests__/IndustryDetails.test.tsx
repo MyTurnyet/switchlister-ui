@@ -21,8 +21,7 @@ describe('Industry Details', () => {
   it('has serviced car types', () => {
     expect(industryDetails).toHaveElementsWithText(
       'Car types accepted at this industry:',
-      'XM',
-      'HT',
+      'XM, HT',
     );
   });
 });
