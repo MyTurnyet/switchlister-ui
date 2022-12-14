@@ -1,7 +1,7 @@
 import { NavBar } from '../NavBar';
 import {
   expectHistoryCalledWith,
-  pressButtonWithText,
+  clickButtonWithText,
   renderWithRouter,
 } from '../../../test-configuration/ReactTestToolkit';
 import { RenderResult } from '@testing-library/react';
@@ -12,7 +12,7 @@ describe('Nav Bar', () => {
     renderAPI = renderWithRouter(<NavBar />);
   });
   function clickLink(linkName: string) {
-    pressButtonWithText(renderAPI, linkName);
+    clickButtonWithText(renderAPI, linkName);
   }
 
   it('should render the correct text', () => {

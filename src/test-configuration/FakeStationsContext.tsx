@@ -10,7 +10,7 @@ export interface FakeStationsContextProps extends PropsWithChildren {
 const defaultProps: FakeStationsContextProps = { stationsToReturn: [] };
 export const FakeStationsContext = (props: FakeStationsContextProps) => {
   const stationContextValues: StationsDataContext = {
-    updateStation: (station: Station) => {
+    addIndustryToStation: () => {
       return;
     },
     getStations: () => {
@@ -18,6 +18,9 @@ export const FakeStationsContext = (props: FakeStationsContextProps) => {
     },
     isLoading: false,
     stationsCollection: new StationCollection(props.stationsToReturn),
+    updateStation: (station: Station) => {
+      return;
+    },
   };
   return (
     <StationsContext.Provider value={stationContextValues}>

@@ -10,7 +10,7 @@ import { mainTheme } from '../themes/MainTheme';
 import { FakeStationsContext } from './FakeStationsContext';
 import { Station } from '../models/Station';
 
-export function pressButtonWithText(screen: RenderResult, stringToFind: string) {
+export function clickButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
   fireEvent.click(button);
 }

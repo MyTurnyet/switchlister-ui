@@ -3,12 +3,14 @@ import { StationCollection } from '../models/collections/StationCollection';
 import { useReactState } from '../state-management/ReactState';
 import { Station, StationState } from '../models/Station';
 import { StationsApi } from './api/StationsApi';
+import { Industry } from '../models/Industry';
 
 export interface StationsDataContext {
   stationsCollection: StationCollection;
   isLoading: boolean;
   getStations: () => void;
   updateStation: (station: Station) => void;
+  addIndustryToStation: (industryToAdd: Industry) => void;
 }
 export const StationsContext = createContext<StationsDataContext | undefined>(undefined);
 
@@ -38,6 +40,9 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   const stationDataContext: StationsDataContext = {
+    addIndustryToStation: (industryToAdd: Industry) => {
+      return;
+    },
     getStations,
     isLoading: isLoadingState.value,
     stationsCollection: StationCollection.createFromStationStateArray(stationDataState.value),
