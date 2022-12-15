@@ -10,7 +10,7 @@ export interface RollingStockContextState {
   getRollingStock: () => void;
 }
 
-const RollingStockContext = createContext<RollingStockContextState | undefined>(undefined);
+export const RollingStockContext = createContext<RollingStockContextState | undefined>(undefined);
 
 export const useRollingStockData = (): RollingStockContextState => {
   const context = useContext(RollingStockContext);
