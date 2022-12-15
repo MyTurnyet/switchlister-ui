@@ -11,7 +11,13 @@ function createIndustryState(
   placedCars: RollingStockState[] = [],
   maxCarCount = 1,
 ): IndustryState {
-  return { name, placedCars, servicedCarTypes, maxCarCount };
+  return {
+    id: uuidv4(),
+    maxCarCount,
+    name,
+    placedCars,
+    servicedCarTypes,
+  };
 }
 
 export const industryXmHtNoCarsState: IndustryState = createIndustryState('Industry 1', [
