@@ -52,6 +52,7 @@ export function createStationState(name: string, industries: IndustryState[]): S
   };
 }
 
+export const station0State: StationState = createStationState('station0', []);
 export const station1State: StationState = createStationState('station1', [
   industryXmHtNoCarsState,
   industryXmNoCarsState,

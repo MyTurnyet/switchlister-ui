@@ -10,6 +10,9 @@ export interface StationState {
 export class Station {
   constructor(private stationState: StationState) {}
 
+  get id(): string {
+    return this.stationState.id;
+  }
   get industries(): IndustryCollection {
     const industryStates = this.stationState.industries;
     return IndustryCollection.createFromIndustryStateArray(industryStates);
