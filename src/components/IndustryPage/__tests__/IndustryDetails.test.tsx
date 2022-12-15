@@ -13,7 +13,9 @@ describe('Industry Details', () => {
 
   function renderIndustryWith(industry: Industry) {
     return render(
-      wrapWithThemeProvider(wrapWithFakeStationsContext(<IndustryDetails industry={industry} />)),
+      wrapWithThemeProvider(
+        wrapWithFakeStationsContext([], <IndustryDetails industry={industry} />),
+      ),
     );
   }
 

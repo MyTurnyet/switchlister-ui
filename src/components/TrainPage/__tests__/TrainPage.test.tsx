@@ -15,11 +15,11 @@ function renderTrainPageComponent(
   return renderWithRouter(
     wrapWithThemeProvider(
       wrapWithFakeTrainContext(
+        [train1],
+        trainToRenderWithId,
         <Routes>
           <Route path={'/trains/:trainId'} element={<TrainPage />}></Route>
         </Routes>,
-        [train1],
-        trainToRenderWithId,
       ),
     ),
     initialPath,

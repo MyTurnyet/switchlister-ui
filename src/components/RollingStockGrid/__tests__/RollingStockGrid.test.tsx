@@ -1,21 +1,19 @@
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { RollingStockGrid } from '../RollingStockGrid';
-import { RollingStockProvider } from '../../../data/RollingStockContext';
-import { wrapWithThemeProvider } from '../../../test-configuration/ReactTestToolkit';
+import {
+  wrapWithFakeRollingStockContext,
+  wrapWithThemeProvider,
+} from '../../../test-configuration/ReactTestToolkit';
+import { boxcarCP1234, hopperBCAX5 } from '../../../test-configuration/FixtureRollingStock';
 
 describe('rolling stock grid', () => {
   it('takes a list of rolling stock', async () => {
     const rollingStockGrid: RenderResult = render(
-      wrapWithThemeProvider(
-        <RollingStockProvider>
-          <RollingStockGrid />
-        </RollingStockProvider>,
+      wrapWithFakeRollingStockContext(
+        [hopperBCAX5, boxcarCP1234],
+        wrapWithThemeProvider(<RollingStockGrid />),
       ),
     );
-
-    expect(rollingStockGrid).toHaveElementsWithText('Loading!');
-    await waitFor(() => {
-      expect(rollingStockGrid).toHaveElementsWithText('BCAX 5', 'CPR 1234');
-    });
+    expect(rollingStockGrid).toHaveElementsWithText('BCAX 5', 'CPR 1234');
   });
 });

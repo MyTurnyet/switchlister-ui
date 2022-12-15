@@ -7,7 +7,7 @@ import { station1, station2 } from '../../../test-configuration/FixtureTrains';
 describe('Industry Data Form', () => {
   let industryForm: RenderResult;
   beforeEach(() => {
-    industryForm = render(wrapWithFakeStationsContext(<IndustryDataForm />, [station1, station2]));
+    industryForm = render(wrapWithFakeStationsContext([station1, station2], <IndustryDataForm />));
   });
   describe('has fields', () => {
     it('industry name', async () => {

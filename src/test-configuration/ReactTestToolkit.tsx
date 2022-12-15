@@ -10,6 +10,7 @@ import { mainTheme } from '../themes/MainTheme';
 import { FakeStationsContext } from './FakeStationsContext';
 import { Station } from '../models/Station';
 import { FakeRollingStockContext } from './FakeRollingStockContext';
+import { RollingStock, RollingStockState } from '../models/RollingStock';
 
 export function clickButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -57,19 +58,22 @@ export function wrapWithThemeProvider(children: JSX.Element) {
 }
 
 export function wrapWithFakeStationsContext(
-  children: JSX.Element,
   stationsToReturn: Station[] = [],
+  children: JSX.Element,
 ) {
   return <FakeStationsContext stationsToReturn={stationsToReturn}>{children}</FakeStationsContext>;
 }
-export function wrapWithFakeRollingStockContext(children: JSX.Element) {
-  return <FakeRollingStockContext>{children}</FakeRollingStockContext>;
+export function wrapWithFakeRollingStockContext(
+  carsToReturn: RollingStock[] = [],
+  children: JSX.Element,
+) {
+  return <FakeRollingStockContext carsToReturn={carsToReturn}>{children}</FakeRollingStockContext>;
 }
 
 export function wrapWithFakeTrainContext(
-  children: JSX.Element,
   trainsToReturn: Train[] = [],
   trainWithIdToReturn: Train = Train.EMPTY_TRAIN,
+  children: JSX.Element,
 ) {
   return (
     <FakeTrainContext trainsToReturn={trainsToReturn} trainToReturnById={trainWithIdToReturn}>

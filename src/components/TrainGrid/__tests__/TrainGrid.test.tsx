@@ -9,12 +9,13 @@ import {
 } from '../../../test-configuration/ReactTestToolkit';
 import userEvent from '@testing-library/user-event';
 import { train1 } from '../../../test-configuration/FixtureTrains';
+import { Train } from '../../../models/Train';
 
 describe('Train Grid', () => {
   let trainGrid: RenderResult;
   beforeEach(() => {
     trainGrid = renderWithRouter(
-      wrapWithThemeProvider(wrapWithFakeTrainContext(<TrainGrid />, [train1])),
+      wrapWithThemeProvider(wrapWithFakeTrainContext([train1], Train.EMPTY_TRAIN, <TrainGrid />)),
     );
   });
   it('displays the first train', () => {
