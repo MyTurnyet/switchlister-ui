@@ -1,4 +1,4 @@
-import { CarType, RollingStockState } from './RollingStock';
+import { CarType, RollingStock, RollingStockState } from './RollingStock';
 import { RollingStockCollection } from './collections/RollingStockCollection';
 
 export interface IndustryState {
@@ -9,7 +9,12 @@ export interface IndustryState {
 }
 
 export class Industry {
-  constructor(private industryState: IndustryState) {}
+  private readonly placeCarCollection: RollingStockCollection;
+  constructor(private industryState: IndustryState) {
+    this.placeCarCollection = RollingStockCollection.createFromRollingStockStateArray(
+      this.industryState.placedCars,
+    );
+  }
 
   get maxCarCount(): number {
     return this.industryState.maxCarCount;
@@ -20,16 +25,20 @@ export class Industry {
   }
 
   get placedCars(): RollingStockCollection {
-    return RollingStockCollection.createFromRollingStockStateArray(this.industryState.placedCars);
+    return this.placeCarCollection;
   }
 
   get servicedCarTypes(): string[] {
     return this.industryState.servicedCarTypes.map((carType) => carType.toString());
   }
 
-  services(expectedCarType: CarType): boolean {
+  servicesCarType(expectedCarType: CarType): boolean {
     return this.industryState.servicedCarTypes.some(
       (servicedCars) => servicedCars === expectedCarType,
     );
+  }
+
+  setOut(rollingStockToPlace: RollingStock) {
+    this.placedCars.addCar(rollingStockToPlace);
   }
 }
