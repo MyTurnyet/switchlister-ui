@@ -35,5 +35,8 @@ describe('rolling stock collection', () => {
     collection.addCar(hopperBCAX5);
     expect(collection.count).toEqual(2);
   });
-  it('removes a car based on Id from the collection', () => {});
+  it('removes a car based on Id from the collection', () => {
+    collection.remove(boxcarCP1234);
+    expect(collection.count).toEqual(0);
+  });
 });

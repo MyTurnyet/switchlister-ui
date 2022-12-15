@@ -12,4 +12,10 @@ export class RollingStockCollection extends ItemCollection<RollingStock> {
   addCar(carToAdd: RollingStock): void {
     this.items.push(carToAdd);
   }
+
+  remove(carToRemove: RollingStock) {
+    const indexToRemove = this.items.findIndex((car: RollingStock) => car.id === carToRemove.id);
+    if (indexToRemove < 0) return;
+    this.items.splice(indexToRemove, 1);
+  }
 }
