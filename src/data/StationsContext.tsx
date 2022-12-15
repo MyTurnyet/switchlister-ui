@@ -40,9 +40,10 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
   }, [stationCollectionState]);
 
   const setCarAtIndustry = (industry: Industry, carToSetOut: RollingStock): void => {
-    const industryToSetCars = stationCollectionState.value.findIndustry(industry.id);
+    const stationCollection = stationCollectionState.value;
+    const industryToSetCars = stationCollection.findIndustry(industry.id);
     industryToSetCars.placedCars.addCar(carToSetOut);
-    console.log('car set out at:', industryToSetCars);
+    stationCollectionState.setValue(stationCollection);
   };
   const stationDataContext: StationsDataContext = {
     setCarAtIndustry,

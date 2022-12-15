@@ -16,10 +16,10 @@ export const IndustryDataForm = () => {
     formState: { errors },
   } = useForm<IndustryFields>();
   useEffect(() => {
-    if (stationsCollection.isEmpty() && !isLoading) {
+    if (!isLoading) {
       getStations();
     }
-  });
+  }, [stationsCollection]);
   const onSubmit: SubmitHandler<IndustryFields> = (data: IndustryFields) => console.log(data);
   return (
     <div>

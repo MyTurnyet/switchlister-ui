@@ -15,7 +15,7 @@ const StationsTestConsumer = () => {
 
   useEffect(() => {
     getStations();
-  });
+  }, [stationsCollection]);
 
   const handleClick = () => {
     setCarAtIndustry(industryXmHtNoCars, boxcarBN9876);
@@ -71,12 +71,10 @@ describe('Stations Context', () => {
     });
   });
   describe('functions', () => {
-    xit('adds an industry to the station', async () => {
+    it('adds an industry to the station', async () => {
       const stationConsumer = renderStationConsumer();
       await waitFor(() => {
         clickButtonWithText(stationConsumer, industryXmHtNoCars.name);
-      });
-      await waitFor(() => {
         expect(stationConsumer).toHaveElementsWithText(boxcarBN9876.displayName);
       });
     });
