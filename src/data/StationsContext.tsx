@@ -9,7 +9,6 @@ export interface StationsDataContext {
   stationsCollection: StationCollection;
   isLoading: boolean;
   getStations: () => void;
-  addIndustryToStation: (industryToAdd: Industry) => void;
 }
 export const StationsContext = createContext<StationsDataContext | undefined>(undefined);
 
@@ -35,9 +34,6 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
   }, [stationDataState]);
 
   const stationDataContext: StationsDataContext = {
-    addIndustryToStation: (industryToAdd: Industry) => {
-      return;
-    },
     getStations,
     isLoading: isLoadingState.value,
     stationsCollection: StationCollection.createFromStationStateArray(stationDataState.value),
