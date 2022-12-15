@@ -23,5 +23,8 @@ describe('rolling stock', () => {
     it('returns the CarType in caps', () => {
       expect(hopperBCAX5.carType).toEqual('HT');
     });
+    it('returns id', () => {
+      expect(hopperBCAX5.id).toEqual(hopperBCAX5State.id);
+    });
   });
 });

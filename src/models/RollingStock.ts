@@ -6,6 +6,7 @@ export enum CarType {
 }
 
 export interface RollingStockState {
+  id: string;
   carType: CarType;
   color: string;
   roadName: string;
@@ -17,15 +18,19 @@ export interface RollingStockState {
 export class RollingStock {
   constructor(private state: RollingStockState) {}
 
+  get carType(): string {
+    return this.state.carType.toString();
+  }
+
   get displayName(): string {
     return `${this.state.roadName} ${this.state.roadNumber}`;
   }
 
-  isCarType(expectedType: CarType): boolean {
-    return this.state.carType === expectedType;
+  get id(): string {
+    return this.state.id;
   }
 
-  get carType(): string {
-    return this.state.carType.toString();
+  isCarType(expectedType: CarType): boolean {
+    return this.state.carType === expectedType;
   }
 }
