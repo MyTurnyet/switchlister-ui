@@ -1,4 +1,4 @@
-import { IndustryState } from './Industry';
+import { Industry, IndustryState } from './Industry';
 import { IndustryCollection } from './collections/IndustryCollection';
 
 export interface StationState {
@@ -8,17 +8,27 @@ export interface StationState {
 }
 
 export class Station {
-  constructor(private stationState: StationState) {}
+  private readonly industryCollection: IndustryCollection;
+
+  constructor(private stationState: StationState) {
+    this.industryCollection = IndustryCollection.createFromIndustryStateArray(
+      this.stationState.industries,
+    );
+  }
 
   get id(): string {
     return this.stationState.id;
   }
+
   get industries(): IndustryCollection {
-    const industryStates = this.stationState.industries;
-    return IndustryCollection.createFromIndustryStateArray(industryStates);
+    return this.industryCollection;
   }
 
   get name(): string {
     return this.stationState.name;
+  }
+
+  getIndustryWithId(industryId: string): Industry {
+    return this.industryCollection.findById(industryId);
   }
 }

@@ -13,6 +13,9 @@ describe('Industry', () => {
     it('returns its name', () => {
       expect(industryXmHtNoCars.name).toEqual(industryXmHtNoCarsState.name);
     });
+    it('has an id', () => {
+      expect(industryXmHtNoCars.id).toEqual(industryXmHtNoCarsState.id);
+    });
     it('has a max carCount of 1', () => {
       expect(industryXmHtNoCars.maxCarCount).toEqual(1);
     });

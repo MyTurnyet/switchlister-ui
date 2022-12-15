@@ -5,27 +5,42 @@ import { render, RenderResult, waitFor } from '@testing-library/react';
 import { mswServer } from '../../api-mocks/msw-server';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 import { clickButtonWithText } from '../../test-configuration/ReactTestToolkit';
+import { Industry } from '../../models/Industry';
+import { industryXmHtNoCars } from '../../test-configuration/FixtureTrains';
+import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
+import { RollingStock } from '../../models/RollingStock';
 
 const StationsTestConsumer = () => {
-  const { stationsCollection, getStations } = useStationsData();
+  const { stationsCollection, getStations, setCarAtIndustry } = useStationsData();
 
   useEffect(() => {
     getStations();
   });
 
   const handleClick = () => {
-    return;
+    setCarAtIndustry(industryXmHtNoCars, boxcarBN9876);
   };
 
   return (
     <div>
       <div>count: {stationsCollection.count}</div>
       {stationsCollection.map((station: Station) => (
-        <div key={station.name}>{station.name}</div>
+        <>
+          <div key={station.name}>{station.name}</div>
+          {station.industries.map((industry: Industry) => {
+            return (
+              <div>
+                <button onClick={handleClick} key={industry.name}>
+                  {industry.name}
+                </button>
+                {industry.placedCars.map((car: RollingStock) => (
+                  <div key={car.id}>{car.displayName}</div>
+                ))}
+              </div>
+            );
+          })}
+        </>
       ))}
-      <button title={'add industry'} onClick={handleClick}>
-        add industry
-      </button>
     </div>
   );
 };
@@ -51,13 +66,17 @@ describe('Stations Context', () => {
       const stationConsumer = renderStationConsumer();
       await waitFor(() => {
         expect(stationConsumer).toHaveElementsWithText('count: 4');
+        expect(stationConsumer).toNotHaveElementsWithText(boxcarBN9876.displayName);
       });
     });
   });
   describe('functions', () => {
-    it('adds an industry to the station', () => {
+    xit('adds an industry to the station', async () => {
       const stationConsumer = renderStationConsumer();
-      clickButtonWithText(stationConsumer, 'add industry');
+      await waitFor(() => {
+        clickButtonWithText(stationConsumer, industryXmHtNoCars.name);
+        expect(stationConsumer).toHaveElementsWithText(boxcarBN9876.displayName);
+      });
     });
   });
 });

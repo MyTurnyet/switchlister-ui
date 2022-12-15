@@ -12,6 +12,7 @@ export interface StationsDataContext {
   getStations: () => void;
   setCarAtIndustry: (industry: Industry, carToSetOut: RollingStock) => void;
 }
+
 export const StationsContext = createContext<StationsDataContext | undefined>(undefined);
 
 export const useStationsData = (): StationsDataContext => {
@@ -28,6 +29,8 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
   const isLoadingState = useReactState<boolean>(false);
   const stationDataState = useReactState<StationState[]>([]);
 
+  const stationsCollection = StationCollection.createFromStationStateArray(stationDataState.value);
+
   const getStations = useCallback(() => {
     isLoadingState.setValue(true);
     StationsApi.getStations()
@@ -35,11 +38,14 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
       .finally(() => isLoadingState.setValue(false));
   }, [stationDataState]);
 
+  const setCarAtIndustry = (industry: Industry, carToSetOut: RollingStock): void => {
+    return;
+  };
   const stationDataContext: StationsDataContext = {
-    setCarAtIndustry(industry: Industry, carToSetOut: RollingStock): void {},
+    setCarAtIndustry,
     getStations,
     isLoading: isLoadingState.value,
-    stationsCollection: StationCollection.createFromStationStateArray(stationDataState.value),
+    stationsCollection,
   };
 
   return <StationsContext.Provider value={stationDataContext}>{children}</StationsContext.Provider>;

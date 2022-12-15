@@ -8,4 +8,12 @@ export class IndustryCollection extends ItemCollection<Industry> {
     );
     return new IndustryCollection(industries);
   }
+
+  findById(idForSearch: string): Industry {
+    const foundIndustry = this.items.find((industry: Industry) => industry.id === idForSearch);
+    if (foundIndustry === undefined) {
+      return Industry.EMPTY;
+    }
+    return foundIndustry;
+  }
 }

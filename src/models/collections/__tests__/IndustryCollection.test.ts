@@ -22,5 +22,9 @@ describe('Industry Collection', () => {
       expect(industryCollectionFromStateArray.isEmpty()).toEqual(false);
       expect(industryCollectionFromStateArray.count).toEqual(1);
     });
+    it('finds by id', () => {
+      const collection = new IndustryCollection([industryXmHtNoCars]);
+      collection.findById(industryXmHtNoCarsState.id);
+    });
   });
 });

@@ -11,12 +11,22 @@ export interface IndustryState {
 
 export class Industry {
   private readonly placeCarCollection: RollingStockCollection;
+  static EMPTY: Industry = new Industry({
+    id: '',
+    maxCarCount: 0,
+    name: '',
+    placedCars: [],
+    servicedCarTypes: [],
+  });
   constructor(private industryState: IndustryState) {
     this.placeCarCollection = RollingStockCollection.createFromRollingStockStateArray(
       this.industryState.placedCars,
     );
   }
 
+  get id(): string {
+    return this.industryState.id;
+  }
   get maxCarCount(): number {
     return this.industryState.maxCarCount;
   }
