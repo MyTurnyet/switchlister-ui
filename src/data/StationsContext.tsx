@@ -5,7 +5,6 @@ import { StationState } from '../models/Station';
 import { StationsApi } from './api/StationsApi';
 import { Industry } from '../models/Industry';
 import { RollingStock } from '../models/RollingStock';
-import { industryXmHtNoCarsState } from '../test-configuration/FixtureTrains';
 
 export interface StationsDataContext {
   stationsCollection: StationCollection;
@@ -28,19 +27,20 @@ export const useStationsData = (): StationsDataContext => {
 };
 export const StationsDataProvider = ({ children }: PropsWithChildren) => {
   const isLoadingState = useReactState<boolean>(false);
-  const stationDataState = useReactState<StationState[]>([]);
-
-  const stationsCollection = StationCollection.createFromStationStateArray(stationDataState.value);
+  const stationCollectionState = useReactState<StationCollection>(new StationCollection([]));
 
   const getStations = useCallback(() => {
     isLoadingState.setValue(true);
     StationsApi.getStations()
-      .then((data) => stationDataState.setValue(data))
+      .then((data: StationState[]) => {
+        const stationCollection = StationCollection.createFromStationStateArray(data);
+        stationCollectionState.setValue(stationCollection);
+      })
       .finally(() => isLoadingState.setValue(false));
-  }, [stationDataState]);
+  }, [stationCollectionState]);
 
   const setCarAtIndustry = (industry: Industry, carToSetOut: RollingStock): void => {
-    const industryToSetCars = stationsCollection.findIndustry(industry.id);
+    const industryToSetCars = stationCollectionState.value.findIndustry(industry.id);
     industryToSetCars.placedCars.addCar(carToSetOut);
     console.log('car set out at:', industryToSetCars);
   };
@@ -48,7 +48,7 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
     setCarAtIndustry,
     getStations,
     isLoading: isLoadingState.value,
-    stationsCollection,
+    stationsCollection: stationCollectionState.value,
   };
 
   return <StationsContext.Provider value={stationDataContext}>{children}</StationsContext.Provider>;
