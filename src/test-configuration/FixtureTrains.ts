@@ -44,37 +44,49 @@ export const industryXmHtTwoCarsState: IndustryState = createIndustryState(
 );
 export const industryXmHtTwoCars = new Industry(industryXmHtTwoCarsState);
 
-export const station1State: StationState = {
-  industries: [industryXmHtNoCarsState, industryXmNoCarsState],
-  name: 'station1',
-};
-export const station2State: StationState = {
-  industries: [industryHtNoCarsState],
-  name: 'station2',
-};
-export const station3State: StationState = {
-  industries: [industryXmoNoCarsState, industryXmXmoNoCarsState, industryAllNoCarsState],
-  name: 'station3',
-};
-export const station4State: StationState = {
-  industries: [industryXmHtTwoCarsState],
-  name: 'station4',
-};
+export function createStationState(name: string, industries: IndustryState[]): StationState {
+  return {
+    id: uuidv4(),
+    industries,
+    name,
+  };
+}
+
+export const station1State: StationState = createStationState('station1', [
+  industryXmHtNoCarsState,
+  industryXmNoCarsState,
+]);
+export const station2State: StationState = createStationState('station2', [industryHtNoCarsState]);
+export const station3State: StationState = createStationState('station3', [
+  industryXmoNoCarsState,
+  industryXmXmoNoCarsState,
+  industryAllNoCarsState,
+]);
+export const station4State: StationState = createStationState('station4', [
+  industryXmHtTwoCarsState,
+]);
 
 export const station1 = new Station(station1State);
 export const station2 = new Station(station2State);
 export const station3 = new Station(station3State);
 export const station4 = new Station(station4State);
 
-export const train1State: TrainState = {
-  id: uuidv4(),
-  name: 'Local Express',
-  stations: [station1State, station2State],
-};
-export const train2State: TrainState = {
-  id: uuidv4(),
-  name: 'Another Train',
-  stations: [station3State, station2State, station4State],
-};
+function createTrainState(name: string, stations: StationState[]): TrainState {
+  return {
+    id: uuidv4(),
+    name,
+    stations,
+  };
+}
+
+export const train1State: TrainState = createTrainState('Local Express', [
+  station1State,
+  station2State,
+]);
+export const train2State: TrainState = createTrainState('Another Train', [
+  station3State,
+  station2State,
+  station4State,
+]);
 export const train1 = new Train(train1State);
 export const train2 = new Train(train2State);

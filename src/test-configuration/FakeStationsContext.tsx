@@ -18,9 +18,6 @@ export const FakeStationsContext = (props: FakeStationsContextProps) => {
     },
     isLoading: false,
     stationsCollection: new StationCollection(props.stationsToReturn),
-    updateStation: (station: Station) => {
-      return;
-    },
   };
   return (
     <StationsContext.Provider value={stationContextValues}>

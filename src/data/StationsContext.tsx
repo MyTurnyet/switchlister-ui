@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { StationCollection } from '../models/collections/StationCollection';
 import { useReactState } from '../state-management/ReactState';
-import { Station, StationState } from '../models/Station';
+import { StationState } from '../models/Station';
 import { StationsApi } from './api/StationsApi';
 import { Industry } from '../models/Industry';
 
@@ -9,7 +9,6 @@ export interface StationsDataContext {
   stationsCollection: StationCollection;
   isLoading: boolean;
   getStations: () => void;
-  updateStation: (station: Station) => void;
   addIndustryToStation: (industryToAdd: Industry) => void;
 }
 export const StationsContext = createContext<StationsDataContext | undefined>(undefined);
@@ -35,10 +34,6 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
       .finally(() => isLoadingState.setValue(false));
   }, [stationDataState]);
 
-  const updateStation = useCallback(async (stationToUpdate: Station) => {
-    await StationsApi.postStation(stationToUpdate.asStationState());
-  }, []);
-
   const stationDataContext: StationsDataContext = {
     addIndustryToStation: (industryToAdd: Industry) => {
       return;
@@ -46,7 +41,6 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
     getStations,
     isLoading: isLoadingState.value,
     stationsCollection: StationCollection.createFromStationStateArray(stationDataState.value),
-    updateStation,
   };
 
   return <StationsContext.Provider value={stationDataContext}>{children}</StationsContext.Provider>;

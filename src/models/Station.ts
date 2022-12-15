@@ -2,6 +2,7 @@ import { IndustryState } from './Industry';
 import { IndustryCollection } from './collections/IndustryCollection';
 
 export interface StationState {
+  id: string;
   name: string;
   industries: IndustryState[];
 }
@@ -16,9 +17,5 @@ export class Station {
 
   get name(): string {
     return this.stationState.name;
-  }
-
-  asStationState(): StationState {
-    return JSON.parse(JSON.stringify(this.stationState));
   }
 }
