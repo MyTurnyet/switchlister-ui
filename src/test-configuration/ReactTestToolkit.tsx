@@ -65,9 +65,14 @@ export function wrapWithFakeStationsContext(
 }
 export function wrapWithFakeRollingStockContext(
   carsToReturn: RollingStock[] = [],
+  isLoading: boolean,
   children: JSX.Element,
 ) {
-  return <FakeRollingStockContext carsToReturn={carsToReturn}>{children}</FakeRollingStockContext>;
+  return (
+    <FakeRollingStockContext carsToReturn={carsToReturn} isLoading={isLoading}>
+      {children}
+    </FakeRollingStockContext>
+  );
 }
 
 export function wrapWithFakeTrainContext(

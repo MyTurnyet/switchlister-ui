@@ -11,6 +11,7 @@ describe('rolling stock grid', () => {
     const rollingStockGrid: RenderResult = render(
       wrapWithFakeRollingStockContext(
         [hopperBCAX5, boxcarCP1234],
+        false,
         wrapWithThemeProvider(<RollingStockGrid />),
       ),
     );

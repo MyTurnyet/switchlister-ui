@@ -5,6 +5,7 @@ import { RollingStock } from '../models/RollingStock';
 
 export interface FakeRollingStockContextProps extends PropsWithChildren {
   carsToReturn: RollingStock[];
+  isLoading: boolean;
 }
 
 export const FakeRollingStockContext = (props: FakeRollingStockContextProps) => {
@@ -12,7 +13,7 @@ export const FakeRollingStockContext = (props: FakeRollingStockContextProps) => 
     getRollingStock: (): void => {
       new RollingStockCollection(props.carsToReturn);
     },
-    isLoading: false,
+    isLoading: props.isLoading,
     rollingStock: new RollingStockCollection(props.carsToReturn),
   };
   return (
