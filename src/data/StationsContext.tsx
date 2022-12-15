@@ -5,6 +5,7 @@ import { StationState } from '../models/Station';
 import { StationsApi } from './api/StationsApi';
 import { Industry } from '../models/Industry';
 import { RollingStock } from '../models/RollingStock';
+import { industryXmHtNoCarsState } from '../test-configuration/FixtureTrains';
 
 export interface StationsDataContext {
   stationsCollection: StationCollection;
@@ -39,7 +40,9 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
   }, [stationDataState]);
 
   const setCarAtIndustry = (industry: Industry, carToSetOut: RollingStock): void => {
-    return;
+    const industryToSetCars = stationsCollection.findIndustry(industry.id);
+    industryToSetCars.placedCars.addCar(carToSetOut);
+    console.log('car set out at:', industryToSetCars);
   };
   const stationDataContext: StationsDataContext = {
     setCarAtIndustry,

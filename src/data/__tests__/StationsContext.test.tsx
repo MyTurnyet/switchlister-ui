@@ -29,7 +29,7 @@ const StationsTestConsumer = () => {
           <div key={station.name}>{station.name}</div>
           {station.industries.map((industry: Industry) => {
             return (
-              <div>
+              <div key={industry.id}>
                 <button onClick={handleClick} key={industry.name}>
                   {industry.name}
                 </button>
@@ -75,6 +75,8 @@ describe('Stations Context', () => {
       const stationConsumer = renderStationConsumer();
       await waitFor(() => {
         clickButtonWithText(stationConsumer, industryXmHtNoCars.name);
+      });
+      await waitFor(() => {
         expect(stationConsumer).toHaveElementsWithText(boxcarBN9876.displayName);
       });
     });
