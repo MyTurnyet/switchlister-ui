@@ -4,11 +4,13 @@ import { useReactState } from '../state-management/ReactState';
 import { StationState } from '../models/Station';
 import { StationsApi } from './api/StationsApi';
 import { Industry } from '../models/Industry';
+import { RollingStock } from '../models/RollingStock';
 
 export interface StationsDataContext {
   stationsCollection: StationCollection;
   isLoading: boolean;
   getStations: () => void;
+  setCarAtIndustry: (industry: Industry, carToSetOut: RollingStock) => void;
 }
 export const StationsContext = createContext<StationsDataContext | undefined>(undefined);
 
@@ -34,6 +36,7 @@ export const StationsDataProvider = ({ children }: PropsWithChildren) => {
   }, [stationDataState]);
 
   const stationDataContext: StationsDataContext = {
+    setCarAtIndustry(industry: Industry, carToSetOut: RollingStock): void {},
     getStations,
     isLoading: isLoadingState.value,
     stationsCollection: StationCollection.createFromStationStateArray(stationDataState.value),
