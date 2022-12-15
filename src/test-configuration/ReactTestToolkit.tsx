@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import { mainTheme } from '../themes/MainTheme';
 import { FakeStationsContext } from './FakeStationsContext';
 import { Station } from '../models/Station';
+import { FakeRollingStockContext } from './FakeRollingStockContext';
 
 export function clickButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -55,6 +56,16 @@ export function wrapWithThemeProvider(children: JSX.Element) {
   return <ThemeProvider theme={mainTheme}>{children}</ThemeProvider>;
 }
 
+export function wrapWithFakeStationsContext(
+  children: JSX.Element,
+  stationsToReturn: Station[] = [],
+) {
+  return <FakeStationsContext stationsToReturn={stationsToReturn}>{children}</FakeStationsContext>;
+}
+export function wrapWithFakeRollingStockContext(children: JSX.Element) {
+  return <FakeRollingStockContext>{children}</FakeRollingStockContext>;
+}
+
 export function wrapWithFakeTrainContext(
   children: JSX.Element,
   trainsToReturn: Train[] = [],
@@ -65,11 +76,4 @@ export function wrapWithFakeTrainContext(
       {children}
     </FakeTrainContext>
   );
-}
-
-export function wrapWithFakeStationsContext(
-  children: JSX.Element,
-  stationsToReturn: Station[] = [],
-) {
-  return <FakeStationsContext stationsToReturn={stationsToReturn}>{children}</FakeStationsContext>;
 }

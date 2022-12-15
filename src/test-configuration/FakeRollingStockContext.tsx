@@ -4,7 +4,7 @@ import { RollingStockCollection } from '../models/collections/RollingStockCollec
 
 export type FakeRollingStockContextProps = PropsWithChildren;
 
-const FakeRollingStockContext = (props: FakeRollingStockContextProps) => {
+export const FakeRollingStockContext = (props: FakeRollingStockContextProps) => {
   const providerValues: RollingStockContextState = {
     getRollingStock: (): void => {},
     isLoading: false,
