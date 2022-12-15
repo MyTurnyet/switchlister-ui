@@ -1,8 +1,8 @@
 import {
-  industry1,
-  industry1State,
-  industry2,
-  industry7State,
+  industryXmHtNoCars,
+  industryXmHtNoCarsState,
+  industryXmHtTwoCarsState,
+  industryXmNoCars,
 } from '../../test-configuration/FixtureTrains';
 import { CarType } from '../RollingStock';
 import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
@@ -11,27 +11,27 @@ import { Industry } from '../Industry';
 describe('Industry', () => {
   describe('data', () => {
     it('returns its name', () => {
-      expect(industry1.name).toEqual(industry1State.name);
+      expect(industryXmHtNoCars.name).toEqual(industryXmHtNoCarsState.name);
     });
     it('has a max carCount of 1', () => {
-      expect(industry1.maxCarCount).toEqual(1);
+      expect(industryXmHtNoCars.maxCarCount).toEqual(1);
     });
     it('services a boxcar', () => {
-      expect(industry2.servicesCarType(CarType.XM)).toEqual(true);
+      expect(industryXmNoCars.servicesCarType(CarType.XM)).toEqual(true);
     });
     it('does not service a hopper', () => {
-      expect(industry2.servicesCarType(CarType.HT)).toEqual(false);
+      expect(industryXmNoCars.servicesCarType(CarType.HT)).toEqual(false);
     });
     it('provides a list of serviced car types', () => {
-      expect(industry1.servicedCarTypes).toEqual([CarType.XM, CarType.HT]);
+      expect(industryXmHtNoCars.servicedCarTypes).toEqual([CarType.XM, CarType.HT]);
     });
   });
   describe('placed cars', () => {
     let industryWithNoCars: Industry;
     let industryWith2Cars: Industry;
     beforeEach(() => {
-      industryWithNoCars = new Industry(industry1State);
-      industryWith2Cars = new Industry(industry7State);
+      industryWithNoCars = new Industry(industryXmHtNoCarsState);
+      industryWith2Cars = new Industry(industryXmHtTwoCarsState);
     });
     it('returns an empty collection ', () => {
       expect(industryWithNoCars.placedCars.isEmpty()).toEqual(true);

@@ -1,6 +1,10 @@
 import { Station, StationState } from '../Station';
 import { IndustryCollection } from '../collections/IndustryCollection';
-import { industry1State, station1, station1State } from '../../test-configuration/FixtureTrains';
+import {
+  industryXmHtNoCarsState,
+  station1,
+  station1State,
+} from '../../test-configuration/FixtureTrains';
 
 describe('station', () => {
   it('with 0 industries', () => {
@@ -11,7 +15,10 @@ describe('station', () => {
     expect(industryCollection.isEmpty()).toEqual(true);
   });
   it('with 1 industry', () => {
-    const stationState: StationState = { industries: [industry1State], name: 'Test Station' };
+    const stationState: StationState = {
+      industries: [industryXmHtNoCarsState],
+      name: 'Test Station',
+    };
     const station = new Station(stationState);
     const industryCollection: IndustryCollection = station.industries;
     expect(industryCollection.count).toEqual(1);

@@ -1,5 +1,8 @@
 import { IndustryCollection } from '../IndustryCollection';
-import { industry1, industry1State } from '../../../test-configuration/FixtureTrains';
+import {
+  industryXmHtNoCars,
+  industryXmHtNoCarsState,
+} from '../../../test-configuration/FixtureTrains';
 
 describe('Industry Collection', () => {
   describe('creates collection', () => {
@@ -8,13 +11,13 @@ describe('Industry Collection', () => {
       expect(collection.isEmpty()).toEqual(true);
     });
     it('from industry array with one item', () => {
-      const collection = new IndustryCollection([industry1]);
+      const collection = new IndustryCollection([industryXmHtNoCars]);
       expect(collection.isEmpty()).toEqual(false);
       expect(collection.count).toEqual(1);
     });
     it('from a IndustryState array', () => {
       const industryCollectionFromStateArray = IndustryCollection.createFromIndustryStateArray([
-        industry1State,
+        industryXmHtNoCarsState,
       ]);
       expect(industryCollectionFromStateArray.isEmpty()).toEqual(false);
       expect(industryCollectionFromStateArray.count).toEqual(1);
