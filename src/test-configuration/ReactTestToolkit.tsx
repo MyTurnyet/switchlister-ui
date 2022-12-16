@@ -11,6 +11,8 @@ import { FakeStationsContext } from './FakeStationsContext';
 import { Station } from '../models/Station';
 import { FakeRollingStockContext } from './FakeRollingStockContext';
 import { RollingStock, RollingStockState } from '../models/RollingStock';
+import { Industry } from '../models/Industry';
+import { FakeIndustriesContext } from './FakeIndustriesContext';
 
 export function clickButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -57,6 +59,16 @@ export function wrapWithThemeProvider(children: JSX.Element) {
   return <ThemeProvider theme={mainTheme}>{children}</ThemeProvider>;
 }
 
+export function wrapWithFakeIndustriesContext(
+  industriesToReturn: Industry[] = [],
+  children: JSX.Element,
+) {
+  return (
+    <FakeIndustriesContext industriesToReturn={industriesToReturn}>
+      {children}
+    </FakeIndustriesContext>
+  );
+}
 export function wrapWithFakeStationsContext(
   stationsToReturn: Station[] = [],
   children: JSX.Element,
