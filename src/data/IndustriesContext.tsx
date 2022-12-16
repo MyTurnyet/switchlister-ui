@@ -19,7 +19,7 @@ export const useIndustryData = (): IndustriesDataContext => {
   return context;
 };
 
-export const IndustriesProvider = (props: PropsWithChildren) => {
+export const IndustriesProvider = ({ children }: PropsWithChildren) => {
   const contextValues: IndustriesDataContext = {
     IndustriesCollection: new IndustryCollection([]),
     getIndustries: (): void => {
@@ -27,7 +27,5 @@ export const IndustriesProvider = (props: PropsWithChildren) => {
     },
     isLoading: false,
   };
-  return (
-    <IndustriesContext.Provider value={contextValues}>{props.children}</IndustriesContext.Provider>
-  );
+  return <IndustriesContext.Provider value={contextValues}>{children}</IndustriesContext.Provider>;
 };
