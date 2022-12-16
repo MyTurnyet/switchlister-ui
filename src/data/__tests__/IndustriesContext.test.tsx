@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
-import { IndustryDataProvider } from '../api/IndustriesContext';
+import { IndustriesProvider } from '../IndustriesContext';
 
 const IndustryContextTesConsumer = () => {
   return <div>FOO!</div>;
@@ -9,9 +9,9 @@ describe('Industries Context', () => {
   let testConsumer: RenderResult;
   beforeEach(() => {
     testConsumer = render(
-      <IndustryDataProvider>
+      <IndustriesProvider>
         <IndustryContextTesConsumer />
-      </IndustryDataProvider>,
+      </IndustriesProvider>,
     );
   });
   it('renders', () => {

@@ -1,4 +1,4 @@
-import { TrainsDataProvider, useTrainsData } from '../TrainsContext';
+import { TrainsProvider, useTrainsData } from '../TrainsContext';
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { mswServer } from '../../api-mocks/msw-server';
 import { useEffect } from 'react';
@@ -23,9 +23,9 @@ const TrainsTestConsumer = () => {
 
 function renderTrainConsumer(): RenderResult {
   return render(
-    <TrainsDataProvider>
+    <TrainsProvider>
       <TrainsTestConsumer />
-    </TrainsDataProvider>,
+    </TrainsProvider>,
   );
 }
 

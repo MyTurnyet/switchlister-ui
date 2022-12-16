@@ -3,16 +3,16 @@ import { TrainGrid } from './components/TrainGrid/TrainGrid';
 import { Route, Routes } from 'react-router-dom';
 import { TrainPage } from './components/TrainPage/TrainPage';
 import { RollingStockPage } from './components/RollingStockPage/RollingStockPage';
-import { TrainsDataProvider } from './data/TrainsContext';
+import { TrainsProvider } from './data/TrainsContext';
 import { AppLayout } from './components/AppLayout/AppLayout';
 import { Navigate } from 'react-router';
 import { IndustryDataForm } from './components/IndustryPage/IndustryDataForm';
-import { StationsDataProvider } from './data/StationsContext';
+import { StationsProvider } from './data/StationsContext';
 
 function App() {
   return (
-    <StationsDataProvider>
-      <TrainsDataProvider>
+    <StationsProvider>
+      <TrainsProvider>
         <Routes>
           <Route path={'/'} element={<AppLayout />}>
             <Route index={true} element={<TrainGrid />} />
@@ -22,8 +22,8 @@ function App() {
             <Route path={'/industry/input'} element={<IndustryDataForm />} />
           </Route>
         </Routes>
-      </TrainsDataProvider>
-    </StationsDataProvider>
+      </TrainsProvider>
+    </StationsProvider>
   );
 }
 

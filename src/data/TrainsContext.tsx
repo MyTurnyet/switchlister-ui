@@ -23,7 +23,7 @@ export const useTrainsData = (): TrainsDataContext => {
   return context;
 };
 
-export const TrainsDataProvider = ({ children }: PropsWithChildren) => {
+export const TrainsProvider = ({ children }: PropsWithChildren) => {
   const trainData = useReactState<TrainState[]>([]);
   const isLoadingState = useReactState<boolean>(false);
 

@@ -1,4 +1,4 @@
-import { IndustryCollection } from '../../models/collections/IndustryCollection';
+import { IndustryCollection } from '../models/collections/IndustryCollection';
 import { createContext, PropsWithChildren, useContext } from 'react';
 
 export interface IndustriesDataContext {
@@ -19,7 +19,7 @@ export const useIndustryData = (): IndustriesDataContext => {
   return context;
 };
 
-export const IndustryDataProvider = (props: PropsWithChildren) => {
+export const IndustriesProvider = (props: PropsWithChildren) => {
   const contextValues: IndustriesDataContext = {
     IndustriesCollection: new IndustryCollection([]),
     getIndustries: (): void => {

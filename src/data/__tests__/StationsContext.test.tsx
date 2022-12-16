@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StationsDataProvider, useStationsData } from '../StationsContext';
+import { StationsProvider, useStationsData } from '../StationsContext';
 import { Station, StationState } from '../../models/Station';
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { mswServer } from '../../api-mocks/msw-server';
@@ -47,9 +47,9 @@ const StationsTestConsumer = () => {
 
 function renderStationConsumer(): RenderResult {
   return render(
-    <StationsDataProvider>
+    <StationsProvider>
       <StationsTestConsumer />
-    </StationsDataProvider>,
+    </StationsProvider>,
   );
 }
 

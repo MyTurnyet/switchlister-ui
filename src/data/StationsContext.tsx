@@ -25,7 +25,7 @@ export const useStationsData = (): StationsDataContext => {
   }
   return context;
 };
-export const StationsDataProvider = ({ children }: PropsWithChildren) => {
+export const StationsProvider = ({ children }: PropsWithChildren) => {
   const isLoadingState = useReactState<boolean>(false);
   const stationCollectionState = useReactState<StationCollection>(new StationCollection([]));
 
