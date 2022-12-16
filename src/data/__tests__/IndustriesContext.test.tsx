@@ -6,11 +6,15 @@ const IndustryContextTesConsumer = () => {
   return <div>FOO!</div>;
 };
 describe('Industries Context', () => {
-  it('renders', () => {
-    const testConsumer: RenderResult = render(
+  let testConsumer: RenderResult;
+  beforeEach(() => {
+    testConsumer = render(
       <IndustryDataProvider>
         <IndustryContextTesConsumer />
       </IndustryDataProvider>,
     );
+  });
+  it('renders', () => {
+    expect(testConsumer).toHaveElementsWithText('FOO!');
   });
 });
