@@ -1,6 +1,5 @@
 import { IndustryCollection } from '../../models/collections/IndustryCollection';
 import { createContext, PropsWithChildren, useContext } from 'react';
-import { StationsContext, StationsDataContext } from '../StationsContext';
 
 export interface IndustriesDataContext {
   IndustriesCollection: IndustryCollection;
@@ -8,7 +7,7 @@ export interface IndustriesDataContext {
   getIndustries: () => void;
 }
 
-const IndustriesContext = createContext<IndustriesDataContext | undefined>(undefined);
+export const IndustriesContext = createContext<IndustriesDataContext | undefined>(undefined);
 export const useIndustryData = (): IndustriesDataContext => {
   const context = useContext(IndustriesContext);
   if (context === undefined) {
