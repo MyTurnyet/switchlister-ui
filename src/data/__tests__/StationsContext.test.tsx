@@ -5,11 +5,8 @@ import { render, RenderResult, waitFor } from '@testing-library/react';
 import { mswServer } from '../../api-mocks/msw-server';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 import { clickButtonWithText } from '../../test-configuration/ReactTestToolkit';
-import { Industry } from '../../models/Industry';
 import { industryXmHtNoCars } from '../../test-configuration/FixtureTrains';
 import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
-import { RollingStock } from '../../models/RollingStock';
-import { deflateRaw } from 'zlib';
 
 const StationsTestConsumer = () => {
   const { stations, refreshData, setCarAtIndustry } = useStationsData();
