@@ -3,6 +3,7 @@ import {
   industryXmHtNoCarsState,
   industryXmHtTwoCarsState,
   industryXmNoCars,
+  station0State,
 } from '../../test-configuration/FixtureTrains';
 import { CarType } from '../RollingStock';
 import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
@@ -15,6 +16,9 @@ describe('Industry', () => {
     });
     it('has an id', () => {
       expect(industryXmHtNoCars.id).toEqual(industryXmHtNoCarsState.id);
+    });
+    it('has a station id', () => {
+      expect(industryXmHtNoCars.staionId).toEqual(station0State.id);
     });
     it('has a max carCount of 1', () => {
       expect(industryXmHtNoCars.maxCarCount).toEqual(1);

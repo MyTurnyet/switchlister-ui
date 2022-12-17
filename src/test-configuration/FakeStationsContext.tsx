@@ -13,7 +13,9 @@ export interface FakeStationsContextProps extends PropsWithChildren {
 const defaultProps: FakeStationsContextProps = { stationsToReturn: [] };
 export const FakeStationsContext = (props: FakeStationsContextProps) => {
   const stationContextValues: StationsDataContext = {
-    industries: new IndustryCollection([]),
+    industriesAtStation: (station: Station): IndustryCollection => {
+      return new IndustryCollection([]);
+    },
     setCarAtIndustry: (industry: Industry, carToSetOut: RollingStock): void => {
       return;
     },

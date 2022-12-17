@@ -7,6 +7,7 @@ export interface IndustryState {
   name: string;
   placedCars: RollingStockState[];
   servicedCarTypes: string[];
+  stationId: string;
 }
 
 export class Industry {
@@ -17,6 +18,7 @@ export class Industry {
     name: '',
     placedCars: [],
     servicedCarTypes: [],
+    stationId: '',
   });
   constructor(private industryState: IndustryState) {
     this.placeCarCollection = RollingStockCollection.createFromRollingStockStateArray(
@@ -41,6 +43,9 @@ export class Industry {
 
   get servicedCarTypes(): string[] {
     return this.industryState.servicedCarTypes.map((carType) => carType.toString());
+  }
+  get staionId(): string {
+    return this.industryState.stationId;
   }
 
   servicesCarType(expectedCarType: CarType): boolean {
