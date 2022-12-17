@@ -17,3 +17,25 @@ export class IndustryCollection extends ItemCollection<Industry> {
     return foundIndustry;
   }
 }
+
+export class IndustryCollectionBuilder {
+  private industryStates: IndustryState[] = [];
+
+  addFromState(industryState: IndustryState): this {
+    if (this.industryExistsInArray(industryState)) {
+      return this;
+    }
+    this.industryStates.push(industryState);
+    return this;
+  }
+
+  build(): IndustryCollection {
+    return IndustryCollection.createFromIndustryStateArray(this.industryStates);
+  }
+
+  private industryExistsInArray(industryState: IndustryState) {
+    return this.industryStates.some(
+      (existingIndustry: IndustryState) => existingIndustry.name === industryState.id,
+    );
+  }
+}

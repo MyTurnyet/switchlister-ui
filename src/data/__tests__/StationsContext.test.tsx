@@ -9,6 +9,7 @@ import { Industry } from '../../models/Industry';
 import { industryXmHtNoCars } from '../../test-configuration/FixtureTrains';
 import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
 import { RollingStock } from '../../models/RollingStock';
+import { deflateRaw } from 'zlib';
 
 const StationsTestConsumer = () => {
   const { stations, refreshData, setCarAtIndustry } = useStationsData();
@@ -71,11 +72,17 @@ describe('Stations Context', () => {
     });
   });
   describe('functions', () => {
-    it('adds an industry to the station', async () => {
+    it('sets a car at an industry', async () => {
       const stationConsumer = renderStationConsumer();
       await waitFor(() => {
         clickButtonWithText(stationConsumer, industryXmHtNoCars.name);
         expect(stationConsumer).toHaveElementsWithText(boxcarBN9876.displayName);
+      });
+    });
+    it('gets all stations for an industry', async () => {
+      const stationConsumer = renderStationConsumer();
+      await waitFor(() => {
+        expect(stationConsumer).toHaveElementsWithText('Industry 4', 'Industry 5', 'Industry 6');
       });
     });
   });
