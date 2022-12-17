@@ -1,5 +1,6 @@
 import { ItemCollection } from './ItemCollection';
 import { Industry, IndustryState } from '../Industry';
+import { Station } from '../Station';
 
 export class IndustryCollection extends ItemCollection<Industry> {
   static createFromIndustryStateArray(stateArray: IndustryState[]): IndustryCollection {
@@ -15,6 +16,11 @@ export class IndustryCollection extends ItemCollection<Industry> {
       return Industry.EMPTY;
     }
     return foundIndustry;
+  }
+
+  getIndustriesForStation(station: Station) {
+    const industries = this.items.filter((industry: Industry) => industry.staionId === station.id);
+    return new IndustryCollection(industries);
   }
 }
 

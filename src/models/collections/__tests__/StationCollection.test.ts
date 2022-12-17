@@ -24,10 +24,6 @@ describe('Station Collection', () => {
       expect(stationCollection.count).toEqual(2);
     });
   });
-  it('finds an industry among all stations', () => {
-    const industry: Industry = stationCollection.findIndustry(industryXmHtNoCars.id);
-    expect(industry).toEqual(industryXmHtNoCars);
-  });
   it('returns all station names as an array', () => {
     const stationNames: string[] = stationCollection.stationNames;
     expect(stationNames).toMatchInAnyOrder([station1.name, station3.name]);

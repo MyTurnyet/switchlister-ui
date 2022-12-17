@@ -1,9 +1,9 @@
 import {
   industryXmHtNoCars,
-  industryXmHtNoCarsState,
-  industryXmHtTwoCarsState,
+  industry1State,
   industryXmNoCars,
-  station0State,
+  industry7State,
+  station1,
 } from '../../test-configuration/FixtureTrains';
 import { CarType } from '../RollingStock';
 import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
@@ -12,13 +12,13 @@ import { Industry } from '../Industry';
 describe('Industry', () => {
   describe('data', () => {
     it('returns its name', () => {
-      expect(industryXmHtNoCars.name).toEqual(industryXmHtNoCarsState.name);
+      expect(industryXmHtNoCars.name).toEqual(industry1State.name);
     });
     it('has an id', () => {
-      expect(industryXmHtNoCars.id).toEqual(industryXmHtNoCarsState.id);
+      expect(industryXmHtNoCars.id).toEqual(industry1State.id);
     });
     it('has a station id', () => {
-      expect(industryXmHtNoCars.staionId).toEqual(station0State.id);
+      expect(industryXmHtNoCars.staionId).toEqual(station1.id);
     });
     it('has a max carCount of 1', () => {
       expect(industryXmHtNoCars.maxCarCount).toEqual(1);
@@ -37,8 +37,8 @@ describe('Industry', () => {
     let industryWithNoCars: Industry;
     let industryWith2Cars: Industry;
     beforeEach(() => {
-      industryWithNoCars = new Industry(industryXmHtNoCarsState);
-      industryWith2Cars = new Industry(industryXmHtTwoCarsState);
+      industryWithNoCars = new Industry(industry1State);
+      industryWith2Cars = new Industry(industry7State);
     });
     it('returns an empty collection ', () => {
       expect(industryWithNoCars.placedCars.isEmpty()).toEqual(true);

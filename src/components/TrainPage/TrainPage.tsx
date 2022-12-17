@@ -11,12 +11,12 @@ import { IndustryDetails } from '../IndustryPage/IndustryDetails';
 export const TrainStationDetails = (props: { station: Station }) => (
   <StationDetailsContainer>
     <StationName>Station: {props.station.name}</StationName>
-    <IndustriesTitle>Industries: ({props.station.industries.count})</IndustriesTitle>
+    {/* <IndustriesTitle>Industries: ({props.station.industries.count})</IndustriesTitle>*/}
 
     <IndustryWrapper>
-      {props.station.industries.map((industry: Industry) => (
-        <IndustryDetails industry={industry} key={industry.name} />
-      ))}
+      {/* {props.station.industries.map((industry: Industry) => (*/}
+      {/*  <IndustryDetails industry={industry} key={industry.name} />*/}
+      {/* ))}*/}
     </IndustryWrapper>
   </StationDetailsContainer>
 );

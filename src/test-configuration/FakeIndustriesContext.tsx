@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { Industry } from '../models/Industry';
 import { IndustriesContext, IndustriesDataContext } from '../data/IndustriesContext';
 import { IndustryCollection } from '../models/collections/IndustryCollection';
+import { Station } from '../models/Station';
 
 export interface FakeIndustriesContextProps extends PropsWithChildren {
   industriesToReturn: Industry[];
@@ -11,8 +12,13 @@ const defaultProps: FakeIndustriesContextProps = { industriesToReturn: [] };
 
 export const FakeIndustriesContext = (props: FakeIndustriesContextProps) => {
   const contextValues: IndustriesDataContext = {
+    industriesAtStation: (station: Station): IndustryCollection => {
+      return new IndustryCollection([]);
+    },
     IndustriesCollection: new IndustryCollection(props.industriesToReturn),
-    getIndustries: (): void => {},
+    getIndustries: (): void => {
+      return;
+    },
     isLoading: false,
   };
   return (

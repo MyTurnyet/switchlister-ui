@@ -1,8 +1,10 @@
 import { IndustryCollection } from '../models/collections/IndustryCollection';
 import { createContext, PropsWithChildren, useContext } from 'react';
+import { Station } from '../models/Station';
 
 export interface IndustriesDataContext {
   IndustriesCollection: IndustryCollection;
+  industriesAtStation: (station: Station) => IndustryCollection;
   isLoading: boolean;
   getIndustries: () => void;
 }
@@ -21,6 +23,9 @@ export const useIndustryData = (): IndustriesDataContext => {
 
 export const IndustriesProvider = ({ children }: PropsWithChildren) => {
   const contextValues: IndustriesDataContext = {
+    industriesAtStation: (station: Station): IndustryCollection => {
+      return new IndustryCollection([]);
+    },
     IndustriesCollection: new IndustryCollection([]),
     getIndustries: (): void => {
       return;
