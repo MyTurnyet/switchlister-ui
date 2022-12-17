@@ -5,11 +5,13 @@ import { StationState } from '../models/Station';
 import { StationsApi } from './api/StationsApi';
 import { Industry } from '../models/Industry';
 import { RollingStock } from '../models/RollingStock';
+import { IndustryCollection } from '../models/collections/IndustryCollection';
 
 export interface StationsDataContext {
-  stationsCollection: StationCollection;
+  stations: StationCollection;
+  industries: IndustryCollection;
   isLoading: boolean;
-  getStations: () => void;
+  refreshData: () => void;
   setCarAtIndustry: (industry: Industry, carToSetOut: RollingStock) => void;
 }
 
@@ -46,10 +48,11 @@ export const StationsProvider = ({ children }: PropsWithChildren) => {
     stationCollectionState.setValue(stationCollection);
   };
   const stationDataContext: StationsDataContext = {
+    industries: new IndustryCollection([]),
     setCarAtIndustry,
-    getStations,
+    refreshData: getStations,
     isLoading: isLoadingState.value,
-    stationsCollection: stationCollectionState.value,
+    stations: stationCollectionState.value,
   };
 
   return <StationsContext.Provider value={stationDataContext}>{children}</StationsContext.Provider>;

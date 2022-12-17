@@ -8,7 +8,7 @@ type IndustryFields = {
   station: Station;
 };
 export const IndustryDataForm = () => {
-  const { stationsCollection, getStations, isLoading } = useStationsData();
+  const { stations, refreshData, isLoading } = useStationsData();
 
   const {
     register,
@@ -17,9 +17,9 @@ export const IndustryDataForm = () => {
   } = useForm<IndustryFields>();
   useEffect(() => {
     if (!isLoading) {
-      getStations();
+      refreshData();
     }
-  }, [stationsCollection]);
+  }, [stations]);
   const onSubmit: SubmitHandler<IndustryFields> = (data: IndustryFields) => console.log(data);
   return (
     <div>
@@ -39,7 +39,7 @@ export const IndustryDataForm = () => {
             <option value={''} disabled={true}>
               Select one...
             </option>
-            {stationsCollection.map((station: Station) => (
+            {stations.map((station: Station) => (
               <option key={station.name} value={station.name}>
                 {station.name}
               </option>

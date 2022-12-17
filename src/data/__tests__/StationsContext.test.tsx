@@ -11,11 +11,11 @@ import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
 import { RollingStock } from '../../models/RollingStock';
 
 const StationsTestConsumer = () => {
-  const { stationsCollection, getStations, setCarAtIndustry } = useStationsData();
+  const { stations, refreshData, setCarAtIndustry } = useStationsData();
 
   useEffect(() => {
-    getStations();
-  }, [stationsCollection]);
+    refreshData();
+  }, [stations]);
 
   const handleClick = () => {
     setCarAtIndustry(industryXmHtNoCars, boxcarBN9876);
@@ -23,8 +23,8 @@ const StationsTestConsumer = () => {
 
   return (
     <div>
-      <div>count: {stationsCollection.count}</div>
-      {stationsCollection.map((station: Station) => (
+      <div>count: {stations.count}</div>
+      {stations.map((station: Station) => (
         <>
           <div key={station.name}>{station.name}</div>
           {station.industries.map((industry: Industry) => {
