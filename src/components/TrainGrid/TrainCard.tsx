@@ -60,6 +60,7 @@ const BottomDisplayRow = styled(trainRowDefaults)`
 `;
 
 const TrainCardContainer = styled.div`
+  cursor: pointer;
   width: 12vw;
   height: auto;
   max-height: 15vh;
