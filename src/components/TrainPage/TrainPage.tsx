@@ -4,22 +4,27 @@ import { useTrainsData } from '../../data/TrainsContext';
 import { Train } from '../../models/Train';
 import { useReactState } from '../../state-management/ReactState';
 import { Station } from '../../models/Station';
-import { Industry } from '../../models/Industry';
 import styled from 'styled-components';
+import { useIndustryData } from '../../data/IndustriesContext';
+import { Industry } from '../../models/Industry';
 import { IndustryDetails } from '../IndustryPage/IndustryDetails';
 
-export const TrainStationDetails = (props: { station: Station }) => (
-  <StationDetailsContainer>
-    <StationName>Station: {props.station.name}</StationName>
-    {/* <IndustriesTitle>Industries: ({props.station.industries.count})</IndustriesTitle>*/}
+export const TrainStationDetails = (props: { station: Station }) => {
+  const { industriesAtStation } = useIndustryData();
+  const industriesAtThisStation = industriesAtStation(props.station);
+  return (
+    <StationDetailsContainer>
+      <StationName>Station: {props.station.name}</StationName>
+      <IndustriesTitle>Industries: ({industriesAtThisStation.count})</IndustriesTitle>
 
-    <IndustryWrapper>
-      {/* {props.station.industries.map((industry: Industry) => (*/}
-      {/*  <IndustryDetails industry={industry} key={industry.name} />*/}
-      {/* ))}*/}
-    </IndustryWrapper>
-  </StationDetailsContainer>
-);
+      <IndustryWrapper>
+        {industriesAtThisStation.map((industry: Industry) => (
+          <IndustryDetails industry={industry} key={industry.name} />
+        ))}
+      </IndustryWrapper>
+    </StationDetailsContainer>
+  );
+};
 export const TrainDetails = (props: { train: Train }) => {
   return (
     <TrainDetailsContainer>

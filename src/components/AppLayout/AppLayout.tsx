@@ -3,13 +3,19 @@ import { Outlet } from 'react-router';
 import { NavBar } from './NavBar';
 import styled from 'styled-components';
 import { useTrainsData } from '../../data/TrainsContext';
+import { useIndustryData } from '../../data/IndustriesContext';
 
 export const AppLayout = () => {
-  const { trainCollection, getTrains } = useTrainsData();
-
+  const { trainCollection, refreshTrainsData } = useTrainsData();
+  const { industries, refreshIndustriesData } = useIndustryData();
   useEffect(() => {
     if (trainCollection.isEmpty()) {
-      getTrains();
+      refreshTrainsData();
+    }
+  });
+  useEffect(() => {
+    if (industries.isEmpty()) {
+      refreshIndustriesData();
     }
   });
   return (

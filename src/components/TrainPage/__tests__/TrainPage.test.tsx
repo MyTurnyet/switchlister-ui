@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Train } from '../../../models/Train';
 import {
   renderWithRouter,
+  wrapWithFakeIndustriesContext,
   wrapWithFakeTrainContext,
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
@@ -14,12 +15,15 @@ function renderTrainPageComponent(
 ) {
   return renderWithRouter(
     wrapWithThemeProvider(
-      wrapWithFakeTrainContext(
-        [train1],
-        trainToRenderWithId,
-        <Routes>
-          <Route path={'/trains/:trainId'} element={<TrainPage />}></Route>
-        </Routes>,
+      wrapWithFakeIndustriesContext(
+        [],
+        wrapWithFakeTrainContext(
+          [train1],
+          trainToRenderWithId,
+          <Routes>
+            <Route path={'/trains/:trainId'} element={<TrainPage />}></Route>
+          </Routes>,
+        ),
       ),
     ),
     initialPath,

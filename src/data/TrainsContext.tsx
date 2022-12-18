@@ -7,7 +7,7 @@ import { TrainCollection } from '../models/collections/TrainCollection';
 export interface TrainsDataContext {
   trainCollection: TrainCollection;
   isLoading: boolean;
-  getTrains: () => void;
+  refreshTrainsData: () => void;
 }
 
 export const TrainsContext = createContext<TrainsDataContext | undefined>(undefined);
@@ -36,7 +36,7 @@ export const TrainsProvider = ({ children }: PropsWithChildren) => {
 
   const trainsDataContext: TrainsDataContext = {
     isLoading: isLoadingState.value,
-    getTrains,
+    refreshTrainsData: getTrains,
     trainCollection: TrainCollection.createFromTrainStateArray(trainData.value),
   };
   return <TrainsContext.Provider value={trainsDataContext}>{children}</TrainsContext.Provider>;

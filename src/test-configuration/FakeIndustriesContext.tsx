@@ -16,7 +16,7 @@ export const FakeIndustriesContext = (props: FakeIndustriesContextProps) => {
       return new IndustryCollection([]);
     },
     industries: new IndustryCollection(props.industriesToReturn),
-    refreshData: (): void => {
+    refreshIndustriesData: (): void => {
       return;
     },
     isLoading: false,

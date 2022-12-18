@@ -14,10 +14,10 @@ import {
 } from '../../test-configuration/FixtureTrains';
 
 const IndustryContextTesConsumer = () => {
-  const { refreshData, industries, industriesAtStation } = useIndustryData();
+  const { refreshIndustriesData, industries, industriesAtStation } = useIndustryData();
 
   useEffect(() => {
-    refreshData();
+    refreshIndustriesData();
   }, [industries]);
 
   return (

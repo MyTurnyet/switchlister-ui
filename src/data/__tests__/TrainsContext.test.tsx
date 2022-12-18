@@ -5,10 +5,10 @@ import { useEffect } from 'react';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 
 const TrainsTestConsumer = () => {
-  const { trainCollection, getTrains } = useTrainsData();
+  const { trainCollection, refreshTrainsData } = useTrainsData();
 
   useEffect(() => {
-    getTrains();
+    refreshTrainsData();
   });
 
   return (

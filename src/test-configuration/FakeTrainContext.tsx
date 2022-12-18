@@ -17,7 +17,7 @@ export const FakeTrainContext = (props: FakeTrainContextProps) => {
   return (
     <TrainsContext.Provider
       value={{
-        getTrains: () => {
+        refreshTrainsData: () => {
           return;
         },
         isLoading: false,

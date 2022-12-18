@@ -9,7 +9,7 @@ export interface IndustriesDataContext {
   industries: IndustryCollection;
   industriesAtStation: (station: Station) => IndustryCollection;
   isLoading: boolean;
-  refreshData: () => void;
+  refreshIndustriesData: () => void;
 }
 
 export const IndustriesContext = createContext<IndustriesDataContext | undefined>(undefined);
@@ -44,7 +44,7 @@ export const IndustriesProvider = ({ children }: PropsWithChildren) => {
   const contextValues: IndustriesDataContext = {
     industriesAtStation,
     industries: industryCollectionState.value,
-    refreshData,
+    refreshIndustriesData: refreshData,
     isLoading: isLoadingState.value,
   };
   return <IndustriesContext.Provider value={contextValues}>{children}</IndustriesContext.Provider>;
