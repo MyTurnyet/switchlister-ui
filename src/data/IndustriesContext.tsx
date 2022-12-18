@@ -27,6 +27,7 @@ export const useIndustryData = (): IndustriesDataContext => {
 export const IndustriesProvider = ({ children }: PropsWithChildren) => {
   const isLoadingState = useReactState<boolean>(false);
   const industryCollectionState = useReactState<IndustryCollection>(new IndustryCollection([]));
+
   const refreshData = useCallback(async () => {
     isLoadingState.setValue(true);
     await IndustriesApi.getIndustries().then((data: IndustryState[]) => {
@@ -36,10 +37,12 @@ export const IndustriesProvider = ({ children }: PropsWithChildren) => {
     isLoadingState.setValue(false);
   }, [industryCollectionState]);
 
+  const industriesAtStation = (station: Station): IndustryCollection => {
+    return industryCollectionState.value.getIndustriesForStation(station);
+  };
+
   const contextValues: IndustriesDataContext = {
-    industriesAtStation: (station: Station): IndustryCollection => {
-      return new IndustryCollection([]);
-    },
+    industriesAtStation,
     industries: industryCollectionState.value,
     refreshData,
     isLoading: isLoadingState.value,
