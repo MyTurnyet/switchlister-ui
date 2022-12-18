@@ -10,6 +10,7 @@ import {
   industry3State,
   industry4State,
   station1,
+  station4,
 } from '../../test-configuration/FixtureTrains';
 
 const IndustryContextTesConsumer = () => {
@@ -25,7 +26,12 @@ const IndustryContextTesConsumer = () => {
       {industries.map((industry: Industry) => (
         <div key={industry.id}>{industry.name}</div>
       ))}
-      <div>station1 x {industriesAtStation(station1).count}</div>
+      <div>
+        {station1.name} x {industriesAtStation(station1).count}
+      </div>
+      <div>
+        {station4.name} x {industriesAtStation(station4).count}
+      </div>
     </div>
   );
 };
@@ -58,7 +64,7 @@ describe('Industries Context', () => {
   });
   it('should have the station 1 name three times', async () => {
     await waitFor(() => {
-      expect(testConsumer).toHaveElementsWithText('station1 x 3');
+      expect(testConsumer).toHaveElementsWithText(`${station1.name} x 3`, `${station4.name} x 1`);
     });
   });
 });
