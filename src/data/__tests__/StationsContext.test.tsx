@@ -4,20 +4,14 @@ import { Station, StationState } from '../../models/Station';
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { mswServer } from '../../api-mocks/msw-server';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
-import { clickButtonWithText } from '../../test-configuration/ReactTestToolkit';
-import { industryXmHtNoCars } from '../../test-configuration/FixtureTrains';
 import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
 
 const StationsTestConsumer = () => {
-  const { stations, refreshData, setCarAtIndustry } = useStationsData();
+  const { stations, refreshData } = useStationsData();
 
   useEffect(() => {
     refreshData();
   }, [stations]);
-
-  const handleClick = () => {
-    setCarAtIndustry(industryXmHtNoCars, boxcarBN9876);
-  };
 
   return (
     <div>
@@ -51,21 +45,6 @@ describe('Stations Context', () => {
       await waitFor(() => {
         expect(stationConsumer).toHaveElementsWithText('count: 4');
         expect(stationConsumer).toNotHaveElementsWithText(boxcarBN9876.displayName);
-      });
-    });
-  });
-  describe('functions', () => {
-    xit('sets a car at an industry', async () => {
-      const stationConsumer = renderStationConsumer();
-      await waitFor(() => {
-        clickButtonWithText(stationConsumer, industryXmHtNoCars.name);
-        expect(stationConsumer).toHaveElementsWithText(boxcarBN9876.displayName);
-      });
-    });
-    xit('gets all stations for an industry', async () => {
-      const stationConsumer = renderStationConsumer();
-      await waitFor(() => {
-        expect(stationConsumer).toHaveElementsWithText('Industry 4', 'Industry 5', 'Industry 6');
       });
     });
   });
