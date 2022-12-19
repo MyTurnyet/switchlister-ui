@@ -8,7 +8,7 @@ type IndustryFields = {
   station: Station;
 };
 export const IndustryDataForm = () => {
-  const { stations, refreshData, isLoading } = useStationsData();
+  const { stations, refreshData } = useStationsData();
 
   const {
     register,
@@ -16,10 +16,8 @@ export const IndustryDataForm = () => {
     formState: { errors },
   } = useForm<IndustryFields>();
   useEffect(() => {
-    if (!isLoading) {
-      refreshData();
-    }
-  }, [stations]);
+    refreshData();
+  }, []);
   const onSubmit: SubmitHandler<IndustryFields> = (data: IndustryFields) => console.log(data);
   return (
     <div>

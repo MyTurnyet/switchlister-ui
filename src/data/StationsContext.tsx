@@ -6,7 +6,6 @@ import { StationsApi } from './api/StationsApi';
 
 export interface StationsDataContext {
   stations: StationCollection;
-  isLoading: boolean;
   refreshData: () => void;
 }
 
@@ -23,22 +22,17 @@ export const useStationsData = (): StationsDataContext => {
   return context;
 };
 export const StationsProvider = ({ children }: PropsWithChildren) => {
-  const isLoadingState = useReactState<boolean>(false);
   const stationCollectionState = useReactState<StationCollection>(new StationCollection([]));
 
   const refreshData = useCallback(() => {
-    isLoadingState.setValue(true);
-    StationsApi.getStations()
-      .then((data: StationState[]) => {
-        const stationCollection = StationCollection.createFromStationStateArray(data);
-        stationCollectionState.setValue(stationCollection);
-      })
-      .finally(() => isLoadingState.setValue(false));
+    StationsApi.getStations().then((data: StationState[]) => {
+      const stationCollection = StationCollection.createFromStationStateArray(data);
+      stationCollectionState.setValue(stationCollection);
+    });
   }, [stationCollectionState]);
 
   const stationDataContext: StationsDataContext = {
     refreshData,
-    isLoading: isLoadingState.value,
     stations: stationCollectionState.value,
   };
 

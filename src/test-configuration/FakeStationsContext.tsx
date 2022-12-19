@@ -13,7 +13,6 @@ export const FakeStationsContext = (props: FakeStationsContextProps) => {
     refreshData: () => {
       return;
     },
-    isLoading: false,
     stations: new StationCollection(props.stationsToReturn),
   };
   return (
