@@ -13,11 +13,11 @@ function RollingStockDetails(props: { car: RollingStock }) {
 }
 
 export const RollingStockGrid = () => {
-  const { rollingStock, getRollingStock } = useRollingStockData();
+  const { rollingStock, refreshRollingStockData } = useRollingStockData();
 
   useEffect(() => {
     if (rollingStock.isEmpty()) {
-      getRollingStock();
+      refreshRollingStockData();
     }
   }, []);
 

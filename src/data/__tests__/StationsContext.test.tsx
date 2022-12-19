@@ -7,10 +7,10 @@ import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
 
 const StationsTestConsumer = () => {
-  const { stations, refreshData } = useStationsData();
+  const { stations, refreshStationsData } = useStationsData();
 
   useEffect(() => {
-    refreshData();
+    refreshStationsData();
   }, [stations]);
 
   return (

@@ -6,7 +6,7 @@ import { StationsApi } from './api/StationsApi';
 
 export interface StationsDataContext {
   stations: StationCollection;
-  refreshData: () => void;
+  refreshStationsData: () => void;
 }
 
 export const StationsContext = createContext<StationsDataContext | undefined>(undefined);
@@ -32,7 +32,7 @@ export const StationsProvider = ({ children }: PropsWithChildren) => {
   }, [stationCollectionState]);
 
   const stationDataContext: StationsDataContext = {
-    refreshData,
+    refreshStationsData: refreshData,
     stations: stationCollectionState.value,
   };
 

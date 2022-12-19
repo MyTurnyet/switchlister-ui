@@ -6,7 +6,7 @@ import { RollingStockApi } from './api/RollingStockApi';
 
 export interface RollingStockContextState {
   rollingStock: RollingStockCollection;
-  getRollingStock: () => void;
+  refreshRollingStockData: () => void;
 }
 
 export const RollingStockContext = createContext<RollingStockContextState | undefined>(undefined);
@@ -35,7 +35,7 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
     rollingStock: RollingStockCollection.createFromRollingStockStateArray(
       rollingStockDataState.value,
     ),
-    getRollingStock,
+    refreshRollingStockData: getRollingStock,
   };
   return (
     <RollingStockContext.Provider value={returnedState}>{children}</RollingStockContext.Provider>

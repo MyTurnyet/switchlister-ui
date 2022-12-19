@@ -10,7 +10,7 @@ export interface FakeRollingStockContextProps extends PropsWithChildren {
 
 export const FakeRollingStockContext = (props: FakeRollingStockContextProps) => {
   const providerValues: RollingStockContextState = {
-    getRollingStock: (): void => {
+    refreshRollingStockData: (): void => {
       new RollingStockCollection(props.carsToReturn);
     },
     rollingStock: new RollingStockCollection(props.carsToReturn),
