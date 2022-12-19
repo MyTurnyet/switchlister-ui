@@ -60,6 +60,6 @@ export class Industry {
   }
 
   pickUp(carToPickUp: RollingStock): RollingStock {
-    return this.placedCars.remove(carToPickUp);
+    return this.placedCars.remove(carToPickUp.id);
   }
 }

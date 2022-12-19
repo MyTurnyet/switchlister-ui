@@ -36,7 +36,8 @@ describe('rolling stock collection', () => {
     expect(collection.count).toEqual(2);
   });
   it('removes a car based on Id from the collection', () => {
-    collection.remove(boxcarCP1234);
+    const rollingStock = collection.remove(boxcarCP1234.id);
     expect(collection.count).toEqual(0);
+    expect(rollingStock).toEqual(boxcarCP1234);
   });
 });
