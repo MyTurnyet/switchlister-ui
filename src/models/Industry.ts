@@ -45,7 +45,7 @@ export class Industry {
   get servicedCarTypes(): string[] {
     return this.industryState.servicedCarTypes.map((carType) => carType.toString());
   }
-  get staionId(): string {
+  get stationId(): string {
     return this.industryState.stationId;
   }
 

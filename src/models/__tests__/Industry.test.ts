@@ -22,7 +22,7 @@ describe('Industry', () => {
       expect(industryXmHtNoCars.id).toEqual(industry1State.id);
     });
     it('has a station id', () => {
-      expect(industryXmHtNoCars.staionId).toEqual(station1.id);
+      expect(industryXmHtNoCars.stationId).toEqual(station1.id);
     });
     it('has a max carCount of 1', () => {
       expect(industryXmHtNoCars.maxCarCount).toEqual(1);

@@ -5,8 +5,14 @@ export enum CarType {
   XMO = 'XMO',
 }
 
+export interface RollingStockId {
+  uuid: string;
+  roadName: string;
+  roadNumber: number;
+}
+
 export interface RollingStockState {
-  id: string;
+  id: RollingStockId;
   carType: CarType;
   color: string;
   roadName: string;
@@ -19,7 +25,7 @@ export class RollingStock {
   static EMPTY: RollingStock = new RollingStock({
     carType: CarType.All,
     color: '',
-    id: '',
+    id: { roadName: '', roadNumber: 0, uuid: '' },
     length: 0,
     loaded: false,
     roadName: '',
@@ -33,10 +39,10 @@ export class RollingStock {
   }
 
   get displayName(): string {
-    return `${this.state.roadName} ${this.state.roadNumber}`;
+    return `${this.state.id.roadName} ${this.state.id.roadNumber}`;
   }
 
-  get id(): string {
+  get id(): RollingStockId {
     return this.state.id;
   }
 

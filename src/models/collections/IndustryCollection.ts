@@ -19,7 +19,7 @@ export class IndustryCollection extends ItemCollection<Industry> {
   }
 
   getIndustriesForStation(station: Station) {
-    const industries = this.items.filter((industry: Industry) => industry.staionId === station.id);
+    const industries = this.items.filter((industry: Industry) => industry.stationId === station.id);
     return new IndustryCollection(industries);
   }
 }

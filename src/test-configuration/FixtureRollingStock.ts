@@ -4,7 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 export const hopperBCAX5State: RollingStockState = {
   carType: CarType.HT,
   color: 'WHT',
-  id: uuidv4(),
+  id: {
+    uuid: uuidv4(),
+    roadName: 'BCAX',
+    roadNumber: 5,
+  },
   length: 52,
   loaded: false,
   roadName: 'BCAX',
@@ -13,7 +17,11 @@ export const hopperBCAX5State: RollingStockState = {
 export const boxcarCP1234State: RollingStockState = {
   carType: CarType.XM,
   color: 'RED',
-  id: uuidv4(),
+  id: {
+    uuid: uuidv4(),
+    roadName: 'CPR',
+    roadNumber: 1234,
+  },
   length: 52,
   loaded: false,
   roadName: 'CPR',
@@ -22,7 +30,11 @@ export const boxcarCP1234State: RollingStockState = {
 export const boxcarBN9876State: RollingStockState = {
   carType: CarType.XM,
   color: 'GREEN',
-  id: uuidv4(),
+  id: {
+    uuid: uuidv4(),
+    roadName: 'BN',
+    roadNumber: 9876,
+  },
   length: 52,
   loaded: false,
   roadName: 'BN',
