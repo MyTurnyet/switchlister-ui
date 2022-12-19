@@ -1,5 +1,6 @@
 import { CarType, RollingStock, RollingStockState } from './RollingStock';
 import { RollingStockCollection } from './collections/RollingStockCollection';
+import { boxcarCP1234 } from '../test-configuration/FixtureRollingStock';
 
 export interface IndustryState {
   id: string;
@@ -56,5 +57,9 @@ export class Industry {
 
   setOut(rollingStockToPlace: RollingStock) {
     this.placedCars.addCar(rollingStockToPlace);
+  }
+
+  pickUp(carToPickUp: RollingStock): RollingStock {
+    return this.placedCars.remove(carToPickUp);
   }
 }

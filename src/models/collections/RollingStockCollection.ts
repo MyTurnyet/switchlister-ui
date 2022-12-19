@@ -13,9 +13,15 @@ export class RollingStockCollection extends ItemCollection<RollingStock> {
     this.items.push(carToAdd);
   }
 
-  remove(carToRemove: RollingStock) {
-    const indexToRemove = this.items.findIndex((car: RollingStock) => car.id === carToRemove.id);
-    if (indexToRemove < 0) return;
+  remove(carToRemove: RollingStock): RollingStock {
+    const indexToRemove: number = this.items.findIndex(
+      (car: RollingStock) => car.id === carToRemove.id,
+    );
+    if (indexToRemove < 0) return RollingStock.EMPTY;
+    const removedRollingStock: RollingStock = this.items.find(
+      (car: RollingStock) => car.id === carToRemove.id,
+    )!;
     this.items.splice(indexToRemove, 1);
+    return removedRollingStock;
   }
 }

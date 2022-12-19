@@ -5,8 +5,12 @@ import {
   industry7State,
   station1,
 } from '../../test-configuration/FixtureTrains';
-import { CarType } from '../RollingStock';
-import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
+import { CarType, RollingStock } from '../RollingStock';
+import {
+  boxcarBN9876,
+  boxcarCP1234,
+  boxcarCP1234State,
+} from '../../test-configuration/FixtureRollingStock';
 import { Industry } from '../Industry';
 
 describe('Industry', () => {
@@ -50,6 +54,11 @@ describe('Industry', () => {
     it('adds a car to the industry', () => {
       industryWithNoCars.setOut(boxcarBN9876);
       expect(industryWithNoCars.placedCars.count).toEqual(1);
+    });
+    it('picks up a car', () => {
+      const pickedUpCar: RollingStock = industryWith2Cars.pickUp(boxcarCP1234);
+      expect(pickedUpCar).toEqual(boxcarCP1234);
+      expect(industryWith2Cars.placedCars.count).toEqual(1);
     });
   });
 });

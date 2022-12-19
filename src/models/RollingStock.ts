@@ -16,6 +16,16 @@ export interface RollingStockState {
 }
 
 export class RollingStock {
+  static EMPTY: RollingStock = new RollingStock({
+    carType: CarType.All,
+    color: '',
+    id: '',
+    length: 0,
+    loaded: false,
+    roadName: '',
+    roadNumber: 0,
+  });
+
   constructor(private state: RollingStockState) {}
 
   get carType(): string {
