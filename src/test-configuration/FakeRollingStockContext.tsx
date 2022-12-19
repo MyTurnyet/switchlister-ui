@@ -13,7 +13,6 @@ export const FakeRollingStockContext = (props: FakeRollingStockContextProps) => 
     getRollingStock: (): void => {
       new RollingStockCollection(props.carsToReturn);
     },
-    isLoading: props.isLoading,
     rollingStock: new RollingStockCollection(props.carsToReturn),
   };
   return (

@@ -6,7 +6,6 @@ import { RollingStockApi } from './api/RollingStockApi';
 
 export interface RollingStockContextState {
   rollingStock: RollingStockCollection;
-  isLoading: boolean;
   getRollingStock: () => void;
 }
 
@@ -25,14 +24,10 @@ export const useRollingStockData = (): RollingStockContextState => {
 
 export const RollingStockProvider = ({ children }: PropsWithChildren) => {
   const rollingStockDataState = useReactState<RollingStockState[]>([]);
-  const isLoadingState = useReactState<boolean>(false);
 
   const getRollingStock = useCallback(() => {
-    isLoadingState.setValue(true);
-    RollingStockApi.getRollingStock()
-      .then((data) => rollingStockDataState.setValue(data))
-      .finally(() => isLoadingState.setValue(false));
-  }, [isLoadingState, rollingStockDataState]);
+    RollingStockApi.getRollingStock().then((data) => rollingStockDataState.setValue(data));
+  }, [rollingStockDataState]);
 
   useEffect(() => getRollingStock(), []);
 
@@ -40,8 +35,7 @@ export const RollingStockProvider = ({ children }: PropsWithChildren) => {
     rollingStock: RollingStockCollection.createFromRollingStockStateArray(
       rollingStockDataState.value,
     ),
-    isLoading: isLoadingState.value,
-    getRollingStock: getRollingStock,
+    getRollingStock,
   };
   return (
     <RollingStockContext.Provider value={returnedState}>{children}</RollingStockContext.Provider>

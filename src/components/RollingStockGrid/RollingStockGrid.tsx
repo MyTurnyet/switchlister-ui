@@ -13,7 +13,7 @@ function RollingStockDetails(props: { car: RollingStock }) {
 }
 
 export const RollingStockGrid = () => {
-  const { rollingStock, isLoading, getRollingStock } = useRollingStockData();
+  const { rollingStock, getRollingStock } = useRollingStockData();
 
   useEffect(() => {
     if (rollingStock.isEmpty()) {
@@ -24,8 +24,8 @@ export const RollingStockGrid = () => {
   return (
     <div>
       A bunch of cars got here:
-      {isLoading && <div>Loading!</div>}
-      {!isLoading && (
+      {rollingStock.isEmpty() && <div>Loading!</div>}
+      {!rollingStock.isEmpty() && (
         <GridContainer>
           {rollingStock.map((car: RollingStock) => {
             return <RollingStockDetails key={car.displayName} car={car} />;
