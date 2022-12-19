@@ -19,7 +19,6 @@ export const FakeIndustriesContext = (props: FakeIndustriesContextProps) => {
     refreshIndustriesData: (): void => {
       return;
     },
-    isLoading: false,
   };
   return (
     <IndustriesContext.Provider value={contextValues}>{props.children}</IndustriesContext.Provider>

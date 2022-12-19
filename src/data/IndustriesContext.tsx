@@ -8,7 +8,6 @@ import { IndustryState } from '../models/Industry';
 export interface IndustriesDataContext {
   industries: IndustryCollection;
   industriesAtStation: (station: Station) => IndustryCollection;
-  isLoading: boolean;
   refreshIndustriesData: () => void;
 }
 
@@ -25,16 +24,13 @@ export const useIndustryData = (): IndustriesDataContext => {
 };
 
 export const IndustriesProvider = ({ children }: PropsWithChildren) => {
-  const isLoadingState = useReactState<boolean>(false);
   const industryCollectionState = useReactState<IndustryCollection>(new IndustryCollection([]));
 
   const refreshData = useCallback(async () => {
-    isLoadingState.setValue(true);
     await IndustriesApi.getIndustries().then((data: IndustryState[]) => {
       const industryCollection = IndustryCollection.createFromIndustryStateArray(data);
       industryCollectionState.setValue(industryCollection);
     });
-    isLoadingState.setValue(false);
   }, [industryCollectionState]);
 
   const industriesAtStation = (station: Station): IndustryCollection => {
@@ -45,7 +41,6 @@ export const IndustriesProvider = ({ children }: PropsWithChildren) => {
     industriesAtStation,
     industries: industryCollectionState.value,
     refreshIndustriesData: refreshData,
-    isLoading: isLoadingState.value,
   };
   return <IndustriesContext.Provider value={contextValues}>{children}</IndustriesContext.Provider>;
 };
