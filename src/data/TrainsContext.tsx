@@ -6,7 +6,6 @@ import { TrainCollection } from '../models/collections/TrainCollection';
 
 export interface TrainsDataContext {
   trainCollection: TrainCollection;
-  isLoading: boolean;
   refreshTrainsData: () => void;
 }
 
@@ -25,17 +24,12 @@ export const useTrainsData = (): TrainsDataContext => {
 
 export const TrainsProvider = ({ children }: PropsWithChildren) => {
   const trainData = useReactState<TrainState[]>([]);
-  const isLoadingState = useReactState<boolean>(false);
 
   const getTrains = useCallback(() => {
-    isLoadingState.setValue(true);
-    TrainApi.getTrains()
-      .then((data) => trainData.setValue(data))
-      .finally(() => isLoadingState.setValue(false));
+    TrainApi.getTrains().then((data) => trainData.setValue(data));
   }, [trainData]);
 
   const trainsDataContext: TrainsDataContext = {
-    isLoading: isLoadingState.value,
     refreshTrainsData: getTrains,
     trainCollection: TrainCollection.createFromTrainStateArray(trainData.value),
   };

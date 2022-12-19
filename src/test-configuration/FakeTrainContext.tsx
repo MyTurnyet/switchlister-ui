@@ -20,7 +20,6 @@ export const FakeTrainContext = (props: FakeTrainContextProps) => {
         refreshTrainsData: () => {
           return;
         },
-        isLoading: false,
         trainCollection: new TrainCollection(props.trainsToReturn),
       }}
     >
