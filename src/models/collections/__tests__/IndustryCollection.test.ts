@@ -1,12 +1,14 @@
-import { IndustryCollection, IndustryCollectionBuilder } from '../IndustryCollection';
 import {
-  industryXmHtNoCars,
+  IndustryCollection,
+  IndustryCollectionBuilder,
+  NeededCarTypesDictionary,
+} from '../IndustryCollection';
+import {
   industry1State,
-  industryXmoNoCars,
-  station1,
-  station2,
-  industry6State,
   industry4State,
+  industryXmHtNoCars,
+  industryXmoNoCars,
+  station2,
   station4,
 } from '../../../test-configuration/FixtureTrains';
 
@@ -41,6 +43,11 @@ describe('Industry Collection', () => {
       const collection = new IndustryCollectionBuilder().addFromState(industry4State).build();
       const industriesForStation: IndustryCollection = collection.getIndustriesForStation(station4);
       expect(industriesForStation.findById(industry4State.id)).toEqual(industryXmoNoCars);
+    });
+    it('returns carTypes used by collection', () => {
+      const collection = new IndustryCollectionBuilder().addFromState(industry4State).build();
+      const neededCarTypes: NeededCarTypesDictionary = collection.neededCarTypes();
+      expect(neededCarTypes).toEqual({ XMO: 1 });
     });
   });
 });

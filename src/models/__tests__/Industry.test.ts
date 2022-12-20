@@ -1,16 +1,12 @@
 import {
-  industryXmHtNoCars,
   industry1State,
-  industryXmNoCars,
   industry7State,
+  industryXmHtNoCars,
+  industryXmNoCars,
   station1,
 } from '../../test-configuration/FixtureTrains';
 import { CarType, RollingStock } from '../RollingStock';
-import {
-  boxcarBN9876,
-  boxcarCP1234,
-  boxcarCP1234State,
-} from '../../test-configuration/FixtureRollingStock';
+import { boxcarBN9876, boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
 import { Industry } from '../Industry';
 
 describe('Industry', () => {
