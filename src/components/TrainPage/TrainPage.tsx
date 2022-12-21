@@ -8,26 +8,26 @@ import styled from 'styled-components';
 import { useIndustryData } from '../../data/IndustriesContext';
 import { Industry } from '../../models/Industry';
 import { IndustryDetails } from '../IndustryPage/IndustryDetails';
-import { IndustryCollection } from '../../models/collections/IndustryCollection';
 
-export const IndustriesAtStationDetails = (props: { industriesAtStation: IndustryCollection }) => {
-  return (
-    <IndustryWrapper>
-      {props.industriesAtStation.map((industry: Industry) => (
-        <IndustryDetails industry={industry} key={industry.name} />
-      ))}
-    </IndustryWrapper>
-  );
-};
-
-export const TrainStationDetails = (props: { station: Station }) => {
+export const IndustriesAtStationDetails = (props: { station: Station }) => {
   const { industriesAtStation } = useIndustryData();
   const industriesAtThisStation = industriesAtStation(props.station);
   return (
+    <>
+      <IndustriesTitle>Industries: ({industriesAtThisStation.count})</IndustriesTitle>
+      <IndustryWrapper>
+        {industriesAtThisStation.map((industry: Industry) => (
+          <IndustryDetails industry={industry} key={industry.name} />
+        ))}
+      </IndustryWrapper>
+    </>
+  );
+};
+export const TrainStationDetails = (props: { station: Station }) => {
+  return (
     <StationDetailsContainer>
       <StationName>Station: {props.station.name}</StationName>
-      <IndustriesTitle>Industries: ({industriesAtThisStation.count})</IndustriesTitle>
-      <IndustriesAtStationDetails industriesAtStation={industriesAtThisStation} />{' '}
+      <IndustriesAtStationDetails station={props.station} />{' '}
     </StationDetailsContainer>
   );
 };
