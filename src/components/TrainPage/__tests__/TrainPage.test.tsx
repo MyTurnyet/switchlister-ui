@@ -7,7 +7,13 @@ import {
   wrapWithFakeTrainContext,
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
-import { train1, train1State } from '../../../test-configuration/FixtureTrains';
+import {
+  industry1,
+  industry2,
+  industry3,
+  train1,
+  train1State,
+} from '../../../test-configuration/FixtureTrains';
 
 function renderTrainPageComponent(
   initialPath: string,
@@ -16,7 +22,7 @@ function renderTrainPageComponent(
   return renderWithRouter(
     wrapWithThemeProvider(
       wrapWithFakeIndustriesContext(
-        [],
+        [industry1, industry2, industry3],
         wrapWithFakeTrainContext(
           [train1],
           trainToRenderWithId,
@@ -38,7 +44,7 @@ describe('TrainPage', () => {
       'Train Profile',
       train1.name,
       `Station: ${train1.stations.stationNames[0]}`,
-      `Station: ${train1.stations.stationNames[1]}`,
+      'Industries: (3)',
     );
   });
   it('renders if passed id is bad', async () => {

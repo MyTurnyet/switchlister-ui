@@ -1,6 +1,5 @@
 import { CarType, RollingStock, RollingStockState } from './RollingStock';
 import { RollingStockCollection } from './collections/RollingStockCollection';
-import { boxcarCP1234 } from '../test-configuration/FixtureRollingStock';
 
 export interface IndustryState {
   id: string;

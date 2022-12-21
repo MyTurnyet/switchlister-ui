@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import { IndustryDetails } from '../IndustryDetails';
-import { industryAllNoCars, industryXmHtTwoCars } from '../../../test-configuration/FixtureTrains';
+import { industry6, industry7 } from '../../../test-configuration/FixtureTrains';
 import {
   wrapWithFakeStationsContext,
   wrapWithThemeProvider,
@@ -20,11 +20,11 @@ describe('Industry Details', () => {
   }
 
   beforeEach(() => {
-    industryDetails = renderIndustryWith(industryXmHtTwoCars);
+    industryDetails = renderIndustryWith(industry7);
   });
 
   it('displays the name', () => {
-    expect(industryDetails).toHaveElementsWithText(industryXmHtTwoCars.name);
+    expect(industryDetails).toHaveElementsWithText(industry7.name);
   });
   it('has serviced car types', () => {
     expect(industryDetails).toHaveElementsWithText('Car types accepted: XM, HT', 'Holds 3 cars');
@@ -33,14 +33,14 @@ describe('Industry Details', () => {
     expect(industryDetails).toHaveElementsWithText('Holds 3 cars');
   });
   it('shows a singular car count', () => {
-    const industryDetails1Car = renderIndustryWith(industryAllNoCars);
+    const industryDetails1Car = renderIndustryWith(industry6);
     expect(industryDetails1Car).toHaveElementsWithText('Holds 1 car');
   });
   it('shows rolling stock at the industry', () => {
     expect(industryDetails).toHaveElementsWithText('Cars at industry:', 'CPR 1234', 'BCAX 5');
   });
   it('shows no rolling stock at the industry', () => {
-    const industryDetailsNoRollingStock = renderIndustryWith(industryAllNoCars);
+    const industryDetailsNoRollingStock = renderIndustryWith(industry6);
     expect(industryDetailsNoRollingStock).toHaveElementsWithText('Cars at industry: None');
   });
 });

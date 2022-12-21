@@ -1,5 +1,4 @@
 import {
-  industryXmHtNoCars,
   station1,
   station1State,
   station3,
@@ -7,7 +6,6 @@ import {
 } from '../../../test-configuration/FixtureTrains';
 import { StationState } from '../../Station';
 import { StationCollection } from '../StationCollection';
-import { Industry } from '../../Industry';
 
 describe('Station Collection', () => {
   let stationCollection: StationCollection;

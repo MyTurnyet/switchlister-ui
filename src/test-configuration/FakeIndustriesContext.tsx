@@ -13,7 +13,7 @@ const defaultProps: FakeIndustriesContextProps = { industriesToReturn: [] };
 export const FakeIndustriesContext = (props: FakeIndustriesContextProps) => {
   const contextValues: IndustriesDataContext = {
     industriesAtStation: (station: Station): IndustryCollection => {
-      return new IndustryCollection([]);
+      return new IndustryCollection(props.industriesToReturn).getIndustriesForStation(station);
     },
     industries: new IndustryCollection(props.industriesToReturn),
     refreshIndustriesData: (): void => {

@@ -8,6 +8,17 @@ import styled from 'styled-components';
 import { useIndustryData } from '../../data/IndustriesContext';
 import { Industry } from '../../models/Industry';
 import { IndustryDetails } from '../IndustryPage/IndustryDetails';
+import { IndustryCollection } from '../../models/collections/IndustryCollection';
+
+export const IndustriesAtStationDetails = (props: { industriesAtStation: IndustryCollection }) => {
+  return (
+    <IndustryWrapper>
+      {props.industriesAtStation.map((industry: Industry) => (
+        <IndustryDetails industry={industry} key={industry.name} />
+      ))}
+    </IndustryWrapper>
+  );
+};
 
 export const TrainStationDetails = (props: { station: Station }) => {
   const { industriesAtStation } = useIndustryData();
@@ -16,12 +27,7 @@ export const TrainStationDetails = (props: { station: Station }) => {
     <StationDetailsContainer>
       <StationName>Station: {props.station.name}</StationName>
       <IndustriesTitle>Industries: ({industriesAtThisStation.count})</IndustriesTitle>
-
-      <IndustryWrapper>
-        {industriesAtThisStation.map((industry: Industry) => (
-          <IndustryDetails industry={industry} key={industry.name} />
-        ))}
-      </IndustryWrapper>
+      <IndustriesAtStationDetails industriesAtStation={industriesAtThisStation} />{' '}
     </StationDetailsContainer>
   );
 };
