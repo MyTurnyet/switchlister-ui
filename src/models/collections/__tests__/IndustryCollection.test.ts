@@ -8,6 +8,7 @@ import {
   industry1State,
   industry4,
   industry4State,
+  industry5State,
   station2,
   station4,
 } from '../../../test-configuration/FixtureTrains';
@@ -44,10 +45,18 @@ describe('Industry Collection', () => {
       const industriesForStation: IndustryCollection = collection.getIndustriesForStation(station4);
       expect(industriesForStation.findById(industry4State.id)).toEqual(industry4);
     });
-    it('returns carTypes used by collection', () => {
+    it('returns carTypes used by collection of 1 industry', () => {
       const collection = new IndustryCollectionBuilder().addFromState(industry4State).build();
       const neededCarTypes: NeededCarTypesDictionary = collection.neededCarTypes();
       expect(neededCarTypes).toEqual({ XMO: 1 });
+    });
+    it('returns carTypes used by collection of 1 industry', () => {
+      const collection = new IndustryCollectionBuilder()
+        .addFromState(industry4State)
+        .addFromState(industry5State)
+        .build();
+      const neededCarTypes: NeededCarTypesDictionary = collection.neededCarTypes();
+      expect(neededCarTypes).toEqual({ XMO: 2, XM: 1 });
     });
   });
 });
