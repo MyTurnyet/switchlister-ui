@@ -5,11 +5,14 @@ import { Industry, IndustryState } from '../models/Industry';
 import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
 import { CarType, RollingStockState } from '../models/RollingStock';
 
-export const station0State: StationState = createStationState('station0');
-export const station1State: StationState = createStationState('station1');
-export const station2State: StationState = createStationState('station2');
-export const station3State: StationState = createStationState('station3');
-export const station4State: StationState = createStationState('station4');
+export const eastBlock = 'EAST';
+export const echoLakeBlock = 'ECHO LAKE';
+export const westBlock = 'WEST';
+export const station0State: StationState = createStationState('station0', eastBlock);
+export const station1State: StationState = createStationState('station1', eastBlock);
+export const station2State: StationState = createStationState('station2', echoLakeBlock);
+export const station3State: StationState = createStationState('station3', westBlock);
+export const station4State: StationState = createStationState('station4', westBlock);
 
 export const station1 = new Station(station1State);
 export const station2 = new Station(station2State);
@@ -86,11 +89,11 @@ function createIndustryState(
   };
 }
 
-export function createStationState(name: string): StationState {
+export function createStationState(name: string, block: string): StationState {
   return {
     id: uuidv4(),
     name,
-    block: '',
+    block,
   };
 }
 
