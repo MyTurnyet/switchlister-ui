@@ -1,8 +1,10 @@
 import {
+  eastBlock,
   station1,
   station1State,
   station3,
   station3State,
+  westBlock,
 } from '../../../test-configuration/FixtureTrains';
 import { StationState } from '../../Station';
 import { StationCollection } from '../StationCollection';
@@ -25,5 +27,9 @@ describe('Station Collection', () => {
   it('returns all station names as an array', () => {
     const stationNames: string[] = stationCollection.stationNames;
     expect(stationNames).toMatchInAnyOrder([station1.name, station3.name]);
+  });
+  it('returns all block names from collection', () => {
+    const blockNames: string[] = stationCollection.blockNames;
+    expect(blockNames).toMatchInAnyOrder([eastBlock, westBlock]);
   });
 });

@@ -2,6 +2,10 @@ import { ItemCollection } from './ItemCollection';
 import { Station, StationState } from '../Station';
 
 export class StationCollection extends ItemCollection<Station> {
+  get blockNames(): string[] {
+    const blockNames: string[] = this.items.map((stationState: StationState) => stationState.block);
+    return blockNames;
+  }
   static createFromStationStateArray(stationStateList: StationState[]): StationCollection {
     const stations = stationStateList.map(
       (stationState: StationState) => new Station(stationState),
