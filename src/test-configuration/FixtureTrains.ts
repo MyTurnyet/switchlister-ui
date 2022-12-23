@@ -90,6 +90,7 @@ export function createStationState(name: string): StationState {
   return {
     id: uuidv4(),
     name,
+    block: '',
   };
 }
 
