@@ -15,6 +15,7 @@ export const IndustryDataForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IndustryFields>();
+
   useEffect(() => {
     refreshStationsData();
   }, []);
