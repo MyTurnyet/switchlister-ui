@@ -67,10 +67,15 @@ export const train2State: TrainState = createTrainState('Another Train', [
   station2State,
   station4State,
 ]);
+export const trainPickUpCarsState: TrainState = createTrainState('CarsToPickUp', [
+  station4State,
+  station2State,
+]);
 
 export const train1 = new Train(train1State);
 
 export const train2 = new Train(train2State);
+export const trainToPickUpCars = new Train(trainPickUpCarsState);
 
 function createIndustryState(
   stationState: StationState,

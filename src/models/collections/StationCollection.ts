@@ -3,8 +3,7 @@ import { Station, StationState } from '../Station';
 
 export class StationCollection extends ItemCollection<Station> {
   get blockNames(): string[] {
-    const blockNames: string[] = this.items.map((stationState: StationState) => stationState.block);
-    return blockNames;
+    return this.items.map((stationState: StationState) => stationState.block);
   }
   static createFromStationStateArray(stationStateList: StationState[]): StationCollection {
     const stations = stationStateList.map(
