@@ -4,6 +4,6 @@ export class TrainMaker {
   constructor(private train: Train) {}
 
   get pickUpList(): string[] {
-    return [];
+    return ['CP 1234'];
   }
 }

@@ -5,6 +5,6 @@ describe('train maker', () => {
   it('creates a list of needed cars by station', () => {
     const trainMaker = new TrainMaker(trainToPickUpCars);
     const pickUpList: string[] = trainMaker.pickUpList;
-    expect(pickUpList).toHaveLength(1);
+    expect(pickUpList).toEqual(['CP 1234']);
   });
 });
