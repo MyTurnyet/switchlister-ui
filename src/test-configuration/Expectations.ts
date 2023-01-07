@@ -2,18 +2,6 @@ import CustomMatcherResult = jest.CustomMatcherResult;
 import { RenderResult } from '@testing-library/react';
 import { expect } from '@jest/globals';
 
-declare module 'expect' {
-  interface Matchers<R> {
-    toMatchInAnyOrder(expectedArray: any[]): CustomMatcherResult;
-
-    toHaveElementsWithText(...expectedText: string[]): CustomMatcherResult;
-
-    toNotHaveElementsWithText(...expectedText: string[]): CustomMatcherResult;
-  }
-
-  //   }
-}
-
 function createPassingResult(): CustomMatcherResult {
   return {
     pass: true,
