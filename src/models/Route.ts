@@ -1,19 +1,11 @@
 import { Station } from './Station';
 
-export type RouteOptions = Station | Station[];
-
 export class Route {
-  private readonly _stations: Station[];
-
-  constructor(private routeOptions: RouteOptions) {
-    if (routeOptions instanceof Station) {
-      this._stations = [routeOptions];
-      return;
-    }
-    this._stations = routeOptions;
+  constructor(private routeStations: Station[]) {
+    if (routeStations.length === 0) throw new Error('A Route must have at least one station.');
   }
 
   get stations(): Station[] {
-    return this._stations;
+    return this.routeStations;
   }
 }
