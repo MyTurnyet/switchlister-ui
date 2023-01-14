@@ -4,7 +4,10 @@ import { StationCollection } from '../collections/StationCollection';
 import { boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
 
 describe('Train', () => {
-  const train = new Train({ id: 'foo!', name: 'train name', stations: [] });
+  let train: Train;
+  beforeEach(() => {
+    train = new Train({ id: 'foo!', name: 'train name', stations: [] });
+  });
   it('always has a name', () => {
     expect(train.name).toEqual('train name');
   });
@@ -29,5 +32,8 @@ describe('Train', () => {
     train.pickUp(boxcarCP1234);
     expect(train.rollingStock.count).toEqual(1);
     expect(train.rollingStock.contains(boxcarCP1234));
+  });
+  it('has no attached cars', () => {
+    expect(train.rollingStock.count).toEqual(0);
   });
 });
