@@ -21,4 +21,7 @@ describe('Train', () => {
     const stations: StationCollection = train.stations;
     expect(stations.count).toEqual(2);
   });
+  it('has no attached cars', () => {
+    expect(train.rollingStock.count).toEqual(0);
+  });
 });
