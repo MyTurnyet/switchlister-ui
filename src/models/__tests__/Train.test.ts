@@ -25,15 +25,17 @@ describe('Train', () => {
     const stations: StationCollection = train.stations;
     expect(stations.count).toEqual(2);
   });
-  it('has no attached cars', () => {
-    expect(train.rollingStock.count).toEqual(0);
-  });
-  it('picks up rolling stock', () => {
-    train.pickUp(boxcarCP1234);
-    expect(train.rollingStock.count).toEqual(1);
-    expect(train.rollingStock.contains(boxcarCP1234));
-  });
-  it('has no attached cars', () => {
-    expect(train.rollingStock.count).toEqual(0);
+  describe('rolling stock', () => {
+    it('has no attached cars', () => {
+      expect(train.rollingStock.count).toEqual(0);
+    });
+    it('picks up rolling stock', () => {
+      train.pickUp(boxcarCP1234);
+      expect(train.rollingStock.count).toEqual(1);
+      expect(train.rollingStock.contains(boxcarCP1234));
+    });
+    it('has no attached cars', () => {
+      expect(train.rollingStock.count).toEqual(0);
+    });
   });
 });
