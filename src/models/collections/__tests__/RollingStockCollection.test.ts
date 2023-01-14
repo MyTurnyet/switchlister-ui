@@ -3,6 +3,7 @@ import {
   boxcarCP1234,
   boxcarCP1234State,
   hopperBCAX5,
+  hopperBCAX5State,
 } from '../../../test-configuration/FixtureRollingStock';
 
 describe('rolling stock collection', () => {
@@ -34,6 +35,8 @@ describe('rolling stock collection', () => {
   it('adds a car to the collection', () => {
     collection.addCar(hopperBCAX5);
     expect(collection.count).toEqual(2);
+    expect(collection.contains(hopperBCAX5)).toEqual(true);
+    expect(collection.contains(boxcarCP1234)).toEqual(true);
   });
   it('removes a car based on Id from the collection', () => {
     const rollingStock = collection.remove(boxcarCP1234.id);

@@ -1,6 +1,7 @@
 import { Train } from '../Train';
 import { station1State, station2State } from '../../test-configuration/FixtureTrains';
 import { StationCollection } from '../collections/StationCollection';
+import { boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
 
 describe('Train', () => {
   const train = new Train({ id: 'foo!', name: 'train name', stations: [] });
@@ -23,5 +24,10 @@ describe('Train', () => {
   });
   it('has no attached cars', () => {
     expect(train.rollingStock.count).toEqual(0);
+  });
+  it('picks up rolling stock', () => {
+    train.pickUp(boxcarCP1234);
+    expect(train.rollingStock.count).toEqual(1);
+    expect(train.rollingStock.contains(boxcarCP1234));
   });
 });
