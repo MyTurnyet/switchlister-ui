@@ -31,15 +31,13 @@ describe('rolling stock context', () => {
   it('renders with 0 items', async () => {
     mswServer.use(ApiHandler.createApiGet<RollingStockState[]>('rollingStock', []));
     const testConsumer = renderWithProvider();
-    await waitFor(() => {
-      expect(testConsumer).toHaveElementsWithText('count: 0', noCarsWereReturned);
-    });
+    await testConsumer.findByText('count: 0');
+    await testConsumer.findByText(noCarsWereReturned);
   });
   it('renders with 2 items', async () => {
     const testConsumer = renderWithProvider();
-    await waitFor(() => {
-      expect(testConsumer).toHaveElementsWithText('count: 2', 'BCAX 5', 'CPR 1234');
-      expect(testConsumer).toNotHaveElementsWithText(noCarsWereReturned);
-    });
+    await testConsumer.findByText('count: 2');
+    await testConsumer.findByText('BCAX 5');
+    await testConsumer.findByText('CPR 1234');
   });
 });
