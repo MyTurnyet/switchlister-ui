@@ -1,17 +1,22 @@
-import { Station } from './Station';
+import { Station, StationState } from './Station';
 import { StationCollection } from './collections/StationCollection';
 
+export interface RouteState {
+  id: string;
+  name: string;
+  stations: StationState[];
+}
+
 export class Route {
-  private stationCollection: StationCollection;
-  constructor(private routeStations: Station[]) {
-    if (routeStations.length === 0) throw new Error('A Route must have at least one station.');
-    this.stationCollection = new StationCollection(routeStations);
+  constructor(private state: RouteState) {
+    if (state.stations.length === 0) throw new Error('A Route must have at least one station.');
   }
 
   get stations(): Station[] {
-    return this.routeStations;
+    return this.state.stations.map((value) => new Station(value));
   }
+
   get stationsCollection(): StationCollection {
-    return this.stationCollection;
+    return StationCollection.createFromStationStateArray(this.state.stations);
   }
 }

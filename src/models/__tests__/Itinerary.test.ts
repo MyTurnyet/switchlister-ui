@@ -2,15 +2,17 @@ import { Itinerary } from '../Itinerary';
 import {
   createTrainFromState,
   station1,
+  station1State,
   train1State,
 } from '../../test-configuration/FixtureTrains';
-import { Route } from '../Route';
+import { Route, RouteState } from '../Route';
 import { Train } from '../Train';
 
 describe('Itinerary', () => {
   let train: Train;
   let itinerary: Itinerary;
-  const route = new Route([station1]);
+  const routeState: RouteState = { id: '', name: '', stations: [station1State] };
+  const route = new Route(routeState);
 
   beforeEach(() => {
     train = createTrainFromState(train1State);
