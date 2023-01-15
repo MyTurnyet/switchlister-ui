@@ -7,6 +7,7 @@ describe('Route', () => {
     const route: Route = new Route([station1]);
     const stations: Station[] = route.stations;
     expect(stations).toHaveLength(1);
+    expect(route.stationsCollection.count).toEqual(1);
   });
   it('should throw if empty array is passed', () => {
     expect(() => {
