@@ -2,11 +2,11 @@ import { Train } from '../../models/Train';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
-export interface TrainCardProps {
+export interface RouteCardProps {
   train: Train;
 }
 
-export const TrainCard = ({ train }: TrainCardProps) => {
+export const RouteCard = ({ train }: RouteCardProps) => {
   const navigate = useNavigate();
 
   const clickHandler = () => {
@@ -14,7 +14,7 @@ export const TrainCard = ({ train }: TrainCardProps) => {
   };
 
   return (
-    <TrainCardContainer onClick={clickHandler}>
+    <RouteCardContainer onClick={clickHandler}>
       <TopDisplayRow>
         <NameDiv>{train.name}</NameDiv>
         <StationCountDiv>{train.stations.count} stations</StationCountDiv>
@@ -24,42 +24,42 @@ export const TrainCard = ({ train }: TrainCardProps) => {
           return <StationNameDiv key={index}>{stationName}</StationNameDiv>;
         })}
       </BottomDisplayRow>
-    </TrainCardContainer>
+    </RouteCardContainer>
   );
 };
 
-const trainDisplayDiv = styled.div`
+const routeDisplayDiv = styled.div`
   color: white;
   font-weight: bold;
 `;
 
-const NameDiv = styled(trainDisplayDiv)`
+const NameDiv = styled(routeDisplayDiv)`
   flex: 4;
 `;
-const StationCountDiv = styled(trainDisplayDiv)`
+const StationCountDiv = styled(routeDisplayDiv)`
   flex: 3;
 `;
-const StationNameDiv = styled(trainDisplayDiv)`
+const StationNameDiv = styled(routeDisplayDiv)`
   width: 100%;
   color: ${(props) => props.theme.colors.text.header};
 `;
 
-const trainRowDefaults = styled.div`
+const routeRowDefaults = styled.div`
   display: flex;
   flex: 3;
   padding: 4px;
 `;
 
-const TopDisplayRow = styled(trainRowDefaults)`
+const TopDisplayRow = styled(routeRowDefaults)`
   background-color: ${(props) => props.theme.colors.background.cardBackground};
 `;
-const BottomDisplayRow = styled(trainRowDefaults)`
+const BottomDisplayRow = styled(routeRowDefaults)`
   flex-direction: column;
   justify-content: space-around;
   margin-bottom: 10px;
 `;
 
-const TrainCardContainer = styled.div`
+const RouteCardContainer = styled.div`
   cursor: pointer;
   width: 12vw;
   height: auto;

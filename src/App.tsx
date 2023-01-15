@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrainGrid } from './components/TrainGrid/TrainGrid';
+import { RouteGrid } from './components/TrainGrid/RouteGrid';
 import { Route, Routes } from 'react-router-dom';
 import { TrainPage } from './components/TrainPage/TrainPage';
 import { RollingStockPage } from './components/RollingStockPage/RollingStockPage';
@@ -16,7 +16,7 @@ function App() {
         <TrainsProvider>
           <Routes>
             <Route path={'/'} element={<AppLayout />}>
-              <Route index={true} element={<TrainGrid />} />
+              <Route index={true} element={<RouteGrid />} />
               <Route path='/home' element={<Navigate to={'/'} />} />
               <Route path={'/trains/:trainId'} element={<TrainPage />}></Route>
               <Route path={'/rollingstock'} element={<RollingStockPage />} />

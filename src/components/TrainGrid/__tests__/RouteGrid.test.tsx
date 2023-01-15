@@ -1,6 +1,6 @@
 import React from 'react';
 import { RenderResult, waitFor } from '@testing-library/react';
-import { TrainGrid } from '../TrainGrid';
+import { RouteGrid } from '../RouteGrid';
 import {
   expectHistoryCalledWith,
   renderWithRouter,
@@ -11,16 +11,16 @@ import userEvent from '@testing-library/user-event';
 import { train1 } from '../../../test-configuration/FixtureTrains';
 import { Train } from '../../../models/Train';
 
-describe('Train Grid', () => {
+describe('Route Grid', () => {
   let trainGrid: RenderResult;
   beforeEach(() => {
     trainGrid = renderWithRouter(
-      wrapWithThemeProvider(wrapWithFakeTrainContext([train1], Train.EMPTY_TRAIN, <TrainGrid />)),
+      wrapWithThemeProvider(wrapWithFakeTrainContext([train1], Train.EMPTY_TRAIN, <RouteGrid />)),
     );
   });
-  it('displays the first train', () => {
+  it('displays the first route', () => {
     expect(trainGrid).toHaveElementsWithText(
-      'All Trains',
+      'All Train Routes',
       train1.name,
       train1.stations.stationNames[0],
     );

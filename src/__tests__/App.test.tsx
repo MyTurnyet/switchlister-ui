@@ -16,7 +16,7 @@ describe('App', () => {
       </ThemeProvider>,
     );
   });
-  it('renders all trains by default', () => {
-    expect(app).toHaveElementsWithText('All Trains');
+  it('renders all routes by default', () => {
+    expect(app).toHaveElementsWithText('All Train Routes');
   });
 });

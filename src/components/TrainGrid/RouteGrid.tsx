@@ -1,28 +1,28 @@
-import { TrainCard } from './TrainCard';
+import { RouteCard } from './RouteCard';
 import { useTrainsData } from '../../data/TrainsContext';
 import styled from 'styled-components';
 
-export const TrainGrid = () => {
+export const RouteGrid = () => {
   const { trainCollection } = useTrainsData();
 
   return (
     <div>
-      <TrainGridHeader>All Trains</TrainGridHeader>
-      <TrainCardGrid>
+      <RouteGridHeader>All Train Routes</RouteGridHeader>
+      <RouteCardGrid>
         {trainCollection.map((train) => {
-          return <TrainCard key={train.id} train={train} />;
+          return <RouteCard key={train.id} train={train} />;
         })}
-      </TrainCardGrid>
+      </RouteCardGrid>
     </div>
   );
 };
 
-const TrainGridHeader = styled.div`
+const RouteGridHeader = styled.div`
   color: ${(props) => props.theme.colors.text.header};
   font-size: large;
   font-weight: bold;
 `;
-const TrainCardGrid = styled.div`
+const RouteCardGrid = styled.div`
   padding-top: 15px;
   padding-bottom: 35px;
   display: flex;
