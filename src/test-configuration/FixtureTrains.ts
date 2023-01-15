@@ -72,6 +72,9 @@ export const trainPickUpCarsState: TrainState = createTrainState('CarsToPickUp',
   station2State,
 ]);
 
+export const createTrainFromState = (state: TrainState) => {
+  return new Train(state);
+};
 export const train1 = new Train(train1State);
 
 export const train2 = new Train(train2State);
