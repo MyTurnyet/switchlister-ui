@@ -15,7 +15,7 @@ export const useTrainsData = (): TrainsDataContext => {
   const context = useContext(TrainsContext);
   if (context === undefined) {
     throw Error(
-      'useTrainsData must be used inside of a TrainsDataProvider, ' +
+      'useTrainsData must be used inside of a TrainsProvider, ' +
         'otherwise it will not function correctly.',
     );
   }

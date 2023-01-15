@@ -43,4 +43,12 @@ describe('trains context', () => {
       expect(trainsConsumer).toHaveElementsWithText('count: 2');
     });
   });
+  it('throws if not wrapped with TrainsProvider', () => {
+    expect(() => render(<TrainsTestConsumer />)).toThrowError(
+      new Error(
+        'useTrainsData must be used inside of a TrainsProvider, ' +
+          'otherwise it will not function correctly.',
+      ),
+    );
+  });
 });
