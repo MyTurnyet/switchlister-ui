@@ -41,6 +41,19 @@ describe('Station Collection', () => {
       const nextStation: Station = stationCollection.stationAfter(station1);
       expect(nextStation).toEqual(station3);
     });
+    it('gets station after first', () => {
+      const nextStation: Station = stationCollection.stationAfter(station1);
+      expect(nextStation).toEqual(station3);
+    });
+    it('throws when trying to station after last', () => {
+      expect(() => stationCollection.stationAfter(station3)).toThrowError(
+        new Error('Failed trying to get the station after last station'),
+      );
+    });
+    it('knows if station is the last', () => {
+      expect(stationCollection.isLast(station1)).toEqual(false);
+      expect(stationCollection.isLast(station3)).toEqual(true);
+    });
   });
 
   describe('when empty', () => {
@@ -53,6 +66,11 @@ describe('Station Collection', () => {
     it('throws when getting stationAfter', () => {
       expect(() => emptyCollection.stationAfter(Station.EMPTY)).toThrowError(
         new Error('stationAfter() call fails when StationCollection is empty'),
+      );
+    });
+    it('throws when check station isLast', () => {
+      expect(() => emptyCollection.isLast(Station.EMPTY)).toThrowError(
+        new Error('Collection is empty and has no last station'),
       );
     });
   });

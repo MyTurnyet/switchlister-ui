@@ -23,12 +23,24 @@ export class StationCollection extends ItemCollection<Station> {
   }
 
   stationAfter(currentStation: Station) {
-    if (this.isEmpty())
+    if (this.isEmpty()) {
       throw new Error('stationAfter() call fails when StationCollection is empty');
+    }
+    if (this.isLast(currentStation)) {
+      throw new Error('Failed trying to get the station after last station');
+    }
     const currentStationIndex = this.items.findIndex((value) => value.id === currentStation.id);
 
     const nextStationIndex = currentStationIndex + 1;
 
     return this.items[nextStationIndex];
+  }
+
+  isLast(station: Station) {
+    if (this.isEmpty()) {
+      throw new Error('Collection is empty and has no last station');
+    }
+    const lastStation = this.items[this.items.length - 1];
+    return lastStation === station;
   }
 }
