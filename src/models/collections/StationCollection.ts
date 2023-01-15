@@ -18,11 +18,13 @@ export class StationCollection extends ItemCollection<Station> {
   }
 
   first(): Station {
-    if (this.isEmpty()) return Station.EMPTY;
+    if (this.isEmpty()) throw new Error('Collection is empty and has no first station');
     return this.items[0];
   }
 
   stationAfter(currentStation: Station) {
+    if (this.isEmpty())
+      throw new Error('stationAfter() call fails when StationCollection is empty');
     const currentStationIndex = this.items.findIndex((value) => value.id === currentStation.id);
 
     const nextStationIndex = currentStationIndex + 1;

@@ -45,8 +45,15 @@ describe('Station Collection', () => {
 
   describe('when empty', () => {
     const emptyCollection = new StationCollection([]);
-    it('returns EmptyStation for first', () => {
-      expect(emptyCollection.first()).toEqual(Station.EMPTY);
+    it('throws when getting first station', () => {
+      expect(() => emptyCollection.first()).toThrowError(
+        new Error('Collection is empty and has no first station'),
+      );
+    });
+    it('throws when getting stationAfter', () => {
+      expect(() => emptyCollection.stationAfter(Station.EMPTY)).toThrowError(
+        new Error('stationAfter() call fails when StationCollection is empty'),
+      );
     });
   });
 });
