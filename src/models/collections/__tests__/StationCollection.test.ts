@@ -37,6 +37,10 @@ describe('Station Collection', () => {
       const first: Station = stationCollection.first();
       expect(first).toEqual(station1);
     });
+    it('gets station after first', () => {
+      const nextStation: Station = stationCollection.stationAfter(station1);
+      expect(nextStation).toEqual(station3);
+    });
   });
 
   describe('when empty', () => {

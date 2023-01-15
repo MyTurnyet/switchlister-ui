@@ -21,4 +21,12 @@ export class StationCollection extends ItemCollection<Station> {
     if (this.isEmpty()) return Station.EMPTY;
     return this.items[0];
   }
+
+  stationAfter(currentStation: Station) {
+    const currentStationIndex = this.items.findIndex((value) => value.id === currentStation.id);
+
+    const nextStationIndex = currentStationIndex + 1;
+
+    return this.items[nextStationIndex];
+  }
 }
