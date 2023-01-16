@@ -42,9 +42,10 @@ export const TrainDetails = (props: { train: Train }) => {
   );
 };
 
-export const TrainPage = () => {
+export const RoutePage = () => {
   const { trainId } = useParams();
   const { trainCollection } = useTrainsData();
+
   const currentTrain = useReactState<Train>(Train.EMPTY_TRAIN);
   useEffect(() => {
     if (trainId === undefined) return;

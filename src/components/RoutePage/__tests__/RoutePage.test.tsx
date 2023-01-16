@@ -1,4 +1,4 @@
-import { TrainPage } from '../TrainPage';
+import { RoutePage } from '../RoutePage';
 import { Route, Routes } from 'react-router-dom';
 import { Train } from '../../../models/Train';
 import {
@@ -15,7 +15,7 @@ import {
   train1State,
 } from '../../../test-configuration/FixtureTrains';
 
-function renderTrainPageComponent(
+function renderRoutePageComponent(
   initialPath: string,
   trainToRenderWithId: Train = Train.EMPTY_TRAIN,
 ) {
@@ -27,7 +27,7 @@ function renderTrainPageComponent(
           [train1],
           trainToRenderWithId,
           <Routes>
-            <Route path={'/trains/:trainId'} element={<TrainPage />}></Route>
+            <Route path={'/trains/:trainId'} element={<RoutePage />}></Route>
           </Routes>,
         ),
       ),
@@ -36,10 +36,10 @@ function renderTrainPageComponent(
   );
 }
 
-describe('TrainPage', () => {
+describe('Route Page', () => {
   it('renders with a passed id', async () => {
     const initialPath = `/trains/${train1State.id}`;
-    const trainPage = renderTrainPageComponent(initialPath, train1);
+    const trainPage = renderRoutePageComponent(initialPath, train1);
     expect(trainPage).toHaveElementsWithText(
       'Train Profile',
       train1.name,
@@ -49,7 +49,7 @@ describe('TrainPage', () => {
   });
   it('renders if passed id is bad', async () => {
     const initialPath = '/trains/somethingBad';
-    const trainPage = renderTrainPageComponent(initialPath);
+    const trainPage = renderRoutePageComponent(initialPath);
     expect(trainPage).toHaveElementsWithText('Train Profile', Train.EMPTY_TRAIN.name);
   });
 });
