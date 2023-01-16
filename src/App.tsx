@@ -9,6 +9,7 @@ import { Navigate } from 'react-router';
 import { StationsProvider } from './data/StationsContext';
 import { IndustriesProvider } from './data/IndustriesContext';
 import { RoutesDataProvider } from './data/TrainRoutesContext';
+import { DispatcherPage } from './components/DispatcherPage/DispatcherPage';
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
               <Route path={'/'} element={<AppLayout />}>
                 <Route index={true} element={<RouteGrid />} />
                 <Route path='/home' element={<Navigate to={'/'} />} />
-                <Route path={'/routes/:routeId'} element={<TrainRoutePage />}></Route>
+                <Route path={'/dispatcher'} element={<DispatcherPage />} />
                 <Route path={'/rollingstock'} element={<RollingStockPage />} />
+                <Route path={'/routes/:routeId'} element={<TrainRoutePage />}></Route>
               </Route>
             </Routes>
           </TrainsProvider>
