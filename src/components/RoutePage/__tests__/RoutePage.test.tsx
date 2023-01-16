@@ -5,7 +5,6 @@ import {
   renderWithRouter,
   wrapWithFakeIndustriesContext,
   wrapWithFakeRoutesContext,
-  wrapWithFakeTrainContext,
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
 import { industry1, industry2, industry3, train1 } from '../../../test-configuration/FixtureTrains';
@@ -23,13 +22,9 @@ function renderRoutePageComponent(
         [industry1, industry2, industry3],
         wrapWithFakeRoutesContext(
           [routeToRender],
-          wrapWithFakeTrainContext(
-            [train1],
-            trainToRenderWithId,
-            <Routes>
-              <Route path={'/routes/:routeId'} element={<RoutePage />}></Route>
-            </Routes>,
-          ),
+          <Routes>
+            <Route path={'/routes/:routeId'} element={<RoutePage />}></Route>
+          </Routes>,
         ),
       ),
     ),

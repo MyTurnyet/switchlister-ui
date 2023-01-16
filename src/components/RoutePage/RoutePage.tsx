@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { useTrainsData } from '../../data/TrainsContext';
-import { Train } from '../../models/Train';
 import { useReactState } from '../../state-management/ReactState';
 import { Station } from '../../models/Station';
 import styled from 'styled-components';
@@ -47,16 +45,10 @@ export const RouteDetails = (props: { trainRoute: TrainRoute }) => {
 
 export const RoutePage = () => {
   const { routeId } = useParams();
-  const { trainCollection } = useTrainsData();
   const { routes } = useRoutesData();
 
-  const currentTrain = useReactState<Train>(Train.EMPTY_TRAIN);
   const currentRoute = useReactState<TrainRoute>(TrainRoute.EMPTY_ROUTE);
 
-  useEffect(() => {
-    if (routeId === undefined) return;
-    currentTrain.setValue(trainCollection.findWithId(routeId));
-  });
   useEffect(() => {
     if (routeId === undefined) return;
     const index = routes.findIndex((value) => value.id === routeId);
