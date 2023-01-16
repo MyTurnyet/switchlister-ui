@@ -8,10 +8,13 @@ import {
 import { routeTwoStation } from '../../../test-configuration/FixtureRoutes';
 
 describe('Dispatcher Page', () => {
-  it('renders', () => {
-    const dispatcherPage: RenderResult = renderWithRouter(
+  let dispatcherPage: RenderResult;
+  beforeEach(() => {
+    dispatcherPage = renderWithRouter(
       wrapWithThemeProvider(wrapWithFakeTrainRoutesContext([routeTwoStation], <DispatcherPage />)),
     );
+  });
+  it('renders', () => {
     expect(dispatcherPage).toHaveElementsWithText('All Train Routes', routeTwoStation.name);
   });
 });
