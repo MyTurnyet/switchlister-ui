@@ -5,8 +5,12 @@ import { RoutesProvider, useRoutesData } from '../RoutesContext';
 const TestRoutesConsumer = () => {
   const routesData = useRoutesData();
   const routesDataOutput = (): string => {
-    return 'No Routes returned!';
+    if (routesData.routes.length <= 0) {
+      return 'No Routes returned!';
+    }
+    return `count: ${routesData.routes.length}`;
   };
+
   return <div>{routesDataOutput()}</div>;
 };
 

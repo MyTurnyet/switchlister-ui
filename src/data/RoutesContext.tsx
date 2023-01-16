@@ -1,5 +1,6 @@
-import { Route } from '../models/Route';
-import React, { createContext, PropsWithChildren, useContext } from 'react';
+import { Route, RouteState } from '../models/Route';
+import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
+import { useReactState } from '../state-management/ReactState';
 
 export interface RoutesDataContext {
   routes: Route[];
@@ -20,11 +21,17 @@ export const useRoutesData = (): RoutesDataContext => {
 };
 
 export const RoutesProvider = ({ children }: PropsWithChildren) => {
+  const routesData = useReactState<RouteState[]>([]);
+
+  const getRoutes = useCallback(() => {
+    // TrainApi.getTrains().then((data) => trainData.setValue(data));
+  }, [routesData]);
+
   const routesDataContext: RoutesDataContext = {
     refreshRoutesData: (): void => {
       return;
     },
-    routes: [],
+    routes: routesData.value.map((routeState) => new Route(routeState)),
   };
   return <RoutesContext.Provider value={routesDataContext}>{children}</RoutesContext.Provider>;
 };
