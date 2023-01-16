@@ -4,13 +4,20 @@ import { NavBar } from './NavBar';
 import styled from 'styled-components';
 import { useTrainsData } from '../../data/TrainsContext';
 import { useIndustryData } from '../../data/IndustriesContext';
+import { useRoutesData } from '../../data/RoutesContext';
 
 export const AppLayout = () => {
   const { trainCollection, refreshTrainsData } = useTrainsData();
+  const { routes, refreshRoutesData } = useRoutesData();
   const { industries, refreshIndustriesData } = useIndustryData();
   useEffect(() => {
     if (trainCollection.isEmpty()) {
       refreshTrainsData();
+    }
+  });
+  useEffect(() => {
+    if (routes.length == 0) {
+      refreshRoutesData();
     }
   });
   useEffect(() => {

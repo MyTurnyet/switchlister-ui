@@ -8,21 +8,24 @@ import { AppLayout } from './components/AppLayout/AppLayout';
 import { Navigate } from 'react-router';
 import { StationsProvider } from './data/StationsContext';
 import { IndustriesProvider } from './data/IndustriesContext';
+import { RoutesProvider } from './data/RoutesContext';
 
 function App() {
   return (
     <IndustriesProvider>
       <StationsProvider>
-        <TrainsProvider>
-          <Routes>
-            <Route path={'/'} element={<AppLayout />}>
-              <Route index={true} element={<RouteGrid />} />
-              <Route path='/home' element={<Navigate to={'/'} />} />
-              <Route path={'/trains/:trainId'} element={<TrainPage />}></Route>
-              <Route path={'/rollingstock'} element={<RollingStockPage />} />
-            </Route>
-          </Routes>
-        </TrainsProvider>
+        <RoutesProvider>
+          <TrainsProvider>
+            <Routes>
+              <Route path={'/'} element={<AppLayout />}>
+                <Route index={true} element={<RouteGrid />} />
+                <Route path='/home' element={<Navigate to={'/'} />} />
+                <Route path={'/trains/:trainId'} element={<TrainPage />}></Route>
+                <Route path={'/rollingstock'} element={<RollingStockPage />} />
+              </Route>
+            </Routes>
+          </TrainsProvider>
+        </RoutesProvider>
       </StationsProvider>
     </IndustriesProvider>
   );
