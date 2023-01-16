@@ -1,10 +1,10 @@
-import { RoutePage } from '../RoutePage';
+import { TrainRoutePage } from '../TrainRoutePage';
 import { Route, Routes } from 'react-router-dom';
 import { Train } from '../../../models/Train';
 import {
   renderWithRouter,
   wrapWithFakeIndustriesContext,
-  wrapWithFakeRoutesContext,
+  wrapWithFakeTrainRoutesContext,
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
 import { industry1, industry2, industry3, train1 } from '../../../test-configuration/FixtureTrains';
@@ -20,10 +20,10 @@ function renderRoutePageComponent(
     wrapWithThemeProvider(
       wrapWithFakeIndustriesContext(
         [industry1, industry2, industry3],
-        wrapWithFakeRoutesContext(
+        wrapWithFakeTrainRoutesContext(
           [routeToRender],
           <Routes>
-            <Route path={'/routes/:routeId'} element={<RoutePage />}></Route>
+            <Route path={'/routes/:routeId'} element={<TrainRoutePage />}></Route>
           </Routes>,
         ),
       ),
@@ -32,7 +32,7 @@ function renderRoutePageComponent(
   );
 }
 
-describe('Route Page', () => {
+describe('Train Route Page', () => {
   it('renders with a passed id', async () => {
     const initialPath = `/routes/${routeLocal.id}`;
     const trainPage = renderRoutePageComponent(initialPath, train1, routeLocal);

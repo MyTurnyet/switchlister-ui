@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteGrid } from './components/RouteGrid/RouteGrid';
 import { Route, Routes } from 'react-router-dom';
-import { RoutePage } from './components/RoutePage/RoutePage';
+import { TrainRoutePage } from './components/RoutePage/TrainRoutePage';
 import { RollingStockPage } from './components/RollingStockPage/RollingStockPage';
 import { TrainsProvider } from './data/TrainsContext';
 import { AppLayout } from './components/AppLayout/AppLayout';
@@ -20,7 +20,7 @@ function App() {
               <Route path={'/'} element={<AppLayout />}>
                 <Route index={true} element={<RouteGrid />} />
                 <Route path='/home' element={<Navigate to={'/'} />} />
-                <Route path={'/trains/:trainId'} element={<RoutePage />}></Route>
+                <Route path={'/trains/:trainId'} element={<TrainRoutePage />}></Route>
                 <Route path={'/rollingstock'} element={<RollingStockPage />} />
               </Route>
             </Routes>

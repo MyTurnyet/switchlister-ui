@@ -31,7 +31,7 @@ export const StationDetails = (props: { station: Station }) => {
     </StationDetailsContainer>
   );
 };
-export const RouteDetails = (props: { trainRoute: TrainRoute }) => {
+export const TrainRouteDetails = (props: { trainRoute: TrainRoute }) => {
   return (
     <RouteDetailsContainer>
       <RouteName>{props.trainRoute.name}</RouteName>
@@ -42,7 +42,7 @@ export const RouteDetails = (props: { trainRoute: TrainRoute }) => {
   );
 };
 
-export const RoutePage = () => {
+export const TrainRoutePage = () => {
   const { routeId } = useParams();
   const { routes } = useRoutesData();
 
@@ -61,7 +61,7 @@ export const RoutePage = () => {
   return (
     <RoutePageContainer>
       <RoutePageTitle>Route Profile</RoutePageTitle>
-      <RouteDetails trainRoute={currentRoute.value} />
+      <TrainRouteDetails trainRoute={currentRoute.value} />
     </RoutePageContainer>
   );
 };

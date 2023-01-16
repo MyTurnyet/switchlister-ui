@@ -4,7 +4,7 @@ import { RouteGrid } from '../RouteGrid';
 import {
   expectHistoryCalledWith,
   renderWithRouter,
-  wrapWithFakeRoutesContext,
+  wrapWithFakeTrainRoutesContext,
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
 import userEvent from '@testing-library/user-event';
@@ -14,7 +14,7 @@ describe('Route Grid', () => {
   let trainGrid: RenderResult;
   beforeEach(() => {
     trainGrid = renderWithRouter(
-      wrapWithThemeProvider(wrapWithFakeRoutesContext([routeLocal], <RouteGrid />)),
+      wrapWithThemeProvider(wrapWithFakeTrainRoutesContext([routeLocal], <RouteGrid />)),
     );
   });
   it('displays the first route', () => {

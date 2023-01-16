@@ -8,7 +8,7 @@ export interface FakeRoutesContextProps extends PropsWithChildren {
 
 const defaultProps: FakeRoutesContextProps = { routesToReturn: [] };
 
-export const FakeRoutesDataContext = (props: FakeRoutesContextProps) => {
+export const FakeTrainRoutesDataContext = (props: FakeRoutesContextProps) => {
   const routesDataContextValues: RoutesDataContext = {
     refreshRoutesData: (): void => {
       return;
@@ -23,4 +23,4 @@ export const FakeRoutesDataContext = (props: FakeRoutesContextProps) => {
   );
 };
 
-FakeRoutesDataContext.defaultProps = defaultProps;
+FakeTrainRoutesDataContext.defaultProps = defaultProps;
