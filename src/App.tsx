@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteGrid } from './components/TrainGrid/RouteGrid';
+import { RouteGrid } from './components/RouteGrid/RouteGrid';
 import { Route, Routes } from 'react-router-dom';
 import { TrainPage } from './components/TrainPage/TrainPage';
 import { RollingStockPage } from './components/RollingStockPage/RollingStockPage';
