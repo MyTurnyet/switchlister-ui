@@ -8,6 +8,9 @@ export const NavBar = () => {
       <NavLink to={'/home'} title={'Home'}>
         Home
       </NavLink>
+      <NavLink to={'/dispatcher'} title={'Dispatcher'}>
+        Dispatcher
+      </NavLink>{' '}
       <NavLink to={'/rollingstock'} title={'Rolling Stock'}>
         Rolling Stock
       </NavLink>

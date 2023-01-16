@@ -1,7 +1,7 @@
 import { NavBar } from '../NavBar';
 import {
-  expectHistoryCalledWith,
   clickButtonWithText,
+  expectHistoryCalledWith,
   renderWithRouter,
 } from '../../../test-configuration/ReactTestToolkit';
 import { RenderResult } from '@testing-library/react';
@@ -16,11 +16,15 @@ describe('Nav Bar', () => {
   }
 
   it('should render the correct text', () => {
-    expect(renderAPI).toHaveElementsWithText('Home', 'Rolling Stock');
+    expect(renderAPI).toHaveElementsWithText('Home', 'Rolling Stock', 'Dispatcher');
   });
   it('should render home link', () => {
     clickLink('Home');
     expectHistoryCalledWith('/home', true);
+  });
+  it('should render dispatcher link', () => {
+    clickLink('Dispatcher');
+    expectHistoryCalledWith('/dispatcher', true);
   });
   it('should render rolling stock link', () => {
     clickLink('Rolling Stock');
