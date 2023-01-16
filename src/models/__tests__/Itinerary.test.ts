@@ -1,12 +1,8 @@
 import { Itinerary } from '../Itinerary';
-import {
-  createTrainFromState,
-  station1,
-  station1State,
-  train1State,
-} from '../../test-configuration/FixtureTrains';
+import { createTrainFromState, train1State } from '../../test-configuration/FixtureTrains';
 import { Route, RouteState } from '../Route';
 import { Train } from '../Train';
+import { station1, station1State } from '../../test-configuration/FixtureStations';
 
 describe('Itinerary', () => {
   let train: Train;

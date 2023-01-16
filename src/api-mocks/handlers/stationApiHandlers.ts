@@ -1,12 +1,12 @@
 import { ApiHandler } from './ApiHandler';
 import { StationState } from '../../models/Station';
+import { IndustryState } from '../../models/Industry';
 import {
   station1State,
   station2State,
   station3State,
   station4State,
-} from '../../test-configuration/FixtureTrains';
-import { Industry, IndustryState } from '../../models/Industry';
+} from '../../test-configuration/FixtureStations';
 
 const stationsToReturn: StationState[] = [
   station1State,

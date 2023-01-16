@@ -3,11 +3,11 @@ import {
   industry1State,
   industry2,
   industry7State,
-  station1,
 } from '../../test-configuration/FixtureTrains';
 import { CarType, RollingStock } from '../RollingStock';
 import { boxcarBN9876, boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
 import { Industry } from '../Industry';
+import { station1 } from '../../test-configuration/FixtureStations';
 
 describe('Industry', () => {
   describe('data', () => {

@@ -1,6 +1,6 @@
 import { Route, RouteState } from '../Route';
 import { Station } from '../Station';
-import { station1State } from '../../test-configuration/FixtureTrains';
+import { station1State } from '../../test-configuration/FixtureStations';
 
 describe('Route', () => {
   it('has correct values', () => {

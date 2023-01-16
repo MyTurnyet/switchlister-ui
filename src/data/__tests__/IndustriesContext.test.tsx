@@ -9,9 +9,8 @@ import {
   industry2State,
   industry3State,
   industry4State,
-  station1,
-  station4,
 } from '../../test-configuration/FixtureTrains';
+import { station1, station4 } from '../../test-configuration/FixtureStations';
 
 const IndustryContextTesConsumer = () => {
   const { refreshIndustriesData, industries, industriesAtStation } = useIndustryData();

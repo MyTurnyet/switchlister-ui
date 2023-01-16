@@ -1,7 +1,7 @@
 import { Train } from '../Train';
-import { station1State, station2State } from '../../test-configuration/FixtureTrains';
 import { StationCollection } from '../collections/StationCollection';
 import { boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
+import { station1State, station2State } from '../../test-configuration/FixtureStations';
 
 describe('Train', () => {
   let train: Train;

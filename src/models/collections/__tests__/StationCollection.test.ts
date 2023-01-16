@@ -1,3 +1,5 @@
+import { Station, StationState } from '../../Station';
+import { StationCollection } from '../StationCollection';
 import {
   eastBlock,
   station1,
@@ -5,9 +7,7 @@ import {
   station3,
   station3State,
   westBlock,
-} from '../../../test-configuration/FixtureTrains';
-import { Station, StationState } from '../../Station';
-import { StationCollection } from '../StationCollection';
+} from '../../../test-configuration/FixtureStations';
 
 describe('Station Collection', () => {
   let stationCollection: StationCollection;

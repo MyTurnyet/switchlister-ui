@@ -9,9 +9,8 @@ import {
   industry4,
   industry4State,
   industry5State,
-  station2,
-  station4,
 } from '../../../test-configuration/FixtureTrains';
+import { station2, station4 } from '../../../test-configuration/FixtureStations';
 
 describe('Industry Collection', () => {
   describe('creates collection', () => {

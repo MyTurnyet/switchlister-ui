@@ -1,5 +1,5 @@
 import { Station } from '../Station';
-import { eastBlock, station0State } from '../../test-configuration/FixtureTrains';
+import { eastBlock, station0State } from '../../test-configuration/FixtureStations';
 
 describe('station', () => {
   it('has name and Id', () => {
