@@ -1,16 +1,13 @@
-import { StationState } from './Station';
-import { StationCollection } from './collections/StationCollection';
 import { RollingStockCollection } from './collections/RollingStockCollection';
 import { RollingStock } from './RollingStock';
 
 export interface TrainState {
   id: string;
   name: string;
-  stations: StationState[];
 }
 
 export class Train {
-  public static EMPTY_TRAIN = new Train({ id: '', name: 'EMPTY', stations: [] });
+  public static EMPTY_TRAIN = new Train({ id: '', name: 'EMPTY' });
   private rollingStockCollection = new RollingStockCollection([]);
 
   get rollingStock(): RollingStockCollection {
@@ -23,11 +20,6 @@ export class Train {
 
   get name(): string {
     return this.trainState.name;
-  }
-
-  get stations(): StationCollection {
-    const stationStates = this.trainState.stations;
-    return StationCollection.createFromStationStateArray(stationStates);
   }
 
   pickUp(carToPickUp: RollingStock) {

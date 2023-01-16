@@ -44,19 +44,9 @@ export const industry5 = new Industry(industry5State);
 export const industry6 = new Industry(industry6State);
 export const industry7 = new Industry(industry7State);
 
-export const train1State: TrainState = createTrainState('Local Express', [
-  station1State,
-  station3State,
-]);
-export const train2State: TrainState = createTrainState('Another Train', [
-  station3State,
-  station2State,
-  station4State,
-]);
-export const trainPickUpCarsState: TrainState = createTrainState('CarsToPickUp', [
-  station4State,
-  station2State,
-]);
+export const train1State: TrainState = createTrainState('Local Express');
+export const train2State: TrainState = createTrainState('Another Train');
+export const trainPickUpCarsState: TrainState = createTrainState('CarsToPickUp');
 
 export const createTrainFromState = (state: TrainState) => {
   return new Train(state);
@@ -83,10 +73,9 @@ function createIndustryState(
   };
 }
 
-function createTrainState(name: string, stations: StationState[]): TrainState {
+function createTrainState(name: string): TrainState {
   return {
     id: uuidv4(),
     name,
-    stations,
   };
 }
