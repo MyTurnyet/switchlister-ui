@@ -9,10 +9,10 @@ export interface RoutesDataContext {
   refreshRoutesData: () => void;
 }
 
-export const RoutesContext = createContext<RoutesDataContext | undefined>(undefined);
+export const TrainRoutesContext = createContext<RoutesDataContext | undefined>(undefined);
 
-export const useRoutesData = (): RoutesDataContext => {
-  const context = useContext(RoutesContext);
+export const useTrainRoutesData = (): RoutesDataContext => {
+  const context = useContext(TrainRoutesContext);
   if (context === undefined) {
     throw Error(
       'useRoutesData must be used inside of a RoutesProvider, ' +
@@ -33,5 +33,7 @@ export const RoutesDataProvider = ({ children }: PropsWithChildren) => {
     refreshRoutesData: getRoutes,
     trainRoutes: TrainRouteCollection.createFromTrainRouteStateArray(routesData.value),
   };
-  return <RoutesContext.Provider value={routesDataContext}>{children}</RoutesContext.Provider>;
+  return (
+    <TrainRoutesContext.Provider value={routesDataContext}>{children}</TrainRoutesContext.Provider>
+  );
 };

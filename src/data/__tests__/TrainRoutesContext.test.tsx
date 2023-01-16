@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { render, RenderResult, waitFor } from '@testing-library/react';
-import { RoutesDataProvider, useRoutesData } from '../RoutesContext';
+import { RoutesDataProvider, useTrainRoutesData } from '../TrainRoutesContext';
 import { mswServer } from '../../api-mocks/msw-server';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 
 const TestRoutesConsumer = () => {
-  const { trainRoutes, refreshRoutesData } = useRoutesData();
+  const { trainRoutes, refreshRoutesData } = useTrainRoutesData();
   useEffect(() => {
     refreshRoutesData();
   });
@@ -27,7 +27,7 @@ function renderRoutesConsumer() {
   );
 }
 
-describe('Routes Context', () => {
+describe('Train Routes Context', () => {
   it('returns 0 routes', async () => {
     mswServer.use(ApiHandler.createApiGet('routes', []));
     const routeConsumer: RenderResult = renderRoutesConsumer();

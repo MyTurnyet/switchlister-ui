@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { TrainRoute } from '../models/TrainRoute';
-import { RoutesContext, RoutesDataContext } from '../data/RoutesContext';
+import { TrainRoutesContext, RoutesDataContext } from '../data/TrainRoutesContext';
 import { TrainRouteCollection } from '../models/collections/TrainRouteCollection';
 
 export interface FakeRoutesContextProps extends PropsWithChildren {
@@ -18,9 +18,9 @@ export const FakeTrainRoutesDataContext = (props: FakeRoutesContextProps) => {
   };
 
   return (
-    <RoutesContext.Provider value={routesDataContextValues}>
+    <TrainRoutesContext.Provider value={routesDataContextValues}>
       {props.children}
-    </RoutesContext.Provider>
+    </TrainRoutesContext.Provider>
   );
 };
 

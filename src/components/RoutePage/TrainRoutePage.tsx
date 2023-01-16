@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useIndustryData } from '../../data/IndustriesContext';
 import { Industry } from '../../models/Industry';
 import { IndustryDetails } from '../IndustryPage/IndustryDetails';
-import { useRoutesData } from '../../data/RoutesContext';
+import { useTrainRoutesData } from '../../data/TrainRoutesContext';
 import { TrainRoute } from '../../models/TrainRoute';
 
 export const IndustriesAtStationDetails = (props: { station: Station }) => {
@@ -44,7 +44,7 @@ export const TrainRouteDetails = (props: { trainRoute: TrainRoute }) => {
 
 export const TrainRoutePage = () => {
   const { routeId } = useParams();
-  const { trainRoutes } = useRoutesData();
+  const { trainRoutes } = useTrainRoutesData();
 
   const currentRoute = useReactState<TrainRoute>(TrainRoute.EMPTY_ROUTE);
 

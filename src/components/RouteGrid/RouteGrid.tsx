@@ -1,10 +1,10 @@
 import { RouteCard } from './RouteCard';
 import styled from 'styled-components';
-import { useRoutesData } from '../../data/RoutesContext';
+import { useTrainRoutesData } from '../../data/TrainRoutesContext';
 import { TrainRoute } from '../../models/TrainRoute';
 
 export const RouteGrid = () => {
-  const { trainRoutes } = useRoutesData();
+  const { trainRoutes } = useTrainRoutesData();
 
   return (
     <div>
