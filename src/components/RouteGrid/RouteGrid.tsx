@@ -2,16 +2,21 @@ import { RouteCard } from './RouteCard';
 import styled from 'styled-components';
 import { useTrainRoutesData } from '../../data/TrainRoutesContext';
 import { TrainRoute } from '../../models/TrainRoute';
+import { useNavigate } from 'react-router';
 
 export const RouteGrid = () => {
   const { trainRoutes } = useTrainRoutesData();
+  const navigate = useNavigate();
+  const handleRouteClick = (routeClicked: TrainRoute) => {
+    navigate(`routes/${routeClicked.id}`);
+  };
 
   return (
     <div>
       <RouteDisplayHeader>All Train Routes</RouteDisplayHeader>
       <RouteCardGrid>
         {trainRoutes.map((route: TrainRoute) => {
-          return <RouteCard key={route.id} route={route} />;
+          return <RouteCard key={route.id} route={route} handlePress={handleRouteClick} />;
         })}
       </RouteCardGrid>
     </div>

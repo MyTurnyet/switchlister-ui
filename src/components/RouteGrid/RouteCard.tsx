@@ -1,21 +1,15 @@
-import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { TrainRoute } from '../../models/TrainRoute';
 import { Station } from '../../models/Station';
 
 export interface RouteCardProps {
   route: TrainRoute;
+  handlePress: (routeClicked: TrainRoute) => void;
 }
 
-export const RouteCard = ({ route }: RouteCardProps) => {
-  const navigate = useNavigate();
-
-  const clickHandler = () => {
-    navigate(`routes/${route.id}`);
-  };
-
+export const RouteCard = ({ route, handlePress }: RouteCardProps) => {
   return (
-    <RouteCardContainer onClick={clickHandler}>
+    <RouteCardContainer onClick={() => handlePress(route)}>
       <TopDisplayRow>
         <NameDiv>{route.name}</NameDiv>
         <StationCountDiv>{route.stations.length} stations</StationCountDiv>
