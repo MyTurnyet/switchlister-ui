@@ -1,15 +1,22 @@
 import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
-import { useRoutesData } from '../RoutesContext';
+import { RoutesProvider, useRoutesData } from '../RoutesContext';
 
 const TestRoutesConsumer = () => {
   const routesData = useRoutesData();
-  return <div>FOO!</div>;
+  const routesDataOutput = (): string => {
+    return 'No Routes returned!';
+  };
+  return <div>{routesDataOutput()}</div>;
 };
 
 describe('Routes Context', () => {
-  xit('returns 0 routes', () => {
-    const routeConsumer: RenderResult = render(<TestRoutesConsumer />);
+  it('returns 0 routes', () => {
+    const routeConsumer: RenderResult = render(
+      <RoutesProvider>
+        <TestRoutesConsumer />
+      </RoutesProvider>,
+    );
     expect(routeConsumer).toHaveElementsWithText('No Routes returned!');
   });
   it('throws if not wrapped with TrainsProvider', () => {
