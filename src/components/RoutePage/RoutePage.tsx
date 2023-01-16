@@ -32,7 +32,6 @@ export const StationDetails = (props: { station: Station }) => {
   );
 };
 export const RouteDetails = (props: { trainRoute: TrainRoute }) => {
-  console.log('Route Details:', props);
   return (
     <RouteDetailsContainer>
       <RouteName>{props.trainRoute.name}</RouteName>
