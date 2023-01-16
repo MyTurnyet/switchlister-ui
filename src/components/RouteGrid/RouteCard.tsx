@@ -11,7 +11,7 @@ export const RouteCard = ({ route }: RouteCardProps) => {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    navigate(`trains/${route.id}`);
+    navigate(`routes/${route.id}`);
   };
 
   return (

@@ -27,6 +27,6 @@ describe('Route Grid', () => {
   it('navigates when train card clicked', async () => {
     const trainCard = trainGrid.getByText(routeLocal.name);
     userEvent.click(trainCard);
-    expectHistoryCalledWith(`/trains/${routeLocal.id}`);
+    expectHistoryCalledWith(`/routes/${routeLocal.id}`);
   });
 });

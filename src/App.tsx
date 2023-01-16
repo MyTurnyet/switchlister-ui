@@ -20,7 +20,7 @@ function App() {
               <Route path={'/'} element={<AppLayout />}>
                 <Route index={true} element={<RouteGrid />} />
                 <Route path='/home' element={<Navigate to={'/'} />} />
-                <Route path={'/trains/:trainId'} element={<TrainRoutePage />}></Route>
+                <Route path={'/routes/:routeId'} element={<TrainRoutePage />}></Route>
                 <Route path={'/rollingstock'} element={<RollingStockPage />} />
               </Route>
             </Routes>
