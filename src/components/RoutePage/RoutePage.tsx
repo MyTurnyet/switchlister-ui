@@ -23,7 +23,7 @@ export const IndustriesAtStationDetails = (props: { station: Station }) => {
     </>
   );
 };
-export const TrainStationDetails = (props: { station: Station }) => {
+export const StationDetails = (props: { station: Station }) => {
   return (
     <StationDetailsContainer>
       <StationName>Station: {props.station.name}</StationName>
@@ -31,12 +31,12 @@ export const TrainStationDetails = (props: { station: Station }) => {
     </StationDetailsContainer>
   );
 };
-export const TrainDetails = (props: { train: Train }) => {
+export const RouteDetails = (props: { train: Train }) => {
   return (
     <TrainDetailsContainer>
       <TrainName>{props.train.name}</TrainName>
       {props.train.stations.map((station: Station) => (
-        <TrainStationDetails station={station} key={station.name} />
+        <StationDetails station={station} key={station.name} />
       ))}
     </TrainDetailsContainer>
   );
@@ -53,20 +53,20 @@ export const RoutePage = () => {
   });
 
   return (
-    <TrainPageContainer>
-      <TrainPageTitle>Train Profile</TrainPageTitle>
-      <TrainDetails train={currentTrain.value} />
-    </TrainPageContainer>
+    <RoutePageContainer>
+      <RoutePageTitle>Train Profile</RoutePageTitle>
+      <RouteDetails train={currentTrain.value} />
+    </RoutePageContainer>
   );
 };
 
-const TrainPageContainer = styled.div`
+const RoutePageContainer = styled.div`
   padding-top: 15px;
   padding-bottom: 35px;
   min-height: 95%;
   min-width: 95%;
 `;
-const TrainPageTitle = styled.div`
+const RoutePageTitle = styled.div`
   color: ${(props) => props.theme.colors.text.header};
   font-size: large;
   font-weight: bold;
