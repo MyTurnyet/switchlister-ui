@@ -44,6 +44,9 @@ describe('trains context', () => {
     });
   });
   it('throws if not wrapped with TrainsProvider', () => {
+    jest.spyOn(console, 'error').mockImplementation(() => {
+      return;
+    });
     expect(() => render(<TrainsTestConsumer />)).toThrowError(
       new Error(
         'useTrainsData must be used inside of a TrainsProvider, ' +
