@@ -7,7 +7,7 @@ import {
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
 import { Train } from '../../../models/Train';
-import { RoutesProvider } from '../../../data/RoutesContext';
+import { RoutesDataProvider } from '../../../data/RoutesContext';
 
 describe('AppLayout', () => {
   it('renders', () => {
@@ -18,9 +18,9 @@ describe('AppLayout', () => {
           wrapWithFakeTrainContext(
             [],
             Train.EMPTY_TRAIN,
-            <RoutesProvider>
+            <RoutesDataProvider>
               <AppLayout />
-            </RoutesProvider>,
+            </RoutesDataProvider>,
           ),
         ),
       ),

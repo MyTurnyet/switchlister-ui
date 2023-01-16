@@ -21,7 +21,7 @@ export const useRoutesData = (): RoutesDataContext => {
   return context;
 };
 
-export const RoutesProvider = ({ children }: PropsWithChildren) => {
+export const RoutesDataProvider = ({ children }: PropsWithChildren) => {
   const routesData = useReactState<RouteState[]>([]);
 
   const getRoutes = useCallback(() => {

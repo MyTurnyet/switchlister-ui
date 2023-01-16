@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { render, RenderResult, waitFor } from '@testing-library/react';
-import { RoutesProvider, useRoutesData } from '../RoutesContext';
+import { RoutesDataProvider, useRoutesData } from '../RoutesContext';
 import { mswServer } from '../../api-mocks/msw-server';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 
@@ -21,9 +21,9 @@ const TestRoutesConsumer = () => {
 
 function renderRoutesConsumer() {
   return render(
-    <RoutesProvider>
+    <RoutesDataProvider>
       <TestRoutesConsumer />
-    </RoutesProvider>,
+    </RoutesDataProvider>,
   );
 }
 

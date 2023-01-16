@@ -8,13 +8,13 @@ import { AppLayout } from './components/AppLayout/AppLayout';
 import { Navigate } from 'react-router';
 import { StationsProvider } from './data/StationsContext';
 import { IndustriesProvider } from './data/IndustriesContext';
-import { RoutesProvider } from './data/RoutesContext';
+import { RoutesDataProvider } from './data/RoutesContext';
 
 function App() {
   return (
     <IndustriesProvider>
       <StationsProvider>
-        <RoutesProvider>
+        <RoutesDataProvider>
           <TrainsProvider>
             <Routes>
               <Route path={'/'} element={<AppLayout />}>
@@ -25,7 +25,7 @@ function App() {
               </Route>
             </Routes>
           </TrainsProvider>
-        </RoutesProvider>
+        </RoutesDataProvider>
       </StationsProvider>
     </IndustriesProvider>
   );
