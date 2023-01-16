@@ -12,7 +12,7 @@ function createRouteState(name: string, stations: StationState[]) {
 }
 export const routeStateLocal: RouteState = createRouteState('Local', [station1State]);
 
-export const routeStateTwoStation: RouteState = createRouteState('Two Station', [
+export const routeStateTwoStation: RouteState = createRouteState('Two Station Turn', [
   station1State,
   station3State,
 ]);

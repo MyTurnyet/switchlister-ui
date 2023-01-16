@@ -8,7 +8,7 @@ export const RouteGrid = () => {
 
   return (
     <div>
-      <RouteGridHeader>All Train Routes</RouteGridHeader>
+      <RouteDisplayHeader>All Train Routes</RouteDisplayHeader>
       <RouteCardGrid>
         {trainRoutes.map((route: TrainRoute) => {
           return <RouteCard key={route.id} route={route} />;
@@ -18,7 +18,7 @@ export const RouteGrid = () => {
   );
 };
 
-const RouteGridHeader = styled.div`
+export const RouteDisplayHeader = styled.div`
   color: ${(props) => props.theme.colors.text.header};
   font-size: large;
   font-weight: bold;
