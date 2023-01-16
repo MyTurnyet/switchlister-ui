@@ -1,6 +1,11 @@
 import { TrainRouteCollection } from '../TrainRouteCollection';
 import { TrainRoute } from '../../TrainRoute';
-import { routeLocal, routeTwoStation } from '../../../test-configuration/FixtureRoutes';
+import {
+  routeLocal,
+  routeStateLocal,
+  routeStateTwoStation,
+  routeTwoStation,
+} from '../../../test-configuration/FixtureRoutes';
 
 describe('Train Route Collection', () => {
   describe('find by id', () => {
@@ -14,5 +19,10 @@ describe('Train Route Collection', () => {
       const trainRoute: TrainRoute = routeCollection.findById(routeTwoStation.id);
       expect(trainRoute).toEqual(routeTwoStation);
     });
+  });
+  it('creates from TrainRouteState array', () => {
+    const trainRouteCollection: TrainRouteCollection =
+      TrainRouteCollection.createFromTrainRouteStateArray([routeStateLocal, routeStateTwoStation]);
+    expect(trainRouteCollection.count).toEqual(2);
   });
 });

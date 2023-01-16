@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { TrainRoute } from '../models/TrainRoute';
 import { RoutesContext, RoutesDataContext } from '../data/RoutesContext';
+import { TrainRouteCollection } from '../models/collections/TrainRouteCollection';
 
 export interface FakeRoutesContextProps extends PropsWithChildren {
   routesToReturn: TrainRoute[];
@@ -13,7 +14,7 @@ export const FakeTrainRoutesDataContext = (props: FakeRoutesContextProps) => {
     refreshRoutesData: (): void => {
       return;
     },
-    routes: props.routesToReturn,
+    trainRoutes: new TrainRouteCollection(props.routesToReturn),
   };
 
   return (

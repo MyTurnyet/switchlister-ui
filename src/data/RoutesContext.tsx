@@ -1,10 +1,11 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
-import { RouteState, TrainRoute } from '../models/TrainRoute';
+import { RouteState } from '../models/TrainRoute';
 import { useReactState } from '../state-management/ReactState';
 import { RoutesApi } from './api/RoutesApi';
+import { TrainRouteCollection } from '../models/collections/TrainRouteCollection';
 
 export interface RoutesDataContext {
-  routes: TrainRoute[];
+  trainRoutes: TrainRouteCollection;
   refreshRoutesData: () => void;
 }
 
@@ -30,7 +31,7 @@ export const RoutesDataProvider = ({ children }: PropsWithChildren) => {
 
   const routesDataContext: RoutesDataContext = {
     refreshRoutesData: getRoutes,
-    routes: routesData.value.map((routeState) => new TrainRoute(routeState)),
+    trainRoutes: TrainRouteCollection.createFromTrainRouteStateArray(routesData.value),
   };
   return <RoutesContext.Provider value={routesDataContext}>{children}</RoutesContext.Provider>;
 };

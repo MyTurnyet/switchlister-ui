@@ -1,5 +1,5 @@
 import { ItemCollection } from './ItemCollection';
-import { TrainRoute } from '../TrainRoute';
+import { RouteState, TrainRoute } from '../TrainRoute';
 
 export class TrainRouteCollection extends ItemCollection<TrainRoute> {
   findById(idToFind: string): TrainRoute {
@@ -7,5 +7,10 @@ export class TrainRouteCollection extends ItemCollection<TrainRoute> {
     if (returnedRoute === undefined) return TrainRoute.EMPTY_ROUTE;
 
     return returnedRoute;
+  }
+
+  static createFromTrainRouteStateArray(routeStates: RouteState[]): TrainRouteCollection {
+    const trainRoutes: TrainRoute[] = routeStates.map((value) => new TrainRoute(value));
+    return new TrainRouteCollection(trainRoutes);
   }
 }

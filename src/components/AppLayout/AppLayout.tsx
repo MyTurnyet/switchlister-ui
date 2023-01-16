@@ -8,7 +8,7 @@ import { useRoutesData } from '../../data/RoutesContext';
 
 export const AppLayout = () => {
   const { trainCollection, refreshTrainsData } = useTrainsData();
-  const { routes, refreshRoutesData } = useRoutesData();
+  const { trainRoutes, refreshRoutesData } = useRoutesData();
   const { industries, refreshIndustriesData } = useIndustryData();
   useEffect(() => {
     if (trainCollection.isEmpty()) {
@@ -16,7 +16,7 @@ export const AppLayout = () => {
     }
   });
   useEffect(() => {
-    if (routes.length == 0) {
+    if (trainRoutes.isEmpty()) {
       refreshRoutesData();
     }
   });

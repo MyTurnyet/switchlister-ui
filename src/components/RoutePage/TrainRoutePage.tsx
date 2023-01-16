@@ -44,18 +44,13 @@ export const TrainRouteDetails = (props: { trainRoute: TrainRoute }) => {
 
 export const TrainRoutePage = () => {
   const { routeId } = useParams();
-  const { routes } = useRoutesData();
+  const { trainRoutes } = useRoutesData();
 
   const currentRoute = useReactState<TrainRoute>(TrainRoute.EMPTY_ROUTE);
 
   useEffect(() => {
     if (routeId === undefined) return;
-    const index = routes.findIndex((value) => value.id === routeId);
-    if (index == -1) {
-      currentRoute.setValue(TrainRoute.EMPTY_ROUTE);
-      return;
-    }
-    currentRoute.setValue(routes[index]);
+    currentRoute.setValue(trainRoutes.findById(routeId));
   });
 
   return (

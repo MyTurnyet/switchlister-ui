@@ -5,15 +5,15 @@ import { mswServer } from '../../api-mocks/msw-server';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 
 const TestRoutesConsumer = () => {
-  const { routes, refreshRoutesData } = useRoutesData();
+  const { trainRoutes, refreshRoutesData } = useRoutesData();
   useEffect(() => {
     refreshRoutesData();
   });
   const routesDataOutput = (): string => {
-    if (routes.length === 0) {
+    if (trainRoutes.isEmpty()) {
       return 'No Routes returned!';
     }
-    return `count: ${routes.length}`;
+    return `count: ${trainRoutes.count}`;
   };
 
   return <div>{routesDataOutput()}</div>;

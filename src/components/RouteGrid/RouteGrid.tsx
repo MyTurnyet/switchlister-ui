@@ -4,13 +4,13 @@ import { useRoutesData } from '../../data/RoutesContext';
 import { TrainRoute } from '../../models/TrainRoute';
 
 export const RouteGrid = () => {
-  const { routes } = useRoutesData();
+  const { trainRoutes } = useRoutesData();
 
   return (
     <div>
       <RouteGridHeader>All Train Routes</RouteGridHeader>
       <RouteCardGrid>
-        {routes.map((route: TrainRoute) => {
+        {trainRoutes.map((route: TrainRoute) => {
           return <RouteCard key={route.id} route={route} />;
         })}
       </RouteCardGrid>
