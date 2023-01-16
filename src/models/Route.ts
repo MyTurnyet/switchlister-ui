@@ -11,6 +11,10 @@ export class Route {
   constructor(private state: RouteState) {
     if (state.stations.length === 0) throw new Error('A Route must have at least one station.');
   }
+
+  get id(): string {
+    return this.state.id;
+  }
   get name(): string {
     return this.state.name;
   }

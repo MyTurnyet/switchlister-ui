@@ -1,27 +1,28 @@
-import { Train } from '../../models/Train';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import { Route } from '../../models/Route';
+import { Station } from '../../models/Station';
 
 export interface RouteCardProps {
-  train: Train;
+  route: Route;
 }
 
-export const RouteCard = ({ train }: RouteCardProps) => {
+export const RouteCard = ({ route }: RouteCardProps) => {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    navigate(`trains/${train.id}`);
+    navigate(`trains/${route.id}`);
   };
 
   return (
     <RouteCardContainer onClick={clickHandler}>
       <TopDisplayRow>
-        <NameDiv>{train.name}</NameDiv>
-        <StationCountDiv>{train.stations.count} stations</StationCountDiv>
+        <NameDiv>{route.name}</NameDiv>
+        <StationCountDiv>{route.stations.length} stations</StationCountDiv>
       </TopDisplayRow>
       <BottomDisplayRow>
-        {train.stations.stationNames.map((stationName: string, index: number) => {
-          return <StationNameDiv key={index}>{stationName}</StationNameDiv>;
+        {route.stations.map((station: Station, index: number) => {
+          return <StationNameDiv key={index}>{station.name}</StationNameDiv>;
         })}
       </BottomDisplayRow>
     </RouteCardContainer>

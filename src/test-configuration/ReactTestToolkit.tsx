@@ -10,9 +10,11 @@ import { mainTheme } from '../themes/MainTheme';
 import { FakeStationsContext } from './FakeStationsContext';
 import { Station } from '../models/Station';
 import { FakeRollingStockContext } from './FakeRollingStockContext';
-import { RollingStock, RollingStockState } from '../models/RollingStock';
+import { RollingStock } from '../models/RollingStock';
 import { Industry } from '../models/Industry';
 import { FakeIndustriesContext } from './FakeIndustriesContext';
+import { FakeRoutesDataContext } from './FakeRoutesContext';
+import { Route } from '../models/Route';
 
 export function clickButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -68,6 +70,9 @@ export function wrapWithFakeIndustriesContext(
       {children}
     </FakeIndustriesContext>
   );
+}
+export function wrapWithFakeRoutesContext(routesToReturn: Route[] = [], children: JSX.Element) {
+  return <FakeRoutesDataContext routesToReturn={routesToReturn}>{children}</FakeRoutesDataContext>;
 }
 export function wrapWithFakeStationsContext(
   stationsToReturn: Station[] = [],

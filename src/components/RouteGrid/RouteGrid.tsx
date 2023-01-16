@@ -1,16 +1,17 @@
 import { RouteCard } from './RouteCard';
-import { useTrainsData } from '../../data/TrainsContext';
 import styled from 'styled-components';
+import { useRoutesData } from '../../data/RoutesContext';
+import { Route } from '../../models/Route';
 
 export const RouteGrid = () => {
-  const { trainCollection } = useTrainsData();
+  const { routes } = useRoutesData();
 
   return (
     <div>
       <RouteGridHeader>All Train Routes</RouteGridHeader>
       <RouteCardGrid>
-        {trainCollection.map((train) => {
-          return <RouteCard key={train.id} train={train} />;
+        {routes.map((route: Route) => {
+          return <RouteCard key={route.id} route={route} />;
         })}
       </RouteCardGrid>
     </div>
