@@ -8,6 +8,8 @@ import styled from 'styled-components';
 import { useIndustryData } from '../../data/IndustriesContext';
 import { Industry } from '../../models/Industry';
 import { IndustryDetails } from '../IndustryPage/IndustryDetails';
+import { useRoutesData } from '../../data/RoutesContext';
+import { TrainRoute } from '../../models/TrainRoute';
 
 export const IndustriesAtStationDetails = (props: { station: Station }) => {
   const { industriesAtStation } = useIndustryData();
@@ -31,31 +33,44 @@ export const StationDetails = (props: { station: Station }) => {
     </StationDetailsContainer>
   );
 };
-export const RouteDetails = (props: { train: Train }) => {
+export const RouteDetails = (props: { trainRoute: TrainRoute }) => {
+  console.log('Route Details:', props);
   return (
-    <TrainDetailsContainer>
-      <TrainName>{props.train.name}</TrainName>
-      {props.train.stations.map((station: Station) => (
+    <RouteDetailsContainer>
+      <RouteName>{props.trainRoute.name}</RouteName>
+      {props.trainRoute.stations.map((station: Station) => (
         <StationDetails station={station} key={station.name} />
       ))}
-    </TrainDetailsContainer>
+    </RouteDetailsContainer>
   );
 };
 
 export const RoutePage = () => {
-  const { trainId } = useParams();
+  const { routeId } = useParams();
   const { trainCollection } = useTrainsData();
+  const { routes } = useRoutesData();
 
   const currentTrain = useReactState<Train>(Train.EMPTY_TRAIN);
+  const currentRoute = useReactState<TrainRoute>(TrainRoute.EMPTY_ROUTE);
+
   useEffect(() => {
-    if (trainId === undefined) return;
-    currentTrain.setValue(trainCollection.findWithId(trainId));
+    if (routeId === undefined) return;
+    currentTrain.setValue(trainCollection.findWithId(routeId));
+  });
+  useEffect(() => {
+    if (routeId === undefined) return;
+    const index = routes.findIndex((value) => value.id === routeId);
+    if (index == -1) {
+      currentRoute.setValue(TrainRoute.EMPTY_ROUTE);
+      return;
+    }
+    currentRoute.setValue(routes[index]);
   });
 
   return (
     <RoutePageContainer>
-      <RoutePageTitle>Train Profile</RoutePageTitle>
-      <RouteDetails train={currentTrain.value} />
+      <RoutePageTitle>Route Profile</RoutePageTitle>
+      <RouteDetails trainRoute={currentRoute.value} />
     </RoutePageContainer>
   );
 };
@@ -71,11 +86,11 @@ const RoutePageTitle = styled.div`
   font-size: large;
   font-weight: bold;
 `;
-const TrainDetailsContainer = styled.div`
+const RouteDetailsContainer = styled.div`
   padding-top: 15px;
   padding-bottom: 45px;
 `;
-const TrainName = styled.div`
+const RouteName = styled.div`
   color: ${(props) => props.theme.colors.text.normal};
   font-weight: bold;
   font-size: medium;

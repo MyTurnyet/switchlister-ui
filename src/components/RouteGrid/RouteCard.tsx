@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import { Route } from '../../models/Route';
+import { TrainRoute } from '../../models/TrainRoute';
 import { Station } from '../../models/Station';
 
 export interface RouteCardProps {
-  route: Route;
+  route: TrainRoute;
 }
 
 export const RouteCard = ({ route }: RouteCardProps) => {

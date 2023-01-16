@@ -4,31 +4,32 @@ import { Train } from '../../../models/Train';
 import {
   renderWithRouter,
   wrapWithFakeIndustriesContext,
+  wrapWithFakeRoutesContext,
   wrapWithFakeTrainContext,
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
-import {
-  industry1,
-  industry2,
-  industry3,
-  train1,
-  train1State,
-} from '../../../test-configuration/FixtureTrains';
+import { industry1, industry2, industry3, train1 } from '../../../test-configuration/FixtureTrains';
+import { routeLocal } from '../../../test-configuration/FixtureRoutes';
+import { TrainRoute } from '../../../models/TrainRoute';
 
 function renderRoutePageComponent(
   initialPath: string,
   trainToRenderWithId: Train = Train.EMPTY_TRAIN,
+  routeToRender: TrainRoute = TrainRoute.EMPTY_ROUTE,
 ) {
   return renderWithRouter(
     wrapWithThemeProvider(
       wrapWithFakeIndustriesContext(
         [industry1, industry2, industry3],
-        wrapWithFakeTrainContext(
-          [train1],
-          trainToRenderWithId,
-          <Routes>
-            <Route path={'/trains/:trainId'} element={<RoutePage />}></Route>
-          </Routes>,
+        wrapWithFakeRoutesContext(
+          [routeToRender],
+          wrapWithFakeTrainContext(
+            [train1],
+            trainToRenderWithId,
+            <Routes>
+              <Route path={'/routes/:routeId'} element={<RoutePage />}></Route>
+            </Routes>,
+          ),
         ),
       ),
     ),
@@ -38,18 +39,18 @@ function renderRoutePageComponent(
 
 describe('Route Page', () => {
   it('renders with a passed id', async () => {
-    const initialPath = `/trains/${train1State.id}`;
-    const trainPage = renderRoutePageComponent(initialPath, train1);
+    const initialPath = `/routes/${routeLocal.id}`;
+    const trainPage = renderRoutePageComponent(initialPath, train1, routeLocal);
     expect(trainPage).toHaveElementsWithText(
-      'Train Profile',
-      train1.name,
-      `Station: ${train1.stations.stationNames[0]}`,
+      'Route Profile',
+      routeLocal.name,
+      `Station: ${routeLocal.stations[0].name}`,
       'Industries: (3)',
     );
   });
   it('renders if passed id is bad', async () => {
-    const initialPath = '/trains/somethingBad';
+    const initialPath = '/routes/somethingBad';
     const trainPage = renderRoutePageComponent(initialPath);
-    expect(trainPage).toHaveElementsWithText('Train Profile', Train.EMPTY_TRAIN.name);
+    expect(trainPage).toHaveElementsWithText('Route Profile', TrainRoute.EMPTY_ROUTE.name);
   });
 });

@@ -7,10 +7,13 @@ export interface RouteState {
   stations: StationState[];
 }
 
-export class Route {
-  constructor(private state: RouteState) {
-    if (state.stations.length === 0) throw new Error('A Route must have at least one station.');
-  }
+export class TrainRoute {
+  public static EMPTY_ROUTE: TrainRoute = new TrainRoute({
+    id: '',
+    name: 'Route Missing',
+    stations: [],
+  });
+  constructor(private state: RouteState) {}
 
   get id(): string {
     return this.state.id;

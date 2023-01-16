@@ -1,4 +1,4 @@
-import { RouteState } from '../../models/Route';
+import { RouteState } from '../../models/TrainRoute';
 import { ApiHandler } from './ApiHandler';
 import { routeStateLocal, routeStateTwoStation } from '../../test-configuration/FixtureRoutes';
 

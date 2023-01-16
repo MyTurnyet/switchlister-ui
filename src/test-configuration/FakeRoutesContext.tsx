@@ -1,9 +1,9 @@
 import { PropsWithChildren } from 'react';
-import { Route } from '../models/Route';
+import { TrainRoute } from '../models/TrainRoute';
 import { RoutesContext, RoutesDataContext } from '../data/RoutesContext';
 
 export interface FakeRoutesContextProps extends PropsWithChildren {
-  routesToReturn: Route[];
+  routesToReturn: TrainRoute[];
 }
 
 const defaultProps: FakeRoutesContextProps = { routesToReturn: [] };

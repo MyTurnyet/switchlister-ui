@@ -1,4 +1,4 @@
-import { Route, RouteState } from '../models/Route';
+import { RouteState, TrainRoute } from '../models/TrainRoute';
 import { v4 as uuidv4 } from 'uuid';
 import { station1State, station3State } from './FixtureStations';
 import { StationState } from '../models/Station';
@@ -17,5 +17,5 @@ export const routeStateTwoStation: RouteState = createRouteState('Two Station', 
   station3State,
 ]);
 
-export const routeLocal: Route = new Route(routeStateLocal);
-export const routeTwoStation: Route = new Route(routeStateTwoStation);
+export const routeLocal: TrainRoute = new TrainRoute(routeStateLocal);
+export const routeTwoStation: TrainRoute = new TrainRoute(routeStateTwoStation);

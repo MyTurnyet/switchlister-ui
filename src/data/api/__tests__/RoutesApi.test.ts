@@ -1,6 +1,6 @@
 import { mswServer } from '../../../api-mocks/msw-server';
 import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
-import { RouteState } from '../../../models/Route';
+import { RouteState } from '../../../models/TrainRoute';
 import { RoutesApi } from '../RoutesApi';
 
 describe('Routes Api', () => {
