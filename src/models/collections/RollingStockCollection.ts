@@ -28,4 +28,11 @@ export class RollingStockCollection extends ItemCollection<RollingStock> {
   containsRollingStockOfType(carTypeToCheck: CarType): boolean {
     return this.items.some((value) => value.isCarType(carTypeToCheck));
   }
+
+  getCarByType(typeToFind: CarType): RollingStock {
+    if (!this.containsRollingStockOfType(typeToFind)) {
+      return RollingStock.EMPTY;
+    }
+    return this.items.find((value) => value.isCarType(typeToFind))!;
+  }
 }

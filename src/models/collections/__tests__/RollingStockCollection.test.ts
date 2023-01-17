@@ -4,7 +4,7 @@ import {
   boxcarCP1234State,
   hopperBCAX5,
 } from '../../../test-configuration/FixtureRollingStock';
-import { CarType } from '../../RollingStock';
+import { CarType, RollingStock } from '../../RollingStock';
 
 describe('rolling stock collection', () => {
   let collection: RollingStockCollection;
@@ -50,5 +50,15 @@ describe('rolling stock collection', () => {
   it('does not contain rolling stock of type HT', () => {
     const containsCarType = collection.containsRollingStockOfType(CarType.HT);
     expect(containsCarType).toEqual(false);
+  });
+  describe('gets car by type', () => {
+    it('returns RollingStock.Empty is non-existant', () => {
+      const carReturned: RollingStock = collection.getCarByType(CarType.HT);
+      expect(carReturned).toEqual(RollingStock.EMPTY);
+    });
+    it('returns first rolling stock is it matches car type', () => {
+      const carReturned: RollingStock = collection.getCarByType(CarType.XM);
+      expect(carReturned).toEqual(boxcarCP1234);
+    });
   });
 });
