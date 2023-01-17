@@ -38,4 +38,8 @@ export class Train {
   hasRollingStockOfType(typeToFind: CarType) {
     return this.rollingStockCollection.containsRollingStockOfType(typeToFind);
   }
+
+  findFirstCarByType(typeToFind: CarType) {
+    return this.rollingStockCollection.getCarByType(typeToFind);
+  }
 }

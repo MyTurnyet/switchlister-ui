@@ -2,7 +2,7 @@ import { Train } from '../Train';
 import { boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
 import { Station } from '../Station';
 import { station1 } from '../../test-configuration/FixtureStations';
-import { CarType } from '../RollingStock';
+import { CarType, RollingStock } from '../RollingStock';
 
 describe('Train', () => {
   let train: Train;
@@ -28,13 +28,15 @@ describe('Train', () => {
       expect(train.rollingStock.count).toEqual(1);
       expect(train.rollingStock.contains(boxcarCP1234));
     });
-    it('has rolling stock of type XM', () => {
+    it('gets first car of type', () => {
       const hasRollingStock: boolean = train.hasRollingStockOfType(CarType.XM);
       expect(hasRollingStock).toEqual(true);
+      const foundCar: RollingStock = train.findFirstCarByType(CarType.XM);
+      expect(foundCar).toEqual(boxcarCP1234);
     });
   });
 
-  describe('rolling stock', () => {
+  describe('without rolling stock', () => {
     it('has no attached cars', () => {
       expect(train.rollingStock.count).toEqual(0);
     });
@@ -42,6 +44,7 @@ describe('Train', () => {
     it('does not have rolling stock of type XM', () => {
       const hasRollingStock: boolean = train.hasRollingStockOfType(CarType.XM);
       expect(hasRollingStock).toEqual(false);
+      expect(train.findFirstCarByType(CarType.XM)).toEqual(RollingStock.EMPTY);
     });
   });
 });
