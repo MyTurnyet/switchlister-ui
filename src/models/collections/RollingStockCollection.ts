@@ -1,5 +1,5 @@
 import { ItemCollection } from './ItemCollection';
-import { RollingStock, RollingStockId, RollingStockState } from '../RollingStock';
+import { CarType, RollingStock, RollingStockId, RollingStockState } from '../RollingStock';
 
 export class RollingStockCollection extends ItemCollection<RollingStock> {
   static createFromRollingStockStateArray(stateArray: RollingStockState[]): RollingStockCollection {
@@ -23,5 +23,9 @@ export class RollingStockCollection extends ItemCollection<RollingStock> {
     )!;
     this.items.splice(indexToRemove, 1);
     return removedRollingStock;
+  }
+
+  containsRollingStockOfType(carTypeToCheck: CarType): boolean {
+    return this.items.some((value) => value.isCarType(carTypeToCheck));
   }
 }

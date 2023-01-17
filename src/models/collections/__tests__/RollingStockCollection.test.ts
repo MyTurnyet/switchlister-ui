@@ -3,8 +3,8 @@ import {
   boxcarCP1234,
   boxcarCP1234State,
   hopperBCAX5,
-  hopperBCAX5State,
 } from '../../../test-configuration/FixtureRollingStock';
+import { CarType } from '../../RollingStock';
 
 describe('rolling stock collection', () => {
   let collection: RollingStockCollection;
@@ -42,5 +42,13 @@ describe('rolling stock collection', () => {
     const rollingStock = collection.remove(boxcarCP1234.id);
     expect(collection.count).toEqual(0);
     expect(rollingStock).toEqual(boxcarCP1234);
+  });
+  it('contains rolling stock of type XM', () => {
+    const containsCarType = collection.containsRollingStockOfType(CarType.XM);
+    expect(containsCarType).toEqual(true);
+  });
+  it('does not contain rolling stock of type HT', () => {
+    const containsCarType = collection.containsRollingStockOfType(CarType.HT);
+    expect(containsCarType).toEqual(false);
   });
 });
