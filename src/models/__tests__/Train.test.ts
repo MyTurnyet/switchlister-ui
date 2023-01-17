@@ -1,5 +1,6 @@
 import { Train } from '../Train';
 import { boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
+import { Station } from '../Station';
 
 describe('Train', () => {
   let train: Train;
@@ -21,6 +22,9 @@ describe('Train', () => {
     });
     it('has no attached cars', () => {
       expect(train.rollingStock.count).toEqual(0);
+    });
+    it('has no location by default', () => {
+      expect(train.currentLocation).toEqual(Station.EMPTY);
     });
   });
 });

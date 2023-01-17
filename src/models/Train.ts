@@ -1,5 +1,6 @@
 import { RollingStockCollection } from './collections/RollingStockCollection';
 import { RollingStock } from './RollingStock';
+import { Station } from './Station';
 
 export interface TrainState {
   id: string;
@@ -9,6 +10,9 @@ export interface TrainState {
 export class Train {
   public static EMPTY_TRAIN = new Train({ id: '', name: 'EMPTY' });
   private rollingStockCollection = new RollingStockCollection([]);
+  get currentLocation(): Station {
+    return Station.EMPTY;
+  }
 
   get rollingStock(): RollingStockCollection {
     return this.rollingStockCollection;
