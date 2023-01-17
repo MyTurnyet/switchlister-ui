@@ -1,5 +1,5 @@
 import { RollingStockCollection } from './collections/RollingStockCollection';
-import { RollingStock } from './RollingStock';
+import { CarType, RollingStock } from './RollingStock';
 import { Station } from './Station';
 
 export interface TrainState {
@@ -33,5 +33,9 @@ export class Train {
 
   moveToStation(nextStation: Station) {
     this.currentTrainStation = nextStation;
+  }
+
+  hasRollingStockOfType(typeToFind: CarType) {
+    return this.rollingStockCollection.containsRollingStockOfType(typeToFind);
   }
 }
