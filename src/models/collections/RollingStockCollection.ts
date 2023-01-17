@@ -29,7 +29,7 @@ export class RollingStockCollection extends ItemCollection<RollingStock> {
     return this.items.some((value) => value.isCarType(carTypeToCheck));
   }
 
-  getCarByType(typeToFind: CarType): RollingStock {
+  findFirstCarWithType(typeToFind: CarType): RollingStock {
     if (!this.containsRollingStockOfType(typeToFind)) {
       return RollingStock.EMPTY;
     }

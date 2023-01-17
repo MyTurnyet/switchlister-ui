@@ -39,7 +39,7 @@ export class Train {
     return this.rollingStockCollection.containsRollingStockOfType(typeToFind);
   }
 
-  findFirstCarByType(typeToFind: CarType) {
-    return this.rollingStockCollection.getCarByType(typeToFind);
+  findFirstCarWithType(typeToFind: CarType) {
+    return this.rollingStockCollection.findFirstCarWithType(typeToFind);
   }
 }

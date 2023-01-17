@@ -53,11 +53,11 @@ describe('rolling stock collection', () => {
   });
   describe('gets car by type', () => {
     it('returns RollingStock.Empty is non-existant', () => {
-      const carReturned: RollingStock = collection.getCarByType(CarType.HT);
+      const carReturned: RollingStock = collection.findFirstCarWithType(CarType.HT);
       expect(carReturned).toEqual(RollingStock.EMPTY);
     });
     it('returns first rolling stock is it matches car type', () => {
-      const carReturned: RollingStock = collection.getCarByType(CarType.XM);
+      const carReturned: RollingStock = collection.findFirstCarWithType(CarType.XM);
       expect(carReturned).toEqual(boxcarCP1234);
     });
   });

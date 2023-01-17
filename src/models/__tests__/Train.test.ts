@@ -31,7 +31,7 @@ describe('Train', () => {
     it('gets first car of type', () => {
       const hasRollingStock: boolean = train.hasRollingStockOfType(CarType.XM);
       expect(hasRollingStock).toEqual(true);
-      const foundCar: RollingStock = train.findFirstCarByType(CarType.XM);
+      const foundCar: RollingStock = train.findFirstCarWithType(CarType.XM);
       expect(foundCar).toEqual(boxcarCP1234);
     });
   });
@@ -44,7 +44,7 @@ describe('Train', () => {
     it('does not have rolling stock of type XM', () => {
       const hasRollingStock: boolean = train.hasRollingStockOfType(CarType.XM);
       expect(hasRollingStock).toEqual(false);
-      expect(train.findFirstCarByType(CarType.XM)).toEqual(RollingStock.EMPTY);
+      expect(train.findFirstCarWithType(CarType.XM)).toEqual(RollingStock.EMPTY);
     });
   });
 });
