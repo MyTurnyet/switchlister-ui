@@ -4,9 +4,13 @@ import { routeLocal } from '../../test-configuration/FixtureRoutes';
 import { Train } from '../Train';
 
 describe('Dispatcher', () => {
-  it('places train at current route starting station', () => {
-    const dispatcher = new Dispatcher(routeLocal);
-    const localSwitcher: Train = createTrainFromState(train1State);
+  let dispatcher: Dispatcher;
+  let localSwitcher: Train;
+  beforeEach(() => {
+    localSwitcher = createTrainFromState(train1State);
+    dispatcher = new Dispatcher(routeLocal);
+  });
+  it('places train at current route starting station when assigned', () => {
     dispatcher.assignTrain(localSwitcher);
     expect(localSwitcher.currentLocation).toEqual(routeLocal.stationsCollection.first());
   });
