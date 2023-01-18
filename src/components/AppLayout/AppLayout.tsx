@@ -58,7 +58,6 @@ const AppHeader = styled.div`
 `;
 const ContentArea = styled.div`
   display: flex;
-  height: auto;
   flex-direction: row;
   margin-left: 5vw;
 `;

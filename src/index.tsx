@@ -13,13 +13,17 @@ if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
 }
 
 const AppContent = styled.div`
-  height: 100vh;
   align-items: center;
   background-color: ${(props) => props.theme.colors.background.appBackground};
   color: ${(props) => props.theme.colors.text.normal};
   display: flex;
   flex-direction: row;
   justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 `;
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

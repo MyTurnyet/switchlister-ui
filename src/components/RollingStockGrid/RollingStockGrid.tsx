@@ -42,8 +42,6 @@ const GridContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  min-height: 85vh;
-  min-width: 90vw;
 `;
 
 const CarContainer = styled.div`
