@@ -1,49 +1,60 @@
 import { Train, TrainState } from '../models/Train';
-import { v4 as uuidv4 } from 'uuid';
-import { StationState } from '../models/Station';
-import { Industry, IndustryState } from '../models/Industry';
+import { IndustryState } from '../models/Industry';
 import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
-import { CarType, RollingStockState } from '../models/RollingStock';
-import { station1State, station2State, station3State, station4State } from './FixtureStations';
+import { CarType } from '../models/RollingStock';
+import { station1State, station3State, station4State } from './FixtureStations';
 import { TrainBuilder } from '../models/TrainBuilder';
+import { IndustryBuilder } from '../models/IndustryBuilder';
 
-export const industry1State: IndustryState = createIndustryState(station1State, 'Industry 1', [
-  CarType.XM,
-  CarType.HT,
-]);
-export const industry2State: IndustryState = createIndustryState(station1State, 'Industry 2', [
-  CarType.XM,
-]);
-export const industry3State: IndustryState = createIndustryState(station1State, 'Industry 3', [
-  CarType.HT,
-]);
-export const industry4State: IndustryState = createIndustryState(station4State, 'Industry 4', [
-  CarType.XMO,
-]);
+const industryBuilder1 = new IndustryBuilder()
+  .stationState(station1State)
+  .name('Industry 1')
+  .servicedCarTypes([CarType.XM, CarType.HT]);
+const industryBuilder2 = new IndustryBuilder()
+  .stationState(station1State)
+  .name('Industry 2')
+  .servicedCarTypes([CarType.XM]);
+const industryBuilder3 = new IndustryBuilder()
+  .stationState(station1State)
+  .name('Industry 3')
+  .servicedCarTypes([CarType.HT]);
+const industryBuilder4 = new IndustryBuilder()
+  .stationState(station4State)
+  .name('Industry 4')
+  .servicedCarTypes([CarType.XMO]);
 
-export const industry5State: IndustryState = createIndustryState(station2State, 'Industry 5', [
-  CarType.XM,
-  CarType.XMO,
-]);
-export const industry6State: IndustryState = createIndustryState(station3State, 'Industry 6', [
-  CarType.All,
-]);
+const industryBuilder5 = new IndustryBuilder()
+  .stationState(station4State)
+  .name('Industry 5')
+  .servicedCarTypes([CarType.XMO, CarType.XM]);
 
-export const industry7State: IndustryState = createIndustryState(
-  station4State,
-  'Industry 7',
-  [CarType.XM, CarType.HT],
-  [boxcarCP1234State, hopperBCAX5State],
-  3,
-);
-export const industry1 = new Industry(industry1State);
-export const industry2 = new Industry(industry2State);
-export const industry3 = new Industry(industry3State);
-export const industry4 = new Industry(industry4State);
+const industryBuilder6 = new IndustryBuilder()
+  .stationState(station3State)
+  .name('Industry 6')
+  .servicedCarTypes([CarType.All]);
+const industryBuilder7 = new IndustryBuilder()
+  .stationState(station4State)
+  .name('Industry 7')
+  .servicedCarTypes([CarType.XM, CarType.HT])
+  .placedCars([boxcarCP1234State, hopperBCAX5State])
+  .maxCarCount(3);
 
-export const industry5 = new Industry(industry5State);
-export const industry6 = new Industry(industry6State);
-export const industry7 = new Industry(industry7State);
+export const industry1State: IndustryState = industryBuilder1.toState();
+export const industry2State: IndustryState = industryBuilder2.toState();
+export const industry3State: IndustryState = industryBuilder3.toState();
+export const industry4State: IndustryState = industryBuilder4.toState();
+export const industry5State: IndustryState = industryBuilder5.toState();
+export const industry6State: IndustryState = industryBuilder6.toState();
+export const industry7State: IndustryState = industryBuilder7.toState();
+
+export const industry1 = industryBuilder1.toIndustry();
+export const industry2 = industryBuilder2.toIndustry();
+export const industry3 = industryBuilder3.toIndustry();
+export const industry4 = industryBuilder4.toIndustry();
+
+export const industry5 = industryBuilder5.toIndustry();
+export const industry6 = industryBuilder6.toIndustry();
+export const industry7 = industryBuilder7.toIndustry();
 
 const trainBuilderLocal = new TrainBuilder().name('Local Express');
 const trainBuilderAnother = new TrainBuilder().name('Another Train');
@@ -54,20 +65,3 @@ export const train1: Train = trainBuilderLocal.toTrain();
 
 export const train2 = trainBuilderAnother.toTrain();
 export const trainToPickUpCars = trainBuilderPickUpCars.toTrain();
-
-function createIndustryState(
-  stationState: StationState,
-  name: string,
-  servicedCarTypes: string[] = [],
-  placedCars: RollingStockState[] = [],
-  maxCarCount = 1,
-): IndustryState {
-  return {
-    id: uuidv4(),
-    maxCarCount,
-    name,
-    stationId: stationState.id,
-    placedCars,
-    servicedCarTypes,
-  };
-}
