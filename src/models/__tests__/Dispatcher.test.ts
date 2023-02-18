@@ -14,4 +14,5 @@ describe('Dispatcher', () => {
     dispatcher.assignTrain(localSwitcher);
     expect(localSwitcher.currentLocation).toEqual(routeLocal.stationsCollection.first());
   });
+  it('finds first car available', () => {});
 });

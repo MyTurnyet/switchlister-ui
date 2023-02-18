@@ -6,6 +6,7 @@ import {
   station1State,
   station3,
   station3State,
+  StationBuilder,
   westBlock,
 } from '../../../test-configuration/FixtureStations';
 
@@ -64,12 +65,12 @@ describe('Station Collection', () => {
       );
     });
     it('throws when getting stationAfter', () => {
-      expect(() => emptyCollection.stationAfter(Station.EMPTY)).toThrowError(
+      expect(() => emptyCollection.stationAfter(StationBuilder.EMPTY)).toThrowError(
         new Error('stationAfter() call fails when StationCollection is empty'),
       );
     });
     it('throws when check station isLast', () => {
-      expect(() => emptyCollection.isLast(Station.EMPTY)).toThrowError(
+      expect(() => emptyCollection.isLast(StationBuilder.EMPTY)).toThrowError(
         new Error('Collection is empty and has no last station'),
       );
     });

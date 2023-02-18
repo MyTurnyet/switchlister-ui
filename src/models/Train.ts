@@ -1,6 +1,7 @@
 import { RollingStockCollection } from './collections/RollingStockCollection';
 import { CarType, RollingStock } from './RollingStock';
 import { Station } from './Station';
+import { StationBuilder } from '../test-configuration/FixtureStations';
 
 export interface TrainState {
   id: string;
@@ -10,7 +11,7 @@ export interface TrainState {
 export class Train {
   public static EMPTY_TRAIN = new Train({ id: '', name: 'EMPTY' });
   private rollingStockCollection = new RollingStockCollection([]);
-  private currentTrainStation: Station = Station.EMPTY;
+  private currentTrainStation: Station = StationBuilder.EMPTY;
   get currentLocation(): Station {
     return this.currentTrainStation;
   }

@@ -14,6 +14,43 @@ export const station2 = new Station(station2State);
 export const station3 = new Station(station3State);
 export const station4 = new Station(station4State);
 
+const emptyStationState = { block: '', id: '', name: '' };
+
+export class StationBuilder {
+  public static EMPTY: Station = new StationBuilder().toStation();
+  private name = '';
+  private block = '';
+
+  private uuid = uuidv4();
+  private defaultStationState: StationState;
+
+  constructor(defaultStationState: StationState = emptyStationState) {
+    this.defaultStationState = defaultStationState;
+  }
+
+  stationName(value: string): this {
+    this.name = value;
+    return this;
+  }
+
+  blockName(value: string): this {
+    this.block = value;
+    return this;
+  }
+
+  toStation(): Station {
+    return new Station(this.toState());
+  }
+
+  toState(): StationState {
+    return {
+      id: this.uuid,
+      name: this.name,
+      block: this.block,
+    };
+  }
+}
+
 export function createStationState(name: string, block: string): StationState {
   return {
     id: uuidv4(),

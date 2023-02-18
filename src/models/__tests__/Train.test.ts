@@ -1,7 +1,7 @@
 import { Train } from '../Train';
 import { boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
 import { Station } from '../Station';
-import { station1 } from '../../test-configuration/FixtureStations';
+import { station1, StationBuilder } from '../../test-configuration/FixtureStations';
 import { CarType, RollingStock } from '../RollingStock';
 
 describe('Train', () => {
@@ -13,7 +13,7 @@ describe('Train', () => {
     expect(train.name).toEqual('train name');
   });
   it('has no station by default', () => {
-    expect(train.currentLocation).toEqual(Station.EMPTY);
+    expect(train.currentLocation).toEqual(StationBuilder.EMPTY);
   });
   it('can be moved to another station', () => {
     train.moveToStation(station1);

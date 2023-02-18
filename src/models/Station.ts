@@ -5,7 +5,6 @@ export interface StationState {
 }
 
 export class Station {
-  static EMPTY: Station = new Station({ block: '', id: '', name: '' });
   constructor(private stationState: StationState) {}
   get id(): string {
     return this.stationState.id;
