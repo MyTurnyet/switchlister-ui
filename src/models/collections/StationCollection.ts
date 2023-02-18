@@ -1,5 +1,6 @@
 import { ItemCollection } from './ItemCollection';
 import { Station, StationState } from '../Station';
+import { StationBuilder } from '../StationBuilder';
 
 export class StationCollection extends ItemCollection<Station> {
   get blockNames(): string[] {
@@ -7,8 +8,8 @@ export class StationCollection extends ItemCollection<Station> {
   }
 
   static createFromStationStateArray(stationStateList: StationState[]): StationCollection {
-    const stations = stationStateList.map(
-      (stationState: StationState) => new Station(stationState),
+    const stations = stationStateList.map((stationState: StationState) =>
+      new StationBuilder(stationState).toStation(),
     );
     return new StationCollection(stations);
   }

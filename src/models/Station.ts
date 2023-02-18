@@ -1,7 +1,7 @@
 export interface StationState {
+  block: string;
   id: string;
   name: string;
-  block: string;
 }
 
 export class Station {

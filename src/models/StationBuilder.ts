@@ -13,13 +13,18 @@ export class StationBuilder {
     this.state = deepCopy(defaultStationState);
   }
 
-  stationName(value: string): this {
-    this.state.name = value;
+  blockName(value: string): this {
+    this.state.block = value;
     return this;
   }
 
-  blockName(value: string): this {
-    this.state.block = value;
+  id(stationId: string): this {
+    this.state.id = stationId;
+    return this;
+  }
+
+  stationName(value: string): this {
+    this.state.name = value;
     return this;
   }
 
