@@ -4,11 +4,12 @@ import { Station } from '../Station';
 import { station1 } from '../../test-configuration/FixtureStations';
 import { CarType, RollingStock } from '../RollingStock';
 import { StationBuilder } from '../StationBuilder';
+import { TrainBuilder } from '../TrainBuilder';
 
 describe('Train', () => {
   let train: Train;
   beforeEach(() => {
-    train = new Train({ id: 'foo!', name: 'train name' });
+    train = new TrainBuilder().name('train name').toTrain();
   });
   it('always has a name', () => {
     expect(train.name).toEqual('train name');

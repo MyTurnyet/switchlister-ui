@@ -1,5 +1,5 @@
 import { TrainCollection } from '../TrainCollection';
-import { Train, TrainState } from '../../Train';
+import { TrainState } from '../../Train';
 import {
   train1,
   train1State,

@@ -12,7 +12,9 @@ export class TrainCollection extends ItemCollection<Train> {
   }
 
   static createFromTrainStateArray(trainsStateArray: TrainState[]): TrainCollection {
-    const trains = trainsStateArray.map((trainsState: TrainState) => new Train(trainsState));
+    const trains = trainsStateArray.map((trainsState: TrainState) =>
+      new TrainBuilder(trainsState).toTrain(),
+    );
     return new TrainCollection(trains);
   }
 }
