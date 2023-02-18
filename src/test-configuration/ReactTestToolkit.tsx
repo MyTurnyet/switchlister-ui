@@ -15,6 +15,7 @@ import { Industry } from '../models/Industry';
 import { FakeIndustriesContext } from './FakeIndustriesContext';
 import { FakeTrainRoutesDataContext } from './FakeRoutesContext';
 import { TrainRoute } from '../models/TrainRoute';
+import { TrainBuilder } from '../models/TrainBuilder';
 
 export function clickButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -101,7 +102,7 @@ export function wrapWithFakeRollingStockContext(
 
 export function wrapWithFakeTrainContext(
   trainsToReturn: Train[] = [],
-  trainWithIdToReturn: Train = Train.EMPTY_TRAIN,
+  trainWithIdToReturn: Train = TrainBuilder.EMPTY_TRAIN,
   children: JSX.Element,
 ) {
   return (

@@ -6,13 +6,14 @@ import {
   train2,
   train2State,
 } from '../../../test-configuration/FixtureTrains';
+import { TrainBuilder } from '../../TrainBuilder';
 
 describe('Train Collection', () => {
   describe('find by id', () => {
     it('returns EMPTY train if not found', () => {
       const collection = new TrainCollection([]);
       const train = collection.findWithId('fooo!');
-      expect(train).toEqual(Train.EMPTY_TRAIN);
+      expect(train).toEqual(TrainBuilder.EMPTY_TRAIN);
     });
     it('returns matching train by id', () => {
       const collectionWithMatching = new TrainCollection([train1, train2]);

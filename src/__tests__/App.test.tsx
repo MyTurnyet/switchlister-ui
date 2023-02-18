@@ -5,6 +5,7 @@ import { renderWithRouter, wrapWithFakeTrainContext } from '../test-configuratio
 import { ThemeProvider } from 'styled-components';
 import { mainTheme } from '../themes/MainTheme';
 import { Train } from '../models/Train';
+import { TrainBuilder } from '../models/TrainBuilder';
 
 describe('App', () => {
   let app: RenderResult;
@@ -12,7 +13,7 @@ describe('App', () => {
   beforeEach(() => {
     app = renderWithRouter(
       <ThemeProvider theme={mainTheme}>
-        {wrapWithFakeTrainContext([], Train.EMPTY_TRAIN, <App />)}
+        {wrapWithFakeTrainContext([], TrainBuilder.EMPTY_TRAIN, <App />)}
       </ThemeProvider>,
     );
   });

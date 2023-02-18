@@ -10,10 +10,11 @@ import {
 import { industry1, industry2, industry3, train1 } from '../../../test-configuration/FixtureTrains';
 import { routeLocal } from '../../../test-configuration/FixtureRoutes';
 import { TrainRoute } from '../../../models/TrainRoute';
+import { TrainBuilder } from '../../../models/TrainBuilder';
 
 function renderRoutePageComponent(
   initialPath: string,
-  trainToRenderWithId: Train = Train.EMPTY_TRAIN,
+  trainToRenderWithId: Train = TrainBuilder.EMPTY_TRAIN,
   routeToRender: TrainRoute = TrainRoute.EMPTY_ROUTE,
 ) {
   return renderWithRouter(

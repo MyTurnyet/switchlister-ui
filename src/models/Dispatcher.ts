@@ -1,8 +1,9 @@
 import { TrainRoute } from './TrainRoute';
 import { Train } from './Train';
+import { TrainBuilder } from './TrainBuilder';
 
 export class Dispatcher {
-  private assignedTrain: Train = Train.EMPTY_TRAIN;
+  private assignedTrain: Train = TrainBuilder.EMPTY_TRAIN;
 
   constructor(private trainRoute: TrainRoute) {}
 

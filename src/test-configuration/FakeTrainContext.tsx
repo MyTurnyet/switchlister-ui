@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { TrainsContext } from '../data/TrainsContext';
 import { Train } from '../models/Train';
 import { TrainCollection } from '../models/collections/TrainCollection';
+import { TrainBuilder } from '../models/TrainBuilder';
 
 export interface FakeTrainContextProps extends PropsWithChildren {
   trainsToReturn: Train[];
@@ -9,7 +10,7 @@ export interface FakeTrainContextProps extends PropsWithChildren {
 }
 
 const defaultProps: FakeTrainContextProps = {
-  trainToReturnById: Train.EMPTY_TRAIN,
+  trainToReturnById: TrainBuilder.EMPTY_TRAIN,
   trainsToReturn: [],
 };
 
