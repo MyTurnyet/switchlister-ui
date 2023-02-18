@@ -7,10 +7,11 @@ import {
   wrapWithFakeTrainRoutesContext,
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
-import { industry1, industry2, industry3, train1 } from '../../../test-configuration/FixtureTrains';
+import { train1 } from '../../../test-configuration/FixtureTrains';
 import { routeLocal } from '../../../test-configuration/FixtureRoutes';
 import { TrainRoute } from '../../../models/TrainRoute';
 import { TrainBuilder } from '../../../models/TrainBuilder';
+import { industry1, industry2, industry3 } from '../../../test-configuration/FixtureIndustries';
 
 function renderRoutePageComponent(
   initialPath: string,

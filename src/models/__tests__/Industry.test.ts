@@ -1,13 +1,13 @@
+import { CarType, RollingStock } from '../RollingStock';
+import { boxcarBN9876, boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
+import { Industry } from '../Industry';
+import { station1 } from '../../test-configuration/FixtureStations';
 import {
   industry1,
   industry1State,
   industry2,
   industry7State,
-} from '../../test-configuration/FixtureTrains';
-import { CarType, RollingStock } from '../RollingStock';
-import { boxcarBN9876, boxcarCP1234 } from '../../test-configuration/FixtureRollingStock';
-import { Industry } from '../Industry';
-import { station1 } from '../../test-configuration/FixtureStations';
+} from '../../test-configuration/FixtureIndustries';
 
 describe('Industry', () => {
   describe('data', () => {

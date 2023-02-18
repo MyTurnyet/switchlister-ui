@@ -10,7 +10,7 @@ import {
   industry5State,
   industry6State,
   industry7State,
-} from '../../../test-configuration/FixtureTrains';
+} from '../../../test-configuration/FixtureIndustries';
 
 describe('Industries api', () => {
   describe('GET', () => {

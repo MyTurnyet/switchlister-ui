@@ -3,14 +3,14 @@ import {
   IndustryCollectionBuilder,
   NeededCarTypesDictionary,
 } from '../IndustryCollection';
+import { station2, station4 } from '../../../test-configuration/FixtureStations';
 import {
   industry1,
   industry1State,
   industry4,
   industry4State,
   industry5State,
-} from '../../../test-configuration/FixtureTrains';
-import { station2, station4 } from '../../../test-configuration/FixtureStations';
+} from '../../../test-configuration/FixtureIndustries';
 
 describe('Industry Collection', () => {
   describe('creates collection', () => {

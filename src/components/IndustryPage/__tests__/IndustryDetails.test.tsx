@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import { IndustryDetails } from '../IndustryDetails';
-import { industry6, industry7 } from '../../../test-configuration/FixtureTrains';
 import {
   wrapWithFakeStationsContext,
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
 import { Industry } from '../../../models/Industry';
+import { industry6, industry7 } from '../../../test-configuration/FixtureIndustries';
 
 describe('Industry Details', () => {
   let industryDetails: RenderResult;

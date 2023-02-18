@@ -4,13 +4,13 @@ import { IndustriesProvider, useIndustryData } from '../IndustriesContext';
 import { mswServer } from '../../api-mocks/msw-server';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 import { Industry, IndustryState } from '../../models/Industry';
+import { station1, station4 } from '../../test-configuration/FixtureStations';
 import {
   industry1State,
   industry2State,
   industry3State,
   industry4State,
-} from '../../test-configuration/FixtureTrains';
-import { station1, station4 } from '../../test-configuration/FixtureStations';
+} from '../../test-configuration/FixtureIndustries';
 
 const IndustryContextTesConsumer = () => {
   const { refreshIndustriesData, industries, industriesAtStation } = useIndustryData();
