@@ -1,6 +1,7 @@
 import { ItemCollection } from './ItemCollection';
 import { Industry, IndustryState } from '../Industry';
 import { Station } from '../Station';
+import { IndustryBuilder } from '../IndustryBuilder';
 
 export interface NeededCarTypesDictionary {
   [index: string]: number;
@@ -17,7 +18,7 @@ export class IndustryCollection extends ItemCollection<Industry> {
   findById(idForSearch: string): Industry {
     const foundIndustry = this.items.find((industry: Industry) => industry.id === idForSearch);
     if (foundIndustry === undefined) {
-      return Industry.EMPTY;
+      return IndustryBuilder.EMPTY_INDUSTRY;
     }
     return foundIndustry;
   }

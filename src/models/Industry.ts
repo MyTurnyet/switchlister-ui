@@ -12,14 +12,6 @@ export interface IndustryState {
 
 export class Industry {
   private readonly placeCarCollection: RollingStockCollection;
-  static EMPTY: Industry = new Industry({
-    id: '',
-    maxCarCount: 0,
-    name: '',
-    placedCars: [],
-    servicedCarTypes: [],
-    stationId: '',
-  });
   constructor(private industryState: IndustryState) {
     this.placeCarCollection = RollingStockCollection.createFromRollingStockStateArray(
       this.industryState.placedCars,
