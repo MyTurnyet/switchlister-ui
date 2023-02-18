@@ -5,7 +5,7 @@ import { Industry, IndustryState } from '../models/Industry';
 import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
 import { CarType, RollingStockState } from '../models/RollingStock';
 import { station1State, station2State, station3State, station4State } from './FixtureStations';
-import { deepCopy } from '../state-management/helpers';
+import { TrainBuilder } from '../models/TrainBuilder';
 
 export const industry1State: IndustryState = createIndustryState(station1State, 'Industry 1', [
   CarType.XM,
@@ -45,44 +45,15 @@ export const industry5 = new Industry(industry5State);
 export const industry6 = new Industry(industry6State);
 export const industry7 = new Industry(industry7State);
 
-const emptyTrainState: TrainState = { id: '', name: 'EMPTY' };
-
-export class TrainBuilder {
-  public static EMPTY_TRAIN = new Train(emptyTrainState);
-  private readonly state: TrainState;
-
-  constructor(defaultTrainState: TrainState = emptyTrainState) {
-    this.state = deepCopy(defaultTrainState);
-  }
-
-  name(trainName: string): this {
-    this.state.name = trainName;
-    return this;
-  }
-
-  toTrain(): Train {
-    return new Train(this.toState());
-  }
-
-  toState(): TrainState {
-    if (this.state.id === '') {
-      this.state.id = uuidv4();
-    }
-    return this.state;
-  }
-}
-
-// export const train1State: TrainState = createTrainState('Local Express');
 const trainBuilderLocal = new TrainBuilder().name('Local Express');
 const trainBuilderAnother = new TrainBuilder().name('Another Train');
 const trainBuilderPickUpCars = new TrainBuilder().name('CarsToPickUp');
 export const train1State: TrainState = trainBuilderLocal.toState();
 export const train2State: TrainState = trainBuilderAnother.toState();
-export const trainPickUpCarsState: TrainState = trainBuilderPickUpCars.toState();
 export const train1: Train = trainBuilderLocal.toTrain();
 
-export const train2 = new Train(train2State);
-export const trainToPickUpCars = new Train(trainPickUpCarsState);
+export const train2 = trainBuilderAnother.toTrain();
+export const trainToPickUpCars = trainBuilderPickUpCars.toTrain();
 
 function createIndustryState(
   stationState: StationState,
@@ -98,12 +69,5 @@ function createIndustryState(
     stationId: stationState.id,
     placedCars,
     servicedCarTypes,
-  };
-}
-
-function createTrainState(name: string): TrainState {
-  return {
-    id: uuidv4(),
-    name,
   };
 }
