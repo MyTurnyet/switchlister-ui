@@ -65,12 +65,12 @@ describe('Station Collection', () => {
       );
     });
     it('throws when getting stationAfter', () => {
-      expect(() => emptyCollection.stationAfter(StationBuilder.EMPTY)).toThrowError(
+      expect(() => emptyCollection.stationAfter(StationBuilder.EMPTY_STATION)).toThrowError(
         new Error('stationAfter() call fails when StationCollection is empty'),
       );
     });
     it('throws when check station isLast', () => {
-      expect(() => emptyCollection.isLast(StationBuilder.EMPTY)).toThrowError(
+      expect(() => emptyCollection.isLast(StationBuilder.EMPTY_STATION)).toThrowError(
         new Error('Collection is empty and has no last station'),
       );
     });

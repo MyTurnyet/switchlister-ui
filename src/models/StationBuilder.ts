@@ -1,27 +1,25 @@
 import { Station, StationState } from './Station';
 import { v4 as uuidv4 } from 'uuid';
+import { deepCopy } from '../state-management/helpers';
 
 const emptyStationState = { block: '', id: '', name: '' };
 
 export class StationBuilder {
-  public static EMPTY: Station = new StationBuilder().toStation();
-  private name = '';
-  private block = '';
+  public static EMPTY_STATION: Station = new StationBuilder().toStation();
 
-  private uuid = uuidv4();
-  private defaultStationState: StationState;
+  private readonly state: StationState;
 
   constructor(defaultStationState: StationState = emptyStationState) {
-    this.defaultStationState = defaultStationState;
+    this.state = deepCopy(defaultStationState);
   }
 
   stationName(value: string): this {
-    this.name = value;
+    this.state.name = value;
     return this;
   }
 
   blockName(value: string): this {
-    this.block = value;
+    this.state.block = value;
     return this;
   }
 
@@ -30,10 +28,9 @@ export class StationBuilder {
   }
 
   toState(): StationState {
-    return {
-      id: this.uuid,
-      name: this.name,
-      block: this.block,
-    };
+    if (this.state.id === '') {
+      this.state.id = uuidv4();
+    }
+    return this.state;
   }
 }
