@@ -6,7 +6,6 @@ import {
   rollingStockIdsMatch,
   RollingStockState,
 } from '../RollingStock';
-import { industry1 } from '../../test-configuration/FixtureIndustries';
 
 export class RollingStockCollection extends ItemCollection<RollingStock> {
   static createFromRollingStockStateArray(stateArray: RollingStockState[]): RollingStockCollection {
