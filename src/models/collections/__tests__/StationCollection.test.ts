@@ -6,9 +6,9 @@ import {
   station1State,
   station3,
   station3State,
-  StationBuilder,
   westBlock,
 } from '../../../test-configuration/FixtureStations';
+import { StationBuilder } from '../../StationBuilder';
 
 describe('Station Collection', () => {
   let stationCollection: StationCollection;

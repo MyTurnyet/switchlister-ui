@@ -1,7 +1,7 @@
 import { RollingStockCollection } from './collections/RollingStockCollection';
 import { CarType, RollingStock } from './RollingStock';
 import { Station } from './Station';
-import { StationBuilder } from '../test-configuration/FixtureStations';
+import { StationBuilder } from './StationBuilder';
 
 export interface TrainState {
   id: string;
