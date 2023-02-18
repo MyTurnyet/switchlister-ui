@@ -6,12 +6,13 @@ export interface StationState {
 
 export class Station {
   constructor(private stationState: StationState) {}
-  get id(): string {
-    return this.stationState.id;
-  }
 
   get block(): string {
     return this.stationState.block;
+  }
+
+  get id(): string {
+    return this.stationState.id;
   }
 
   get name(): string {

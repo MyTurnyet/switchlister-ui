@@ -11,35 +11,35 @@ export interface TrainState {
 export class Train {
   private rollingStockCollection = new RollingStockCollection([]);
   private currentTrainStation: Station = StationBuilder.EMPTY_STATION;
+  constructor(private trainState: TrainState) {}
+
   get currentLocation(): Station {
     return this.currentTrainStation;
+  }
+  get id(): string {
+    return this.trainState.id;
+  }
+  get name(): string {
+    return this.trainState.name;
   }
 
   get rollingStock(): RollingStockCollection {
     return this.rollingStockCollection;
   }
-  constructor(private trainState: TrainState) {}
-  get id(): string {
-    return this.trainState.id;
-  }
 
-  get name(): string {
-    return this.trainState.name;
-  }
-
-  pickUp(carToPickUp: RollingStock) {
-    this.rollingStock.addCar(carToPickUp);
-  }
-
-  moveToStation(nextStation: Station) {
-    this.currentTrainStation = nextStation;
+  findFirstCarWithType(typeToFind: CarType) {
+    return this.rollingStockCollection.findFirstCarWithType(typeToFind);
   }
 
   hasRollingStockOfType(typeToFind: CarType) {
     return this.rollingStockCollection.containsRollingStockOfType(typeToFind);
   }
 
-  findFirstCarWithType(typeToFind: CarType) {
-    return this.rollingStockCollection.findFirstCarWithType(typeToFind);
+  moveToStation(nextStation: Station) {
+    this.currentTrainStation = nextStation;
+  }
+
+  pickUp(carToPickUp: RollingStock) {
+    this.rollingStock.addCar(carToPickUp);
   }
 }
