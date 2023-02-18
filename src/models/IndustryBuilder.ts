@@ -15,7 +15,7 @@ const emptyIndustry: IndustryState = {
 
 export class IndustryBuilder {
   public static EMPTY_INDUSTRY = new IndustryBuilder().toIndustry();
-  private readonly state: IndustryState;
+  private state: IndustryState;
 
   constructor(industryState: IndustryState = emptyIndustry) {
     this.state = deepCopy(industryState);

@@ -1,5 +1,12 @@
 import { ItemCollection } from './ItemCollection';
-import { CarType, RollingStock, RollingStockId, RollingStockState } from '../RollingStock';
+import {
+  CarType,
+  RollingStock,
+  RollingStockId,
+  rollingStockIdsMatch,
+  RollingStockState,
+} from '../RollingStock';
+import { industry1 } from '../../test-configuration/FixtureIndustries';
 
 export class RollingStockCollection extends ItemCollection<RollingStock> {
   static createFromRollingStockStateArray(stateArray: RollingStockState[]): RollingStockCollection {
@@ -14,13 +21,11 @@ export class RollingStockCollection extends ItemCollection<RollingStock> {
   }
 
   remove(rollingStockId: RollingStockId): RollingStock {
-    const indexToRemove: number = this.items.findIndex(
-      (car: RollingStock) => car.id === rollingStockId,
+    const indexToRemove: number = this.items.findIndex((car: RollingStock) =>
+      rollingStockIdsMatch(car.id, rollingStockId),
     );
     if (indexToRemove < 0) return RollingStock.EMPTY;
-    const removedRollingStock: RollingStock = this.items.find(
-      (car: RollingStock) => car.id === rollingStockId,
-    )!;
+    const removedRollingStock: RollingStock = this.items[indexToRemove];
     this.items.splice(indexToRemove, 1);
     return removedRollingStock;
   }

@@ -21,6 +21,14 @@ export interface RollingStockState {
   loaded: boolean;
 }
 
+export function rollingStockIdsMatch(carId: RollingStockId, idToMatch: RollingStockId): boolean {
+  return (
+    carId.uuid === idToMatch.uuid &&
+    carId.roadName === idToMatch.roadName &&
+    carId.roadNumber === idToMatch.roadNumber
+  );
+}
+
 export class RollingStock {
   static EMPTY: RollingStock = new RollingStock({
     carType: CarType.All,

@@ -8,6 +8,7 @@ import {
   industry2,
   industry7State,
 } from '../../test-configuration/FixtureIndustries';
+import { IndustryBuilder } from '../IndustryBuilder';
 
 describe('Industry', () => {
   describe('data', () => {
@@ -37,8 +38,8 @@ describe('Industry', () => {
     let industryWithNoCars: Industry;
     let industryWith2Cars: Industry;
     beforeEach(() => {
-      industryWithNoCars = new Industry(industry1State);
-      industryWith2Cars = new Industry(industry7State);
+      industryWithNoCars = industry1;
+      industryWith2Cars = new IndustryBuilder(industry7State).toIndustry();
     });
     it('returns an empty collection ', () => {
       expect(industryWithNoCars.placedCars.isEmpty()).toEqual(true);

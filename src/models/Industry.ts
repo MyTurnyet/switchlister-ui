@@ -1,5 +1,6 @@
 import { CarType, RollingStock, RollingStockState } from './RollingStock';
 import { RollingStockCollection } from './collections/RollingStockCollection';
+import { log } from 'util';
 
 export interface IndustryState {
   id: string;

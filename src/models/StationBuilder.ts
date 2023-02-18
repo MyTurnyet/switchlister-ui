@@ -7,7 +7,7 @@ const emptyStationState = { block: '', id: '', name: '' };
 export class StationBuilder {
   public static EMPTY_STATION: Station = new StationBuilder().toStation();
 
-  private readonly state: StationState;
+  private state: StationState;
 
   constructor(defaultStationState: StationState = emptyStationState) {
     this.state = deepCopy(defaultStationState);
