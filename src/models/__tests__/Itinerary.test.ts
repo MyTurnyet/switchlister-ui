@@ -1,5 +1,5 @@
 import { Itinerary } from '../Itinerary';
-import { createTrainFromState, train1State } from '../../test-configuration/FixtureTrains';
+import { train1 } from '../../test-configuration/FixtureTrains';
 import { RouteState, TrainRoute } from '../TrainRoute';
 import { Train } from '../Train';
 import { station1, station1State } from '../../test-configuration/FixtureStations';
@@ -11,7 +11,7 @@ describe('Itinerary', () => {
   const route = new TrainRoute(routeState);
 
   beforeEach(() => {
-    train = createTrainFromState(train1State);
+    train = train1;
     itinerary = new Itinerary(train, route);
   });
   it('takes a train and a route', () => {

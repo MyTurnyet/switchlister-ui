@@ -11,7 +11,7 @@ export interface TrainState {
 export class Train {
   public static EMPTY_TRAIN = new Train({ id: '', name: 'EMPTY' });
   private rollingStockCollection = new RollingStockCollection([]);
-  private currentTrainStation: Station = StationBuilder.EMPTY;
+  private currentTrainStation: Station = StationBuilder.EMPTY_STATION;
   get currentLocation(): Station {
     return this.currentTrainStation;
   }

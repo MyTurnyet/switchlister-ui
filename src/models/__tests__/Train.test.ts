@@ -14,7 +14,7 @@ describe('Train', () => {
     expect(train.name).toEqual('train name');
   });
   it('has no station by default', () => {
-    expect(train.currentLocation).toEqual(StationBuilder.EMPTY);
+    expect(train.currentLocation).toEqual(StationBuilder.EMPTY_STATION);
   });
   it('can be moved to another station', () => {
     train.moveToStation(station1);
