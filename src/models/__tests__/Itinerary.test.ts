@@ -33,6 +33,10 @@ describe('Itinerary', () => {
     it('is at last station', () => {
       expect(itinerary.isAtLastStation()).toEqual(true);
     });
+    it('stays at same station when asked to move to next', () => {
+      itinerary.moveToNextStation();
+      expect(itinerary.currentTrainLocation()).toEqual(station1);
+    });
   });
   describe('with multiple stations', () => {
     const routeState: RouteState = { id: '', name: '', stations: [station1State, station2State] };

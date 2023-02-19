@@ -22,7 +22,7 @@ export class Itinerary {
   }
 
   moveToNextStation(): void {
-    const nextStation = this.route.stations.stationAfter(this.trainLocation);
-    this.trainLocation = nextStation;
+    if (this.route.stations.isLast(this.trainLocation)) return;
+    this.trainLocation = this.route.stations.stationAfter(this.trainLocation);
   }
 }
