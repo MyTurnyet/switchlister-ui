@@ -11,6 +11,6 @@ describe('Train Route', () => {
     };
     const route: TrainRoute = new TrainRoute(routeState);
     expect(route.name).toEqual(testRouteName);
-    expect(route.stationsCollection.count).toEqual(1);
+    expect(route.stations.count).toEqual(1);
   });
 });

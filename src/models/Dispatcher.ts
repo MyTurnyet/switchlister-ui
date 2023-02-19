@@ -9,6 +9,6 @@ export class Dispatcher {
 
   assignTrain(assignedTrain: Train) {
     this.assignedTrain = assignedTrain;
-    this.assignedTrain.moveToStation(this.trainRoute.stationsCollection.first());
+    this.assignedTrain.moveToStation(this.trainRoute.stations.first());
   }
 }

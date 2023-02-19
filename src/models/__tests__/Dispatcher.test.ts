@@ -12,7 +12,7 @@ describe('Dispatcher', () => {
   });
   it('places train at current route starting station when assigned', () => {
     dispatcher.assignTrain(localSwitcher);
-    expect(localSwitcher.currentLocation).toEqual(routeLocal.stationsCollection.first());
+    expect(localSwitcher.currentLocation).toEqual(routeLocal.stations.first());
   });
   it('finds first car available', () => {});
 });

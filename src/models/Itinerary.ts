@@ -6,7 +6,7 @@ export class Itinerary {
   private trainLocation: Station;
 
   constructor(private train: Train, private route: TrainRoute) {
-    this.trainLocation = route.stationsCollection.first();
+    this.trainLocation = route.stations.first();
   }
 
   get name(): string {
@@ -18,6 +18,11 @@ export class Itinerary {
   }
 
   isAtLastStation(): boolean {
-    return this.route.stationsCollection.isLast(this.currentTrainLocation());
+    return this.route.stations.isLast(this.currentTrainLocation());
+  }
+
+  moveToNextStation(): void {
+    const nextStation = this.route.stations.stationAfter(this.trainLocation);
+    this.trainLocation = nextStation;
   }
 }

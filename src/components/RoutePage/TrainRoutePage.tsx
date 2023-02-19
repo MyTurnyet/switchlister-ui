@@ -35,7 +35,7 @@ export const TrainRouteDetails = (props: { trainRoute: TrainRoute }) => {
   return (
     <RouteDetailsContainer>
       <RouteName>{props.trainRoute.name}</RouteName>
-      {props.trainRoute.stationsCollection.map((station: Station) => (
+      {props.trainRoute.stations.map((station: Station) => (
         <StationDetails station={station} key={station.name} />
       ))}
     </RouteDetailsContainer>

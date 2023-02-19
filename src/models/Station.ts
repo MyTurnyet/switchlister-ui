@@ -18,4 +18,13 @@ export class Station {
   get name(): string {
     return this.stationState.name;
   }
+
+  isEqualTo(other: Station): boolean {
+    return (
+      other !== undefined &&
+      other.id === this.id &&
+      other.name === this.name &&
+      other.block == this.block
+    );
+  }
 }

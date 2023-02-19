@@ -16,13 +16,13 @@ export class StationCollection extends ItemCollection<Station> {
     return this.items[0];
   }
 
-  isLast(station: Station) {
+  isLast(station: Station): boolean {
     if (this.isEmpty()) {
       throw new Error('Collection is empty and has no last station');
     }
     const lastStation = this.items.at(-1);
 
-    return lastStation !== undefined && this.stationsMatch(lastStation, station);
+    return lastStation!.isEqualTo(station);
   }
 
   stationAfter(currentStation: Station) {

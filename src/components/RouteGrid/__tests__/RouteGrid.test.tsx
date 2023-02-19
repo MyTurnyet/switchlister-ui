@@ -21,7 +21,7 @@ describe('Route Grid', () => {
     expect(trainGrid).toHaveElementsWithText(
       'All Train Routes',
       routeLocal.name,
-      routeLocal.stationsCollection.first().name,
+      routeLocal.stations.first().name,
     );
   });
   it('navigates when train card clicked', async () => {

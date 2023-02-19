@@ -22,7 +22,7 @@ export class TrainRoute {
     return this.state.name;
   }
 
-  get stationsCollection(): StationCollection {
+  get stations(): StationCollection {
     return StationCollection.createFromStationStateArray(this.state.stations);
   }
 }
