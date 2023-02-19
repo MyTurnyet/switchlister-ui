@@ -55,6 +55,11 @@ describe('Station Collection', () => {
       expect(stationCollection.isLast(station1)).toEqual(false);
       expect(stationCollection.isLast(station3)).toEqual(true);
     });
+    it('removes station from collection', () => {
+      stationCollection.remove(station1);
+      expect(stationCollection.count).toEqual(1);
+      expect(stationCollection.isLast(station3)).toEqual(true);
+    });
   });
 
   describe('when empty', () => {

@@ -32,28 +32,29 @@ export class StationCollection extends ItemCollection<Station> {
     if (this.isLast(currentStation)) {
       throw new Error('Failed trying to get the station after last station');
     }
-    const currentStationIndex = this.getCurrentStationIndex(currentStation);
+    const currentStationIndex = this.getIndexOfStation(currentStation);
     const nextStationIndex = currentStationIndex + 1;
 
     return this.items[nextStationIndex];
   }
 
-  private getCurrentStationIndex(currentStation: Station) {
+  private getIndexOfStation(currentStation: Station): number {
     return this.items.findIndex((value) => value.id === currentStation.id);
-  }
-
-  private stationsMatch(lastStation: Station, station: Station) {
-    return (
-      lastStation.id === station.id &&
-      lastStation.name === station.name &&
-      lastStation.block === station.block
-    );
   }
 
   static createFromStationStateArray(stationStateList: StationState[]): StationCollection {
     const stations = stationStateList.map((stationState: StationState) =>
-      new StationBuilder(stationState).toStation(),
+      new StationBuilder()
+        .stationName(stationState.name)
+        .blockName(stationState.block)
+        .id(stationState.id)
+        .toStation(),
     );
     return new StationCollection(stations);
+  }
+
+  remove(stationToRemove: Station): void {
+    const indexOfStation = this.getIndexOfStation(stationToRemove);
+    this.items.splice(indexOfStation, 1);
   }
 }
