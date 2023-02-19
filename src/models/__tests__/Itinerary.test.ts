@@ -1,32 +1,21 @@
 import { Itinerary } from '../Itinerary';
 import { train1 } from '../../test-configuration/FixtureTrains';
-import { RouteState, TrainRoute } from '../TrainRoute';
 import { Train } from '../Train';
-import {
-  station1,
-  station1State,
-  station2,
-  station2State,
-} from '../../test-configuration/FixtureStations';
+import { station1, station3 } from '../../test-configuration/FixtureStations';
 import { StationCollection } from '../collections/StationCollection';
+import { routeLocal, routeTwoStation } from '../../test-configuration/FixtureRoutes';
 
 describe('Itinerary', () => {
   let train: Train;
   let itinerary: Itinerary;
 
   describe('with only on station', () => {
-    const routeState: RouteState = {
-      id: 'someId',
-      name: 'Local Switcher',
-      stations: [station1State],
-    };
-    const route = new TrainRoute(routeState);
     beforeEach(() => {
       train = train1;
-      itinerary = new Itinerary(train, route);
+      itinerary = new Itinerary(train, routeLocal);
     });
     it('returns correct name', () => {
-      expect(itinerary.name).toEqual('Local Switcher');
+      expect(itinerary.name).toEqual('Local');
     });
     it('current location is first station', () => {
       expect(itinerary.currentTrainLocation()).toEqual(station1);
@@ -45,11 +34,9 @@ describe('Itinerary', () => {
     });
   });
   describe('with multiple stations', () => {
-    const routeState: RouteState = { id: '', name: '', stations: [station1State, station2State] };
-    const route = new TrainRoute(routeState);
     beforeEach(() => {
       train = train1;
-      itinerary = new Itinerary(train, route);
+      itinerary = new Itinerary(train, routeTwoStation);
     });
 
     it('is not at last station', () => {
@@ -57,19 +44,19 @@ describe('Itinerary', () => {
     });
     it('moves to next station', () => {
       itinerary.moveToNextStation();
-      expect(itinerary.currentTrainLocation().isEqualTo(station2));
+      expect(itinerary.currentTrainLocation().isEqualTo(station3));
     });
     it('all stations show as active when at first station', () => {
       const unvisitedStations: StationCollection = itinerary.activeStations();
       expect(unvisitedStations.count).toEqual(2);
       expect(unvisitedStations.first()).toEqual(station1);
-      expect(unvisitedStations.stationAfter(station1)).toEqual(station2);
+      expect(unvisitedStations.stationAfter(station1)).toEqual(station3);
     });
     it('shows only active station after move', () => {
       itinerary.moveToNextStation();
       const unvisitedStations: StationCollection = itinerary.activeStations();
       expect(unvisitedStations.count).toEqual(1);
-      expect(unvisitedStations.first()).toEqual(station2);
+      expect(unvisitedStations.first()).toEqual(station3);
     });
   });
 });

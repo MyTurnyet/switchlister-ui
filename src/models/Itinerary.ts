@@ -25,7 +25,7 @@ export class Itinerary {
 
   moveToNextStation(): void {
     if (this.route.stations.isLast(this.trainLocation)) return;
-    // this.activeStations().remove(this.trainLocation);
+    this.activeStations().remove(this.trainLocation);
     this.trainLocation = this.route.stations.stationAfter(this.trainLocation);
   }
 
