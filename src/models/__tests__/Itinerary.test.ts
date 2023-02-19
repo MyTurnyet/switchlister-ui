@@ -8,6 +8,7 @@ import {
   station2,
   station2State,
 } from '../../test-configuration/FixtureStations';
+import { StationCollection } from '../collections/StationCollection';
 
 describe('Itinerary', () => {
   let train: Train;
@@ -37,6 +38,11 @@ describe('Itinerary', () => {
       itinerary.moveToNextStation();
       expect(itinerary.currentTrainLocation()).toEqual(station1);
     });
+    it('current station is active', () => {
+      const activeStations: StationCollection = itinerary.activeStations();
+      expect(activeStations.count).toEqual(1);
+      expect(activeStations.first()).toEqual(station1);
+    });
   });
   describe('with multiple stations', () => {
     const routeState: RouteState = { id: '', name: '', stations: [station1State, station2State] };
@@ -52,6 +58,18 @@ describe('Itinerary', () => {
     it('moves to next station', () => {
       itinerary.moveToNextStation();
       expect(itinerary.currentTrainLocation().isEqualTo(station2));
+    });
+    it('all stations show as active when at first station', () => {
+      const unvisitedStations: StationCollection = itinerary.activeStations();
+      expect(unvisitedStations.count).toEqual(2);
+      expect(unvisitedStations.first()).toEqual(station1);
+      expect(unvisitedStations.stationAfter(station1)).toEqual(station2);
+    });
+    it('shows only active station after move', () => {
+      itinerary.moveToNextStation();
+      const unvisitedStations: StationCollection = itinerary.activeStations();
+      expect(unvisitedStations.count).toEqual(1);
+      expect(unvisitedStations.first()).toEqual(station2);
     });
   });
 });
