@@ -1,6 +1,5 @@
-import { Station, StationState } from './Station';
+import { StationState } from './Station';
 import { StationCollection } from './collections/StationCollection';
-import { StationBuilder } from './StationBuilder';
 
 export interface RouteState {
   id: string;
@@ -21,10 +20,6 @@ export class TrainRoute {
   }
   get name(): string {
     return this.state.name;
-  }
-
-  get stations(): Station[] {
-    return this.state.stations.map((value) => new StationBuilder(value).toStation());
   }
 
   get stationsCollection(): StationCollection {

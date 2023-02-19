@@ -12,11 +12,11 @@ export const RouteCard = ({ route, handlePress }: RouteCardProps) => {
     <RouteCardContainer onClick={() => handlePress(route)}>
       <TopDisplayRow>
         <NameDiv>{route.name}</NameDiv>
-        <StationCountDiv>{route.stations.length} stations</StationCountDiv>
+        <StationCountDiv>{route.stationsCollection.count} stations</StationCountDiv>
       </TopDisplayRow>
       <BottomDisplayRow>
-        {route.stations.map((station: Station, index: number) => {
-          return <StationNameDiv key={index}>{station.name}</StationNameDiv>;
+        {route.stationsCollection.map((station: Station) => {
+          return <StationNameDiv key={station.name}>{station.name}</StationNameDiv>;
         })}
       </BottomDisplayRow>
     </RouteCardContainer>

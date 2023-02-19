@@ -41,7 +41,7 @@ describe('Train Route Page', () => {
     expect(trainPage).toHaveElementsWithText(
       'Route Profile',
       routeLocal.name,
-      `Station: ${routeLocal.stations[0].name}`,
+      `Station: ${routeLocal.stationsCollection.first().name}`,
       'Industries: (3)',
     );
   });

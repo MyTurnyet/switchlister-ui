@@ -20,8 +20,9 @@ export class StationCollection extends ItemCollection<Station> {
     if (this.isEmpty()) {
       throw new Error('Collection is empty and has no last station');
     }
-    const lastStation = this.items[this.items.length - 1];
-    return lastStation === station;
+    const lastStation = this.items.at(-1);
+
+    return lastStation !== undefined && this.stationsMatch(lastStation, station);
   }
 
   stationAfter(currentStation: Station) {
@@ -39,6 +40,14 @@ export class StationCollection extends ItemCollection<Station> {
 
   private getCurrentStationIndex(currentStation: Station) {
     return this.items.findIndex((value) => value.id === currentStation.id);
+  }
+
+  private stationsMatch(lastStation: Station, station: Station) {
+    return (
+      lastStation.id === station.id &&
+      lastStation.name === station.name &&
+      lastStation.block === station.block
+    );
   }
 
   static createFromStationStateArray(stationStateList: StationState[]): StationCollection {

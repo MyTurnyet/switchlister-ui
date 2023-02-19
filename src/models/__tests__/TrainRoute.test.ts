@@ -1,5 +1,4 @@
 import { RouteState, TrainRoute } from '../TrainRoute';
-import { Station } from '../Station';
 import { station1State } from '../../test-configuration/FixtureStations';
 
 describe('Train Route', () => {
@@ -12,8 +11,6 @@ describe('Train Route', () => {
     };
     const route: TrainRoute = new TrainRoute(routeState);
     expect(route.name).toEqual(testRouteName);
-    const stations: Station[] = route.stations;
-    expect(stations).toHaveLength(1);
     expect(route.stationsCollection.count).toEqual(1);
   });
 });
