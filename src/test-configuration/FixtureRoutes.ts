@@ -17,5 +17,5 @@ export const routeStateTwoStation: RouteState = createRouteState('Two Station Tu
   station3State,
 ]);
 
-export const routeLocal: TrainRoute = new TrainRoute(routeStateLocal);
+export const routeStation1Local: TrainRoute = new TrainRoute(routeStateLocal);
 export const routeTwoStation: TrainRoute = new TrainRoute(routeStateTwoStation);

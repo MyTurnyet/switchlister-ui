@@ -4,35 +4,35 @@ import { station1State, station3State, station4State } from './FixtureStations';
 import { CarType } from '../models/RollingStock';
 import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
 
-const industryBuilder1 = new IndustryBuilder()
+export const industryBuilder1 = new IndustryBuilder()
   .stationState(station1State)
   .name('Industry 1')
-  .servicedCarTypes([CarType.XM, CarType.HT]);
+  .servicedCarTypes(CarType.XM, CarType.HT);
 const industryBuilder2 = new IndustryBuilder()
   .stationState(station1State)
   .name('Industry 2')
-  .servicedCarTypes([CarType.XM]);
+  .servicedCarTypes(CarType.XM);
 const industryBuilder3 = new IndustryBuilder()
   .stationState(station1State)
   .name('Industry 3')
-  .servicedCarTypes([CarType.HT]);
+  .servicedCarTypes(CarType.HT);
 const industryBuilder4 = new IndustryBuilder()
   .stationState(station4State)
   .name('Industry 4')
-  .servicedCarTypes([CarType.XMO]);
+  .servicedCarTypes(CarType.XMO);
 const industryBuilder5 = new IndustryBuilder()
   .stationState(station4State)
   .name('Industry 5')
-  .servicedCarTypes([CarType.XMO, CarType.XM]);
+  .servicedCarTypes(CarType.XMO, CarType.XM);
 const industryBuilder6 = new IndustryBuilder()
   .stationState(station3State)
   .name('Industry 6')
-  .servicedCarTypes([CarType.All]);
+  .servicedCarTypes(CarType.All);
 const industryBuilder7 = new IndustryBuilder()
   .stationState(station4State)
   .name('Industry 7')
-  .servicedCarTypes([CarType.XM, CarType.HT])
-  .placedCars([boxcarCP1234State, hopperBCAX5State])
+  .servicedCarTypes(CarType.XM, CarType.HT)
+  .placedCars(boxcarCP1234State, hopperBCAX5State)
   .maxCarCount(3);
 export const industry1State: IndustryState = industryBuilder1.toState();
 export const industry2State: IndustryState = industryBuilder2.toState();

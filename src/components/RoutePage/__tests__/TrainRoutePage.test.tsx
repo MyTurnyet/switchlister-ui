@@ -8,7 +8,7 @@ import {
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
 import { train1 } from '../../../test-configuration/FixtureTrains';
-import { routeLocal } from '../../../test-configuration/FixtureRoutes';
+import { routeStation1Local } from '../../../test-configuration/FixtureRoutes';
 import { TrainRoute } from '../../../models/TrainRoute';
 import { TrainBuilder } from '../../../models/TrainBuilder';
 import { industry1, industry2, industry3 } from '../../../test-configuration/FixtureIndustries';
@@ -36,12 +36,12 @@ function renderRoutePageComponent(
 
 describe('Train Route Page', () => {
   it('renders with a passed id', async () => {
-    const initialPath = `/routes/${routeLocal.id}`;
-    const trainPage = renderRoutePageComponent(initialPath, train1, routeLocal);
+    const initialPath = `/routes/${routeStation1Local.id}`;
+    const trainPage = renderRoutePageComponent(initialPath, train1, routeStation1Local);
     expect(trainPage).toHaveElementsWithText(
       'Route Profile',
-      routeLocal.name,
-      `Station: ${routeLocal.stations.first().name}`,
+      routeStation1Local.name,
+      `Station: ${routeStation1Local.stations.first().name}`,
       'Industries: (3)',
     );
   });

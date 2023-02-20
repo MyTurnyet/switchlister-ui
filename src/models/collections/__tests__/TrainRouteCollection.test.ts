@@ -1,9 +1,9 @@
 import { TrainRouteCollection } from '../TrainRouteCollection';
 import { TrainRoute } from '../../TrainRoute';
 import {
-  routeLocal,
   routeStateLocal,
   routeStateTwoStation,
+  routeStation1Local,
   routeTwoStation,
 } from '../../../test-configuration/FixtureRoutes';
 
@@ -15,7 +15,7 @@ describe('Train Route Collection', () => {
       expect(trainRoute).toEqual(TrainRoute.EMPTY_ROUTE);
     });
     it('returns route with given id', () => {
-      const routeCollection = new TrainRouteCollection([routeLocal, routeTwoStation]);
+      const routeCollection = new TrainRouteCollection([routeStation1Local, routeTwoStation]);
       const trainRoute: TrainRoute = routeCollection.findById(routeTwoStation.id);
       expect(trainRoute).toEqual(routeTwoStation);
     });

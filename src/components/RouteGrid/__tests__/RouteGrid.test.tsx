@@ -8,25 +8,25 @@ import {
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
 import userEvent from '@testing-library/user-event';
-import { routeLocal } from '../../../test-configuration/FixtureRoutes';
+import { routeStation1Local } from '../../../test-configuration/FixtureRoutes';
 
 describe('Route Grid', () => {
   let trainGrid: RenderResult;
   beforeEach(() => {
     trainGrid = renderWithRouter(
-      wrapWithThemeProvider(wrapWithFakeTrainRoutesContext([routeLocal], <RouteGrid />)),
+      wrapWithThemeProvider(wrapWithFakeTrainRoutesContext([routeStation1Local], <RouteGrid />)),
     );
   });
   it('displays the first route', () => {
     expect(trainGrid).toHaveElementsWithText(
       'All Train Routes',
-      routeLocal.name,
-      routeLocal.stations.first().name,
+      routeStation1Local.name,
+      routeStation1Local.stations.first().name,
     );
   });
   it('navigates when train card clicked', async () => {
-    const trainCard = trainGrid.getByText(routeLocal.name);
+    const trainCard = trainGrid.getByText(routeStation1Local.name);
     userEvent.click(trainCard);
-    expectHistoryCalledWith(`/routes/${routeLocal.id}`);
+    expectHistoryCalledWith(`/routes/${routeStation1Local.id}`);
   });
 });

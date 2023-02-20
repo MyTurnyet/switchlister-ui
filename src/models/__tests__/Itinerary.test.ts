@@ -3,7 +3,7 @@ import { train1 } from '../../test-configuration/FixtureTrains';
 import { Train } from '../Train';
 import { station1, station3 } from '../../test-configuration/FixtureStations';
 import { StationCollection } from '../collections/StationCollection';
-import { routeLocal, routeTwoStation } from '../../test-configuration/FixtureRoutes';
+import { routeStation1Local, routeTwoStation } from '../../test-configuration/FixtureRoutes';
 
 describe('Itinerary', () => {
   let train: Train;
@@ -12,7 +12,7 @@ describe('Itinerary', () => {
   describe('with only on station', () => {
     beforeEach(() => {
       train = train1;
-      itinerary = new Itinerary(train, routeLocal);
+      itinerary = new Itinerary(train, routeStation1Local);
     });
     it('returns correct name', () => {
       expect(itinerary.name).toEqual('Local');

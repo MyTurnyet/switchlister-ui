@@ -15,7 +15,7 @@ const emptyIndustry: IndustryState = {
 
 export class IndustryBuilder {
   public static EMPTY_INDUSTRY = new IndustryBuilder().toIndustry();
-  private state: IndustryState;
+  private readonly state: IndustryState;
 
   constructor(industryState: IndustryState = emptyIndustry) {
     this.state = deepCopy(industryState);
@@ -42,12 +42,12 @@ export class IndustryBuilder {
     return this;
   }
 
-  servicedCarTypes(carTypes: string[]): this {
+  servicedCarTypes(...carTypes: string[]): this {
     this.state.servicedCarTypes = carTypes;
     return this;
   }
 
-  placedCars(placedCars: RollingStockState[]): this {
+  placedCars(...placedCars: RollingStockState[]): this {
     this.state.placedCars = placedCars;
     return this;
   }
