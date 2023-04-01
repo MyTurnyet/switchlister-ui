@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
-import { TrainApi } from './api/TrainApi';
+import { axiosTrainApi } from './api/AxiosTrainApi';
 import { TrainCollection } from '../models/collections/TrainCollection';
 
 export interface TrainsDataContext {
@@ -26,7 +26,7 @@ export const TrainsProvider = ({ children }: PropsWithChildren) => {
   const trainData = useReactState<TrainState[]>([]);
 
   const getTrains = useCallback(() => {
-    TrainApi.getTrains().then((data) => trainData.setValue(data));
+    axiosTrainApi.getTrains().then((data) => trainData.setValue(data));
   }, [trainData]);
 
   const trainsDataContext: TrainsDataContext = {
