@@ -1,8 +1,6 @@
 import { TrainsProvider, useTrainsData } from '../TrainsContext';
 import { render, RenderResult, waitFor } from '@testing-library/react';
-import { mswServer } from '../../api-mocks/msw-server';
 import { useEffect } from 'react';
-import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 import { TrainApi } from '../api/AxiosTrainApi';
 import { TrainState } from '../../models/Train';
 import { train1State, train2State } from '../../test-configuration/FixtureTrains';
@@ -39,7 +37,6 @@ function renderTrainConsumer(returnedData: TrainState[]): RenderResult {
 
 describe('trains context', () => {
   it('returns 0 trains', async () => {
-    mswServer.use(ApiHandler.createApiGet('trains', []));
     const trainsConsumer = renderTrainConsumer([]);
     await waitFor(() => {
       expect(trainsConsumer).toHaveElementsWithText('count: 0');
