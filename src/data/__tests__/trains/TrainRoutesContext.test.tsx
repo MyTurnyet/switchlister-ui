@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { render, RenderResult, waitFor } from '@testing-library/react';
-import { RoutesDataProvider, useTrainRoutesData } from '../TrainRoutesContext';
-import { mswServer } from '../../api-mocks/msw-server';
-import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
+import { RoutesDataProvider, useTrainRoutesData } from '../../trains/TrainRoutesContext';
+import { mswServer } from '../../../api-mocks/msw-server';
+import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
 
 const TestRoutesConsumer = () => {
   const { trainRoutes, refreshRoutesData } = useTrainRoutesData();

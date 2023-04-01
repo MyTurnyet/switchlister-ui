@@ -1,8 +1,8 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
-import { RouteState } from '../models/TrainRoute';
-import { useReactState } from '../state-management/ReactState';
-import { RoutesApi } from './api/RoutesApi';
-import { TrainRouteCollection } from '../models/collections/TrainRouteCollection';
+import { RouteState } from '../../models/TrainRoute';
+import { useReactState } from '../../state-management/ReactState';
+import { RoutesApi } from '../api/RoutesApi';
+import { TrainRouteCollection } from '../../models/collections/TrainRouteCollection';
 
 export interface RoutesDataContext {
   trainRoutes: TrainRouteCollection;

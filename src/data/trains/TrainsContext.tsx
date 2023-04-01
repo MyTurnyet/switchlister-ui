@@ -1,8 +1,8 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
-import { TrainState } from '../models/Train';
-import { useReactState } from '../state-management/ReactState';
-import { axiosTrainApi, TrainApi } from './api/AxiosTrainApi';
-import { TrainCollection } from '../models/collections/TrainCollection';
+import { TrainState } from '../../models/Train';
+import { useReactState } from '../../state-management/ReactState';
+import { axiosTrainApi, TrainApi } from '../api/trains/AxiosTrainApi';
+import { TrainCollection } from '../../models/collections/TrainCollection';
 
 export interface TrainsDataContext {
   trainCollection: TrainCollection;

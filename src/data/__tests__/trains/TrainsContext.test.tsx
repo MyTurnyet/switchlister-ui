@@ -1,9 +1,9 @@
-import { TrainsProvider, useTrainsData } from '../TrainsContext';
+import { TrainsProvider, useTrainsData } from '../../trains/TrainsContext';
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { useEffect } from 'react';
-import { TrainApi } from '../api/AxiosTrainApi';
-import { TrainState } from '../../models/Train';
-import { train1State, train2State } from '../../test-configuration/FixtureTrains';
+import { TrainApi } from '../../api/trains/AxiosTrainApi';
+import { TrainState } from '../../../models/Train';
+import { train1State, train2State } from '../../../test-configuration/FixtureTrains';
 
 const TrainsTestConsumer = () => {
   const { trainCollection, refreshTrainsData } = useTrainsData();

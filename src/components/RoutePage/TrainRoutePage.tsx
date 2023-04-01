@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useIndustryData } from '../../data/IndustriesContext';
 import { Industry } from '../../models/Industry';
 import { IndustryDetails } from '../IndustryPage/IndustryDetails';
-import { useTrainRoutesData } from '../../data/TrainRoutesContext';
+import { useTrainRoutesData } from '../../data/trains/TrainRoutesContext';
 import { TrainRoute } from '../../models/TrainRoute';
 
 export const IndustriesAtStationDetails = (props: { station: Station }) => {

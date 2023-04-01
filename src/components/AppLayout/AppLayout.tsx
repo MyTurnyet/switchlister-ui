@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import { NavBar } from './NavBar';
 import styled from 'styled-components';
-import { useTrainsData } from '../../data/TrainsContext';
+import { useTrainsData } from '../../data/trains/TrainsContext';
 import { useIndustryData } from '../../data/IndustriesContext';
-import { useTrainRoutesData } from '../../data/TrainRoutesContext';
+import { useTrainRoutesData } from '../../data/trains/TrainRoutesContext';
 
 export const AppLayout = () => {
   const { trainCollection, refreshTrainsData } = useTrainsData();

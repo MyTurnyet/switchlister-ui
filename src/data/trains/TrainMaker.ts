@@ -1,4 +1,4 @@
-import { Train } from '../models/Train';
+import { Train } from '../../models/Train';
 
 export class TrainMaker {
   constructor(private train: Train) {}

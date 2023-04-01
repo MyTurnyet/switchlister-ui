@@ -1,5 +1,5 @@
-import { TrainState } from '../../models/Train';
-import { axiosRequests } from './AxiosRequests';
+import { TrainState } from '../../../models/Train';
+import { axiosRequests } from '../AxiosRequests';
 
 export interface TrainApi {
   getTrains: () => Promise<TrainState[]>;

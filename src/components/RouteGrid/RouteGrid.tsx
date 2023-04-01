@@ -1,6 +1,6 @@
 import { RouteCard } from './RouteCard';
 import styled from 'styled-components';
-import { useTrainRoutesData } from '../../data/TrainRoutesContext';
+import { useTrainRoutesData } from '../../data/trains/TrainRoutesContext';
 import { TrainRoute } from '../../models/TrainRoute';
 import { useNavigate } from 'react-router';
 

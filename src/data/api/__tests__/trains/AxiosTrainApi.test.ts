@@ -1,9 +1,9 @@
-import { mswServer } from '../../../api-mocks/msw-server';
-import { TrainState } from '../../../models/Train';
-import { axiosTrainApi } from '../AxiosTrainApi';
-import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
+import { mswServer } from '../../../../api-mocks/msw-server';
+import { TrainState } from '../../../../models/Train';
+import { axiosTrainApi } from '../../trains/AxiosTrainApi';
+import { ApiHandler } from '../../../../api-mocks/handlers/ApiHandler';
 
-describe('Train Api', () => {
+describe('Axios Train Api', () => {
   describe('GET', () => {
     it('returns no trains', async () => {
       mswServer.use(ApiHandler.createApiGet<TrainState[]>('trains', []));

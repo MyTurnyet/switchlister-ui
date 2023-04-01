@@ -7,7 +7,7 @@ import {
   wrapWithThemeProvider,
 } from '../../../test-configuration/ReactTestToolkit';
 import { Train } from '../../../models/Train';
-import { RoutesDataProvider } from '../../../data/TrainRoutesContext';
+import { RoutesDataProvider } from '../../../data/trains/TrainRoutesContext';
 import { TrainBuilder } from '../../../models/TrainBuilder';
 
 describe('AppLayout', () => {
