@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { TrainState } from '../models/Train';
 import { useReactState } from '../state-management/ReactState';
-import { axiosTrainApi } from './api/AxiosTrainApi';
+import { axiosTrainApi, TrainApi } from './api/AxiosTrainApi';
 import { TrainCollection } from '../models/collections/TrainCollection';
 
 export interface TrainsDataContext {
@@ -22,16 +22,24 @@ export const useTrainsData = (): TrainsDataContext => {
   return context;
 };
 
-export const TrainsProvider = ({ children }: PropsWithChildren) => {
+export interface TrainProviderProps extends PropsWithChildren {
+  trainApi: TrainApi;
+}
+
+export const TrainsProvider = (props: TrainProviderProps) => {
   const trainData = useReactState<TrainState[]>([]);
 
   const getTrains = useCallback(() => {
-    axiosTrainApi.getTrains().then((data) => trainData.setValue(data));
+    props.trainApi.getTrains().then((data) => trainData.setValue(data));
   }, [trainData]);
 
   const trainsDataContext: TrainsDataContext = {
     refreshTrainsData: getTrains,
     trainCollection: TrainCollection.createFromTrainStateArray(trainData.value),
   };
-  return <TrainsContext.Provider value={trainsDataContext}>{children}</TrainsContext.Provider>;
+  return (
+    <TrainsContext.Provider value={trainsDataContext}>{props.children}</TrainsContext.Provider>
+  );
 };
+
+TrainsProvider.defaultProps = { trainApi: axiosTrainApi };

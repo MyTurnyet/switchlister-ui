@@ -3,6 +3,9 @@ import { render, RenderResult, waitFor } from '@testing-library/react';
 import { mswServer } from '../../api-mocks/msw-server';
 import { useEffect } from 'react';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
+import { TrainApi } from '../api/AxiosTrainApi';
+import { TrainState } from '../../models/Train';
+import { train1State, train2State } from '../../test-configuration/FixtureTrains';
 
 const TrainsTestConsumer = () => {
   const { trainCollection, refreshTrainsData } = useTrainsData();
@@ -21,9 +24,14 @@ const TrainsTestConsumer = () => {
   );
 };
 
-function renderTrainConsumer(): RenderResult {
+function renderTrainConsumer(returnedData: TrainState[]): RenderResult {
+  const trainApi: TrainApi = {
+    getTrains(): Promise<TrainState[]> {
+      return Promise.resolve(returnedData);
+    },
+  };
   return render(
-    <TrainsProvider>
+    <TrainsProvider trainApi={trainApi}>
       <TrainsTestConsumer />
     </TrainsProvider>,
   );
@@ -32,13 +40,13 @@ function renderTrainConsumer(): RenderResult {
 describe('trains context', () => {
   it('returns 0 trains', async () => {
     mswServer.use(ApiHandler.createApiGet('trains', []));
-    const trainsConsumer = renderTrainConsumer();
+    const trainsConsumer = renderTrainConsumer([]);
     await waitFor(() => {
       expect(trainsConsumer).toHaveElementsWithText('count: 0');
     });
   });
   it('returns 2 train', async () => {
-    const trainsConsumer = renderTrainConsumer();
+    const trainsConsumer = renderTrainConsumer([train1State, train2State]);
     await waitFor(() => {
       expect(trainsConsumer).toHaveElementsWithText('count: 2');
     });
