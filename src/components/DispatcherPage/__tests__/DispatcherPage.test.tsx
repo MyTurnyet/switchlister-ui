@@ -14,7 +14,10 @@ describe('Dispatcher Page', () => {
       wrapWithThemeProvider(wrapWithFakeTrainRoutesContext([routeTwoStation], <DispatcherPage />)),
     );
   });
-  it('renders', () => {
+  it('shows all routes', () => {
     expect(dispatcherPage).toHaveElementsWithText('All Train Routes', routeTwoStation.name);
+  });
+  it('has button to add train', () => {
+    const addTrainButton = dispatcherPage.getByRole('button', { name: 'Create Train' });
   });
 });

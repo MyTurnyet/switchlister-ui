@@ -12,6 +12,7 @@ export const DispatcherPage = () => {
   };
   return (
     <div>
+      <button>Create Train</button>
       <RouteDisplayHeader>All Train Routes</RouteDisplayHeader>
       {trainRoutes.map((route: TrainRoute) => (
         <RouteCard key={route.id} route={route} handlePress={handleRoutePress} />
