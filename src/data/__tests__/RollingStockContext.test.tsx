@@ -1,8 +1,14 @@
 import { RollingStockProvider, useRollingStockData } from '../RollingStockContext';
-import { render, RenderResult, waitFor } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import { RollingStock, RollingStockState } from '../../models/RollingStock';
 import { mswServer } from '../../api-mocks/msw-server';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
+import { RollingStockApi } from '../api/AxiosRollingStockApi';
+import {
+  boxcarBN9876State,
+  boxcarCP1234State,
+  hopperBCAX5State,
+} from '../../test-configuration/FixtureRollingStock';
 
 const TestRollingStockConsumer = () => {
   const contextState = useRollingStockData();
@@ -18,9 +24,14 @@ const TestRollingStockConsumer = () => {
   );
 };
 
-function renderWithProvider(): RenderResult {
+function renderWithProvider(data: RollingStockState[]): RenderResult {
+  const rollingStockApi: RollingStockApi = {
+    getRollingStock(): Promise<RollingStockState[]> {
+      return Promise.resolve(data);
+    },
+  };
   return render(
-    <RollingStockProvider>
+    <RollingStockProvider rollingStockApi={rollingStockApi}>
       <TestRollingStockConsumer />)
     </RollingStockProvider>,
   );
@@ -29,15 +40,19 @@ function renderWithProvider(): RenderResult {
 describe('rolling stock context', () => {
   const noCarsWereReturned = 'No cars were returned.';
   it('renders with 0 items', async () => {
-    mswServer.use(ApiHandler.createApiGet<RollingStockState[]>('rollingStock', []));
-    const testConsumer = renderWithProvider();
+    const testConsumer = renderWithProvider([]);
     await testConsumer.findByText('count: 0');
     await testConsumer.findByText(noCarsWereReturned);
   });
   it('renders with 2 items', async () => {
-    const testConsumer = renderWithProvider();
-    await testConsumer.findByText('count: 2');
+    const testConsumer = renderWithProvider([
+      hopperBCAX5State,
+      boxcarCP1234State,
+      boxcarBN9876State,
+    ]);
+    await testConsumer.findByText('count: 3');
     await testConsumer.findByText('BCAX 5');
     await testConsumer.findByText('CPR 1234');
+    await testConsumer.findByText('BN 9876');
   });
 });
