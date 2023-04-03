@@ -16,6 +16,7 @@ import { FakeIndustriesContext } from './FakeIndustriesContext';
 import { FakeTrainRoutesDataContext } from './FakeRoutesContext';
 import { TrainRoute } from '../models/TrainRoute';
 import { TrainBuilder } from '../models/TrainBuilder';
+import { ReactState } from '../state-management/ReactState';
 
 export function clickButtonWithText(screen: RenderResult, stringToFind: string) {
   const button = screen.getByText(stringToFind);
@@ -58,6 +59,7 @@ export function renderWithRouter(
 ): RenderResult {
   return render(wrapWithRouter(element, location));
 }
+
 export function wrapWithThemeProvider(children: JSX.Element) {
   return <ThemeProvider theme={mainTheme}>{children}</ThemeProvider>;
 }
@@ -72,6 +74,7 @@ export function wrapWithFakeIndustriesContext(
     </FakeIndustriesContext>
   );
 }
+
 export function wrapWithFakeTrainRoutesContext(
   routesToReturn: TrainRoute[] = [],
   children: JSX.Element,
@@ -82,12 +85,14 @@ export function wrapWithFakeTrainRoutesContext(
     </FakeTrainRoutesDataContext>
   );
 }
+
 export function wrapWithFakeStationsContext(
   stationsToReturn: Station[] = [],
   children: JSX.Element,
 ) {
   return <FakeStationsContext stationsToReturn={stationsToReturn}>{children}</FakeStationsContext>;
 }
+
 export function wrapWithFakeRollingStockContext(
   carsToReturn: RollingStock[] = [],
   isLoading: boolean,
@@ -110,4 +115,14 @@ export function wrapWithFakeTrainContext(
       {children}
     </FakeTrainContext>
   );
+}
+
+export function createReactState<T>(
+  value: T,
+  setValue: (newState: T) => void = jest.fn(),
+): ReactState<T> {
+  return {
+    value,
+    setValue,
+  };
 }
