@@ -3,6 +3,6 @@ import { IndustryState } from '../../models/Industry';
 export interface IndustriesApi {
   getIndustries: () => Promise<IndustryState[]>;
 }
-export const AxiosIndustriesApi: IndustriesApi = {
+export const axiosIndustriesApi: IndustriesApi = {
   getIndustries: (): Promise<IndustryState[]> => axiosRequests.get('industries'),
 };

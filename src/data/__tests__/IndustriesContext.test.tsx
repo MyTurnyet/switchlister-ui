@@ -11,6 +11,7 @@ import {
   industry3State,
   industry4State,
 } from '../../test-configuration/FixtureIndustries';
+import { IndustriesApi } from '../api/AxiosIndustriesApi';
 
 const IndustryContextTesConsumer = () => {
   const { refreshIndustriesData, industries, industriesAtStation } = useIndustryData();
@@ -37,16 +38,14 @@ const IndustryContextTesConsumer = () => {
 describe('Industries Context', () => {
   let testConsumer: RenderResult;
   beforeEach(() => {
-    mswServer.use(
-      ApiHandler.createApiGet<IndustryState[]>('industries', [
-        industry1State,
-        industry2State,
-        industry3State,
-        industry4State,
-      ]),
-    );
+    const industryApi: IndustriesApi = {
+      getIndustries(): Promise<IndustryState[]> {
+        return Promise.resolve([industry1State, industry2State, industry3State, industry4State]);
+      },
+    };
+
     testConsumer = render(
-      <IndustriesProvider>
+      <IndustriesProvider industryApi={industryApi}>
         <IndustryContextTesConsumer />
       </IndustriesProvider>,
     );

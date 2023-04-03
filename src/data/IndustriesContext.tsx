@@ -2,8 +2,9 @@ import { IndustryCollection } from '../models/collections/IndustryCollection';
 import { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { Station } from '../models/Station';
 import { useReactState } from '../state-management/ReactState';
-import { AxiosIndustriesApi } from './api/AxiosIndustriesApi';
+import { axiosIndustriesApi, IndustriesApi } from './api/AxiosIndustriesApi';
 import { IndustryState } from '../models/Industry';
+import { axiosTrainApi } from './api/trains/AxiosTrainApi';
 
 export interface IndustriesDataContext {
   industries: IndustryCollection;
@@ -23,11 +24,15 @@ export const useIndustryData = (): IndustriesDataContext => {
   return context;
 };
 
-export const IndustriesProvider = ({ children }: PropsWithChildren) => {
+export interface IndustriesProviderProps extends PropsWithChildren {
+  industryApi: IndustriesApi;
+}
+
+export const IndustriesProvider = (props: IndustriesProviderProps) => {
   const industryCollectionState = useReactState<IndustryCollection>(new IndustryCollection([]));
 
   const refreshData = useCallback(async () => {
-    await AxiosIndustriesApi.getIndustries().then((data: IndustryState[]) => {
+    await props.industryApi.getIndustries().then((data: IndustryState[]) => {
       const industryCollection = IndustryCollection.createFromIndustryStateArray(data);
       industryCollectionState.setValue(industryCollection);
     });
@@ -42,5 +47,9 @@ export const IndustriesProvider = ({ children }: PropsWithChildren) => {
     industries: industryCollectionState.value,
     refreshIndustriesData: refreshData,
   };
-  return <IndustriesContext.Provider value={contextValues}>{children}</IndustriesContext.Provider>;
+  return (
+    <IndustriesContext.Provider value={contextValues}>{props.children}</IndustriesContext.Provider>
+  );
 };
+
+IndustriesProvider.defaultProps = { industryApi: axiosIndustriesApi };
