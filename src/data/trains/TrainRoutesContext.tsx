@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { RouteState } from '../../models/TrainRoute';
 import { useReactState } from '../../state-management/ReactState';
-import { RoutesApi } from '../api/RoutesApi';
+import { axiosRoutesApi } from '../api/AxiosRoutesApi';
 import { TrainRouteCollection } from '../../models/collections/TrainRouteCollection';
 
 export interface RoutesDataContext {
@@ -26,7 +26,7 @@ export const RoutesDataProvider = ({ children }: PropsWithChildren) => {
   const routesData = useReactState<RouteState[]>([]);
 
   const getRoutes = useCallback(() => {
-    RoutesApi.getRoutes().then((data) => routesData.setValue(data));
+    axiosRoutesApi.getRoutes().then((data) => routesData.setValue(data));
   }, [routesData]);
 
   const routesDataContext: RoutesDataContext = {
