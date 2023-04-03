@@ -11,8 +11,10 @@ import {
   industry6State,
   industry7State,
 } from '../../../test-configuration/FixtureIndustries';
+import { setUpTestsWithMSW } from '../../../setupTests';
 
 describe('Axios Industries Api', () => {
+  setUpTestsWithMSW();
   describe('GET', () => {
     it('returns no industries', async () => {
       mswServer.use(ApiHandler.createApiGet<IndustryState[]>('industries', []));
