@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { StationCollection } from '../models/collections/StationCollection';
 import { useReactState } from '../state-management/ReactState';
-import { StationsApi } from './api/StationsApi';
+import { axiosStationsApi } from './api/AxiosStationsApi';
 
 export interface StationsDataContext {
   stations: StationCollection;
@@ -24,7 +24,7 @@ export const StationsProvider = ({ children }: PropsWithChildren) => {
   const stationCollectionState = useReactState<StationCollection>(new StationCollection([]));
 
   const refreshStationsData = useCallback(async () => {
-    const stationStates = await StationsApi.getStations();
+    const stationStates = await axiosStationsApi.getStations();
     const stationCollection = StationCollection.createFromStationStateArray(stationStates);
     stationCollectionState.setValue(stationCollection);
   }, [stationCollectionState]);

@@ -1,7 +1,11 @@
 import { axiosRequests } from './AxiosRequests';
 import { StationState } from '../../models/Station';
 
-export const StationsApi = {
+// export interface StationsApi {
+//   getStations
+// }
+
+export const axiosStationsApi = {
   getStations: (): Promise<StationState[]> => axiosRequests.get('stations'),
   postStation: (stationState: StationState) => axiosRequests.post('stations/update', stationState),
 };
