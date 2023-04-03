@@ -5,6 +5,13 @@ import { render, RenderResult, waitFor } from '@testing-library/react';
 import { mswServer } from '../../api-mocks/msw-server';
 import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 import { boxcarBN9876 } from '../../test-configuration/FixtureRollingStock';
+import { StationsApi } from '../api/AxiosStationsApi';
+import {
+  station1State,
+  station2State,
+  station3State,
+  station4State,
+} from '../../test-configuration/FixtureStations';
 
 const StationsTestConsumer = () => {
   const { stations, refreshStationsData } = useStationsData();
@@ -23,9 +30,14 @@ const StationsTestConsumer = () => {
   );
 };
 
-function renderStationConsumer(): RenderResult {
+function renderStationConsumer(dataReturned: StationState[] = []): RenderResult {
+  const stationsApi: StationsApi = {
+    getStations(): Promise<StationState[]> {
+      return Promise.resolve(dataReturned);
+    },
+  };
   return render(
-    <StationsProvider>
+    <StationsProvider stationsApi={stationsApi}>
       <StationsTestConsumer />
     </StationsProvider>,
   );
@@ -34,14 +46,18 @@ function renderStationConsumer(): RenderResult {
 describe('Stations Context', () => {
   describe('outputs', () => {
     it('has no stations', async () => {
-      mswServer.use(ApiHandler.createApiGet<StationState[]>('stations', []));
-      const stationConsumer = renderStationConsumer();
+      const stationConsumer = renderStationConsumer([]);
       await waitFor(() => {
         expect(stationConsumer).toHaveElementsWithText('count: 0');
       });
     });
     it('has four stations', async () => {
-      const stationConsumer = renderStationConsumer();
+      const stationConsumer = renderStationConsumer([
+        station1State,
+        station2State,
+        station3State,
+        station4State,
+      ]);
       await waitFor(() => {
         expect(stationConsumer).toHaveElementsWithText('count: 4');
         expect(stationConsumer).toNotHaveElementsWithText(boxcarBN9876.displayName);
