@@ -8,6 +8,8 @@ describe('Item State Collection', () => {
       const industriesState = createReactState<IndustryState[]>([]);
       const itemStateCollection: ItemStateCollection = new ItemStateCollection([], industriesState);
       expect(industriesState.setValue).toHaveBeenCalledWith([]);
+      expect(itemStateCollection.isEmpty()).toEqual(true);
+      expect(itemStateCollection.count).toEqual(0);
     });
   });
 });
