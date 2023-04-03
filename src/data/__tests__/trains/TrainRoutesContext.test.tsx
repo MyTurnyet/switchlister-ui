@@ -3,6 +3,9 @@ import { render, RenderResult, waitFor } from '@testing-library/react';
 import { RoutesDataProvider, useTrainRoutesData } from '../../trains/TrainRoutesContext';
 import { mswServer } from '../../../api-mocks/msw-server';
 import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
+import { RoutesApi } from '../../api/AxiosRoutesApi';
+import { RouteState } from '../../../models/TrainRoute';
+import { routeStateLocal, routeStateTwoStation } from '../../../test-configuration/FixtureRoutes';
 
 const TestRoutesConsumer = () => {
   const { trainRoutes, refreshRoutesData } = useTrainRoutesData();
@@ -19,9 +22,14 @@ const TestRoutesConsumer = () => {
   return <div>{routesDataOutput()}</div>;
 };
 
-function renderRoutesConsumer() {
+function renderRoutesConsumer(dataReturned: RouteState[]) {
+  const routesApi: RoutesApi = {
+    getRoutes(): Promise<RouteState[]> {
+      return Promise.resolve(dataReturned);
+    },
+  };
   return render(
-    <RoutesDataProvider>
+    <RoutesDataProvider routesApi={routesApi}>
       <TestRoutesConsumer />
     </RoutesDataProvider>,
   );
@@ -29,14 +37,16 @@ function renderRoutesConsumer() {
 
 describe('Train Routes Context', () => {
   it('returns 0 routes', async () => {
-    mswServer.use(ApiHandler.createApiGet('routes', []));
-    const routeConsumer: RenderResult = renderRoutesConsumer();
+    const routeConsumer: RenderResult = renderRoutesConsumer([]);
     await waitFor(() => {
       expect(routeConsumer).toHaveElementsWithText('No Routes returned!');
     });
   });
   it('returns 2 routes', async () => {
-    const routeConsumer: RenderResult = renderRoutesConsumer();
+    const routeConsumer: RenderResult = renderRoutesConsumer([
+      routeStateLocal,
+      routeStateTwoStation,
+    ]);
     await waitFor(() => {
       expect(routeConsumer).toHaveElementsWithText('count: 2');
     });

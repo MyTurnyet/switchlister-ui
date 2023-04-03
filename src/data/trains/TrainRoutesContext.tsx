@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { RouteState } from '../../models/TrainRoute';
 import { useReactState } from '../../state-management/ReactState';
-import { axiosRoutesApi } from '../api/AxiosRoutesApi';
+import { axiosRoutesApi, RoutesApi } from '../api/AxiosRoutesApi';
 import { TrainRouteCollection } from '../../models/collections/TrainRouteCollection';
 
 export interface RoutesDataContext {
@@ -21,12 +21,14 @@ export const useTrainRoutesData = (): RoutesDataContext => {
   }
   return context;
 };
-
-export const RoutesDataProvider = ({ children }: PropsWithChildren) => {
+export interface RoutesDataProviderProps extends PropsWithChildren {
+  routesApi: RoutesApi;
+}
+export const RoutesDataProvider = (props: RoutesDataProviderProps) => {
   const routesData = useReactState<RouteState[]>([]);
 
   const getRoutes = useCallback(() => {
-    axiosRoutesApi.getRoutes().then((data) => routesData.setValue(data));
+    props.routesApi.getRoutes().then((data) => routesData.setValue(data));
   }, [routesData]);
 
   const routesDataContext: RoutesDataContext = {
@@ -34,6 +36,12 @@ export const RoutesDataProvider = ({ children }: PropsWithChildren) => {
     trainRoutes: TrainRouteCollection.createFromTrainRouteStateArray(routesData.value),
   };
   return (
-    <TrainRoutesContext.Provider value={routesDataContext}>{children}</TrainRoutesContext.Provider>
+    <TrainRoutesContext.Provider value={routesDataContext}>
+      {props.children}
+    </TrainRoutesContext.Provider>
   );
+};
+
+RoutesDataProvider.defaultProps = {
+  routesApi: axiosRoutesApi,
 };
