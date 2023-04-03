@@ -2,7 +2,7 @@ import { IndustryCollection } from '../models/collections/IndustryCollection';
 import { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 import { Station } from '../models/Station';
 import { useReactState } from '../state-management/ReactState';
-import { IndustriesApi } from './api/IndustriesApi';
+import { AxiosIndustriesApi } from './api/AxiosIndustriesApi';
 import { IndustryState } from '../models/Industry';
 
 export interface IndustriesDataContext {
@@ -27,7 +27,7 @@ export const IndustriesProvider = ({ children }: PropsWithChildren) => {
   const industryCollectionState = useReactState<IndustryCollection>(new IndustryCollection([]));
 
   const refreshData = useCallback(async () => {
-    await IndustriesApi.getIndustries().then((data: IndustryState[]) => {
+    await AxiosIndustriesApi.getIndustries().then((data: IndustryState[]) => {
       const industryCollection = IndustryCollection.createFromIndustryStateArray(data);
       industryCollectionState.setValue(industryCollection);
     });

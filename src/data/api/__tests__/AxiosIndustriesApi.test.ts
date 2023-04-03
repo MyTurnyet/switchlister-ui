@@ -1,7 +1,7 @@
 import { mswServer } from '../../../api-mocks/msw-server';
 import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
 import { IndustryState } from '../../../models/Industry';
-import { IndustriesApi } from '../IndustriesApi';
+import { AxiosIndustriesApi } from '../AxiosIndustriesApi';
 import {
   industry1State,
   industry2State,
@@ -12,15 +12,15 @@ import {
   industry7State,
 } from '../../../test-configuration/FixtureIndustries';
 
-describe('Industries api', () => {
+describe('Axios Industries Api', () => {
   describe('GET', () => {
     it('returns no industries', async () => {
       mswServer.use(ApiHandler.createApiGet<IndustryState[]>('industries', []));
-      const industriesStates: IndustryState[] = await IndustriesApi.getIndustries();
+      const industriesStates: IndustryState[] = await AxiosIndustriesApi.getIndustries();
       expect(industriesStates).toEqual([]);
     });
     it('returns all industries', async () => {
-      const industriesStates: IndustryState[] = await IndustriesApi.getIndustries();
+      const industriesStates: IndustryState[] = await AxiosIndustriesApi.getIndustries();
       expect(industriesStates).toMatchInAnyOrder([
         industry1State,
         industry2State,
