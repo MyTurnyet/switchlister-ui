@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { IndustriesProvider, useIndustryData } from '../IndustriesContext';
-import { mswServer } from '../../api-mocks/msw-server';
-import { ApiHandler } from '../../api-mocks/handlers/ApiHandler';
 import { Industry, IndustryState } from '../../models/Industry';
 import { station1, station4 } from '../../test-configuration/FixtureStations';
 import {

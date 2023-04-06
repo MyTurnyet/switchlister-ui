@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { render, RenderResult, waitFor } from '@testing-library/react';
 import { RoutesDataProvider, useTrainRoutesData } from '../../trains/TrainRoutesContext';
-import { mswServer } from '../../../api-mocks/msw-server';
-import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
 import { RoutesApi } from '../../api/AxiosRoutesApi';
 import { RouteState } from '../../../models/TrainRoute';
 import { routeStateLocal, routeStateTwoStation } from '../../../test-configuration/FixtureRoutes';

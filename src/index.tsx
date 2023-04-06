@@ -3,14 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { worker } from './api-mocks/browser.js';
 import { BrowserRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { mainTheme } from './themes/MainTheme';
-
-if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
-  worker.start();
-}
 
 const AppContent = styled.div`
   align-items: center;
