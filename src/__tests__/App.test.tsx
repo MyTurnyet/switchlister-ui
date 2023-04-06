@@ -4,7 +4,6 @@ import App from '../App';
 import { renderWithRouter, wrapWithFakeTrainContext } from '../test-configuration/ReactTestToolkit';
 import { ThemeProvider } from 'styled-components';
 import { mainTheme } from '../themes/MainTheme';
-import { Train } from '../models/Train';
 import { TrainBuilder } from '../models/TrainBuilder';
 
 describe('App', () => {
