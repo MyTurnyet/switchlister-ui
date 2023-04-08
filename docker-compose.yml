@@ -1,9 +1,9 @@
 version: '3.7'
 
-services:
 
-  sample:
-    container_name: switchlister-ui
+services:
+  ui:
+    container_name: switchlister
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,6 +11,17 @@ services:
       - '.:/app'
       - '/app/node_modules'
     ports:
-      - 3001:3000
+      - "127.0.0.1:3000:3001"
     environment:
       - CHOKIDAR_USEPOLLING=true
+
+  mongodb_container:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - "27017:27017"
+    volumes:
+      - './data/mongo:/data/db'

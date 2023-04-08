@@ -1,20 +1,15 @@
-# pull official base image
-FROM node:13.12.0-alpine
+FROM node:16-alpine
 
-# set working directory
+ENV NODE_ENV=development
+
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json yarn.lock ./
+RUN yarn install
 
-# install app dependencies
-COPY package.json ./
-COPY yarn.lock ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+COPY . .
 
-# add app
-COPY . ./
+EXPOSE 3001
+ENV PORT 3001
 
-# start app
-CMD ["npm", "start"]
+CMD [ "yarn", "start" ]
