@@ -6,5 +6,5 @@ export interface TrainApi {
 }
 
 export const axiosTrainApi: TrainApi = {
-  getTrains: (): Promise<TrainState[]> => axiosRequests.get('trains'),
+  getTrains: (): Promise<TrainState[]> => axiosRequests.get('v1/trains'),
 };

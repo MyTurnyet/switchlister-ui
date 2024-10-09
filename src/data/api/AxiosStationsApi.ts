@@ -6,6 +6,6 @@ export interface StationsApi {
 }
 
 export const axiosStationsApi: StationsApi = {
-  getStations: (): Promise<StationState[]> => axiosRequests.get('stations'),
+  getStations: (): Promise<StationState[]> => axiosRequests.get('v1/stations'),
   // postStation: (stationState: StationState) => axiosRequests.post('stations/update', stationState),
 };

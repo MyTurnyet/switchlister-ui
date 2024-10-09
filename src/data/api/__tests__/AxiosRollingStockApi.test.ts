@@ -8,7 +8,7 @@ describe('Rolling Stock Api', () => {
   setUpTestsWithMSW();
   describe('GET', () => {
     it('returns 0 cars', async () => {
-      mswServer.use(ApiHandler.createApiGet<RollingStockState[]>('rolling-stock', []));
+      mswServer.use(ApiHandler.createApiGet<RollingStockState[]>('v1/rolling-stock', []));
       const rollingStockStates = await axiosRollingStockApi.getRollingStock();
       expect(rollingStockStates).toHaveLength(0);
     });

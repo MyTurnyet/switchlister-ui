@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://switchlister-api.herokuapp.com/',
+  baseURL: 'https://railroad-data-api-35e431c26fea.herokuapp.com/',
   timeout: 15000,
 });
 const responseBody = (response: AxiosResponse) => response.data;

@@ -4,5 +4,5 @@ export interface IndustriesApi {
   getIndustries: () => Promise<IndustryState[]>;
 }
 export const axiosIndustriesApi: IndustriesApi = {
-  getIndustries: (): Promise<IndustryState[]> => axiosRequests.get('industries'),
+  getIndustries: (): Promise<IndustryState[]> => axiosRequests.get('v1/industries'),
 };

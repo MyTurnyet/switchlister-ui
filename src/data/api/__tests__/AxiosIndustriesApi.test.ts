@@ -1,3 +1,5 @@
+import { mswServer } from '../../../api-mocks/msw-server';
+import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
 import { IndustryState } from '../../../models/Industry';
 import { axiosIndustriesApi } from '../AxiosIndustriesApi';
 import {
@@ -9,14 +11,17 @@ import {
   industry6State,
   industry7State,
 } from '../../../test-configuration/FixtureIndustries';
+import { setUpTestsWithMSW } from '../../../setupTests';
 
 describe('Axios Industries Api', () => {
+  setUpTestsWithMSW();
   describe('GET', () => {
-    xit('returns no industries', async () => {
+    it('returns no industries', async () => {
+      mswServer.use(ApiHandler.createApiGet<IndustryState[]>('v1/industries', []));
       const industriesStates: IndustryState[] = await axiosIndustriesApi.getIndustries();
       expect(industriesStates).toEqual([]);
     });
-    xit('returns all industries', async () => {
+    it('returns all industries', async () => {
       const industriesStates: IndustryState[] = await axiosIndustriesApi.getIndustries();
       expect(industriesStates).toMatchInAnyOrder([
         industry1State,
@@ -27,9 +32,6 @@ describe('Axios Industries Api', () => {
         industry6State,
         industry7State,
       ]);
-    });
-    it('FAKE TEST', () => {
-      expect(true).toEqual(true);
     });
   });
 });
