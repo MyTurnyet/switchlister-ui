@@ -11,7 +11,8 @@ import {
   industry6State,
   industry7State,
 } from '../../../test-configuration/FixtureIndustries';
-import { setUpTestsWithMSW } from '../../../setupTests';
+import { setUpTestsWithMSW } from '../../../setupTests'
+
 
 describe('Axios Industries Api', () => {
   setUpTestsWithMSW();
