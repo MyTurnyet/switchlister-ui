@@ -49,7 +49,7 @@ describe('Industry Collection', () => {
       const neededCarTypes: NeededCarTypesDictionary = collection.neededCarTypes();
       expect(neededCarTypes).toEqual({ XMO: 1 });
     });
-    it('returns carTypes used by collection of 1 industry', () => {
+    it('returns carTypes used by collection of 2 industries', () => {
       const collection = new IndustryCollectionBuilder()
         .addFromState(industry4State)
         .addFromState(industry5State)

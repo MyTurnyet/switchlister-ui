@@ -7,6 +7,7 @@ import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
 export const industryBuilder1 = new IndustryBuilder()
   .stationState(station1State)
   .name('Industry 1')
+  .placedCars(boxcarCP1234State, hopperBCAX5State)
   .servicedCarTypes(CarType.XM, CarType.HT);
 const industryBuilder2 = new IndustryBuilder()
   .stationState(station1State)

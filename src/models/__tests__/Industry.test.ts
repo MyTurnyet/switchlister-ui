@@ -38,7 +38,7 @@ describe('Industry', () => {
     let industryWithNoCars: Industry;
     let industryWith2Cars: Industry;
     beforeEach(() => {
-      industryWithNoCars = industry1;
+      industryWithNoCars = industry2;
       industryWith2Cars = new IndustryBuilder(industry7State).toIndustry();
     });
     it('returns an empty collection ', () => {
