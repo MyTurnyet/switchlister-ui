@@ -4,5 +4,5 @@ export interface RollingStockApi {
   getRollingStock: () => Promise<RollingStockState[]>;
 }
 export const axiosRollingStockApi: RollingStockApi = {
-  getRollingStock: (): Promise<RollingStockState[]> => axiosRequests.get('rollingstock'),
+  getRollingStock: (): Promise<RollingStockState[]> => axiosRequests.get('rolling-stock'),
 };

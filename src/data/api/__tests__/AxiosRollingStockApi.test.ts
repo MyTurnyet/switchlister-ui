@@ -1,18 +1,20 @@
+import { mswServer } from '../../../api-mocks/msw-server';
 import { RollingStockState } from '../../../models/RollingStock';
 import { axiosRollingStockApi } from '../AxiosRollingStockApi';
+import { ApiHandler } from '../../../api-mocks/handlers/ApiHandler';
+import { setUpTestsWithMSW } from '../../../setupTests';
 
 describe('Rolling Stock Api', () => {
+  setUpTestsWithMSW();
   describe('GET', () => {
-    xit('returns 0 cars', async () => {
+    it('returns 0 cars', async () => {
+      mswServer.use(ApiHandler.createApiGet<RollingStockState[]>('rolling-stock', []));
       const rollingStockStates = await axiosRollingStockApi.getRollingStock();
       expect(rollingStockStates).toHaveLength(0);
     });
-    xit('returns 2 cars', async () => {
+    it('returns 2 cars', async () => {
       const rollingStockStates = await axiosRollingStockApi.getRollingStock();
       expect(rollingStockStates).toHaveLength(2);
-    });
-    it('FAKE TEST', () => {
-      expect(true).toEqual(true);
     });
   });
 });
