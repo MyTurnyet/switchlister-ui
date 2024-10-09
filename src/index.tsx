@@ -6,6 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { mainTheme } from './themes/MainTheme';
+import { worker } from './api-mocks/browser.js'
+
+if (process.env.REACT_APP_USE_MSW_MOCK_API === 'yes') {
+  worker.start();
+}
 
 const AppContent = styled.div`
   align-items: center;
