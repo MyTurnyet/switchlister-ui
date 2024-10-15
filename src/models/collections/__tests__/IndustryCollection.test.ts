@@ -56,7 +56,7 @@ describe('Industry Collection', () => {
         const neededCarTypes: NeededCarTypesDictionary = collection.neededCarTypes()
         expect(neededCarTypes).toEqual({ XMO: 1 })
       })
-      it('returns and empty car when trying to find a car for pickup', () => {
+      it('returns and empty car when trying to find a car for non-existent type', () => {
         const collection = new IndustryCollectionBuilder().addFromState(industry4State).build()
          const carForPickup = collection.findCarForPickup(CarType.XMO)
          expect(carForPickup).toEqual(RollingStock.EMPTY)
