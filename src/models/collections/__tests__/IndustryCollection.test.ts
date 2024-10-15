@@ -11,6 +11,7 @@ import {
   industry4State,
   industry5State,
 } from '../../../test-configuration/FixtureIndustries';
+import { CarType, RollingStock } from '../../RollingStock'
 
 describe('Industry Collection', () => {
   describe('creates collection', () => {
@@ -49,6 +50,19 @@ describe('Industry Collection', () => {
       const neededCarTypes: NeededCarTypesDictionary = collection.neededCarTypes();
       expect(neededCarTypes).toEqual({ XMO: 1 });
     });
+    describe('has a single car', () => {
+      it('returns carTypes used by collection of 1 industry', () => {
+        const collection = new IndustryCollectionBuilder().addFromState(industry4State).build()
+        const neededCarTypes: NeededCarTypesDictionary = collection.neededCarTypes()
+        expect(neededCarTypes).toEqual({ XMO: 1 })
+      })
+      it('returns and empty car when trying to find a car for pickup', () => {
+        const collection = new IndustryCollectionBuilder().addFromState(industry4State).build()
+         const carForPickup = collection.findCarForPickup(CarType.XMO)
+         expect(carForPickup).toEqual(RollingStock.EMPTY)
+
+      })
+    })
     it('returns carTypes used by collection of 2 industries', () => {
       const collection = new IndustryCollectionBuilder()
         .addFromState(industry4State)
