@@ -49,7 +49,15 @@ export class IndustryCollection extends ItemCollection<Industry> {
   }
 
   findCarForPickup(carType: CarType): RollingStock {
-    return RollingStock.EMPTY
+    let returnedRollingStock = RollingStock.EMPTY
+    this.items.forEach(industry => {
+      const firstCarWithType = industry.placedCars.findFirstCarWithType(carType)
+      if (firstCarWithType !== RollingStock.EMPTY) {
+        returnedRollingStock = firstCarWithType
+        return
+      }
+    })
+      return returnedRollingStock
   }
 }
 

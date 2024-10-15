@@ -2,7 +2,7 @@ import { IndustryState } from '../models/Industry';
 import { IndustryBuilder } from '../models/IndustryBuilder';
 import { station1State, station3State, station4State } from './FixtureStations';
 import { CarType } from '../models/RollingStock';
-import { boxcarCP1234State, hopperBCAX5State } from './FixtureRollingStock';
+import { boxcarCP1234State, hopperBCAX5State, overheightCP2468, overheightCP2468State } from './FixtureRollingStock'
 
 export const industryBuilder1 = new IndustryBuilder()
   .stationState(station1State)
@@ -20,6 +20,7 @@ const industryBuilder3 = new IndustryBuilder()
 const industryBuilder4 = new IndustryBuilder()
   .stationState(station4State)
   .name('Industry 4')
+  .placedCars(overheightCP2468State)
   .servicedCarTypes(CarType.XMO);
 const industryBuilder5 = new IndustryBuilder()
   .stationState(station4State)

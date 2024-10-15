@@ -12,6 +12,7 @@ import {
   industry5State,
 } from '../../../test-configuration/FixtureIndustries';
 import { CarType, RollingStock } from '../../RollingStock'
+import { overheightCP2468 } from '../../../test-configuration/FixtureRollingStock'
 
 describe('Industry Collection', () => {
   describe('creates collection', () => {
@@ -56,10 +57,16 @@ describe('Industry Collection', () => {
         const neededCarTypes: NeededCarTypesDictionary = collection.neededCarTypes()
         expect(neededCarTypes).toEqual({ XMO: 1 })
       })
-      it('returns and empty car when trying to find a car for non-existent type', () => {
+      it('returns empty car for non-existent type in collection', () => {
+        const collection = new IndustryCollectionBuilder().addFromState(industry4State).build()
+         const carForPickup = collection.findCarForPickup(CarType.HT)
+         expect(carForPickup).toEqual(RollingStock.EMPTY)
+
+      })
+      it('returns car for pickup type in collection', () => {
         const collection = new IndustryCollectionBuilder().addFromState(industry4State).build()
          const carForPickup = collection.findCarForPickup(CarType.XMO)
-         expect(carForPickup).toEqual(RollingStock.EMPTY)
+         expect(carForPickup).toEqual(overheightCP2468)
 
       })
     })

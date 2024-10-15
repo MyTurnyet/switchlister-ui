@@ -40,7 +40,21 @@ export const boxcarBN9876State: RollingStockState = {
   roadName: 'BN',
   roadNumber: 9876,
 };
+export const overheightCP2468State: RollingStockState = {
+  carType: CarType.XMO,
+  color: 'RED',
+  id: {
+    uuid: uuidv4(),
+    roadName: 'CP',
+    roadNumber: 2468,
+  },
+  length: 52,
+  loaded: false,
+  roadName: 'CP',
+  roadNumber: 2468,
+};
 
 export const boxcarBN9876 = new RollingStock(boxcarBN9876State);
 export const boxcarCP1234 = new RollingStock(boxcarCP1234State);
 export const hopperBCAX5 = new RollingStock(hopperBCAX5State);
+export const overheightCP2468 = new RollingStock(overheightCP2468State);
